@@ -1,0 +1,10 @@
+.dialog-content-close {
+    // grid-column-start: 10;
+    // grid-column-end: $columns+1;
+    // grid-row-start: 1;
+    // grid-row-end: 2;
+    z-index: 1;
+    align-items: flex-start;
+    justify-content: flex-end;
+    display: flex;
+}

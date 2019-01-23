@@ -1,0 +1,47 @@
+
+<fury-dialog-panel>
+
+    <div class="form-content">
+        <div class="form-title">
+            <span>Cadastrar Rastreadores</span>
+        </div>
+        <div class="form-fields">
+            <form [formGroup]="form">
+                <div class="row" style="display: none"> 
+                    <div class="id field" >
+                        <mat-form-field style="width: 270px">
+                            <input matInput placeholder="Id" pattern="^(?!\s*$).+" formControlName="_id" id="_id" />
+                        </mat-form-field>                   
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="serialKey field"  >
+                        <mat-form-field  style="width: 270px">
+                            <input matInput placeholder="Serial Key" pattern="^(?!\s*$).+" formControlName="serialKey" id="serialKey" />
+                        </mat-form-field>                   
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="trackerModel field" >
+                        <mat-form-field style="width: 270px">
+                            <input matInput placeholder="Modelo" pattern="^(?!\s*$).+" formControlName="trackerModel" id="trackerModel" />
+                        </mat-form-field>                   
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="notes field" >
+                        <mat-form-field style="width: 270px">
+                            <input matInput placeholder="Observações" pattern="^(?!\s*$).+" formControlName="notes" id="notes" />
+                        </mat-form-field>                   
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer-content" footer-content>
+        <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="save()" color="primary">SALVAR</button>
+        <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" color="primary"  (click)="save()">ATUALIZAR</button>
+    </div>
+
+</fury-dialog-panel>
+

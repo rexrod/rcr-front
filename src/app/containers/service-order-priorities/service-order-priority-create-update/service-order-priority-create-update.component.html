@@ -1,0 +1,49 @@
+<fury-dialog-panel>
+
+    <div class="form-content">
+        <div class="form-title">
+            <span>Cadastrar {{ schema.titleSingle }}</span>
+        </div>
+        <div class="form-fields">
+            <form [formGroup]="form">
+                <div *ngFor="let field of properties" [ngStyle]="schema.properties.formStyles" class="{{field.property}}">
+                    <mat-form-field>
+                        <!-- input -->
+                        <input *ngIf="field.type==='string'" matInput 
+                        placeholder="{{field.description}}" 
+                        pattern="{{field.pattern}}" 
+                        formControlName="{{field.property}}"
+                        minlength="{{field.minlength}}" 
+                        maxlength="{{field.maxlength}}" 
+                        id="{{field.property}}" 
+                        required="{{field.required}}" />
+                        <!-- select -->
+                        <mat-select *ngIf="field.type==='object'"
+                        placeholder="{{field.description}}" 
+                        pattern="{{field.pattern}}" 
+                        formControlName="{{field.property}}"
+                        id="{{field.property}}" 
+                        required="{{field.required}}">
+                            <mat-option *ngFor="let color of colors" [value]="color.id">
+                                <span>
+                                    <!-- icon option -->
+                                    <div [ngStyle]="{'background-color': color.id}" class="circle-small"></div>
+                                    <!-- text option -->
+                                    {{color.name}}
+                                </span>
+                            </mat-option>
+                        </mat-select>
+                        <!-- {{ field | json}} -->
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer-content" footer-content>
+        <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="save()"
+            color="primary">SALVAR</button>
+        <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" color="primary"
+            (click)="save()">ATUALIZAR</button>
+    </div>
+
+</fury-dialog-panel>

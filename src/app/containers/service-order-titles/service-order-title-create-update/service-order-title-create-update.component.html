@@ -1,0 +1,43 @@
+<fury-dialog-panel>
+
+    <div class="form-content">
+        <div class="form-title">
+            <span>Cadastrar Título de OS</span>
+        </div>
+        <div class="form-fields">
+            <form [formGroup]="form">
+                <div class="idSegment">
+                    <mat-form-field>
+                        <mat-select placeholder="Selecione o Segmento" (selectionChange)="onChanges()" formControlName="idSegment" id="idSegment" required>
+                            <mat-option *ngFor="let segment of segments" [value]="segment.id">
+                                {{segment.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="name">
+                    <mat-form-field>
+                        <input matInput placeholder="Digite o Título da Ordem de Serviço" pattern="^(?!\s*$).+"
+                            formControlName="name" id="name" required (blur)="verifyName($event.target.value,form.get('idSegment').value)" />
+                    </mat-form-field>
+                </div>
+                <div class="idSLA">
+                    <mat-form-field>
+                        <mat-select placeholder="Selecione o SLA" formControlName="idSLA" id="idSLA" required>
+                            <mat-option *ngFor="let sla of slas" [value]="sla.id">
+                                {{sla.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer-content" footer-content>
+        <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="save()"
+            color="primary">SALVAR</button>
+        <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" color="primary"
+            (click)="save()">ATUALIZAR</button>
+    </div>
+
+</fury-dialog-panel>

@@ -1,0 +1,30 @@
+
+<fury-dialog-panel>
+
+    <div class="form-content">
+        <div class="form-title">
+            <span>Cadastrar Tipo de OS</span>
+        </div>
+        <div class="form-fields">
+            <form [formGroup]="form">
+                <div class="name">
+                    <mat-form-field>
+                        <input matInput 
+                        placeholder="Nome do Tipo de Ordem de Serviço" 
+                        maxlength="255" pattern="^(?!\s*$).+" 
+                        formControlName="name" 
+                        id="name" 
+                        (blur)="verifyTypes($event.target.value)"
+                        required />
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer-content" footer-content>
+        <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="save()" color="primary">SALVAR</button>
+        <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" color="primary"  (click)="save()">ATUALIZAR</button>
+    </div>
+
+</fury-dialog-panel>
+

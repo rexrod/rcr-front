@@ -1,0 +1,38 @@
+<fury-scrollbar class="dashboard" furyPage furyPagePadding fxLayout="column" [fxLayoutGap]="gap">
+
+  <div fxFlex="noshrink" fxLayout="column" [fxLayoutGap]="gap" fxLayout.gt-lg="row">
+    <div fxFlex="grow">
+      <mat-card>
+        <mat-card-header>
+          <!-- <img mat-card-avatar src="assets/img/avatars/1.jpg"> -->
+          <mat-card-title>
+            <h1>Avisos</h1>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-card *ngFor="let notice of notices | slice:0:3; let i=index" [ngStyle]="noticeStyles(notice.priority.color)">
+              <mat-card-header>
+                  <!-- <img mat-card-avatar src="assets/img/avatars/1.jpg"> -->
+                <mat-card-title>
+                  <h2>
+                    <i *ngIf="notice.priority.level <= 1" class="material-icons">info</i>
+                    <i *ngIf="notice.priority.level == 2" class="material-icons">error</i>
+                    <i *ngIf="notice.priority.level >= 3" class="material-icons">warning</i>
+                    {{notice.title ? notice.title : 'Título do Aviso'}}
+                  </h2>
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p>
+                  {{ notice.description }}
+                </p>
+              </mat-card-content>
+            </mat-card>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div fxLayout="column" [fxLayoutGap]="gap" [fxFlex]="col(2)">
+      <fury-advanced-pie-chart-widget [data]="advancedPieChartData$ | async" [options]="advancedPieChartOptions"></fury-advanced-pie-chart-widget>
+    </div>
+  </div>

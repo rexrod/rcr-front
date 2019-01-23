@@ -1,0 +1,95 @@
+<div class="card">
+    <div class="close">
+        <!-- <span><img src='assets/icons/x.png' /></span> -->
+        <button type="button" class="mat-icon-button" mat-dialog-close>
+            <span class="mat-button-wrapper">
+                <img src='assets/icons/x.png' />
+            </span>
+        </button>
+    </div>
+    <div class="title">
+        <div class="title-text">
+            <h1>Cadastrar Perfil</h1>
+        </div>
+    </div>
+    <div class="form">
+        <form [formGroup]="form">
+            <div class="fields">
+                <mat-card>
+                    <mat-form-field fxFlex>
+                        <input matInput placeholder="Nome do Perfil" pattern="^(?!\s*$).+" formControlName="name" id="name"
+                            required />
+                    </mat-form-field>
+                </mat-card>
+            </div>
+        </form>
+    </div>
+    <div class="list">
+        <mat-card>
+            <mat-form-field class="fury-filter-input" floatPlaceholder="never" fxFlex>
+                <mat-icon class="fury-filter-input-icon" matPrefix>search</mat-icon>
+                <input matInput #filter placeholder="Buscar na lista&hellip;">
+            </mat-form-field>
+            <div class="table">
+                <table mat-table [dataSource]="dataSource" matSort fxFlex>
+
+                    <!-- active Column -->
+                    <ng-container matColumnDef="active">
+                        <th mat-header-cell *matHeaderCellDef> Status </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-checkbox [checked]="element.active"></mat-checkbox>
+                        </td>
+                    </ng-container>
+
+                    <!-- name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Módulo </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <!-- view Column -->
+                    <ng-container matColumnDef="view">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Visualizar </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-checkbox formControNamte="view" [checked]="element.view"></mat-checkbox>
+                        </td>
+                    </ng-container>
+
+                    <!-- create Column -->
+                    <ng-container matColumnDef="create">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Cadasrar </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-checkbox [checked]="element.create"></mat-checkbox>
+                        </td>
+                    </ng-container>
+
+                    <!-- update Column -->
+                    <ng-container matColumnDef="update">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Alterar </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-checkbox [checked]="element.update"></mat-checkbox>
+                        </td>
+                    </ng-container>
+
+                    <!-- delete Column -->
+                    <ng-container matColumnDef="delete">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Deletar </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-checkbox [checked]="element.delete"></mat-checkbox>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="visibleColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: visibleColumns;"></tr>
+                </table>
+            </div>
+
+        </mat-card>
+    </div>
+    <div class="footer">
+            <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="save()"
+            color="primary">SALVAR</button>
+        <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" color="primary"
+            (click)="save()">ATUALIZAR</button>
+    </div>
+</div>

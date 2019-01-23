@@ -1,0 +1,54 @@
+// O import abaixo serve para personalização do Sistema
+@import "_custom_color_scheme.scss";
+
+.btn-rounded {
+    border-radius: 125em !important;
+    border: 0;
+    // width: 230px;
+}
+
+.btn-stroked {
+    color: map-get($mat-sgm-primary, 500) !important;
+    background-color: unset !important;
+    border: 1px solid !important;
+}
+
+.no-shadow {
+    box-shadow: unset !important;
+}
+
+.mat-snack-bar-container {
+    background-color: map-get($mat-sgm-primary, 500) !important;
+
+    .mat-button-wrapper {
+        color: white
+    }
+}
+
+.btn-icon {
+    box-sizing: border-box;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: 0;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    text-align: center;
+    margin: 0;
+    overflow: visible;
+    min-width: 0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+
+    .mat-icon {
+        vertical-align: middle;
+    }
+}

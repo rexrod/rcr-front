@@ -1,0 +1,129 @@
+<fury-dialog-panel>
+    <div class="form-content">
+        <div class="form-fields">
+            <div class="area_left"></div>
+            <div class="area_centro">
+                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                    <mat-step [stepControl]="firstFormGroup">
+                        <div [formGroup]="firstFormGroup">
+                            <ng-template matStepLabel>Dados Gerais</ng-template>
+                            <h1 mat-dialog-title class="custom_mat-dialog-title">Cadastrar Companhia</h1>
+                            <div class="field">
+                                <mat-form-field>
+                                    <input id="fantasyName" type="text" placeholder="Nome Fantasia" maxlength="255" pattern="^(?!\s*$).+"
+                                        formControlName="fantasyName" matInput (blur)="verifyFantasyName($event.target.value)"
+                                        required>
+                                </mat-form-field>
+                            </div>
+                            <div class="field">
+                                <mat-form-field>
+                                    <input id="socialName" type="text" placeholder="Razão Social" maxlength="255" pattern="^(?!\s*$).+"
+                                        formControlName="socialName" matInput (blur)="verifySocialName($event.target.value)"
+                                        required>
+                                </mat-form-field>
+                            </div>
+                            <div class="field">
+                                <mat-form-field>
+                                    <input id="cnpj" placeholder="CNPJ" formControlName="cnpj" matInput pattern="[0-9]{14}"
+                                        mask="99.999.999/9999-99" (blur)="verifyCnpj($event.target.value)" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="field_register">
+                                <div class="registrationState">
+                                    <mat-form-field>
+                                        <input type="text" id="registrationState" placeholder="Registro Estadual"
+                                            formControlName="registrationState" matInput required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="registrationMunicipal">
+                                    <mat-form-field>
+                                        <input type="text" id="registrationMunicipal" placeholder="Registro Municipal"
+                                            formControlName="registrationMunicipal" matInput required>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="filial">
+                                <div class="label">Empresa Filial?</div>
+                                <div class="slider">
+                                    <mat-slide-toggle class="slider_filial" matInput color="warn" [checked]="checked"
+                                        color="primary" (change)="onChange($event)"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div class="matriz_label">
+                                <span [hidden]="!checked">Empresa Matriz</span>
+                            </div>
+                            <div [style.display]="checked ? 'flex' : 'none'" class="field">
+                                <mat-form-field>
+                                    <mat-select placeholder="Selecione uma empresa" formControlName="idBranch"
+                                        [required]="checked">
+                                        <mat-option *ngFor="let company of companies" [value]="company.id">
+                                            {{company.fantasyName}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-step>
+                    <mat-step [stepControl]="secondFormGroup">
+                        <div [formGroup]="secondFormGroup">
+                            <ng-template matStepLabel>Localização</ng-template>
+                            <h1 mat-dialog-title class="custom_mat-dialog-title">Cadastrar Companhia</h1>
+                            <div class="field">
+                                <mat-form-field>
+                                    <input id="street" type="text" placeholder="Rua" formControlName="street" maxlength="255" pattern="^(?!\s*$).+"
+                                        matInput required>
+                                </mat-form-field>
+                            </div>
+                            <div class="field">
+                                <mat-form-field>
+                                    <input id="complement" type="text" placeholder="Complemento" formControlName="complement"
+                                        matInput required maxlength="255" pattern="^(?!\s*$).+">
+                                </mat-form-field>
+                            </div>
+                            <div class="field">
+                                <mat-form-field>
+                                    <input id="houseNumber" type="text" placeholder="Número" formControlName="houseNumber"
+                                        matInput required>
+                                </mat-form-field>
+                            </div>
+                            <div class="field">
+                                <mat-form-field>
+                                    <input id="cep" type="text" placeholder="Cep" formControlName="cep" matInput
+                                        required mask="99999-999" minlength="8" maxlength="9">
+                                </mat-form-field>
+                            </div>
+                            <div class="field">
+                                <mat-form-field>
+                                    <input id="telephoneNumber" type="text" placeholder="Telefone" formControlName="telephoneNumber"
+                                        matInput required [value]="phoneNumber" (keyup)="formatPhone($event)" minlength="14"
+                                        maxlength="15">
+                                </mat-form-field>
+                            </div>
+                            <div class="field">
+                                <mat-form-field>
+                                    <input id="ContactName" type="text" placeholder="Nome do Contato" formControlName="contactName"
+                                        matInput required maxlength="255" pattern="^(?!\s*$).+">
+                                </mat-form-field>
+                            </div>
+                            <div class="field">
+                                <mat-form-field>
+                                    <input id="Email" type="text" placeholder="Email" formControlName="email" pattern="^\w+(.?\w+)*@\w+(\.?\w+)*"
+                                        matInput required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-step>
+                </mat-horizontal-stepper>
+            </div>
+            <div class="area_rigth"></div>
+        </div>
+    </div>
+    <div class="footer-content" footer-content>
+        <button *ngIf="!step2" mat-raised-button [disabled]="!firstFormGroup.valid" mat-button class="btn-rounded btn-save"
+            id="btn_next" (click)="stepper.next(); step2 = true" color="primary">PRÓXIMO</button>
+        <button *ngIf="step2" [disabled]="" mat-button class="btn-rounded btn-save no-shadow" id="btn_previous" (click)="stepper.previous(); step2 = false"
+            color="primary">VOLTAR</button>
+        <button *ngIf="step2" mat-raised-button [disabled]="!secondFormGroup.valid" mat-button class="btn-rounded btn-save"
+            id="btn_save" [disabled]="" (click)="save(); step2 = false" mat-raised-button color="primary">FINALIZAR</button>
+    </div>
+</fury-dialog-panel>

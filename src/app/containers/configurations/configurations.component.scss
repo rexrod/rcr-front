@@ -1,0 +1,160 @@
+@import "_custom_color_scheme.scss";
+$theme-background: map-get($map: $mat-sgm-primary, $key: 500);
+
+%flex-center {
+    display: flex;
+    flex: 1 1 auto;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0px;
+    align-items: center;
+}
+
+#background-configuration {
+    height: 100%;
+    flex-direction: column;
+    box-sizing: border-box;
+    @extend %flex-center;
+    max-width: 100%; //background: green;
+
+    #conteiner {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: stretch;
+        align-items: stretch;
+        align-content: stretch;
+        height: 91%;
+        width: 91%;
+
+        #card {
+            flex: 1 1 auto;
+            display: flex;
+            flex-wrap: wrap;
+
+            #table-component {
+                //background-color: #273B56;
+                flex: 1 1 auto;
+                display: flex;
+                flex-direction: column;
+
+                #tfilter {
+                    @extend %flex-center;
+                    display: flex;
+                    min-height: 64px;
+                    box-shadow: 0px 3px 6px rgba(black, 0.16);
+                    color: $theme-background;
+                    z-index: 2;
+
+                    #title {
+                        text-align: center;
+                        font-size: 150%;
+                        font-weight: bold;
+                        display: flex;
+                        flex: 1 1 auto;
+                        max-width: 15%;
+
+                        span {
+                            flex: 1 1 auto;
+                        }
+                    }
+
+         
+                }
+
+                #tmaster {
+                    display: flex;
+                    flex: 12 1 auto;
+                    flex-direction: column;
+
+                    #thead {
+                        @extend %flex-center;
+                        text-align: center;
+                        min-height: 35px;
+
+                        .table-header {
+                            width: 100%;
+                            color: $theme-background;
+                            display: inline-flex;
+                            font-weight: bold;
+                            /* HEADER */
+                            
+                        }
+                    }
+
+                    #tbody {
+                        flex: 10 1 auto; // background: brown;
+                        align-items: flex-start;
+                        text-align: center;
+                        display: flex;
+                        box-shadow: 0px 3px 6px rgba(black, 0.16);
+                        z-index: 1;
+                        overflow: auto;
+                        height: 0;
+
+                        .item-card {
+                            margin: 24px;
+                            color: $theme-background;
+                            cursor: pointer;
+                            .icons-settings{
+                                width: auto;
+                                height: auto;
+                                font-size: 48px;
+                            }
+                        }
+                    }
+                }
+
+                #tfooter {
+                    @extend %flex-center;
+                    text-align: center;
+                    min-height: 60px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .paginator {
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    #title {
+        font-size: 100% !important;
+    }
+
+    .fury-filter-input {
+        width: 140px;
+    }
+
+    .mat-paginator-range-label {
+        margin: unset !important;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    %unset-width {
+        flex: 1 1 auto !important;
+        max-width: unset !important;
+        min-width: unset !important;
+        width: unset !important;
+    }
+
+    #thead {
+        display: none !important;
+    }
+
+    #tbody {
+        height: 0px !important; // fix layout in the firefox
+    }
+
+}

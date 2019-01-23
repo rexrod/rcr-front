@@ -1,0 +1,65 @@
+site_name: Sistema de Manutenção - SGM
+
+markdown_extensions:
+    - admonition
+    - pymdownx.superfences
+
+    # - fontawesome_markdown
+
+    # theme: readthedocs
+theme:
+    name: 'material'
+    palette:
+        primary: 'orange'
+        accent: 'indigo'
+    # logo: 'assets/images/favicon.ico'
+    # favicon: 'assets/images/favicon.ico'
+extra_css:
+    - 'stylesheets/extra.css'
+extra_javascript:
+    - 'javascripts/extra.js'
+
+nav:
+    - Home: index.md
+    - Guia do Desenvolvedor: 
+        - Começando: developer_guide/index.md
+        - Estrutura: developer_guide/struct.md
+        - Criando: developer_guide/createScreen.md
+        - Gerando e importando a API: developer_guide/importApi.md
+        - APIs: developer_guide/api.md
+        - Testando: developer_guide/testing.md
+        - Rodando o Projeto: developer_guide/running.md
+        - Rodando a Documentação: developer_guide/runningDoc.md
+        - Documentação do Frontend: developer_guide/frontend_documentation.md
+    - Guia de Usuário:
+        - Començando: user_guide/index.md
+        - Telas:
+            - Avisos: user_guide/notices.md
+            - Prioridades de Avisos: user_guide/notices_priority.md
+            - Companhias: user_guide/companies.md
+            - Áreas: user_guide/areas.md
+            - Departamentos: user_guide/departments.md
+            - Setores: user_guide/sectors.md
+            - Segmentos: user_guide/segments.md
+            - Fabricantes: user_guide/fabricators.md
+            - Tipos de OS: user_guide/os_types.md
+            - Slas: user_guide/slas.md
+            - Título de OS: user_guide/os_titles.md
+            - Modelos: user_guide/models.md
+            - Peças: user_guide/parts.md
+            - Equipamentos: user_guide/equipments.md
+            - Unidades de Medida: user_guide/measures_units.md
+            - Prioridades da OS: user_guide/os_priorities.md
+            - Materiais: user_guide/materials.md
+            - Atividades: user_guide/activities.md
+        - Perguntas Frequentes: user_guide/faqs.md
+    - Sobre: about.md
+    - Leia-me: read_me.md
+    - Exportar para PDF: export_pdf.md
+    - Mapa de Dependências: dependency_map.md
+
+plugins:
+    - pdf-export:
+        verbose: true
+        media_type: print
+        enabled_if_env: ENABLE_PDF_EXPORT

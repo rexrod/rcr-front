@@ -1,0 +1,67 @@
+
+<fury-dialog-panel>
+
+    <div class="form-content">
+        <div class="form-title">
+            <span>Cadastrar Transportes</span>
+        </div>
+        <div class="form-fields">
+            <form [formGroup]="form">
+                <div class="row" style="display: none"> 
+                    <div class="id field" >
+                        <mat-form-field>
+                            <input matInput placeholder="Id" pattern="^(?!\s*$).+" formControlName="_id" id="_id" />
+                        </mat-form-field>                   
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="name field">
+                        <mat-form-field>
+                            <input matInput placeholder="Tipo de Veículo" pattern="^(?!\s*$).+" formControlName="type" id="type" required />
+                        </mat-form-field>                   
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="vehiclePlate field">
+                        <mat-form-field>
+                            <input matInput placeholder="Placa do veículo" pattern="^(?!\s*$).+" formControlName="vehiclePlate" id="vehiclePlate" required />
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="capacity field">
+                        <mat-form-field>
+                            <input matInput placeholder="Capacidade" pattern="^(?!\s*$).+" formControlName="capacity" id="capacity" required />
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="thirdCompany field">
+                        <mat-form-field>
+                            <input matInput placeholder="Empresa" pattern="^(?!\s*$).+" formControlName="thirdCompany" id="thirdCompany" required />
+                        </mat-form-field>
+                    </div>
+                </div>   
+                <div class="row" *ngIf="isUpdateMode()">
+                    <!-- Setor -->
+                    <div class="idRastreador field">
+                        <mat-form-field>
+                            <mat-select placeholder="Adicione um rastreador" formControlName="idRastreador" id="idRastreador">
+                                <mat-option *ngFor="let rastreador of rastreadores" [value]="rastreador.serialKey">
+                                    {{rastreador.serialKey}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="field"></div> -->
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer-content" footer-content>
+        <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="saveCustom()">SALVAR</button>
+        <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="save()" style="background-color: #FFC937">ATUALIZAR</button>
+    </div>
+
+</fury-dialog-panel>
+

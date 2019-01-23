@@ -1,0 +1,104 @@
+<fury-dialog-panel>
+
+    <div class="form-content">
+        <div class="form-title">
+            <span>Cadastrar Usuários</span>
+        </div>
+        <div class="form-fields">
+            <form [formGroup]="form">
+                <div class="row image-component">
+                    <div class="picture-display" (click)="fileInput.click()">
+                        <img [src]="urlImg" *ngIf="urlImg" id="preview">
+                        <div class="picture-overlay" *ngIf="!urlImg">
+                        </div>
+                    </div>
+
+                    <div class="picture">
+                        <!-- <button [matTooltip]="fileName" [matTooltipPosition]="'above'" mat-raised-button (click)="fileInput.click()"
+                                    type="button" class="btn-rounded"> -->
+                        <span [matTooltip]="fileName" [matTooltipPosition]="'above'">{{ fileName ? ( fileName |
+                            reticence ) : '' }}</span>
+                        <!-- </button> -->
+                        <button matTooltip="Limpar seleção" [matTooltipPosition]="'above'" *ngIf="selectedFile || urlImg"
+                            (click)="clearFileSelected()" class="btn-icon no-shadow btn-clear">
+                            <mat-icon aria-label="Limpar">close</mat-icon>
+                        </button>
+                        <input type="file" id="uploadPicture" class="hidden-input" accept=".jpeg, .png, .jpg, .bmp, .gif"
+                            (change)="fileChange($event)" #fileInput>
+                    </div>
+                    <mat-hint>{{ fileSize ? (fileSize | size ) : '' }}</mat-hint>
+
+                    <div class="progress" [hidden]="!progress">
+                        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                        <mat-hint>Fazendo upload da imagem...</mat-hint>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Primeiro Nome -->
+                    <div class="firstName field">
+                        <mat-form-field>
+                            <input matInput placeholder="Primeiro Nome" pattern="^(?!\s*$).+" formControlName="firstName"
+                                id="firstName" required />
+                        </mat-form-field>
+                    </div>
+                    <!-- Último Nome -->
+                    <div class="lastName field">
+                        <mat-form-field>
+                            <input matInput placeholder="Último Nome" pattern="^(?!\s*$).+" formControlName="lastName"
+                                id="lastName" required />
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Email -->
+                    <div class="email field">
+                        <mat-form-field>
+                            <input matInput placeholder="Email" pattern="^\w+(.?\w+)*@\w+(\.?\w+)*" formControlName="email"
+                                id="email" required (keyup)="loginValue($event.target.value)" />
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Login -->
+                    <div class="login field">
+                        <mat-form-field>
+                            <input matInput placeholder="Login" pattern="^(?!\s*$).+" formControlName="login" id="login"
+                                required />
+                        </mat-form-field>
+                    </div>
+                    <!-- Senha -->
+                    <div class="password field">
+                        <mat-form-field>
+                            <input matInput type="password" placeholder="Senha" pattern="^(?!\s*$).+" formControlName="password"
+                                id="password" required [errorStateMatcher]="matcher" minlength="8"/>
+                            <mat-error>
+                                Sua senha deve conter <strong>números</strong>, <strong>letras</strong> e no <strong>mínimo 8 caracteres</strong>.                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Setor -->
+                    <div class="idSector field">
+                        <mat-form-field>
+                            <mat-select placeholder="Selecione o Setor" formControlName="idSector" id="idSector"
+                                required>
+                                <mat-option *ngFor="let sector of sectors" [value]="sector.id">
+                                    {{sector.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="field"></div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="footer-content" footer-content>
+        <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="save()"
+            color="primary">SALVAR</button>
+        <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" color="primary"
+            (click)="save()">ATUALIZAR</button>
+    </div>
+
+</fury-dialog-panel>
