@@ -15,7 +15,11 @@ const routes: Routes = [
     path: 'forgot-password',
     loadChildren: 'app/demo/custom-pages/forgot-password/forgot-password.module#ForgotPasswordModule',
   },
-
+  {
+    path: '',
+    //loadChildren: 'app/containers/dashboard/dashboard.module#DashboardModule',
+    loadChildren: 'app/core/login/login.module#LoginModule',    
+  },
   {
     path: '',
     component: LayoutComponent,
@@ -155,11 +159,12 @@ loadChildren: 'app/containers/transports/transports.module#TransportsModule',
         loadChildren: 'app/containers/departments/departments.module#DepartmentsModule',
       },
 
-      {
-        path: '',
-        loadChildren: 'app/containers/dashboard/dashboard.module#DashboardModule',
-        pathMatch: 'full'
-      },
+      // {
+      //   path: '',
+      //   //loadChildren: 'app/containers/dashboard/dashboard.module#DashboardModule',
+      //   loadChildren: 'app/core/login/login.module#LoginModule',    
+      //   pathMatch: 'full'
+      // },
       {
         path: 'menu',
         loadChildren: 'app/containers/menu/menu.module#MenuModule',

@@ -12,7 +12,7 @@
               <fury-list [columns]="columns" (filterChange)="onFilterChange($event)" fxLayoutAlign="center center" fxLayout="row"></fury-list>
             </div>
             -->
-            <div style="margin-left: 50px"> 
+            <!-- <div style="margin-left: 50px"> 
               <mat-form-field>
                 <input matInput placeholder="Buscar..." value="">
               </mat-form-field>
@@ -23,7 +23,7 @@
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
-              </div>
+            </div> -->
             <div style="margin-left: 20px">
               <mat-form-field>
                   <mat-select placeholder="Rastreadores" [(ngModel)]="selectedValue" id="idRastreador"> 
@@ -42,7 +42,7 @@
                 </mat-form-field> -->
             </div>
             <div style="margin-left: 20px">
-              <button  mat-raised-button class="btn-rastrear" (click)="rastrear()" >Rastrear</button>
+              <button  mat-raised-button id="rastrear" (click)="rastrear()">Rastrear</button>
             </div>
 
             <!-- <div id="add">
