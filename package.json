@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "prebuild": "./node_modules/ts-node/dist/bin.js git.version.ts",
-    "postinstall": "ng build --aot --prod"
+    "postinstall": "ng build"
   },
   "private": true,
   "dependencies": {
