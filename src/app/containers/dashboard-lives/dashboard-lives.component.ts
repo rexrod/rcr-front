@@ -54,12 +54,16 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     transports: Transport[];
     // form: FormGroup;
     selectedValue: string;
-    
+    lived = false;
+
     @Input()
     rastreadores: any[] = [];
 
     expandedElement: any;
     pageSize = 10;
+    
+    rastreamento: any;
+    textoRastrear: string = 'Rastrear';
 
     map: any;
 
@@ -184,28 +188,28 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         });
         // Instantiate the default behavior, providing the mapEvents object: 
         let behavior = new H.mapevents.Behavior(mapEvents);
-        let ui = H.ui.UI.createDefault(this.map, defaultLayers);
+        let ui = H.ui.UI.createDefault(this.map, defaultLayers, 'pt-BR');
 
         let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
 
 
         // Create a marker using the previously instantiated icon:
-        let marker = new H.map.Marker({ lat: -3.04945, lng:  -60.01845 }, { icon: icon });
-        let marker1 = new H.map.Marker({ lat: -3.0587, lng:  -60.03195 }, { icon: icon });
-        let marker2 = new H.map.Marker({ lat: -3.06046, lng:  -60.00178 }, { icon: icon });
-        let marker3 = new H.map.Marker({ lat: -3.03579, lng:  -59.97076 }, { icon: icon });
-        let marker4 = new H.map.Marker({ lat: -3.07024, lng:  -59.97119 }, { icon: icon });
-        let marker5 = new H.map.Marker({ lat: -3.05421, lng:  -60.00145 }, { icon: icon });
-        let marker6 = new H.map.Marker({ lat: -3.05832, lng:  -59.96532 }, { icon: icon });
+        // let marker = new H.map.Marker({ lat: -3.04945, lng:  -60.01845 }, { icon: icon });
+        // let marker1 = new H.map.Marker({ lat: -3.0587, lng:  -60.03195 }, { icon: icon });
+        // let marker2 = new H.map.Marker({ lat: -3.06046, lng:  -60.00178 }, { icon: icon });
+        // let marker3 = new H.map.Marker({ lat: -3.03579, lng:  -59.97076 }, { icon: icon });
+        // let marker4 = new H.map.Marker({ lat: -3.07024, lng:  -59.97119 }, { icon: icon });
+        // let marker5 = new H.map.Marker({ lat: -3.05421, lng:  -60.00145 }, { icon: icon });
+        // let marker6 = new H.map.Marker({ lat: -3.05832, lng:  -59.96532 }, { icon: icon });
         
         //Add the marker to the map:
-        this.map.addObject(marker);
-        this.map.addObject(marker1);
-        this.map.addObject(marker2);
-        this.map.addObject(marker3);
-        this.map.addObject(marker4);
-        this.map.addObject(marker5);
-        this.map.addObject(marker6);      
+        // this.map.addObject(marker);
+        // this.map.addObject(marker1);
+        // this.map.addObject(marker2);
+        // this.map.addObject(marker3);
+        // this.map.addObject(marker4);
+        // this.map.addObject(marker5);
+        // this.map.addObject(marker6);      
     }
 
     create() {
@@ -332,45 +336,72 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     }
   }
 
-  rastrear(){
-      console.log('rastreando...');
-      const transport =  this.transports.find(x => x.trackerSerial === this.selectedValue );
-    //   console.log(transport);
-    //   console.log(this.selectedValue);
+  rastrear(): void{
 
-      let points = [];
+    console.log('rastreando...');
+    const transport =  this.transports.find(x => x.trackerSerial === this.selectedValue );
+//   console.log(transport);
+//   console.log(this.selectedValue);
 
-      //let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
-      let icon = new H.map.Icon('assets/rcr/icon-local.png');
-      let iconFinal = new H.map.Icon('assets/rcr/icon-logo.png');
-      
-      let marker = new H.map.Marker({ lat: transport.coordinates[0].coords.lat, lng: transport.coordinates[0].coords.long }, { icon: icon });
-      let markerFinal = new H.map.Marker({ lat: transport.coordinates[transport.coordinates.length-1].coords.lat, lng: transport.coordinates[transport.coordinates.length-1].coords.long }, { icon: iconFinal });
+    this.map.clearContent();
+    this.map.removeObjects(this.map.getObjects()); 
 
-      this.map.addObject(marker);
-      //this.map.addObject(markerFinal);
+    let points = [];
 
-      for(var i=0; i < transport.coordinates.length; i++){
-        //console.log(transport.coordinates[i].coords);
-        points.push({'lat': transport.coordinates[i].coords.lat, 'lng': transport.coordinates[i].coords.long });
-      }
-
-      console.log(points);
+    //let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
+    let icon = new H.map.Icon('assets/rcr/icon-local.png');
+    let iconFinal = new H.map.Icon('assets/rcr/icon-logo.png');
     
-      // Initialize a linestring and add all the points to it:
-      let linestring = new H.geo.LineString();
-      points.forEach(function(point) {
-        linestring.pushPoint(point);
-      });
-      
-      // Initialize a polyline with the linestring:
-      let polyline = new H.map.Polyline(linestring, { style: { lineWidth: 10 }});
-      
-      // Add the polyline to the map:
-      this.map.addObject(polyline);
-      
-      // Zoom the map to make sure the whole polyline is visible:
-      this.map.setViewBounds(polyline.getBounds());
+    let marker = new H.map.Marker({ lat: transport.coordinates[0].coords.lat, lng: transport.coordinates[0].coords.long }, { icon: icon });
+    let markerFinal = new H.map.Marker({ lat: transport.coordinates[transport.coordinates.length-1].coords.lat, lng: transport.coordinates[transport.coordinates.length-1].coords.long }, { icon: iconFinal });
+
+    this.map.addObject(marker);
+    //this.map.addObject(markerFinal);
+
+    for(var i=0; i < transport.coordinates.length; i++){
+    //console.log(transport.coordinates[i].coords);
+    points.push({'lat': transport.coordinates[i].coords.lat, 'lng': transport.coordinates[i].coords.long });
+    }
+
+    console.log(points);
+
+    // Initialize a linestring and add all the points to it:
+    let linestring = new H.geo.LineString();
+    points.forEach(function(point) {
+    linestring.pushPoint(point);
+    });
+    
+    // Initialize a polyline with the linestring:
+    let polyline = new H.map.Polyline(linestring, { style: { lineWidth: 10 }});
+    
+    // Add the polyline to the map:
+    this.map.addObject(polyline);
+    
+    // Zoom the map to make sure the whole polyline is visible:
+    this.map.setViewBounds(polyline.getBounds());
+
+    //setInterval(() => { this.rastrear(); }, 1000);
+    
+    // Observable.interval(2000 * 60).subscribe(x => {
+    //     doSomething();
+    //   });
+
+    if(transport.coordinates.length > 0){
+        if(this.lived){
+            console.log(this.lived);
+            this.rastreamento = setInterval(() => { this.rastrear(); }, 1000 * 5);
+        }
+        //this.rastreamento = setInterval( this.rastrear() , 1000 * 5 );
+        this.textoRastrear = 'Rastreando...';
+    }
+  }
+
+  desativarRastrear(){
+    console.log('desativando rastreamento...');
+    console.log(this.rastreamento);
+    clearInterval(this.rastreamento); 
+    this.textoRastrear = 'Rastrear';  
   }
 }
 
+    

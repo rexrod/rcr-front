@@ -158,12 +158,12 @@ export class AppComponent {
       icon: 'settings',
       position: 99,
       subItems: [
-        // {
-        //   name: 'Usuários',
-        //   routeOrFunction: '/users',
-        //   icon: 'supervised_user_circle',
-        //   position: 1
-        // },
+        {
+          name: 'Usuários',
+          routeOrFunction: '/users',
+          icon: 'supervised_user_circle',
+          position: 1
+        },
         // {
         //   name: 'Perfis',
         //   routeOrFunction: '/profiles',

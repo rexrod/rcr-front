@@ -48,22 +48,19 @@ export class UserCreateUpdateComponent implements OnInit {
     private http: HttpClient,
     private fb: FormBuilder) {
     // load the user
-    this.apiSector.getAllUsingGET3().
-      subscribe(sec => {
-        this.sectors = <Sector[]>sec;
-      });
+    // this.apiSector.getAllUsingGET3().
+    //   subscribe(sec => {
+    //     this.sectors = <Sector[]>sec;
+    //   });
     // instance the form group for mode Update and Create
     this.form = new FormGroup({
       id: new FormControl(),
-      firstName: new FormControl(),
-      lastName: new FormControl(),
+      name: new FormControl(),
       email: new FormControl(),
-      login: new FormControl({ value: '', disabled: true }),
       password: new FormControl(),
-      idSector: new FormControl(),
-      picture: new FormControl(),
+      registration: new FormControl(), //{ value: '', disabled: true }),
+      status: new FormControl(),
     });
-
   }
 
   ngOnInit() {
@@ -73,13 +70,13 @@ export class UserCreateUpdateComponent implements OnInit {
       // Used in the Update Mode to fill the fields
       this.form = new FormGroup({
         id: new FormControl(this.defaults.id, Validators.required),
-        firstName: new FormControl(this.defaults.firstName, Validators.required),
-        lastName: new FormControl(this.defaults.lastName, Validators.required),
+        name: new FormControl(this.defaults.name, Validators.required),
         email: new FormControl(this.defaults.email, Validators.required),
-        login: new FormControl({ value: this.defaults.login, disabled: true }, Validators.required),
-        idSector: new FormControl(this.defaults.idSector, Validators.required),
+        password: new FormControl(this.defaults.password),
+        // registration: new FormControl({ value: this.defaults.registration, disabled: true }, Validators.required),
+        registration: new FormControl(this.defaults.registration, Validators.required),
+        status: new FormControl(this.defaults.status),
       });
-
     } else { // <-- don't have data :( = Mode Create
       this.defaults = {} as User; // takes blank :)
     }
@@ -146,6 +143,14 @@ export class UserCreateUpdateComponent implements OnInit {
 
     }
 
+  }
+
+  saveCustom(){
+    if (this.mode === 'create') {
+      this.createUser();
+    } else if (this.mode === 'update') {
+      this.updateUser();
+    }
   }
 
   save() {

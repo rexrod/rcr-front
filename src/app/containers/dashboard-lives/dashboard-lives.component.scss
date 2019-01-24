@@ -64,14 +64,22 @@ mat-form-field {
 }
 
 #rastrear {
-    flex: .5 1 0%;
+    flex: .5 1 auto;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     font-size: 100%;
     background-color: #FFC937;
     color: white;
-    font-weight: lighter;
+    font-weight: normal;
 }
 
+#cancelar {
+    flex: .5 1 auto;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    font-size: 100%;
+    background-color: red;
+    color: white;
+    font-weight: normal;
+}
 #background-dashboard-live {
     height: 100%;
     flex-direction: column;

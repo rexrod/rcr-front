@@ -16,6 +16,13 @@ import { of } from 'rxjs/internal/observable/of'; // to test without data
 import { ALL_IN_ONE_TABLE_FAKE_DATA } from './users.fake'; // to test without data
 import { trigger, state, transition, style, animate } from '@angular/animations';
 import { UserControllerService } from 'app/module/users';
+import { HttpClient, HttpHeaders, HttpParams,
+    HttpResponse, HttpEvent }                           from '@angular/common/http';
+import { environment } from 'environments/environment.dev';
+import { UserControllerCustomService } from 'app/containers/users/user.service';
+import { DialogNoPanelComponent } from 'app/core/common/dialog-no-panel/dialog-no-panel.component';
+import { DialogStatusComponent } from 'app/core/common/dialog-change-status/dialog-status.component';
+
 
 @Component({
     selector: 'fury-users',
@@ -29,7 +36,8 @@ import { UserControllerService } from 'app/module/users';
             transition('expanded <=> void', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
           ])
     ],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    providers: [UserControllerCustomService]
 })
 export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
 
@@ -43,12 +51,13 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
     // this component is useful for the filter and show colums in table
     @Input()
     columns: ListColumn[] = [
-        { name: 'Id', property: 'id', visible: true, isModelProperty: true },
+        { name: 'Id', property: 'id', visible: false, isModelProperty: true },
         { name: 'Nome', property: 'name', visible: true, isModelProperty: true },
         { name: 'Email', property: 'email', visible: true, isModelProperty: true },
-        { name: 'Login', property: 'login', visible: true, isModelProperty: true },
-        { name: 'Setor', property: 'sector', visible: true, isModelProperty: true },
+        { name: 'Matricula', property: 'registration', visible: true, isModelProperty: true },
+        { name: 'Status', property: 'status', visible: true, isModelProperty: true },
         { name: '', property: 'actions', visible: true }
+    
     ] as ListColumn[];
     dataSource: MatTableDataSource<User> | null;
 
@@ -63,23 +72,23 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
     constructor(
         private dialog: MatDialog,
         public snackBar: MatSnackBar,
-        private apiUser: UserControllerService
+        private apiUser: UserControllerCustomService
     ) { }
 
     loadData() {
-        // this.apiUser.getAllUsingGET()
-        //   .subscribe(users => {
-        //     this.users = users;
-        //     this.dataSource.data = users;
-        //      this.paginator.firstPage();
-        //   },
-        //    error => {
-        //        if (error.status === 0 || error.status === 404) {
-        //            this.snackBar.open('Esse serviço está indisponível no momento.', 'OK', {
-        //            });
-        //        }
-        //    });
-        this.dataSource.data = ALL_IN_ONE_TABLE_FAKE_DATA;
+        this.apiUser.getAll()
+          .subscribe(users => {
+            this.users = users;
+            this.dataSource.data = users; //transports;
+            this.paginator.firstPage();
+          },
+           error => {
+               if (error.status === 0 || error.status === 404) {
+                   this.snackBar.open('Esse serviço está indisponível no momento.', 'OK', {
+                   });
+               }
+           });
+        //this.dataSource.data = ALL_IN_ONE_TABLE_FAKE_DATA;
     }
 
     ngOnInit() {
@@ -105,26 +114,27 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
     create() {
 
         this.dialog.open(UserCreateUpdateComponent, {
-            width: '61%', height: '77%',
+            width: '41%', height: '77%',
             panelClass: 'dialog-create-update'
         }).afterClosed().subscribe((user: User) => {
 
             if (user) {
-                // this.apiUser.createUsingPOST(user).
-                //     subscribe(
-                //         success => {
-                            this.snackBar.open('Item cadastrado com sucesso!', 'OK', {
+                this.apiUser.registerUser(user).
+                     subscribe(
+                        success => {
+                            this.snackBar.open('Usuário cadastrado com sucesso!', 'OK', {
                                 duration: 10000
                             });
-                        //    // Reload the table after the post
-                        //     this.loadData();
-                        // },
-                        // error => {
-                        //    this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
-                        //    'OK', {
-                        //        duration: 10000
-                        //    });
-                        // });
+                        // Reload the table after the post
+                           this.loadData();
+                        },
+                        error => {
+                            console.log(error);
+                            this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+                            'OK', {
+                                duration: 10000
+                            });
+                         });
             }
 
         });
@@ -134,25 +144,26 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this.dialog.open(UserCreateUpdateComponent, {
             data: user,
-            width: '61%', height: '77%',
+            width: '41%', height: '77%',
             panelClass: 'dialog-create-update'
         }).afterClosed().subscribe((_user) => {
             if (_user) {
-                // this.apiUser.updateUsingPUT(_user).
-                //   subscribe(
-                //        success => {
-                            this.snackBar.open('Item atualizado com sucesso!', 'OK', {
+                this.apiUser.updateUser(_user).
+                   subscribe(
+                        success => {
+                            this.snackBar.open('Usuário atualizado com sucesso!', 'OK', {
                                 duration: 10000
                             });
-                //            // Reload the table after the post
-                //            this.loadData();
-                //        },
-                //        error => {
-                //            this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
-                //            'OK', {
-                //                duration: 10000
-                //            });
-                //        });
+                            // Reload the table after the post
+                            this.loadData();
+                        },
+                        error => {
+                            console.log(error);
+                            this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+                            'OK', {
+                                duration: 10000
+                            });
+                        });
             }
         });
     }
@@ -160,26 +171,85 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
     delete(user) {
 
         this.dialog.open(DialogDeleteComponent, {
-            data: { id: user.id, displayName: user.id },
+            data: { id: user.id, displayName: user.name },
             panelClass: 'dialog-delete'
         }).afterClosed().subscribe((_user: User) => {
 
-            if (_user && _user.id) {
-                // this.apiUser.deleteUsingDELETE(_user.id).
-                //    subscribe(
-                //        success => {
-                            this.snackBar.open('Item deletado com sucesso!', 'OK', {
+            if (_user) {
+                 this.apiUser.deleteUser(_user).
+                    subscribe(
+                        success => {
+                            this.snackBar.open('Usuário deletado com sucesso!', 'OK', {
                                 duration: 10000
                             });
-                //            // Reload the table after the post
-                //            this.loadData();
-                //        },
-                // error => {
-                //            this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
-                //            'OK', {
-                //                duration: 10000
-                //            });
-                //        });
+                            // Reload the table after the post
+                            this.loadData();
+                        },
+                        error => {
+                            console.log(error);
+                            this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+                            'OK', {
+                                duration: 10000
+                            });
+                        });
+            }
+
+        });
+    }
+
+    ativarUsuario(user) {
+
+        this.dialog.open(DialogStatusComponent, {
+            data: { id: user.id, displayName: user.name, title: 'Deseja ativar o usuário?' },
+            panelClass: 'dialog-status'
+        }).afterClosed().subscribe((_user: User) => {
+
+            if (_user) {
+                 this.apiUser.atualizarStatus(_user).
+                    subscribe(
+                        success => {
+                            this.snackBar.open('Usuário ativado com sucesso!', 'OK', {
+                                duration: 10000
+                            });
+                            // Reload the table after the post
+                            this.loadData();
+                        },
+                        error => {
+                            console.log(error);
+                            this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+                            'OK', {
+                                duration: 10000
+                            });
+                        });
+            }
+
+        });
+    }
+
+    desativarUsuario(user) {
+
+        this.dialog.open(DialogStatusComponent, {
+            data: { id: user.id, displayName: user.name, title: 'Deseja desativar o usuário?' },
+            panelClass: 'dialog-status'
+        }).afterClosed().subscribe((_user: User) => {
+
+            if (_user) {
+                 this.apiUser.atualizarStatus(_user).
+                    subscribe(
+                        success => {
+                            this.snackBar.open('Usuário desativado com sucesso!', 'OK', {
+                                duration: 10000
+                            });
+                            // Reload the table after the post
+                            this.loadData();
+                        },
+                        error => {
+                            console.log(error);
+                            this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+                            'OK', {
+                                duration: 10000
+                            });
+                        });
             }
 
         });

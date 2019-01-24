@@ -26,7 +26,7 @@
             </div> -->
             <div style="margin-left: 20px">
               <mat-form-field>
-                  <mat-select placeholder="Rastreadores" [(ngModel)]="selectedValue" id="idRastreador"> 
+                  <mat-select placeholder="Rastreadores" [(ngModel)]="selectedValue" id="idRastreador" [disabled]="textoRastrear != 'Rastrear'"> 
                     <mat-option *ngFor="let rastreador of rastreadores" [value]="rastreador">
                       {{rastreador}}
                     </mat-option>
@@ -42,7 +42,13 @@
                 </mat-form-field> -->
             </div>
             <div style="margin-left: 20px">
-              <button  mat-raised-button id="rastrear" (click)="rastrear()">Rastrear</button>
+              <mat-checkbox [(ngModel)]="lived">Tempo real</mat-checkbox>
+            </div>
+            <div style="margin-left: 20px">
+              <button  mat-raised-button id="rastrear" [disabled]="textoRastrear != 'Rastrear'" (click)="rastrear()">{{textoRastrear}}</button>
+            </div>
+            <div style="margin-left: 20px" *ngIf="textoRastrear != 'Rastrear'">
+               <button  mat-raised-button id="cancelar" (click)="desativarRastrear()">Cancelar Rastreamento</button>
             </div>
 
             <!-- <div id="add">

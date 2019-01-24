@@ -1,6 +1,7 @@
 
 @import "_custom_color_scheme.scss";
-$color-font: map-get($map: $mat-sgm-primary, $key: 500);
+//$color-font: map-get($map: $mat-sgm-primary, $key: 500);
+$color-font: #000000;
 
 .dialog-content {
     .form-content {

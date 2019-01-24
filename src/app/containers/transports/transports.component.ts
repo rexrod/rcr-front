@@ -92,6 +92,9 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
                }
            });
            //this.dataSource.data = ALL_IN_ONE_TABLE_FAKE_DATA;
+
+           //setInterval(() => { this.loadData(); }, 1000 * 20);
+
     }
 
     ngOnInit() {

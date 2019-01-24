@@ -1,15 +1,58 @@
 
 @import "_custom_color_scheme.scss";
-$theme-background: map-get($map: $mat-sgm-primary, $key: 500);
+//$theme-background: map-get($map: $mat-sgm-primary, $key: 500);
+$theme-background: #000000;
 
 // Lista de campos
 $fields: ('id',
 'name',
 'email',
-'login',
-'sector',
+'registration',
+'status',
 'actions'
 );
+
+.btn-stroked-active {
+    //color: map-get($mat-sgm-primary, 500) !important;
+    color: green;
+    //background-color:unset !important;
+    background-color:transparent;
+    border: 1px solid !important;
+    line-height: 1.70;
+    width: 100px;
+    cursor: pointer;
+}
+
+.btn-stroked-active:hover {
+    //color: map-get($mat-sgm-primary, 500) !important;
+    color: white;
+    background-color: green;
+    //background-color:transparent !important;
+    border: 1px solid !important;
+  }
+
+.btn-stroked-inactive {
+    //color: map-get($mat-sgm-primary, 500) !important;
+    color: red;
+    //background-color:unset !important;
+    background-color:transparent;
+    border: 1px solid !important;
+    line-height: 1.70;
+    width: 100px;
+    cursor: pointer;
+}
+
+.btn-stroked-inactive:hover {
+    //color: map-get($mat-sgm-primary, 500) !important;
+    color: white;
+    background-color: red;
+    //background-color:transparent !important;
+    border: 1px solid !important;
+}
+
+// .no-shadow {
+//     box-shadow: unset !important;
+// }
 
 // Padroniza o tamanho dos campos
 $length: 100/length($fields)*1%;
@@ -140,8 +183,14 @@ body {
                     display: flex;
                     flex: 12 1 auto;
                     flex-direction: column;
+                    
+                    //box-shadow: 0px 3px 6px rgba( black, 0.26);
+                  
                     #thead {
                         @extend %flex-center;
+                        box-shadow: 0px 3px 6px rgba( black, 0.26);
+                        background-color: #BDC3C7;
+ 
                         text-align: center;
                         min-height: 35px;
                         .mat-sort-header-container {
@@ -149,8 +198,12 @@ body {
                             justify-content: center !important;
                         }
                         .table-header {
+                            // box-shadow: 0px 3px 6px rgba( black, 0.26);
+                            // min-height: 100px;
                             width: 100%;
-                            color: $theme-background;
+                            //color: $theme-background;
+                            color: white;
+                            //display: inline-flex;
                             display: inline-flex;
                             font-weight: bold;
                             /* HEADER */

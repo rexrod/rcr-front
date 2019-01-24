@@ -39,10 +39,33 @@
               <ng-container *ngFor="let column of columns">
                 <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.name }}</mat-header-cell>
-                  <mat-cell *matCellDef="let row" fxLayoutAlign="center">
-                    <!-- <span class="fury-mobile-label">{{ column.name }}</span> -->
-                    {{ extractValue(row,column.cellContent,column.property) }}
-                  </mat-cell>
+                  <ng-container *ngIf="column.name == 'Status'; else elseBlock">
+                    <mat-cell *matCellDef="let row" fxLayoutAlign="center">
+                      <!-- <span class="fury-mobile-label">{{ column.name }}</span> -->
+                      <ng-container *ngIf="extractValue(row,column.cellContent,column.property) == true;else elseBlock1">
+                        <button matTooltip="Desativar usuário" [matTooltipPosition]="'above'" (click)="desativarUsuario(row)"  
+                          class="btn-stroked-active no-shadow">Ativo
+                          <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
+                          <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
+                        </button>
+                        <!-- <mat-icon matTooltip="Usuário Ativo" aria-label="Status">check_box</mat-icon> -->
+                      </ng-container>  
+                      <ng-template #elseBlock1>
+                          <button matTooltip="Ativar usuário" [matTooltipPosition]="'above'" (click)="ativarUsuario(row)"  
+                          class="btn-stroked-inactive no-shadow">Inativo
+                           <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
+                           <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
+                         </button>
+                        <!-- <mat-icon matTooltip="Usuário Inativo" aria-label="Status">check_box_outline_blank</mat-icon> -->
+                      </ng-template>
+                    </mat-cell>
+                </ng-container>
+                  <ng-template #elseBlock>
+                    <mat-cell  *matCellDef="let row" fxLayoutAlign="center">
+                      <!-- <span class="fury-mobile-label">{{ column.name }}</span> -->
+                      {{ extractValue(row,column.cellContent,column.property) }}
+                    </mat-cell>
+                </ng-template>
                 </ng-container>
               </ng-container>
 
@@ -51,11 +74,12 @@
                   <mat-header-cell *matHeaderCellDef fxLayoutAlign="center"></mat-header-cell>
                   <mat-cell *matCellDef="let row" fxLayoutAlign="center">
                     <button matTooltip="Editar Item" [matTooltipPosition]="'above'" (click)="update(row)" class="btn-stroked btn-icon no-shadow">
-                      <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
                       <mat-icon aria-label="Editar">edit</mat-icon>
+                      <!-- <mat-icon matTooltip="Editar Item" [matTooltipPosition]="'above'" (click)="update(row)" aria-label="Editar" class="mat-icon-custom">edit</mat-icon> -->
                     </button>
                     <button matTooltip="Deletar Item" [matTooltipPosition]="'above'" (click)="delete(row)" class="btn-stroked btn-icon no-shadow">
-                      <mat-icon aria-label="Deletar">delete</mat-icon>
+                        <mat-icon aria-label="Deletar">delete</mat-icon>
+                      <!-- <mat-icon matTooltip="Deletar Item" [matTooltipPosition]="'above'" (click)="delete(row)" aria-label="Deletar" class="mat-icon-custom">delete</mat-icon> -->
                     </button>
                   </mat-cell>
                 </ng-container>

@@ -1,6 +1,8 @@
 
 @import "_custom_color_scheme.scss";
-$color-font: map-get($map: $mat-sgm-primary, $key: 500);
+//$color-font: map-get($map: $mat-sgm-primary, $key: 500);
+$color-font: #000000;
+
 $color-font-warn: map-get($map: $mat-sgm-warn, $key: 500);
 
 .dialog-content {
@@ -109,14 +111,15 @@ $color-font-warn: map-get($map: $mat-sgm-warn, $key: 500);
                 .email,
                 .login,
                 .password,
-                .idSector {
+                .idSector,
+                .registration {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     // height: 10%;
 
                     mat-form-field {
-                        flex: 1 1 auto;
+                        flex: .4 1 auto;
                     }
                 }
 
