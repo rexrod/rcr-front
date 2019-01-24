@@ -192,6 +192,15 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
 
         let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
 
+        let mapSettings = ui.getControl('mapsettings');
+        let zoom = ui.getControl('zoom');
+        let scalebar = ui.getControl('scalebar');
+        //let panorama = ui.getControl('panorama');
+
+        //panorama.setAlignment('top-left');
+        mapSettings.setAlignment('top-left');
+        zoom.setAlignment('top-left');
+        scalebar.setAlignment('top-left');
 
         // Create a marker using the previously instantiated icon:
         // let marker = new H.map.Marker({ lat: -3.04945, lng:  -60.01845 }, { icon: icon });
@@ -343,20 +352,20 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
 //   console.log(transport);
 //   console.log(this.selectedValue);
 
-    this.map.clearContent();
+    //this.map.clearContent();
     this.map.removeObjects(this.map.getObjects()); 
 
     let points = [];
 
     //let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
-    let icon = new H.map.Icon('assets/rcr/icon-local.png');
-    let iconFinal = new H.map.Icon('assets/rcr/icon-logo.png');
+    let iconFinal = new H.map.Icon('assets/rcr/icon-local.png');
+    let icon = new H.map.Icon('assets/rcr/icon-logo.png');
     
     let marker = new H.map.Marker({ lat: transport.coordinates[0].coords.lat, lng: transport.coordinates[0].coords.long }, { icon: icon });
     let markerFinal = new H.map.Marker({ lat: transport.coordinates[transport.coordinates.length-1].coords.lat, lng: transport.coordinates[transport.coordinates.length-1].coords.long }, { icon: iconFinal });
 
-    this.map.addObject(marker);
-    //this.map.addObject(markerFinal);
+    //this.map.addObject(marker);
+    this.map.addObject(markerFinal);
 
     for(var i=0; i < transport.coordinates.length; i++){
     //console.log(transport.coordinates[i].coords);
@@ -387,9 +396,12 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     //   });
 
     if(transport.coordinates.length > 0){
+        console.log(this.rastreamento);
         if(this.lived){
             console.log(this.lived);
-            this.rastreamento = setInterval(() => { this.rastrear(); }, 1000 * 5);
+            if(this.rastreamento === undefined){
+                this.rastreamento = setInterval(() => { this.rastrear(); }, 1000 * 5);
+            }
         }
         //this.rastreamento = setInterval( this.rastrear() , 1000 * 5 );
         this.textoRastrear = 'Rastreando...';
@@ -401,6 +413,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     console.log(this.rastreamento);
     clearInterval(this.rastreamento); 
     this.textoRastrear = 'Rastrear';  
+    this.lived = false;
   }
 }
 

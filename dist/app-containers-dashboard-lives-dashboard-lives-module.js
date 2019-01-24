@@ -243,7 +243,7 @@ var DashboardLivesRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div id=\"background-dashboard-live\">\n    <div id=\"conteiner\">\n      <div id=\"card\">\n        <div id=\"table-component\">\n          <!-- TABLE FILTER -->\n          <div id=\"tfilter\">\n            <div id=\"title\">\n              <span>Live View</span>\n            </div>\n            <!-- <div id=\"input-filter\">\n              <fury-list [columns]=\"columns\" (filterChange)=\"onFilterChange($event)\" fxLayoutAlign=\"center center\" fxLayout=\"row\"></fury-list>\n            </div>\n            -->\n            <!-- <div style=\"margin-left: 50px\"> \n              <mat-form-field>\n                <input matInput placeholder=\"Buscar...\" value=\"\">\n              </mat-form-field>\n            </div>\n            <div style=\"margin-left: 20px\">\n              <mat-form-field>\n                <input matInput [matDatepicker]=\"picker\" placeholder=\"Data\">\n                <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n                <mat-datepicker #picker></mat-datepicker>\n              </mat-form-field>\n            </div> -->\n            <div style=\"margin-left: 20px\">\n              <mat-form-field>\n                  <mat-select placeholder=\"Rastreadores\" [(ngModel)]=\"selectedValue\" id=\"idRastreador\" [disabled]=\"textoRastrear != 'Rastrear'\"> \n                    <mat-option *ngFor=\"let rastreador of rastreadores\" [value]=\"rastreador\">\n                      {{rastreador}}\n                    </mat-option>\n                  </mat-select>\n                </mat-form-field>\n\n                <!-- <mat-form-field>\n                  <mat-select placeholder=\"Favorite food\" [(ngModel)]=\"selectedValue\" name=\"food\">\n                    <mat-option *ngFor=\"let food of foods\" [value]=\"food.value\">\n                      {{food.viewValue}}\n                    </mat-option>\n                  </mat-select>\n                </mat-form-field> -->\n            </div>\n            <div style=\"margin-left: 20px\">\n              <mat-checkbox [(ngModel)]=\"lived\">Tempo real</mat-checkbox>\n            </div>\n            <div style=\"margin-left: 20px\">\n              <button  mat-raised-button id=\"rastrear\" [disabled]=\"textoRastrear != 'Rastrear'\" (click)=\"rastrear()\">{{textoRastrear}}</button>\n            </div>\n            <div style=\"margin-left: 20px\" *ngIf=\"textoRastrear != 'Rastrear'\">\n               <button  mat-raised-button id=\"cancelar\" (click)=\"desativarRastrear()\">Cancelar Rastreamento</button>\n            </div>\n\n            <!-- <div id=\"add\">\n              <button mat-mini-fab color=\"primary\"  matTooltip=\"Adicionar Item\" [matTooltipPosition]=\"'above'\" (click)=\"create()\" id=\"create\">\n                <mat-icon aria-label=\"Adicionar\">add</mat-icon>\n              </button>\n            </div> -->\n          </div>\n\n          <!-- TABLE HEADER -->\n          <!-- The header is separate so you do not lose the filters or the sorting and keep the layout-->\n          <div id=\"tmaster\">\n            <div id=\"thead\" matSort>\n              <div class=\"table-header\">\n                <div *ngFor=\"let column of columns\" class=\"{{column.property}}\" mat-sort-header=\"{{column.property}}\" \n                [style.display]=\"column.visible ? 'flex' : 'none'\" fxLayoutAlign=\"center\">\n                  {{column.name | uppercase}}\n                </div>\n              </div>\n            </div>\n            \n            <div id=\"tbody\">\n              <div #map style=\"width: 100%; height: 600px\"></div>\n            </div>\n            <!-- TABLE BODY -->\n            <!-- <agm-map id=\"map\" [latitude]=\"lat\" [longitude]=\"lng\">\n                <agm-marker [latitude]=\"lat\" [longitude]=\"lng\"></agm-marker>\n            </agm-map> -->\n\n            <!-- <div id=\"tbody\"> -->\n\n              <!-- <agm-map class=\"fury-map\" [latitude]=\"lat\" [longitude]=\"lng\" style=\"width: 50%;height: 50%;\">\n                <agm-marker [latitude]=\"lat\" [longitude]=\"lng\"></agm-marker>\n              </agm-map> -->\n\n              <!-- <agm-map id=\"map\" [latitude]=\"lat\" [longitude]=\"lng\">\n                  <agm-marker [latitude]=\"lat\" [longitude]=\"lng\"></agm-marker>\n              </agm-map> -->\n      \n            <!-- </div> -->\n          \n          </div>\n          <!-- TABLE FOOTER -->\n          <!-- <div id=\"tfooter\">\n            <mat-paginator class=\"paginator\" [pageSize]=\"pageSize\" color=\"primary\"></mat-paginator>\n          </div> -->\n        </div>\n      </div>\n    </div>\n  </div>\n\n"
+module.exports = "\n<div id=\"background-dashboard-live\">\n    <div id=\"conteiner\">\n      <div id=\"card\">\n        <div id=\"table-component\">\n          <!-- TABLE FILTER -->\n          <div id=\"tfilter\">\n            <div id=\"title\">\n              <span>Live View</span>\n            </div>\n            <!-- <div id=\"input-filter\">\n              <fury-list [columns]=\"columns\" (filterChange)=\"onFilterChange($event)\" fxLayoutAlign=\"center center\" fxLayout=\"row\"></fury-list>\n            </div>\n            -->\n            <!-- <div style=\"margin-left: 50px\"> \n              <mat-form-field>\n                <input matInput placeholder=\"Buscar...\" value=\"\">\n              </mat-form-field>\n            </div>\n            <div style=\"margin-left: 20px\">\n              <mat-form-field>\n                <input matInput [matDatepicker]=\"picker\" placeholder=\"Data\">\n                <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n                <mat-datepicker #picker></mat-datepicker>\n              </mat-form-field>\n            </div> -->\n            <div style=\"margin-left: 20px\">\n              <mat-form-field>\n                  <mat-select placeholder=\"Rastreadores\" [(ngModel)]=\"selectedValue\" id=\"idRastreador\" [disabled]=\"textoRastrear != 'Rastrear'\"> \n                    <mat-option *ngFor=\"let rastreador of rastreadores\" [value]=\"rastreador\">\n                      {{rastreador}}\n                    </mat-option>\n                  </mat-select>\n                </mat-form-field>\n\n                <!-- <mat-form-field>\n                  <mat-select placeholder=\"Favorite food\" [(ngModel)]=\"selectedValue\" name=\"food\">\n                    <mat-option *ngFor=\"let food of foods\" [value]=\"food.value\">\n                      {{food.viewValue}}\n                    </mat-option>\n                  </mat-select>\n                </mat-form-field> -->\n            </div>\n            <div style=\"margin-left: 20px\">\n              <mat-checkbox [(ngModel)]=\"lived\">Tempo real</mat-checkbox>\n            </div>\n            <div style=\"margin-left: 20px\">\n              <button  mat-raised-button id=\"rastrear\" [disabled]=\"textoRastrear != 'Rastrear'\" (click)=\"rastrear()\">{{textoRastrear}}</button>\n            </div>\n            <div style=\"margin-left: 20px\" *ngIf=\"textoRastrear != 'Rastrear'\">\n               <button  mat-raised-button id=\"cancelar\" (click)=\"desativarRastrear()\">Cancelar Rastreamento</button>\n            </div>\n\n            <!-- <div id=\"add\">\n              <button mat-mini-fab color=\"primary\"  matTooltip=\"Adicionar Item\" [matTooltipPosition]=\"'above'\" (click)=\"create()\" id=\"create\">\n                <mat-icon aria-label=\"Adicionar\">add</mat-icon>\n              </button>\n            </div> -->\n          </div>\n\n          <!-- TABLE HEADER -->\n          <!-- The header is separate so you do not lose the filters or the sorting and keep the layout-->\n          <div id=\"tmaster\">\n            <div id=\"thead\" matSort>\n              <div class=\"table-header\">\n                <div *ngFor=\"let column of columns\" class=\"{{column.property}}\" mat-sort-header=\"{{column.property}}\" \n                [style.display]=\"column.visible ? 'flex' : 'none'\" fxLayoutAlign=\"center\">\n                  {{column.name | uppercase}}\n                </div>\n              </div>\n            </div>\n            \n            <div id=\"tbody\">\n              <div #map style=\"width: 100%; height: 1000px\"></div>\n            </div>\n            <!-- TABLE BODY -->\n            <!-- <agm-map id=\"map\" [latitude]=\"lat\" [longitude]=\"lng\">\n                <agm-marker [latitude]=\"lat\" [longitude]=\"lng\"></agm-marker>\n            </agm-map> -->\n\n            <!-- <div id=\"tbody\"> -->\n\n              <!-- <agm-map class=\"fury-map\" [latitude]=\"lat\" [longitude]=\"lng\" style=\"width: 50%;height: 50%;\">\n                <agm-marker [latitude]=\"lat\" [longitude]=\"lng\"></agm-marker>\n              </agm-map> -->\n\n              <!-- <agm-map id=\"map\" [latitude]=\"lat\" [longitude]=\"lng\">\n                  <agm-marker [latitude]=\"lat\" [longitude]=\"lng\"></agm-marker>\n              </agm-map> -->\n      \n            <!-- </div> -->\n          \n          </div>\n          <!-- TABLE FOOTER -->\n          <!-- <div id=\"tfooter\">\n            <mat-paginator class=\"paginator\" [pageSize]=\"pageSize\" color=\"primary\"></mat-paginator>\n          </div> -->\n        </div>\n      </div>\n    </div>\n  </div>\n\n"
 
 /***/ }),
 
@@ -398,6 +398,14 @@ var DashboardLivesComponent = /** @class */ (function () {
         var behavior = new H.mapevents.Behavior(mapEvents);
         var ui = H.ui.UI.createDefault(this.map, defaultLayers, 'pt-BR');
         var icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
+        var mapSettings = ui.getControl('mapsettings');
+        var zoom = ui.getControl('zoom');
+        var scalebar = ui.getControl('scalebar');
+        //let panorama = ui.getControl('panorama');
+        //panorama.setAlignment('top-left');
+        mapSettings.setAlignment('top-left');
+        zoom.setAlignment('top-left');
+        scalebar.setAlignment('top-left');
         // Create a marker using the previously instantiated icon:
         // let marker = new H.map.Marker({ lat: -3.04945, lng:  -60.01845 }, { icon: icon });
         // let marker1 = new H.map.Marker({ lat: -3.0587, lng:  -60.03195 }, { icon: icon });
@@ -529,16 +537,16 @@ var DashboardLivesComponent = /** @class */ (function () {
         var transport = this.transports.find(function (x) { return x.trackerSerial === _this.selectedValue; });
         //   console.log(transport);
         //   console.log(this.selectedValue);
-        this.map.clearContent();
+        //this.map.clearContent();
         this.map.removeObjects(this.map.getObjects());
         var points = [];
         //let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
-        var icon = new H.map.Icon('assets/rcr/icon-local.png');
-        var iconFinal = new H.map.Icon('assets/rcr/icon-logo.png');
+        var iconFinal = new H.map.Icon('assets/rcr/icon-local.png');
+        var icon = new H.map.Icon('assets/rcr/icon-logo.png');
         var marker = new H.map.Marker({ lat: transport.coordinates[0].coords.lat, lng: transport.coordinates[0].coords.long }, { icon: icon });
         var markerFinal = new H.map.Marker({ lat: transport.coordinates[transport.coordinates.length - 1].coords.lat, lng: transport.coordinates[transport.coordinates.length - 1].coords.long }, { icon: iconFinal });
-        this.map.addObject(marker);
-        //this.map.addObject(markerFinal);
+        //this.map.addObject(marker);
+        this.map.addObject(markerFinal);
         for (var i = 0; i < transport.coordinates.length; i++) {
             //console.log(transport.coordinates[i].coords);
             points.push({ 'lat': transport.coordinates[i].coords.lat, 'lng': transport.coordinates[i].coords.long });
@@ -560,9 +568,12 @@ var DashboardLivesComponent = /** @class */ (function () {
         //     doSomething();
         //   });
         if (transport.coordinates.length > 0) {
+            console.log(this.rastreamento);
             if (this.lived) {
                 console.log(this.lived);
-                this.rastreamento = setInterval(function () { _this.rastrear(); }, 1000 * 5);
+                if (this.rastreamento === undefined) {
+                    this.rastreamento = setInterval(function () { _this.rastrear(); }, 1000 * 5);
+                }
             }
             //this.rastreamento = setInterval( this.rastrear() , 1000 * 5 );
             this.textoRastrear = 'Rastreando...';
@@ -573,6 +584,7 @@ var DashboardLivesComponent = /** @class */ (function () {
         console.log(this.rastreamento);
         clearInterval(this.rastreamento);
         this.textoRastrear = 'Rastrear';
+        this.lived = false;
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
