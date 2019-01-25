@@ -684,7 +684,8 @@ var UsersComponent = /** @class */ (function () {
             _this.paginator.firstPage();
         }, function (error) {
             if (error.status === 0 || error.status === 404) {
-                _this.snackBar.open('Esse serviço está indisponível no momento.', 'OK', {});
+                //this.snackBar.open('Esse serviço está indisponível no momento.', 'OK', {});
+                console.log(error);
             }
         });
         //this.dataSource.data = ALL_IN_ONE_TABLE_FAKE_DATA;

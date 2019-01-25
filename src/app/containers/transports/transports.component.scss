@@ -152,7 +152,7 @@ body {
                     #thead {
                         @extend %flex-center;
                         text-align: center;
-                        min-height: 35px;
+                        //min-height: 35px;
                         background-color: #BDC3C7;
  
                         .mat-sort-header-container {
@@ -164,6 +164,7 @@ body {
                             color: $theme-background;
                             color: white;
                             display: inline-flex;
+                            flex: 2 1 auto;
                             font-weight: bold;
                             /* HEADER */
                             @extend %table-columns;

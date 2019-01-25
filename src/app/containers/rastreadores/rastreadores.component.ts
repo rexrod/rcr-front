@@ -78,8 +78,8 @@ export class RastreadoresComponent implements OnInit, AfterViewInit, OnDestroy {
           },
            error => {
                if (error.status === 0 || error.status === 404) {
-                   this.snackBar.open('Esse serviço está indisponível no momento.', 'OK', {
-                   });
+                   //this.snackBar.open('Esse serviço está indisponível no momento.', 'OK', {});
+                   console.log(error);
                }
            });
            //this.dataSource.data = ALL_IN_ONE_TABLE_FAKE_DATA;

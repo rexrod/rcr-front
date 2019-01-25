@@ -196,7 +196,7 @@ var LoginComponent = /** @class */ (function () {
                 panelClass: ['blue-snackbar']
             });
         });
-        this.visible = false;
+        //this.visible = false;
     };
     LoginComponent.prototype.show = function () {
         this.inputType = 'text';
