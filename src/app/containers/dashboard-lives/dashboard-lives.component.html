@@ -42,7 +42,7 @@
                 </mat-form-field> -->
             </div>
             <div style="margin-left: 20px">
-              <mat-checkbox [(ngModel)]="lived">Tempo real</mat-checkbox>
+              <mat-checkbox [disabled]="textoRastrear != 'Rastrear'" [(ngModel)]="lived">Tempo real</mat-checkbox>
             </div>
             <div style="margin-left: 20px">
               <button  mat-raised-button id="rastrear" [disabled]="textoRastrear != 'Rastrear'" (click)="rastrear()">{{textoRastrear}}</button>
@@ -61,14 +61,14 @@
           <!-- TABLE HEADER -->
           <!-- The header is separate so you do not lose the filters or the sorting and keep the layout-->
           <div id="tmaster">
-            <div id="thead" matSort>
+            <!-- <div id="thead" matSort>
               <div class="table-header">
                 <div *ngFor="let column of columns" class="{{column.property}}" mat-sort-header="{{column.property}}" 
                 [style.display]="column.visible ? 'flex' : 'none'" fxLayoutAlign="center">
                   {{column.name | uppercase}}
                 </div>
               </div>
-            </div>
+            </div> -->
             
             <div id="tbody">
               <div #map style="width: 100%; height: 1000px"></div>

@@ -1,6 +1,7 @@
 
 @import "_custom_color_scheme.scss";
-$theme-background: map-get($map: $mat-sgm-primary, $key: 500);
+//$theme-background: map-get($map: $mat-sgm-primary, $key: 500);
+$theme-background: #000000;
 
 // Lista de campos
 $fields: ('id',

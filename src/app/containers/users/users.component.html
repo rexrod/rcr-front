@@ -25,6 +25,7 @@
           <div id="tmaster">
             <div id="thead" matSort>
               <div class="table-header">
+              <!-- <div> -->
                 <div *ngFor="let column of columns" class="{{column.property}}" mat-sort-header="{{column.property}}" 
                 [style.display]="column.visible ? 'flex' : 'none'" fxLayoutAlign="center">
                   {{column.name | uppercase}}

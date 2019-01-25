@@ -349,8 +349,15 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
 
     console.log('rastreando...');
     const transport =  this.transports.find(x => x.trackerSerial === this.selectedValue );
-//   console.log(transport);
-//   console.log(this.selectedValue);
+    
+    if(!transport.coordinates.length){
+        this.snackBar.open('O rastreador ainda não possui coordenadas!', 'OK', {
+            duration: 10000
+        });
+    }
+
+
+    //   console.log(this.selectedValue);
 
     //this.map.clearContent();
     this.map.removeObjects(this.map.getObjects()); 
@@ -402,9 +409,12 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
             if(this.rastreamento === undefined){
                 this.rastreamento = setInterval(() => { this.rastrear(); }, 1000 * 5);
             }
+            this.textoRastrear = 'Rastreando...';
+        }else{
+            this.textoRastrear = 'Rastreado';
         }
         //this.rastreamento = setInterval( this.rastrear() , 1000 * 5 );
-        this.textoRastrear = 'Rastreando...';
+       
     }
   }
 
