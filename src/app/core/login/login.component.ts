@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       enroll: ['', Validators.required],
       password: ['', Validators.required]
     });
-    this.loadData();
+    //this.loadData();
   }
 
   send() {
@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit {
   }
 
   public loadData(): void {
-    this.getCompanies();
+    //this.getCompanies();
     // this.sessionSub = this.sessionStore.getSession$().subscribe(res => {
     // console.log(res);
     // this.user = res.user;
@@ -108,8 +108,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         if (error.status === 0 || error.status === 404) {
-          this.snackBar.open('Esse serviço está indisponível no momento.', 'OK', {
-          });
+          //this.snackBar.open('Esse serviço está indisponível no momento.', 'OK', {});
         }
       }
     );

@@ -180,7 +180,7 @@ var LoginComponent = /** @class */ (function () {
             enroll: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
-        this.loadData();
+        //this.loadData();
     };
     LoginComponent.prototype.send = function () {
         var _this = this;
@@ -210,7 +210,7 @@ var LoginComponent = /** @class */ (function () {
         this.send();
     };
     LoginComponent.prototype.loadData = function () {
-        this.getCompanies();
+        //this.getCompanies();
         // this.sessionSub = this.sessionStore.getSession$().subscribe(res => {
         // console.log(res);
         // this.user = res.user;
@@ -237,7 +237,7 @@ var LoginComponent = /** @class */ (function () {
             // this.selectCompanyTransire();
         }, function (error) {
             if (error.status === 0 || error.status === 404) {
-                _this.snackBar.open('Esse serviço está indisponível no momento.', 'OK', {});
+                //this.snackBar.open('Esse serviço está indisponível no momento.', 'OK', {});
             }
         });
     };
