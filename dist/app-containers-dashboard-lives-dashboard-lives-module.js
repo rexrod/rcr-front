@@ -396,11 +396,11 @@ var DashboardLivesComponent = /** @class */ (function () {
         });
         // Instantiate the default behavior, providing the mapEvents object: 
         var behavior = new H.mapevents.Behavior(mapEvents);
-        var ui = H.ui.UI.createDefault(this.map, defaultLayers, 'pt-BR');
+        this.ui = H.ui.UI.createDefault(this.map, defaultLayers, 'pt-BR');
         var icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
-        var mapSettings = ui.getControl('mapsettings');
-        var zoom = ui.getControl('zoom');
-        var scalebar = ui.getControl('scalebar');
+        var mapSettings = this.ui.getControl('mapsettings');
+        var zoom = this.ui.getControl('zoom');
+        var scalebar = this.ui.getControl('scalebar');
         //let panorama = ui.getControl('panorama');
         //panorama.setAlignment('top-left');
         mapSettings.setAlignment('top-left');
@@ -567,10 +567,12 @@ var DashboardLivesComponent = /** @class */ (function () {
         this.map.addObject(polyline);
         // Zoom the map to make sure the whole polyline is visible:
         this.map.setViewBounds(polyline.getBounds());
-        //setInterval(() => { this.rastrear(); }, 1000);
-        // Observable.interval(2000 * 60).subscribe(x => {
-        //     doSomething();
-        //   });
+        // Create an info bubble object at a specific geographic location:
+        var bubble = new H.ui.InfoBubble({ lng: transport.coordinates[transport.coordinates.length - 1].coords.long, lat: transport.coordinates[transport.coordinates.length - 1].coords.lat }, {
+            content: 'Localização atual'
+        });
+        // Add info bubble to the UI:
+        // this.ui.addBubble(bubble);
         if (transport.coordinates.length > 0) {
             console.log(this.rastreamento);
             if (this.lived) {

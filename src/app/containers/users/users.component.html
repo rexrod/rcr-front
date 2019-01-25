@@ -61,11 +61,11 @@
                       </ng-template>
                     </mat-cell>
                 </ng-container>
-                  <ng-template #elseBlock>
-                    <mat-cell  *matCellDef="let row" fxLayoutAlign="center">
-                      <!-- <span class="fury-mobile-label">{{ column.name }}</span> -->
-                      {{ extractValue(row,column.cellContent,column.property) }}
-                    </mat-cell>
+                <ng-template #elseBlock>
+                  <mat-cell  *matCellDef="let row" fxLayoutAlign="center">
+                    <!-- <span class="fury-mobile-label">{{ column.name }}</span> -->
+                    {{ extractValue(row,column.cellContent,column.property) }}
+                  </mat-cell>
                 </ng-template>
                 </ng-container>
               </ng-container>

@@ -6,6 +6,8 @@ import { ListModule } from '../../core/common/list/list.module';
 import { MaterialModule } from '../../core/common/material-components.module';
 import { PageModule } from '../../core/common/page/page.module';
 import { DialogDeleteModule } from '../../core/common/dialog-delete/dialog-delete.module';
+import { DialogRastreadorModule } from '../../core/common/dialog-rastreador/dialog-rastreador.module';
+
 
 import { TransportsRoutingModule } from './transports-routing.module';
 import { TransportsComponent } from './transports.component';
@@ -23,7 +25,8 @@ import { TransportCreateUpdateModule} from './transport-create-update/transport-
     ListModule,
     PageModule,
     BreadcrumbsModule,
-    DialogDeleteModule
+    DialogDeleteModule,
+    DialogRastreadorModule
   ],
   declarations: [TransportsComponent],
   exports: [TransportsComponent]

@@ -143,4 +143,38 @@ export class TransportControllerService {
         return this.httpClient.delete( environment.origin.transports + '/transports/' + transport.id, httpOptions);
     }
 
+    public removerRastreador(transport: any): Observable<any> {
+        
+        let token = localStorage.getItem('token');
+        console.log(token);
+        const httpOptions = {
+            headers: new HttpHeaders({
+            "Content-Type":  "application/x-www-form-urlencoded",
+            "Authorization": "Bearer " + `${token}`
+            }),
+        };
+
+        const formData = new URLSearchParams();
+         
+        return this.httpClient.put( environment.origin.tracker + '/transports/unlinktracker/' + transport.id, formData, httpOptions);
+    }
+
+    public adicionarRastreador(transport: any): Observable<any> {
+        
+        let token = localStorage.getItem('token');
+        console.log(token);
+        const httpOptions = {
+            headers: new HttpHeaders({
+            "Content-Type":  "application/x-www-form-urlencoded",
+            "Authorization": "Bearer " + `${token}`
+            }),
+        };
+
+        console.log(transport);
+        const formData = new URLSearchParams();
+         
+        formData.set('trackerSerial', transport.trackerSerial);
+
+        return this.httpClient.put( environment.origin.tracker + '/transports/linktracker/' + transport.id, formData.toString(), httpOptions);
+    }
 }

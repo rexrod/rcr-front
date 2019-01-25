@@ -21,6 +21,7 @@ import { of } from 'rxjs/internal/observable/of'; // to test without data
 import { ALL_IN_ONE_TABLE_FAKE_DATA } from './transports.fake'; // to test without data
 import { trigger, state, transition, style, animate } from '@angular/animations';
 import { tick } from '@angular/core/testing';
+import { DialogRastreadorComponent } from 'app/core/common/dialog-rastreador/dialog-rastreador.component';
 
 @Component({
     selector: 'fury-transports',
@@ -277,5 +278,63 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
       this.expandedElement = row;
     }
   }
+
+  adicionarRastreador(transport) {
+
+    this.dialog.open(DialogRastreadorComponent, {
+        data: { id: transport._id, displayName: transport.vehiclePlate, displayBody: 'Transporte:', title: 'Deseja associar um rastreador?', type: 'add', trackerSerial: '' },
+        panelClass: 'dialog-rastreador'
+    }).afterClosed().subscribe((transport: Transport) => {
+
+        if (transport) {
+            this.apiTransport.adicionarRastreador(transport).
+            subscribe(
+                success => {
+                    this.snackBar.open('Rastreador associado com sucesso!', 'OK', {
+                        duration: 10000
+                    });
+                    // Reload the table after the post
+                    this.loadData();
+                },
+                error => {
+                    console.log(error);
+                    this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+                    'OK', {
+                        duration: 10000
+                    });
+                });
+        }
+
+    });
+  }
+
+  removerRastreador(transport) {
+
+    this.dialog.open(DialogRastreadorComponent, {
+        data: { id: transport._id, displayName: transport.trackerSerial, displayBody: 'Serial: ',title: 'Deseja desvincular o rastreador?', type: 'remove',  trackerSerial: '' },
+        panelClass: 'dialog-rastreador'
+    }).afterClosed().subscribe((_transport: Transport) => {
+
+        if (_transport) {
+             this.apiTransport.removerRastreador(_transport).
+                subscribe(
+                    success => {
+                        this.snackBar.open('Rastreador desvinculado com sucesso!', 'OK', {
+                            duration: 10000
+                        });
+                        // Reload the table after the post
+                        this.loadData();
+                    },
+                    error => {
+                        console.log(error);
+                        this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+                        'OK', {
+                            duration: 10000
+                        });
+                    });
+        }
+
+    });
+}
 }
 

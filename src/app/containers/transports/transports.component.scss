@@ -25,6 +25,44 @@ $fields: ('_id',
 $length: 100/length($fields)*1%;
 
 
+.btn-stroked-tracker-add {
+    //color: map-get($mat-sgm-primary, 500) !important;
+    color: #007EFA;
+    //background-color:unset !important;
+    background-color:transparent;
+    border: 1px solid !important;
+    line-height: 1.70;
+    width: 100px;
+    cursor: pointer;
+}
+
+.btn-stroked-tracker-add:hover {
+    //color: map-get($mat-sgm-primary, 500) !important;
+    color: white;
+    background-color: #007EFA;
+    //background-color:transparent !important;
+    border: 1px solid !important;
+  }
+
+.btn-stroked-tracker-remove {
+    //color: map-get($mat-sgm-primary, 500) !important;
+    color: red;
+    //background-color:unset !important;
+    background-color:transparent;
+    border: 1px solid !important;
+    line-height: 1.70;
+    width: 100px;
+    cursor: pointer;
+}
+
+.btn-stroked-tracker-remove:hover {
+    //color: map-get($mat-sgm-primary, 500) !important;
+    color: white;
+    background-color: red;
+    //background-color:transparent !important;
+    border: 1px solid !important;
+}
+
 @mixin column-width($property) {
     max-width: $property;
     min-width: $property;

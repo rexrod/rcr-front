@@ -66,7 +66,8 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     textoRastrear: string = 'Rastrear';
 
     map: any;
-
+    ui: any;
+    
     lat: number = -3.096771;
     lng: number = -59.936741;
 
@@ -188,13 +189,13 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         });
         // Instantiate the default behavior, providing the mapEvents object: 
         let behavior = new H.mapevents.Behavior(mapEvents);
-        let ui = H.ui.UI.createDefault(this.map, defaultLayers, 'pt-BR');
+        this.ui = H.ui.UI.createDefault(this.map, defaultLayers, 'pt-BR');
 
         let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
 
-        let mapSettings = ui.getControl('mapsettings');
-        let zoom = ui.getControl('zoom');
-        let scalebar = ui.getControl('scalebar');
+        let mapSettings = this.ui.getControl('mapsettings');
+        let zoom = this.ui.getControl('zoom');
+        let scalebar = this.ui.getControl('scalebar');
         //let panorama = ui.getControl('panorama');
 
         //panorama.setAlignment('top-left');
@@ -396,11 +397,13 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     // Zoom the map to make sure the whole polyline is visible:
     this.map.setViewBounds(polyline.getBounds());
 
-    //setInterval(() => { this.rastrear(); }, 1000);
-    
-    // Observable.interval(2000 * 60).subscribe(x => {
-    //     doSomething();
-    //   });
+    // Create an info bubble object at a specific geographic location:
+    let bubble = new H.ui.InfoBubble({ lng: transport.coordinates[transport.coordinates.length-1].coords.long, lat: transport.coordinates[transport.coordinates.length-1].coords.lat }, {
+        content: 'Localização atual'
+    });
+
+    // Add info bubble to the UI:
+    // this.ui.addBubble(bubble);
 
     if(transport.coordinates.length > 0){
         console.log(this.rastreamento);

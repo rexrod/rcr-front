@@ -1,0 +1,22 @@
+<div>
+  <span class="title-rastreador">{{ data.title }}</span>
+</div>
+<div mat-dialog-content>
+  <p class="item-rastreador">{{ data.displayBody }} {{ data.displayName }}</p>
+</div>
+<ng-container *ngIf="data.type == 'add'">
+  <div>
+    <mat-form-field>
+      <mat-select placeholder="Rastreadores" [(ngModel)]="selectedValue" id="idRastreador"> 
+        <mat-option *ngFor="let rastreador of rastreadores" [value]="rastreador.serialKey">
+          {{rastreador.serialKey}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</ng-container>
+
+<div mat-dialog-actions>
+    <button mat-raised-button class="btn-rounded btn-rastreador" mat-dialog-close>CANCELAR</button>
+    <button mat-raised-button class="btn-rounded btn-rastreador" (click)="confirm()">CONFIRMAR</button>
+</div>

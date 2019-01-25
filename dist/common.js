@@ -235,6 +235,32 @@ var TransportControllerService = /** @class */ (function () {
         console.log(transport);
         return this.httpClient.delete(environments_environment_dev__WEBPACK_IMPORTED_MODULE_2__["environment"].origin.transports + '/transports/' + transport.id, httpOptions);
     };
+    TransportControllerService.prototype.removerRastreador = function (transport) {
+        var token = localStorage.getItem('token');
+        console.log(token);
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": "Bearer " + ("" + token)
+            }),
+        };
+        var formData = new URLSearchParams();
+        return this.httpClient.put(environments_environment_dev__WEBPACK_IMPORTED_MODULE_2__["environment"].origin.tracker + '/transports/unlinktracker/' + transport.id, formData, httpOptions);
+    };
+    TransportControllerService.prototype.adicionarRastreador = function (transport) {
+        var token = localStorage.getItem('token');
+        console.log(token);
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": "Bearer " + ("" + token)
+            }),
+        };
+        console.log(transport);
+        var formData = new URLSearchParams();
+        formData.set('trackerSerial', transport.trackerSerial);
+        return this.httpClient.put(environments_environment_dev__WEBPACK_IMPORTED_MODULE_2__["environment"].origin.tracker + '/transports/linktracker/' + transport.id, formData.toString(), httpOptions);
+    };
     TransportControllerService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"],
