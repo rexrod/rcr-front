@@ -59,13 +59,13 @@ export class SidenavItemComponent implements OnInit {
 
   handleClick() {
 
-    let admin = localStorage.getItem('admin');
-    if(!admin){
-      this.snackBar.open('Usuário não possui acesso a esta funcionalidade!', 'OK', {
-        duration: 10000
-      });
-      return;
-    }
+    // let admin = localStorage.getItem('admin');
+    // if(!admin){
+    //   this.snackBar.open('Usuário não possui acesso a esta funcionalidade!', 'OK', {
+    //     duration: 10000
+    //   });
+    //   return;
+    // }
 
     if (this.item.subItems && this.item.subItems.length > 0) {
       this.sidenavService.toggleItemOpen(this.item);
