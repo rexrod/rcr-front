@@ -45,7 +45,7 @@ export class RastreadoresComponent implements OnInit, AfterViewInit, OnDestroy {
     // this component is useful for the filter and show colums in table
     @Input()
     columns: ListColumn[] = [
-        { name: 'Id', property: '_id', visible: true, isModelProperty: true },
+        { name: 'Id', property: '_id', visible: false, isModelProperty: true },
         { name: 'Serial Key', property: 'serialKey', visible: true, isModelProperty: true },
         { name: 'Modelo', property: 'trackerModel', visible: true, isModelProperty: true },
         { name: 'Observações', property: 'notes', visible: true, isModelProperty: true },

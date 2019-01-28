@@ -83,12 +83,17 @@ $length: 100/length($fields)*1%;
             margin-left: auto;
             margin-right: auto;
             padding-left: 24px; // sorting arrow discount
+            font-size: 90%;
+            justify-content: left;
         }
 
         .mat-column-#{$heading} {
             @include column-width($length);
             margin-left: auto;
             margin-right: auto;
+            color: white;
+            font-size: 90%;
+            justify-content: left;
             @if #{$heading}==actions {
                 button {
                     margin: 5px;
@@ -117,6 +122,7 @@ body {
         flex-direction: column;
         flex-wrap: nowrap;
         justify-content: stretch;
+        //justify-content: left;
         align-items: stretch;
         align-content: stretch;
         height: 91%;
@@ -134,12 +140,14 @@ body {
                     @extend %flex-center;
                     display: flex;
                     min-height: 64px;
-                    box-shadow: 0px 3px 6px rgba( black, 0.16);
+                    // box-shadow: 0px 3px 6px rgba( black, 0.16);
+                    box-shadow: 0px 0px 3px rgba( black, 0.16);
                     color: $theme-background;
                     z-index: 2;
                     #title {
                         text-align: center;
-                        font-size: 150%;
+                        //font-size: 150%;
+                        font-size: 120%;
                         font-weight: bold;
                         display: flex;
                         flex: 1 1 auto;
@@ -198,8 +206,8 @@ body {
                             justify-content: center !important;
                         }
                         .table-header {
-                            //box-shadow: 0px 3px 6px rgba( black, 0.26);
-                            // min-height: 100px;
+                            box-shadow: 0px 3px 6px rgba( black, 0.26);
+                            min-height: 100px;
                             width: 100%;
                             //color: $theme-background;
                             color: white;
@@ -210,21 +218,55 @@ body {
                             font-weight: bold;
                             /* HEADER */
                             @extend %table-columns;
-                        }
+                        }   
                     }
+                    // #thead {
+                    //     @extend %flex-center;
+                    //     //box-shadow: 0px 3px 6px rgba( black, 0.26);
+                    //     background-color: #BDC3C7;
+ 
+                    //     .mat-sort-header-container {
+                    //         display: flex;
+                    //         justify-content: center !important;
+                    //     } 
+                    //     align-items: flex-start;
+                    //     text-align: center;
+                    //     //// min-height: 35px;
+                    //     box-shadow: 0px 3px 6px rgba( black, 0.16);
+                    //     // min-height: 100px;
+                    //     width: 100%;
+                    //     //color: $theme-background;
+                    //     color: white;
+                    //     //display: inline-flex;
+                    //     display: inline-flex;
+                    //     flex: 2 1 auto;
+                    //     z-index: 2;
+                    //     font-weight: bold;
+                    //     /* HEADER */
+                    //     @extend %table-columns;
+                    // }
                     #tbody {
                         flex: 10 1 auto; // background: brown;
                         align-items: flex-start;
                         text-align: center;
                         display: flex;
-                        box-shadow: 0px 3px 6px rgba( black, 0.16);
+                        // box-shadow: 0px 3px 6px rgba( black, 0.16);
+                        box-shadow: 0px 0px 3px rgba( black, 0.16);
                         z-index: 1;
                         overflow: auto;
                         height: 0;
+                        //font-size: 80%;
+                        //justify-content: left;
                         mat-table {
                             width: 100%;
                             mat-header-row {
-                                display: none;
+                                // display: none;
+                                // display: block;
+                                //align-items: center;
+                                @extend %table-columns;
+                                background-color: #BDC3C7;
+                                //font-size: 100%;
+                                //color: #FFF;
                             }
                             .mat-header-cell:first-child {
                                 padding-left: unset !important;
@@ -240,7 +282,8 @@ body {
                                 align-items: center !important;
                                 padding-left: unset !important;
                                 padding-right: unset !important;
-                                font-size: 100%;
+                                font-size: 90%;
+                                //justify-content: left;
                             }
                             .mat-column-expandedDetail {
                                 

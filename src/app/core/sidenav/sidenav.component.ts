@@ -75,7 +75,8 @@ export class SidenavComponent implements OnInit, OnDestroy {
   }
   isCollapsed: boolean;
   isMobile: boolean;
-
+  
+  admin: any;
 
   constructor(private router: Router,
               private sidenavService: SidenavService,
@@ -97,6 +98,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
       this.isCollapsed = sidenavState === SidenavState.Collapsed;
       this.cd.markForCheck();
     });
+
   }
 
   toggleCollapsed() {

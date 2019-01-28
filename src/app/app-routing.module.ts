@@ -26,6 +26,12 @@ const routes: Routes = [
     children: [
 
 // { 
+// path: 'teste-coutinho', 
+// loadChildren: 'app/containers/teste-coutinho/teste-coutinho.module#TesteCoutinhoModule', 
+// },
+
+
+// { 
 // path: 'reports', 
 // loadChildren: 'app/containers/reports/reports.module#ReportsModule', 
 // },

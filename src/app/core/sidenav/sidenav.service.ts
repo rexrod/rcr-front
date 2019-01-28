@@ -90,6 +90,7 @@ export class SidenavService {
   }
 
   addItem(item: SidenavItem) {
+    console.log('adicionando sidenav');
     const foundIndex = this.items.findIndex((existingItem) => isEqual(existingItem, item));
     if (foundIndex === -1) {
       this.setParentRecursive(item);

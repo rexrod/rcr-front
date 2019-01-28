@@ -25,6 +25,7 @@ import { User } from '../model/user';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
+import { environment } from 'environments/environment.dev';
 
 
 @Injectable()
@@ -604,5 +605,18 @@ export class UserControllerService {
         );
     }
 
-
+    public getUserProfile(): Observable<any> {
+                
+        let token = localStorage.getItem('token');
+        console.log(token);
+        const httpOptions = {
+            headers: new HttpHeaders({
+            "Content-Type":  "application/x-www-form-urlencoded",
+            "Authorization": "Bearer " + `${token}`
+            }),
+        };
+        
+        //https://lupa-v1.herokuapp.com/auth/v1/admin/allprofiles
+        return this.httpClient.get<any>(environment.origin.transports + '/user/profile', httpOptions,);
+    }
 }

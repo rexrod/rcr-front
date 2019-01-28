@@ -20,14 +20,14 @@
           <!-- TABLE HEADER -->
           <!-- The header is separate so you do not lose the filters or the sorting and keep the layout-->
           <div id="tmaster">
-            <div id="thead" matSort>
+            <!-- <div id="thead" matSort>
               <div class="table-header">
                 <div *ngFor="let column of columns" class="{{column.property}}" mat-sort-header="{{column.property}}" 
                 [style.display]="column.visible ? 'flex' : 'none'" fxLayoutAlign="center">
                   {{column.name | uppercase}}
                 </div>
               </div>
-            </div>
+            </div> -->
             <!-- TABLE BODY -->
             <div id="tbody">
               <!-- Note: Mat-table does not compile without mat-cell -->
@@ -36,7 +36,7 @@
               <ng-container *ngFor="let column of columns">
                 <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.name }}</mat-header-cell>
-                  <mat-cell *matCellDef="let row" fxLayoutAlign="center">
+                  <mat-cell *matCellDef="let row" fxLayoutAlign="left">
                     <!-- <span class="fury-mobile-label">{{ column.name }}</span> -->
                     {{ extractValue(row,column.cellContent,column.property) }}
                   </mat-cell>

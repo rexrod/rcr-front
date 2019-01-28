@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SidenavService } from '../sidenav.service';
 import { SidenavItem } from './sidenav-item.interface';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'fury-sidenav-item',
@@ -30,7 +31,9 @@ export class SidenavItemComponent implements OnInit {
   isCollapsed$: Observable<boolean>;
   dropdownState$: Observable<string>;
 
-  constructor(private sidenavService: SidenavService, private router: Router) {
+  constructor(private sidenavService: SidenavService,
+     private router: Router,
+     public snackBar: MatSnackBar) {
     this.isCollapsed$ = this.sidenavService.sidenavState$.pipe(
       map(state => state === 'collapsed')
     );
@@ -55,6 +58,15 @@ export class SidenavItemComponent implements OnInit {
   }
 
   handleClick() {
+
+    let admin = localStorage.getItem('admin');
+    if(!admin){
+      this.snackBar.open('Usuário não possui acesso a esta funcionalidade!', 'OK', {
+        duration: 10000
+      });
+      return;
+    }
+
     if (this.item.subItems && this.item.subItems.length > 0) {
       this.sidenavService.toggleItemOpen(this.item);
     } else if (typeof this.item.routeOrFunction === 'string' || this.item.routeOrFunction instanceof String) {

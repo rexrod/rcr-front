@@ -42,7 +42,8 @@ export class UserControllerCustomService {
         console.log(formData.getAll);
         console.log(formData.toString());
  
-        return this.httpClient.get<Transport>(environment.origin.transports + '/user/allprofiles', httpOptions,);
+        //https://lupa-v1.herokuapp.com/auth/v1/admin/allprofiles
+        return this.httpClient.get<Transport>(environment.origin.transports + '/admin/allprofiles', httpOptions,);
     }
 
     public registerUser(user: User): Observable<any> {
@@ -88,7 +89,7 @@ export class UserControllerCustomService {
         formData.set('email', user.email);
         formData.set('registration', user.registration);
   
-        return this.httpClient.put( environment.origin.tracker + '/user/profile', formData.toString(), httpOptions);
+        return this.httpClient.put( environment.origin.tracker + '/admin/profile/' + user.id, formData.toString(), httpOptions);
     }
 
     public deleteUser(user: any): Observable<any> {
@@ -104,7 +105,7 @@ export class UserControllerCustomService {
                
         // console.log(user);  
 
-        return this.httpClient.delete( environment.origin.tracker + '/user/profile/' + user.id, httpOptions);
+        return this.httpClient.delete( environment.origin.tracker + '/admin/profile/' + user.id, httpOptions);
     }
 
     public atualizarStatus(user: any): Observable<any> {
@@ -120,6 +121,6 @@ export class UserControllerCustomService {
 
         const formData = new URLSearchParams();
          
-        return this.httpClient.put( environment.origin.tracker + '/user/status/' + user.id, formData, httpOptions);
+        return this.httpClient.put( environment.origin.tracker + '/admin/status/' + user.id, formData, httpOptions);
     }
 }

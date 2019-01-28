@@ -152,27 +152,52 @@ export class AppComponent {
     //   ]
     // });
 
-    menu.push({
-      name: 'Configurações',
-      // routeOrFunction: '/configurations',
-      icon: 'settings',
-      position: 99,
-      subItems: [
-        {
-          name: 'Usuários',
-          routeOrFunction: '/users',
-          icon: 'supervised_user_circle',
-          position: 1
-        },
-        // {
-        //   name: 'Perfis',
-        //   routeOrFunction: '/profiles',
-        //   icon: 'group',
-        //   position: 21
-        // }
-      ]
-    });
+    let admin = localStorage.getItem('admin');
+    console.log('Usuário administrador: ' + admin);
+      if(admin){
+        menu.push({
+          name: 'Configurações',
+          // routeOrFunction: '/configurations',
+          icon: 'settings',
+          position: 99,
+          subItems: [
+            {
+              name: 'Usuários',
+              routeOrFunction: '/users',
+              icon: 'supervised_user_circle',
+              position: 1
+            },
+            // {
+            //   name: 'Perfis',
+            //   routeOrFunction: '/profiles',
+            //   icon: 'group',
+            //   position: 21
+            // }
+          ]
+      });
+      // admin = 'false';
+    }
 
+    //   menu.push({
+    //     name: 'Configurações',
+    //     // routeOrFunction: '/configurations',
+    //     icon: 'settings',
+    //     position: 99,
+    //     subItems: [
+    //       {
+    //         name: 'Usuários',
+    //         routeOrFunction: '/users',
+    //         icon: 'supervised_user_circle',
+    //         position: 1
+    //       },
+    //       // {
+    //       //   name: 'Perfis',
+    //       //   routeOrFunction: '/profiles',
+    //       //   icon: 'group',
+    //       //   position: 21
+    //       // }
+    //     ]
+    // });
 
 menu.push({ 
   name: 'Live View', 
@@ -204,9 +229,17 @@ icon: 'description',
 position: 28 
 });
 
+
+// menu.push({ 
+// name: 'teste-coutinho', 
+// routeOrFunction: 'teste-coutinho', 
+// icon: '', 
+// position: 32 
+// });
+
     // Send all created Items to SidenavService
-    menu.forEach(item => sidenavService.addItem(item));
-    this.sessionService.loadUser();
+     menu.forEach(item => sidenavService.addItem(item));
+     this.sessionService.loadUser();
 
   }
 

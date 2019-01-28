@@ -9,6 +9,8 @@ import { UserControllerService } from 'app/module/users/api/userController.servi
 import { Router } from '@angular/router';
 import { SessionService } from 'app/service/session.service';
 import { CommonModule } from '@angular/common';
+import { SidenavService } from '../sidenav/sidenav.service';
+import { SidenavItem } from '../sidenav/sidenav-item/sidenav-item.interface';
 
 
 @Injectable()
@@ -16,6 +18,8 @@ export class LoginService {
 
   static closeFloatWindow = new EventEmitter<boolean>();
   static openFloatWindow = new EventEmitter<boolean>();
+
+  menu: SidenavItem[] = [];
 
   @Output()
   public usuario = new EventEmitter<{ nome: string, codigo: number }>();
@@ -30,9 +34,10 @@ export class LoginService {
     // private notifService: NotificationService,
     // private loginService: LogincontrollerApi,
     // private stompService: StompConfigService,
-    private users: UserControllerService
+    private users: UserControllerService,
     // private pessoaGeral: PessoaPemazaControllerService,
     // private pessoaGeralFuncionalidade: PessoacontrollerApi
+    public sidenavService: SidenavService,
   ) { }
 
   public isUserNameValid(userName: any): Promise<any> {
@@ -76,21 +81,57 @@ export class LoginService {
         //resolve();
       }, 1000);
       this.users.loginUsingPOSTCustom(email,senha).subscribe(res => {
-          resolve(res);
           localStorage.setItem('token', res.access_token);
           //this.sessionStore.dispatchCreateAction(res);
-          }, err => reject(err));
+          this.users.getUserProfile().subscribe(
+            response => {
+              if(response.admin){
+                localStorage.setItem('admin', response.admin);
+              
+                this.menu.push({
+                  name: 'Configurações',
+                  // routeOrFunction: '/configurations',
+                  icon: 'settings',
+                  position: 99,
+                  subItems: [
+                    {
+                      name: 'Usuários',
+                      routeOrFunction: '/users',
+                      icon: 'supervised_user_circle',
+                      position: 1
+                    },
+                    // {
+                    //   name: 'Perfis',
+                    //   routeOrFunction: '/profiles',
+                    //   icon: 'group',
+                    //   position: 21
+                    // }
+                  ]
+                });
+                
+                this.menu.forEach(item => this.sidenavService.addItem(item));
+              }
+            });    
+          resolve(res); 
+        }, err => reject(err));
     });
   }
 
     public loginCustom(email: string, senha: string): Promise<any> {
       return new Promise((resolve, reject) => {
         this.users.loginUsingPOSTCustom(email,senha).subscribe(res => {
+              //expireDate = new Date().getTime() + (1000 * res.expires_in);
+              localStorage.setItem('token', res.access_token);
+              //Cookie.set('access_token', res.access_token, expireDate);
+              //this.sessionStore.dispatchCreateAction(res);
+              this.users.getUserProfile().subscribe(
+                res => {
+                  if(res.admin){
+                    localStorage.setItem('admin', res.admin);
+                  }
+               }
+             );
              resolve(res);
-             //expireDate = new Date().getTime() + (1000 * res.expires_in);
-             localStorage.setItem('token', res.access_token);
-             //Cookie.set('access_token', res.access_token, expireDate);
-             //this.sessionStore.dispatchCreateAction(res);
          });
       });
 
@@ -106,6 +147,8 @@ export class LoginService {
     // this.cartService.resetCart();
     // this.sessionStore.dispatchRemoveActionSucess();
     // this.demon.dispatchRemoveAction();
-    this.router.navigate(['/login']);
+    localStorage.clear();
+    window.location.replace('/login');
+    //this.router.navigate(['/login']);
   }
 }
