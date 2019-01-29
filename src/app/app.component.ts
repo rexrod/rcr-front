@@ -200,7 +200,7 @@ export class AppComponent {
     // });
 
 menu.push({ 
-  name: 'Live View', 
+  name: 'Dashboard', 
   routeOrFunction: 'dashboard-lives', 
   icon: 'dashboard', 
   position: 0 
@@ -213,14 +213,12 @@ icon: 'map',
 position: 25 
 });
 
-
 menu.push({ 
 name: 'Rastreadores', 
 routeOrFunction: 'rastreadores', 
 icon: 'router', 
 position: 27 
 });
-
 
 menu.push({ 
 name: 'Relatórios', 

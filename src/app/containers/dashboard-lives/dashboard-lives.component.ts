@@ -175,9 +175,9 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         let defaultLayers = this.platform.createDefaultLayers();
         this.map = new H.Map(
             this.mapElement.nativeElement,
-            defaultLayers.normal.map,
+            defaultLayers.terrain.map,
             {
-                zoom: 14,
+                zoom: 16,
                 center: { lat: -3.04945, lng:  -60.01845 }  
             }
         );
