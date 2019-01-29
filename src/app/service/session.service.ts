@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 // import { SessionStoreService } from 'app/module/store/session/session-store.service';
 // import { SessionActions } from 'app/module/store/session/session.actions';
@@ -18,6 +18,11 @@ import { Router } from '@angular/router';
 
       }
 
+      @Output()
+      public userName: string = '';
+
+      public userEmail: string;
+
       public lockSession(): void {
         // this.sessionStore.dispatchExpiredSessionAction();
         this.loadLoginView();
@@ -28,6 +33,10 @@ import { Router } from '@angular/router';
       }
 
     public loadUser(): void {
+        
+        this.userName = localStorage.getItem('name');
+        this.userEmail = localStorage.getItem('email');
+        //this.userName = localStorage.getItem('name');
         // const session = this.sessionStore.getState();
         //console.log(session);
         // if (isNullOrUndefined(session.admin)) {

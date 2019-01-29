@@ -6,6 +6,6 @@ export interface User {
     password?: string;
     registration?: string;
     status?: string;
-
+    admin?: string;
 }
 

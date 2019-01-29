@@ -8,6 +8,8 @@ import { Utils } from 'app/utils/utils';
 import { fadeOutAnimation } from '../common/route.animation';
 import { MatSnackBar } from '@angular/material';
 import { CompanyControllerService, CompanyDTO } from 'app/module/performa';
+import { ToolbarUserButtonComponent } from '../toolbar/toolbar-user-button/toolbar-user-button.component';
+import { SessionService } from 'app/service/session.service';
 //import { CookieService } from 'ngx-cookie-service;
 
 
@@ -16,7 +18,7 @@ import { CompanyControllerService, CompanyDTO } from 'app/module/performa';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   animations: [fadeOutAnimation],
-  //providers: [CookieService]
+  providers: [SessionService]
 })
 export class LoginComponent implements OnInit {
 
@@ -28,7 +30,9 @@ export class LoginComponent implements OnInit {
   photoUrl: string;
   companies: CompanyDTO[] = [];
   selectedCompanyId = 1;
-
+  
+  //toolbarUserButton;
+  
   constructor(private router: Router,
     private fb: FormBuilder,
     private cd: ChangeDetectorRef,
@@ -36,8 +40,11 @@ export class LoginComponent implements OnInit {
     private companyPerformaApi: CompanyControllerService,
     // private companyService: CompanyService,
     public snackBar: MatSnackBar,
+    public session: SessionService,
     // private sessionStore: SessionStoreService,
-  ) { }
+  ) { 
+    //this.toolbarUserButton = ToolbarUserButtonComponent;
+  }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -45,6 +52,7 @@ export class LoginComponent implements OnInit {
       enroll: ['', Validators.required],
       password: ['', Validators.required]
     });
+    localStorage.clear();
     //this.loadData();
   }
 
@@ -52,8 +60,9 @@ export class LoginComponent implements OnInit {
     this.visible = true;
     this.login.login(this.form.get('enroll').value, this.form.get('password').value).then(
       success => {
+        //this.session.loadUser();
         this.router.navigate(['/dashboard-lives']);
-        console.log(success);
+        //console.log(success);
       },
       error => {
         console.log(error);

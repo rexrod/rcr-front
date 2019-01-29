@@ -141,6 +141,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_route_animation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../common/route.animation */ "./src/app/core/common/route.animation.ts");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var app_module_performa__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! app/module/performa */ "./src/app/module/performa/index.ts");
+/* harmony import */ var app_service_session_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! app/service/session.service */ "./src/app/service/session.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -158,21 +159,25 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 //import { CookieService } from 'ngx-cookie-service;
 var LoginComponent = /** @class */ (function () {
+    //toolbarUserButton;
     function LoginComponent(router, fb, cd, login, companyPerformaApi, 
     // private companyService: CompanyService,
-    snackBar) {
+    snackBar, session) {
         this.router = router;
         this.fb = fb;
         this.cd = cd;
         this.login = login;
         this.companyPerformaApi = companyPerformaApi;
         this.snackBar = snackBar;
+        this.session = session;
         this.inputType = 'password';
         this.visible = false;
         this.companies = [];
         this.selectedCompanyId = 1;
+        //this.toolbarUserButton = ToolbarUserButtonComponent;
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.form = this.fb.group({
@@ -180,14 +185,16 @@ var LoginComponent = /** @class */ (function () {
             enroll: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
+        localStorage.clear();
         //this.loadData();
     };
     LoginComponent.prototype.send = function () {
         var _this = this;
         this.visible = true;
         this.login.login(this.form.get('enroll').value, this.form.get('password').value).then(function (success) {
+            //this.session.loadUser();
             _this.router.navigate(['/dashboard-lives']);
-            console.log(success);
+            //console.log(success);
         }, function (error) {
             console.log(error);
             _this.visible = false;
@@ -247,13 +254,15 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./login.component.html */ "./src/app/core/login/login.component.html"),
             styles: [__webpack_require__(/*! ./login.component.scss */ "./src/app/core/login/login.component.scss")],
             animations: [_common_route_animation__WEBPACK_IMPORTED_MODULE_5__["fadeOutAnimation"]],
+            providers: [app_service_session_service__WEBPACK_IMPORTED_MODULE_8__["SessionService"]]
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"],
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"],
             _login_service__WEBPACK_IMPORTED_MODULE_3__["LoginService"],
             app_module_performa__WEBPACK_IMPORTED_MODULE_7__["CompanyControllerService"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSnackBar"]])
+            _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSnackBar"],
+            app_service_session_service__WEBPACK_IMPORTED_MODULE_8__["SessionService"]])
     ], LoginComponent);
     return LoginComponent;
 }());

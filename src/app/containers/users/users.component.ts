@@ -114,7 +114,7 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
     create() {
 
         this.dialog.open(UserCreateUpdateComponent, {
-            width: '41%', height: '77%',
+            width: '41%', height: '57%',
             panelClass: 'dialog-create-update'
         }).afterClosed().subscribe((user: User) => {
 
@@ -144,7 +144,7 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this.dialog.open(UserCreateUpdateComponent, {
             data: user,
-            width: '41%', height: '77%',
+            width: '41%', height: '57%',
             panelClass: 'dialog-create-update'
         }).afterClosed().subscribe((_user) => {
             if (_user) {

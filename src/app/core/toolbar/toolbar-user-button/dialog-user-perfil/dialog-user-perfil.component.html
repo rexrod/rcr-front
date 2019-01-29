@@ -1,0 +1,64 @@
+<!-- <div>
+  <span class="title-rastreador">{{ data.title }}</span>
+</div>
+<div mat-dialog-content>
+  <p class="item-rastreador">{{ data.displayBody }} {{ data.displayName }}</p>
+</div>
+<ng-container *ngIf="data.type == 'add'">
+  <div>
+    <mat-form-field>
+      <mat-select placeholder="Rastreadores" [(ngModel)]="selectedValue" id="idRastreador"> 
+        <mat-option *ngFor="let rastreador of rastreadores" [value]="rastreador.serialKey">
+          {{rastreador.serialKey}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</ng-container>
+
+<div mat-dialog-actions>
+    <button mat-raised-button class="btn-rounded btn-rastreador" mat-dialog-close>CANCELAR</button>
+    <button mat-raised-button class="btn-rounded btn-rastreador" (click)="confirm()">CONFIRMAR</button>
+</div> -->
+<fury-dialog-panel>
+  <div class="form-content">
+      <div class="form-title" header-content>
+          <span>Editar Perfil</span>
+      </div>
+      <div class="form-fields">
+          <form [formGroup]="form">
+              <div class="row" > 
+                  <div class="name field" >
+                      <mat-form-field>
+                          <input matInput placeholder="Nome" pattern="^(?!\s*$).+" formControlName="name" id="name" required/>
+                      </mat-form-field>                   
+                  </div>
+              </div>
+              <div class="row"> 
+                  <div class="email field">
+                      <mat-form-field>
+                          <input matInput placeholder="Email" pattern="^(?!\s*$).+" formControlName="email" id="email" required />
+                      </mat-form-field>                   
+                  </div>
+              </div>
+              <div class="row"> 
+                  <div class="registration field">
+                      <mat-form-field>
+                          <input matInput placeholder="Matricula" pattern="^(?!\s*$).+" formControlName="registration" id="registration" required />
+                      </mat-form-field>
+                  </div>
+              </div>
+          </form>
+      </div>
+    </div>   
+  <!-- <div class="footer-content" footer-content>
+      <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="saveCustom()">SALVAR</button>
+      <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="save()" style="background-color: #FFC937">ATUALIZAR</button>
+  </div> -->
+  <div class="footer-content" footer-content>
+    <!-- <button mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-rastreador" mat-dialog-close>CANCELAR</button> -->
+    <button mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="confirm()">SALVAR</button>
+  </div>
+   
+
+  </fury-dialog-panel>

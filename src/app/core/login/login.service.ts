@@ -11,6 +11,7 @@ import { SessionService } from 'app/service/session.service';
 import { CommonModule } from '@angular/common';
 import { SidenavService } from '../sidenav/sidenav.service';
 import { SidenavItem } from '../sidenav/sidenav-item/sidenav-item.interface';
+import { ToolbarUserButtonComponent } from '../toolbar/toolbar-user-button/toolbar-user-button.component';
 
 
 @Injectable()
@@ -38,6 +39,8 @@ export class LoginService {
     // private pessoaGeral: PessoaPemazaControllerService,
     // private pessoaGeralFuncionalidade: PessoacontrollerApi
     public sidenavService: SidenavService,
+    public session: SessionService,
+    // public toolbarUserButton: ToolbarUserButtonComponent,
   ) { }
 
   public isUserNameValid(userName: any): Promise<any> {
@@ -85,6 +88,10 @@ export class LoginService {
           //this.sessionStore.dispatchCreateAction(res);
           this.users.getUserProfile().subscribe(
             response => {
+              localStorage.setItem('name', response.name);
+              localStorage.setItem('email', response.email);
+              this.session.userName = response.name;
+              this.session.userEmail = response.email;
               if(response.admin){
                 localStorage.setItem('admin', response.admin);
               
@@ -110,6 +117,8 @@ export class LoginService {
                 });
                 
                 this.menu.forEach(item => this.sidenavService.addItem(item));
+                // this.session.loadUser();
+                // this.toolbarUserButton.setUserName();
               }
             });    
           resolve(res); 

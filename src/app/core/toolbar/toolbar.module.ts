@@ -15,6 +15,9 @@ import { ToolbarSidenavMobileToggleComponent } from './toolbar-sidenav-mobile-to
 import { ToolbarUserButtonComponent } from './toolbar-user-button/toolbar-user-button.component';
 import { ToolbarComponent } from './toolbar.component';
 import { LoginService } from '../login/login.service';
+import { DialogRastreadorModule } from '../common/dialog-rastreador/dialog-rastreador.module';
+import { DialogUserPerfilModule } from './toolbar-user-button/dialog-user-perfil/dialog-user-perfil.module';
+import { DialogChangePasswordModule } from './toolbar-user-button/dialog-change-password/dialog-change-password.module';
 
 @NgModule({
   imports: [
@@ -24,7 +27,10 @@ import { LoginService } from '../login/login.service';
     ScrollbarModule,
     FormsModule,
     ClickOutsideModule,
-    FuryCardModule
+    FuryCardModule,
+    DialogRastreadorModule,
+    DialogUserPerfilModule,
+    DialogChangePasswordModule,
   ],
   declarations: [
     ToolbarComponent,

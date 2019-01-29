@@ -21,11 +21,11 @@ import { Observable }                                        from 'rxjs';
 import { Address } from '../model/address';
 import { Administrator } from '../model/administrator';
 import { AdministratorCustom} from '../model/administratorCustom';
-import { User } from '../model/user';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 import { environment } from 'environments/environment.dev';
+import { User } from 'app/models/users/users.model';
 
 
 @Injectable()
@@ -608,7 +608,7 @@ export class UserControllerService {
     public getUserProfile(): Observable<any> {
                 
         let token = localStorage.getItem('token');
-        console.log(token);
+        // console.log(token);
         const httpOptions = {
             headers: new HttpHeaders({
             "Content-Type":  "application/x-www-form-urlencoded",
@@ -618,5 +618,47 @@ export class UserControllerService {
         
         //https://lupa-v1.herokuapp.com/auth/v1/admin/allprofiles
         return this.httpClient.get<any>(environment.origin.transports + '/user/profile', httpOptions,);
+    }
+
+    public updateUserProfile(user: any): Observable<any> {
+                
+        let token = localStorage.getItem('token');
+        // console.log(token);
+        const httpOptions = {
+            headers: new HttpHeaders({
+            "Content-Type":  "application/x-www-form-urlencoded",
+            "Authorization": "Bearer " + `${token}`
+            }),
+        };
+        
+        const formData = new URLSearchParams();
+        // append your data
+        formData.set('name', user.name);
+        formData.set('email', user.email);
+        formData.set('registration', user.registration);
+        
+        console.log(formData.toString());
+
+        //https://lupa-v1.herokuapp.com/auth/v1/admin/allprofiles
+        return this.httpClient.put<any>(environment.origin.users + '/user/profile', formData.toString(), httpOptions,);
+    }
+
+    public changeUserPassword(user: any): Observable<any> {
+                
+        let token = localStorage.getItem('token');
+        
+        const httpOptions = {
+            headers: new HttpHeaders({
+            "Content-Type":  "application/x-www-form-urlencoded",
+            "Authorization": "Bearer " + `${token}`
+            }),
+        };
+        
+        const formData = new URLSearchParams();
+        // append your data
+        formData.set('currentPassword', user.currentPassword);
+        formData.set('password', user.newPassword);
+        
+        return this.httpClient.put<any>(environment.origin.users + '/user/password', formData.toString(), httpOptions,);
     }
 }
