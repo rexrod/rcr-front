@@ -178,6 +178,8 @@ body {
                                 // display: none;
                                 @extend %table-columns;
                                 background-color: #BDC3C7;
+                                border-bottom-width: 0;
+                                border-top-width: 0;
                             }
                             .mat-header-cell:first-child {
                                 padding-left: unset !important;

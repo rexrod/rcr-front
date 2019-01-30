@@ -265,6 +265,8 @@ body {
                                 //align-items: center;
                                 @extend %table-columns;
                                 background-color: #BDC3C7;
+                                border-bottom-width: 0;
+                                border-top-width: 0;
                                 //font-size: 100%;
                                 //color: #FFF;
                             }
