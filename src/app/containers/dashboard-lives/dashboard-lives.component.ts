@@ -125,7 +125,9 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
             this.transports = [];
             for(var i=0; i < trans.data.length; i++){
               console.log(trans.data[i]);
-              if(trans.data[i].trackerSerial){
+              
+            //   if(trans.data[i].trackerSerial){
+              if(trans.data[i].coordinates.length > 0){  
                 this.transports.push(trans.data[i]);
                 console.log(this.transports);
                 this.rastreadores.push(trans.data[i].trackerSerial);
@@ -156,16 +158,19 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         });
 
         // this.defaults = {}; // takes blank :)
+        // console.log(this.transports); 
 
-        // let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
+        setTimeout(() => {
 
-        // console.log(this.transports);
-        // for(var i=0; i < this.transports.length; i++){
-        //     console.log(this.transports[i].coordinates[0].coords);
-        //     let marker = new H.map.Marker({ lat: this.transports[i].coordinates[0].coords.lat, lng: this.transports[i].coordinates[0].coords.long }, { icon: icon });    
-        //     this.map.addObject(marker);
-        // }
- 
+            console.log(this.transports);
+            let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
+
+            for(var i=0; i < this.transports.length; i++){
+                console.log(this.transports[i].coordinates[0].coords);
+                let marker = new H.map.Marker({ lat: this.transports[i].coordinates[0].coords.lat, lng: this.transports[i].coordinates[0].coords.long }, { icon: icon });    
+                this.map.addObject(marker);
+            }
+        }, 1000);
     }
 
     ngAfterViewInit() {
@@ -177,7 +182,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
             this.mapElement.nativeElement,
             defaultLayers.terrain.map,
             {
-                zoom: 16,
+                zoom: 14,
                 center: { lat: -3.04945, lng:  -60.01845 }  
             }
         );
@@ -427,6 +432,20 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     clearInterval(this.rastreamento); 
     this.textoRastrear = 'Rastrear';  
     this.lived = false;
+
+    this.map.removeObjects(this.map.getObjects());
+    // this.map.Zoom
+
+    let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
+    this.map.setZoom(14);
+    this.map.setCenter( { lat: -3.04945, lng:  -60.01845 } );
+
+    for(var i=0; i < this.transports.length; i++){
+        console.log(this.transports[i].coordinates[0].coords);
+        let marker = new H.map.Marker({ lat: this.transports[i].coordinates[0].coords.lat, lng: this.transports[i].coordinates[0].coords.long }, { icon: icon });    
+        this.map.addObject(marker);
+    }
+
   }
 }
 
