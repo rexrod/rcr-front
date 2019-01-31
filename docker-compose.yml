@@ -1,14 +1,9 @@
 version: '3'
 services:
-  documentation:
-    build: docker/documentation
-    ports:
-     - "8000:8000"
-    volumes:
-     - .:/docs
   web:
     build: docker/frontend
     ports:
      - "4200:4200"
     volumes:
-     - .:/code
+     - .:/app
+   
