@@ -1,0 +1,79 @@
+<fury-dialog-panel>
+
+    <div class="form-content">
+        <div class="form-title" header-content>
+            <span>Cadastrar Usuários</span>
+        </div>
+        <div class="form-fields">
+            <form [formGroup]="form">
+                <div class="row">
+                    <!-- Primeiro Nome -->
+                    <div class="name field">
+                        <mat-form-field>
+                            <input matInput placeholder="Nome" pattern="^(?!\s*$).+" formControlName="name"
+                                id="name" required />
+                        </mat-form-field>
+                    </div>
+                    <!-- Último Nome -->
+                    <!-- <div class="lastName field">
+                        <mat-form-field>
+                            <input matInput placeholder="Último Nome" pattern="^(?!\s*$).+" formControlName="lastName"
+                                id="lastName" required />
+                        </mat-form-field>
+                    </div> -->
+                </div>
+                <div class="row">
+                    <!-- Email -->
+                    <div class="email field">
+                        <mat-form-field>
+                            <input matInput placeholder="Email" pattern="^(?!\s*$).+" formControlName="email"
+                                id="email" required />
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="email field">
+                        <mat-form-field>
+                            <input matInput placeholder="Email" pattern="^\w+(.?\w+)*@\w+(\.?\w+)*" formControlName="email"
+                                id="email" required (keyup)="loginValue($event.target.value)" />
+                        </mat-form-field>
+                    </div> -->
+                </div>
+                <div class="row" *ngIf="isCreateMode()">
+                    <!-- Senha -->
+                    <div class="password field">
+                        <mat-form-field>
+                            <input  matInput placeholder="Senha" type="password" pattern="^(?!\s*$).+" formControlName="password" id="password" required />
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Login -->
+                    <div class="registration field">
+                        <mat-form-field>
+                            <input matInput placeholder="Matricula" pattern="^(?!\s*$).+" formControlName="registration" id="registration" required />
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <div class="idSector field">
+                        <mat-form-field>
+                            <mat-select placeholder="Selecione o Setor" formControlName="idSector" id="idSector"
+                                required>
+                                <mat-option *ngFor="let sector of sectors" [value]="sector.id">
+                                    {{sector.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="field"></div>
+                </div> -->
+            </form>
+        </div>
+    </div>
+    <div class="footer-content" footer-content>
+        <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="saveCustom()"
+            color="primary">SALVAR</button>
+        <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" color="primary"
+            (click)="saveCustom()">ATUALIZAR</button>
+    </div>
+
+</fury-dialog-panel>

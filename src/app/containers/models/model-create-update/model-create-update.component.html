@@ -1,0 +1,35 @@
+<fury-dialog-panel>
+
+    <div class="form-content">
+        <div class="form-title">
+            <span>Cadastrar Modelo</span>
+        </div>
+        <div class="form-fields">
+            <form [formGroup]="form">
+                <div class="idFabricator">
+                    <mat-form-field>
+                        <mat-select placeholder="Selecione o Fabricante" (selectionChange)="onChanges()"
+                            formControlName="idFabricator" id="idFabricator" required>
+                            <mat-option *ngFor="let fabricator of fabricators" [value]="fabricator.id">
+                                {{fabricator.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="name">
+                    <mat-form-field>
+                        <input matInput placeholder="Nome do Modelo" pattern="^(?!\s*$).+" formControlName="name" id="name"
+                            required/>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer-content" footer-content>
+        <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="save()"
+            color="primary">SALVAR</button>
+        <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" color="primary"
+            (click)="save()">ATUALIZAR</button>
+    </div>
+
+</fury-dialog-panel>

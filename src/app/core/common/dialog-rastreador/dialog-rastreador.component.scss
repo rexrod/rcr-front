@@ -1,0 +1,27 @@
+@import "_custom_color_scheme.scss";
+$color-font: map-get($map: $mat-sgm-primary, $key: 500);
+
+.dialog-rastreador{
+
+    div{
+        text-align: left;
+        .title-status {
+            font-size: 20px;
+        }    
+    }
+
+    .item-rastreador{
+        text-align: left;
+        font-weight: normal;
+        color: rgba(0, 0, 0, 0.54);
+    }
+
+    .btn-rastreador {
+        flex: 1 1 0%;
+        font-size: 14px;
+        font-weight: normal;
+        color: $color-font;
+        box-shadow: unset;
+    }
+
+}

@@ -1,0 +1,131 @@
+@import "_custom_color_scheme.scss";
+$theme-background: map-get($map: $mat-sgm-primary, $key: 500);
+
+body {
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    margin: 0;
+}
+
+h1 {
+    font-size: 150%;
+    color: #1A273A;
+    text-align: center;
+}
+
+h2 {
+    font-size: 20px;
+    color: #1A273A;
+    text-align: center;
+    font-weight: 500;
+}
+
+html {
+    height: 100%;
+}
+
+.dialog-detail {
+    .card {
+        height: 100%;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 16;
+        display: grid;
+        grid-template-rows: repeat(16, 1fr);
+    }
+
+    .title {
+        /*  background-color:chartreuse;*/
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    .title-text {
+        /*  background-color:violet;*/
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
+    .form {
+        /*  background-color:crimson;*/
+    
+        grid-row-start: 3;
+        grid-row-end: 6;
+        display: flex;
+        flex-direction: column;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-bottom: 10px; 
+        overflow: auto;
+        // grid-template-rows: repeat(3, 1fr);
+    
+
+    }
+    .list{
+        grid-row-start: 6;
+        grid-row-end: 16;
+        display: flex;
+        flex-direction: column;
+        padding-left: 30px;
+        padding-right: 30px;
+        overflow: auto;
+        // grid-template-rows: repeat(3, 1fr);
+        .mat-card{
+            flex-direction: column;
+            margin-bottom: 10px; 
+            .table{
+                overflow: auto;
+            }
+        }
+
+    }
+
+    .footer {
+        grid-row-start: 16;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: 30px;
+        margin-bottom: 30px;
+        .btn-save {
+            flex: .2 1 0%;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            font-size: 100%;
+            font-weight: lighter;
+        }
+    }
+
+    .close {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        z-index: 1;
+        align-items: flex-start;
+        justify-content: flex-end;
+        display: flex;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .mat-dialog-container {
+        padding: unset;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .dialog-detail {
+        max-width: unset !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+}

@@ -1,0 +1,54 @@
+
+<fury-dialog-panel>
+
+    <div class="form-content">
+        <div class="form-title">
+            <span>Cadastrar Equipamentos</span>
+        </div>
+        <div class="form-fields">
+            <form [formGroup]="form">
+                <div class="name">
+                    <mat-form-field>
+                        <input matInput placeholder="Nome do Equipamento" pattern="^(?!\s*$).+" formControlName="name" id="name" required />
+                    </mat-form-field>
+                </div>
+                <div class="idSector">
+                    <mat-form-field>
+                        <mat-select placeholder="Selecione o Setor"
+                            formControlName="idSector" id="idSector" required>
+                            <mat-option *ngFor="let sector of sectors" [value]="sector.id">
+                                {{sector.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="idFabricator">
+                    <mat-form-field>
+                        <mat-select placeholder="Selecione o Fabricante" (selectionChange)="loadModels(form.get('idFabricator').value, true)"
+                            formControlName="idFabricator" id="idFabricator" required>
+                            <mat-option *ngFor="let fabricator of fabricators" [value]="fabricator.id">
+                                {{fabricator.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="idModel">
+                    <mat-form-field>
+                        <mat-select placeholder="Selecione o Modelo"
+                            formControlName="idModel" id="idModel" required>
+                            <mat-option *ngFor="let model of models" [value]="model.id">
+                                {{model.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer-content" footer-content>
+        <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="save()" color="primary">SALVAR</button>
+        <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" color="primary"  (click)="save()">ATUALIZAR</button>
+    </div>
+
+</fury-dialog-panel>
+
