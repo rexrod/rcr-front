@@ -21,4 +21,4 @@ EXPOSE 4200
 # Start development server by default
 ENTRYPOINT ["ng"]
 
-CMD ["serve","--host=0.0.0.0"]
+CMD ["serve","--host=0.0.0.0", "--prod", "--aot"]

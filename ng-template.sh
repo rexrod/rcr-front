@@ -1,6 +1,6 @@
 #!/bin/bash
 ###################################################
-### Código para gerar templates para o SGM
+### Código para gerar templates para o RCR
 ### Dê permissão:
 ### $ chmod +x ng-screen.sh
 ### E depois digite o que se pede
