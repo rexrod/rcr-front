@@ -1,0 +1,73 @@
+<div class="card">
+    <div class="close">
+        <!-- <span><img src='assets/icons/x.png' /></span> -->
+        <button type="button" class="mat-icon-button" mat-dialog-close>
+            <span class="mat-button-wrapper">
+                <img src='assets/icons/x.png' />
+            </span>
+        </button>
+    </div>
+    <div class="title">
+        <div class="title-text">
+            <h1>Adicionar Atividade(s)</h1>
+        </div>
+    </div>
+    <div class="content">
+        <div class="search">
+            <mat-card>
+                <div id="input-filter">
+                    <fury-list [columns]="columns" (filterChange)="onFilterChange($event)" fxLayoutAlign="center center"
+                        fxLayout="row"></fury-list>
+                </div>
+            </mat-card>
+        </div>
+        <div class="item-selected">
+            <mat-card>
+                <div class="table">
+
+                    <table mat-table [dataSource]="dataSource" matSort fxFlex>
+
+                        <!-- checked Column -->
+                        <ng-container matColumnDef="checked">
+                            <th mat-header-cell *matHeaderCellDef> Check </th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-checkbox [checked]="element.checked" (change)="changeChecked(element)"></mat-checkbox>
+                            </td>
+                        </ng-container>
+
+                        <!-- id Column -->
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+                            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                        </ng-container>
+
+                        <!-- description Column -->
+                        <ng-container matColumnDef="description">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+                            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                        </ng-container>
+
+                        <!-- serviceOrderType Column -->
+                        <ng-container matColumnDef="serviceOrderType">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de OS </th>
+                            <td mat-cell *matCellDef="let element"> {{ element.serviceOrderType.name }} </td>
+                        </ng-container>
+
+                        <!-- team Column -->
+                        <ng-container matColumnDef="team">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Exclusivo? </th>
+                            <td mat-cell *matCellDef="let element"> {{ element.team.name }} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="visibleColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: visibleColumns;"></tr>
+                    </table>
+
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    <div class="footer-activity">
+        <button mat-raised-button class="btn-rounded btn-save" (click)="save()" color="primary">SALVAR</button>
+    </div>
+</div>

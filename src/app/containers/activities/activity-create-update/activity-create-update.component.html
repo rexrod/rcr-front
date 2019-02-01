@@ -1,0 +1,61 @@
+<fury-dialog-panel>
+
+    <div class="form-content">
+        <div class="form-title">
+            <span>Cadastrar Atividade</span>
+        </div>
+        <div class="form-fields">
+            <form [formGroup]="form">
+                <div class="description">
+                    <mat-form-field>
+                        <input matInput placeholder="Descrição da Atividade" pattern="^(?!\s*$).+" formControlName="description"
+                            id="description" required />
+                    </mat-form-field>
+                </div>
+                <!-- <div class="idPeriodicity">
+                    <mat-form-field>
+                        <mat-select placeholder="Selecione a Periodicidade"
+                            formControlName="idPeriodicity" id="idPeriodicity" required>
+                            <mat-option *ngFor="let periodicity of periodicities" [value]="periodicity.id">
+                                {{periodicity.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div> -->
+                <div class="idServiceOrderType">
+                    <mat-form-field>
+                        <mat-select placeholder="Selecione o Tipo de OS" formControlName="idServiceOrderType" id="idServiceOrderType"
+                            required>
+                            <mat-option *ngFor="let type of serviceOrderTypes" [value]="type.id">
+                                {{type.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="idTeam">
+                    <mat-form-field>
+                        <mat-select placeholder="Selecione a Equipe" formControlName="idTeam" id="idTeam" required>
+                            <mat-option *ngFor="let team of teams" [value]="team.id">
+                                {{team.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="observation">
+                    <mat-form-field hintLabel="Máximo 500 caracteres">
+                        <textarea matInput #textarea placeholder="Observação" formControlName="observation" id="observation"
+                            required maxlength="500"></textarea>
+                        <mat-hint align="end">{{textarea.value?.length || 0}}/500</mat-hint>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer-content" footer-content>
+        <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="save()"
+            color="primary">SALVAR</button>
+        <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" color="primary"
+            (click)="save()">ATUALIZAR</button>
+    </div>
+
+</fury-dialog-panel>

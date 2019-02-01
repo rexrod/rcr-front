@@ -1,0 +1,66 @@
+<div class="notice-close">
+  <button type="button" class="mat-icon-button" mat-dialog-close>
+    <span class="mat-button-wrapper">
+      <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">close</mat-icon>
+    </span>
+  </button>
+</div>
+<h1 mat-dialog-title>Aviso</h1>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <mat-dialog-content>
+
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+      <div fxFlex="50%" class="container-column">
+        <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
+          <mat-form-field fxFlex>
+            <mat-select placeholder="Escolha a Prioridade" formControlName="idPriority" required>
+              <!-- [disabled]="isUpdateMode()" -->
+              <mat-option *ngFor="let priority of priorities" [value]="priority.id">
+                <!--priority.id -->
+                <span>
+                  <!-- icon option -->
+                  <div [ngStyle]="{'background-color': priority.color}" class="circle-small"></div>
+                  <!-- text option -->
+                  {{priority.name}}
+                </span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
+          <mat-form-field class="title" fxFlex>
+            <input matInput type="text" placeholder="Título" formControlName="title" maxlength="255" required>
+          </mat-form-field>
+        </div>
+        <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
+          <mat-form-field fxFlex hintLabel="Máximo 500 caracteres">
+            <textarea matInput #textarea placeholder="Insira sua Descrição" formControlName="description" class="description"
+              required maxlength="500"></textarea>
+            <mat-hint align="end">{{textarea.value?.length || 0}}/500</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxFlex="50%" class="container-column" id="second-column">
+        <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
+          <label for="validate_hour" fxFlex>Selecione a Data e Hora</label>
+        </div>
+        <br>
+        <div fxLayout.gt-sm="row" class="validate">
+          <mat-form-field class="validate_day">
+            <input matInput type="text" formControlName="validate_day" required>
+          </mat-form-field>
+          <label for="validate_hour" fxFlex fxLayoutAlign="center" id="location_city">Manaus</label>
+          <input matInput type="time" formControlName="validate_hour" class="validate_hour" fxFlex required
+            [style.background-color]="correctHours ? '#273B56' : '#DC3545'">
+        </div>
+        <mat-calendar fxFlex></mat-calendar>
+      </div>
+    </div>
+
+  </mat-dialog-content>
+  <mat-divider></mat-divider>
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" color="primary">ENVIAR</button>
+    <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" color="primary">ATUALIZAR</button>
+  </mat-dialog-actions>
+</form>

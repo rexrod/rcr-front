@@ -1,0 +1,180 @@
+@import "_custom_color_scheme.scss";
+$color-font: map-get($map: $mat-sgm-primary, $key: 500);
+$color-font-warn: map-get($map: $mat-sgm-warn, $key: 500);
+
+.dialog-content {
+    .form-content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        .form-title {
+            font-size: 150%;
+            color: $color-font;
+            font-weight: bold;
+            text-align: center;
+            height: 20%;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form-fields {
+            flex: 1 1 auto;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            height: 80%;
+
+            form {
+                height: 100%;
+                width: 100%;
+
+                .hidden-input {
+                    display: none;
+                }
+
+                .progress {
+                    text-align: center;
+                }
+
+                .picture-display {
+                    width: 176px;
+                    height: 150px;
+                    border-radius: 2px;
+                    background-color: #E0E0E0;
+                    background-image: url(/assets/img/backgrounds/bg-picture.png);
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    box-shadow: 0px 0px 2px;
+                    margin-top: 40px;
+                    margin-bottom: 10px;
+                    margin-left: 20px;
+                    margin-right: 20px;
+                    &:hover .picture-overlay {
+                        opacity: 1;
+                    }
+
+                    .picture-overlay{
+                        height: 100%;
+                        width: 100%;
+                        opacity: 0;
+                        transition: .5s ease;
+                        background-color: rgba(white,.2);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    
+                    img {
+                        width: 176px;
+                        height: 150px;
+                    }
+                }
+
+                .row {
+                    display: flex;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    flex-wrap: wrap;
+                }
+
+                .field {
+                    display: flex;
+                    justify-content: center;
+                    flex: 1 .5;
+                    margin-right: 10px;
+                    margin-left: 10px;
+                }
+
+                .image-component {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .picture {
+                    margin-bottom: 4px;
+                }
+
+                .name,
+                .serialNumber,
+                .idFabricator,
+                .idModel,
+                .idSegment,
+                .provider,
+                .charging,
+                .exclusive {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    // height: 10%;
+
+                    mat-form-field {
+                        flex: 1 1 auto;
+                    }
+                }
+                .exclusive {
+                    display: flex;
+                    text-align: center;
+                    background-color: #E0E0E0;
+                    .label {
+                        flex: 1 1 auto;
+                        color: $color-font;
+                    }
+                    .toogle{
+                        flex: 1 1 auto;
+                    }
+                }
+
+                .btn-clear {
+                    color: $color-font-warn;
+                    width: 30px;
+                    height: 30px;
+                    margin-left: 8px;
+                }
+            }
+        }
+    }
+}
+
+
+.dialog-footer {
+    display: flex;
+    padding-right: 24px;
+
+    .footer-content {
+        display: flex;
+        flex: 1 1 auto;
+        align-items: center;
+        justify-content: flex-end;
+
+        .btn-save {
+            flex: .2 1 0%;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            font-size: 100%;
+            font-weight: lighter;
+        }
+    }
+}
+
+@media screen and (max-height: 400px) {
+    .btn-save {
+        line-height: 24px !important;
+    }
+}
+
+@media screen and (max-width: 600px),
+(max-height : 600px) {
+    .area-panel {
+        max-width: unset !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .dialog-create-update {
+        max-width: unset !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
