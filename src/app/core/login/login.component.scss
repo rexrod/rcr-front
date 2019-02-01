@@ -77,7 +77,8 @@ body {
         }
       }
       #conteiner {
-        flex: 1 1 59.23%;
+        // flex: 1 1 59.23%;
+        flex: 1 1 auto;
         flex-direction: row;
         box-sizing: border-box;
         display: flex;
