@@ -33,17 +33,17 @@ import { DialogChangePasswordModule } from './dialog-change-password/dialog-chan
     DialogChangePasswordModule,
   ],
   declarations: [
-    ToolbarComponent,
-    ToolbarUserButtonComponent,
-    ToolbarNotificationsComponent,
-    ToolbarSearchComponent,
-    ToolbarSearchBarComponent,
-    ToolbarQuickpanelToggleComponent,
-    ToolbarFullscreenToggleComponent,
-    ToolbarSidenavMobileToggleComponent
+    // ToolbarComponent,
+    // ToolbarUserButtonComponent,
+    // ToolbarNotificationsComponent,
+    // ToolbarSearchComponent,
+    // ToolbarSearchBarComponent,
+    // ToolbarQuickpanelToggleComponent,
+    // ToolbarFullscreenToggleComponent,
+    // ToolbarSidenavMobileToggleComponent
   ],
   providers: [LoginService],
-  exports: [ToolbarComponent]
+  // exports: [ToolbarComponent]
 })
 export class ToolbarUserButtonModule {
 }

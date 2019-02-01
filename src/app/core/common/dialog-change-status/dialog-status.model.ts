@@ -1,5 +1,5 @@
 export interface DialogStatus {
-    id: number;
-    displayName: string;
-    title: string;
+    id?: number;
+    displayName?: string;
+    title?: string;
 }

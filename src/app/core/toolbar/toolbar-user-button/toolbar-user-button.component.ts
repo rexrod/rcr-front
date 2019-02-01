@@ -30,7 +30,7 @@ export class ToolbarUserButtonComponent implements OnInit {
     private dialog: MatDialog,
     public snackBar: MatSnackBar,
     private apiUser: UserControllerService,
-    private session: SessionService,
+    public session: SessionService,
   ) { 
 
     
@@ -43,6 +43,7 @@ export class ToolbarUserButtonComponent implements OnInit {
     setTimeout(() => {
       this.session.loadUser();
       //resolve();
+
     }, 1000);
     //console.log('Nome: ' + this.session.userName);
   }

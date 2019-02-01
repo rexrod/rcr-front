@@ -124,13 +124,6 @@ loadChildren: 'app/containers/transports/transports.module#TransportsModule',
         path: 'models',
         loadChildren: 'app/containers/models/models.module#ModelsModule',
       },
-
-
-      {
-        path: 'service-order-titles',
-        loadChildren: 'app/containers/service-order-titles/service-order-titles.module#ServiceOrderTitlesModule',
-      },
-
       {
         path: 'slas',
         loadChildren: 'app/containers/slas/slas.module#SlasModule',
@@ -174,10 +167,6 @@ loadChildren: 'app/containers/transports/transports.module#TransportsModule',
       {
         path: 'menu',
         loadChildren: 'app/containers/menu/menu.module#MenuModule',
-      },
-      {
-        path: 'companies',
-        loadChildren: 'app/containers/companies/companies.module#CompaniesModule',
       },
       {
         path: 'notices',

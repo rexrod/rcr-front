@@ -12,7 +12,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 })
 export class DialogStatusComponent implements AfterViewInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogStatus[],
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogStatus,
   private dialogRef: MatDialogRef<DialogStatusComponent>,
             ) {
   }

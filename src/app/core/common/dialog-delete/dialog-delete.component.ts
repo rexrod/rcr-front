@@ -12,7 +12,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 })
 export class DialogDeleteComponent implements AfterViewInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogDelete[],
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogDelete,
   private dialogRef: MatDialogRef<DialogDeleteComponent>,
             ) {
   }
