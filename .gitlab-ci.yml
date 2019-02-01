@@ -1,6 +1,6 @@
 staging:
  type: deploy
- stage: build
+#  stage: build
  image: ruby:latest
  script:
    - apt-get update -qy
