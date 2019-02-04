@@ -1,5 +1,9 @@
+cache:
+  untracked: true
+  paths:
+    - node_modules/
 staging:
-# type: staging
+ type: deploy
 #  stage: build
  image: ruby:latest
  script:
