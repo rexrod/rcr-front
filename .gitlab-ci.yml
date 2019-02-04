@@ -1,5 +1,5 @@
 staging:
- type: deploy
+ type: staging
 #  stage: build
  image: ruby:latest
  script:
