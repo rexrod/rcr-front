@@ -6,6 +6,7 @@ staging:
  script:
    - apt-get update -qy
    - apt-get install -y ruby-dev
+   - npm reinstall
    - gem install dpl
    - dpl --provider=heroku --app=lupa-web-v1 --api-key=$HEROKU_API_KEY
  only:
