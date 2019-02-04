@@ -49,13 +49,23 @@
                   <ng-container *ngIf="column.name == 'Rastreador'; else elseBlock">
                     <mat-cell *matCellDef="let row" fxLayoutAlign="left">
                       <ng-container *ngIf="extractValue(row,column.cellContent,column.property);else elseBlock1">
-                        <button matTooltip="Remover Rastreador" [matTooltipPosition]="'above'" (click)="removerRastreador(row)"  
-                          class="btn-stroked-tracker-remove no-shadow">Remover
+                        <!-- <button mat-stroked-button matTooltip="Remover Rastreador" [matTooltipPosition]="'above'" (click)="removerRastreador(row)"  
+                          class="btn-stroked-tracker-remove no-shadow">Remover -->
+                          <button mat-stroked-button matTooltip="Remover Rastreador" [matTooltipPosition]="'above'" (click)="removerRastreador(row)"  
+                          style="color: red;
+                                 font-size: 13px;
+                                 width: 100px;">
+                          REMOVER
                         </button>
                       </ng-container>  
                       <ng-template #elseBlock1>
-                          <button matTooltip="Adicionar Rastreador" [matTooltipPosition]="'above'" (click)="adicionarRastreador(row)"  
-                          class="btn-stroked-tracker-add no-shadow">Adicionar
+                          <!-- <button mat-stroked-button matTooltip="Adicionar Rastreador" [matTooltipPosition]="'above'" (click)="adicionarRastreador(row)"  
+                          class="btn-stroked-tracker-add no-shadow"> -->
+                          <button mat-stroked-button matTooltip="Adicionar Rastreador" [matTooltipPosition]="'above'" (click)="adicionarRastreador(row)"
+                          style="color: #007EFA;
+                                 font-size: 13px;
+                                 width: 100px">
+                          ADICIONAR
                            <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
                            <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
                          </button>

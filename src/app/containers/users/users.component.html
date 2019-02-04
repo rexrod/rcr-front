@@ -58,16 +58,24 @@
                     <mat-cell *matCellDef="let row" fxLayoutAlign="left">
                       <!-- <span class="fury-mobile-label">{{ column.name }}</span> -->
                       <ng-container *ngIf="extractValue(row,column.cellContent,column.property) == true;else elseBlock1">
-                        <button matTooltip="Desativar usuário" [matTooltipPosition]="'above'" (click)="desativarUsuario(row)"  
-                          class="btn-stroked-active no-shadow">Ativo
+                        <!-- <button matTooltip="Desativar usuário" [matTooltipPosition]="'above'" (click)="desativarUsuario(row)"  
+                          class="btn-stroked-active no-shadow">Ativo -->
+                          <button mat-stroked-button matTooltip="Desativar usuário" [matTooltipPosition]="'above'" (click)="desativarUsuario(row)"  
+                          style="color: green;
+                                 font-size: 13px;
+                                 width: 100px;">ATIVO
                           <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
                           <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
                         </button>
                         <!-- <mat-icon matTooltip="Usuário Ativo" aria-label="Status">check_box</mat-icon> -->
                       </ng-container>  
                       <ng-template #elseBlock1>
-                          <button matTooltip="Ativar usuário" [matTooltipPosition]="'above'" (click)="ativarUsuario(row)"  
-                          class="btn-stroked-inactive no-shadow">Inativo
+                          <!-- <button matTooltip="Ativar usuário" [matTooltipPosition]="'above'" (click)="ativarUsuario(row)"  
+                          class="btn-stroked-inactive no-shadow">Inativo -->
+                          <button mat-stroked-button matTooltip="Ativar usuário" [matTooltipPosition]="'above'" (click)="ativarUsuario(row)"  
+                          style="color: red;
+                                 font-size: 13px;
+                                 width: 100px;">INATIVO
                            <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
                            <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
                          </button>
@@ -109,7 +117,7 @@
           </div>
           <!-- TABLE FOOTER -->
           <div id="tfooter">
-            <mat-paginator class="paginator" [pageSize]="pageSize" color="primary"></mat-paginator>
+            <mat-paginator class="paginator" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" color="primary"></mat-paginator>
           </div>
         </div>
       </div>
