@@ -1,7 +1,4 @@
-cache:
-  untracked: true
-  paths:
-    - node_modules/
+image: node:latest
 staging:
  type: deploy
 #  stage: build
