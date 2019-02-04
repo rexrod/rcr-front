@@ -119,7 +119,7 @@ module.exports = "<div class=\"register\"\r\n     fxLayout=\"row\"\r\n     fxLay
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".register {\n  display: block;\n  background: #fff url(\"/assets/rcr/mapa2@2x.png\") no-repeat center center fixed;\n  background-size: cover;\n  height: 100%;\n  width: 100%; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL21hcmN1cy5qdW5pb3IvRG9jdW1lbnRvcy9uZXdfcmNyL3NyYy9hcHAvZGVtby9jdXN0b20tcGFnZXMvcmVnaXN0ZXIvcmVnaXN0ZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxlQUFjO0VBQ2QsK0VBQThFO0VBQzlFLHVCQUFzQjtFQUN0QixhQUFZO0VBQ1osWUFBVyxFQUNaIiwiZmlsZSI6InNyYy9hcHAvZGVtby9jdXN0b20tcGFnZXMvcmVnaXN0ZXIvcmVnaXN0ZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucmVnaXN0ZXIge1xyXG4gIGRpc3BsYXk6IGJsb2NrO1xyXG4gIGJhY2tncm91bmQ6ICNmZmYgdXJsKCcvYXNzZXRzL3Jjci9tYXBhMkAyeC5wbmcnKSBuby1yZXBlYXQgY2VudGVyIGNlbnRlciBmaXhlZDtcclxuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICB3aWR0aDogMTAwJTtcclxufVxyXG4iXX0= */"
+module.exports = ".register {\n  display: block;\n  background: #fff url(\"/assets/rcr/mapa2@2x.png\") no-repeat center center fixed;\n  background-size: cover;\n  height: 100%;\n  width: 100%; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL21hcmN1cy5qdW5pb3IvRG9jdW1lbnRvcy9uZXdfcmNyL3NyYy9hcHAvZGVtby9jdXN0b20tcGFnZXMvcmVnaXN0ZXIvcmVnaXN0ZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxjQUFjO0VBQ2QsOEVBQThFO0VBQzlFLHNCQUFzQjtFQUN0QixZQUFZO0VBQ1osV0FBVyxFQUFBIiwiZmlsZSI6InNyYy9hcHAvZGVtby9jdXN0b20tcGFnZXMvcmVnaXN0ZXIvcmVnaXN0ZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucmVnaXN0ZXIge1xyXG4gIGRpc3BsYXk6IGJsb2NrO1xyXG4gIGJhY2tncm91bmQ6ICNmZmYgdXJsKCcvYXNzZXRzL3Jjci9tYXBhMkAyeC5wbmcnKSBuby1yZXBlYXQgY2VudGVyIGNlbnRlciBmaXhlZDtcclxuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICB3aWR0aDogMTAwJTtcclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -221,11 +221,11 @@ var RegisterComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'fury-register',
             template: __webpack_require__(/*! ./register.component.html */ "./src/app/demo/custom-pages/register/register.component.html"),
-            styles: [__webpack_require__(/*! ./register.component.scss */ "./src/app/demo/custom-pages/register/register.component.scss")],
             host: {
                 '[@fadeOutAnimation]': 'true'
             },
-            animations: [_core_common_route_animation__WEBPACK_IMPORTED_MODULE_3__["fadeOutAnimation"]]
+            animations: [_core_common_route_animation__WEBPACK_IMPORTED_MODULE_3__["fadeOutAnimation"]],
+            styles: [__webpack_require__(/*! ./register.component.scss */ "./src/app/demo/custom-pages/register/register.component.scss")]
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"],

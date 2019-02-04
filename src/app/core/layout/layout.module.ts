@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { BackdropModule } from '../common/backdrop/backdrop.module';
 import { LoadingIndicatorModule } from '../common/loading-indicator/loading-indicator.module';
 import { MaterialModule } from '../common/material-components.module';
-import { MediaQueryService } from '../common/mediareplay/media-replay.service';
+// import { MediaQueryService } from '../common/mediareplay/media-replay.service';
 import { FooterModule } from '../footer/footer.module';
 import { QuickpanelModule } from '../quickpanel/quickpanel.module';
 import { SidenavModule } from '../sidenav/sidenav.module';
@@ -26,7 +26,7 @@ import { LayoutComponent } from './layout.component';
     BackdropModule
   ],
   declarations: [LayoutComponent],
-  providers: [MediaQueryService]
+  // providers: [MediaQueryService]
 })
 export class LayoutModule {
 }

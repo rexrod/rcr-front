@@ -6,7 +6,7 @@ import isEqual from 'lodash-es/isEqual';
 import keys from 'lodash-es/keys';
 import sortBy from 'lodash-es/sortBy';
 import { BehaviorSubject } from 'rxjs';
-import { MediaQueryService } from '../common/mediareplay/media-replay.service';
+// import { MediaQueryService } from '../common/mediareplay/media-replay.service';
 import { SidenavItem } from './sidenav-item/sidenav-item.interface';
 import { SidenavState } from './sidenav-state.enum';
 
@@ -50,7 +50,7 @@ export class SidenavService {
   isLowerThanLarge: boolean;
 
   constructor(private router: Router,
-              private mediaQueryService: MediaQueryService) {
+              ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.setCurrentlyOpenByRoute(event.url);
@@ -62,14 +62,14 @@ export class SidenavService {
       }
     });
 
-    this.mediaQueryService.isLowerThanLarge$.subscribe((isLowerThanLarge) => {
-      this.isLowerThanLarge = isLowerThanLarge;
-      if (isLowerThanLarge && !(this.sidenavState === SidenavState.Mobile || this.sidenavState === SidenavState.MobileOpen)) {
-        this.sidenavState = SidenavState.Mobile;
-      } else if (!isLowerThanLarge) {
-        this.sidenavState = SidenavState.Expanded;
-      }
-    });
+    // this.mediaQueryService.isLowerThanLarge$.subscribe((isLowerThanLarge) => {
+    //   this.isLowerThanLarge = isLowerThanLarge;
+    //   if (isLowerThanLarge && !(this.sidenavState === SidenavState.Mobile || this.sidenavState === SidenavState.MobileOpen)) {
+    //     this.sidenavState = SidenavState.Mobile;
+    //   } else if (!isLowerThanLarge) {
+    //     this.sidenavState = SidenavState.Expanded;
+    //   }
+    // });
   }
 
   /**

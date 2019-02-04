@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import sortBy from 'lodash-es/sortBy';
 import * as moment from 'moment';
-import { MediaQueryService } from '../../../core/common/mediareplay/media-replay.service';
+// import { MediaQueryService } from '../../../core/common/mediareplay/media-replay.service';
 import { fadeOutAnimation } from '../../../core/common/route.animation';
 import { ScrollbarDirective } from '../../../core/common/scrollbar/scrollbar.directive';
 import { chatDemoData } from './chat.demo';
@@ -27,7 +27,7 @@ export class ChatComponent implements OnInit {
 
   @ViewChild('messagesScroll', { read: ScrollbarDirective }) messagesScroll: ScrollbarDirective;
 
-  constructor(private cd: ChangeDetectorRef, private mediaQueryService: MediaQueryService) {
+  constructor(private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -36,15 +36,15 @@ export class ChatComponent implements OnInit {
     this.chats = sortBy(chatDemoData, 'lastMessageTime').reverse();
     this.activeChat = this.chats[0];
 
-    this.mediaQueryService.isLowerThanMedium$.subscribe((isLowerThanMedium) => {
-      if (isLowerThanMedium) {
-        this.drawerOpen = false;
-        this.drawerMode = 'over';
-      } else if (!isLowerThanMedium) {
-        this.drawerOpen = true;
-        this.drawerMode = 'side';
-      }
-    });
+    // this.mediaQueryService.isLowerThanMedium$.subscribe((isLowerThanMedium) => {
+    //   if (isLowerThanMedium) {
+    //     this.drawerOpen = false;
+    //     this.drawerMode = 'over';
+    //   } else if (!isLowerThanMedium) {
+    //     this.drawerOpen = true;
+    //     this.drawerMode = 'side';
+    //   }
+    // });
   }
 
   setActiveChat(chat) {

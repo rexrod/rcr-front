@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AspectRatioModule } from '../../core/common/aspect-ratio/aspect-ratio.module';
+// import { AspectRatioModule } from '../../core/common/aspect-ratio/aspect-ratio.module';
 import { MaterialModule } from '../../core/common/material-components.module';
 import { PageModule } from '../../core/common/page/page.module';
 import { AdvancedPieChartWidgetModule } from '../../core/widgets/advanced-pie-chart-widget/advanced-pie-chart-widget.module';
@@ -27,7 +27,7 @@ import { environment } from 'environments/environment';
     MaterialModule,
 
     // Core
-    AspectRatioModule,
+    // AspectRatioModule,
     PageModule,
 
     // Widgets

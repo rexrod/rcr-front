@@ -1,0 +1,209 @@
+
+{
+  "header": {
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "location": "OnFatalError",
+    "filename": "report.20190204.181823.1.001.json",
+    "dumpEventTime": "2019-02-04T18:18:23Z",
+    "dumpEventTimeStamp": "1549304303695",
+    "processId": 1,
+    "commandLine": [
+      "node",
+      "/usr/bin/ng",
+      "serve",
+      "--host=0.0.0.0",
+      "--prod",
+      "--aot"
+    ],
+    "nodejsVersion": "v11.9.0",
+    "glibcVersion": "2.12",
+    "wordSize": 64,
+    "componentVersions": {
+      "node": "11.9.0",
+      "v8": "7.0.276.38-node.16",
+      "uv": "1.25.0",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "67",
+      "nghttp2": "1.34.0",
+      "napi": "4",
+      "llhttp": "1.0.1",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1a",
+      "cldr": "34.0",
+      "icu": "63.1",
+      "tz": "2018e",
+      "unicode": "11.0",
+      "arch": "x64",
+      "platform": "linux",
+      "release": "node"
+    },
+    "osVersion": "Linux 4.15.0-45-generic #48-Ubuntu SMP Tue Jan 29 16:28:13 UTC 2019",
+    "glibc": "2.28",
+    "machine": "Linux 4.15.0-45-generic #48-Ubuntu SMP Tue Jan 29 16:28:13 UTC 201913031e2b1b7a x86_64"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    " [pc=0xa61a28] report::TriggerNodeReport(v8::Isolate*, node::Environment*, char const*, char const*, std::string, v8::Local<v8::String>) [ng serve --host=0.0.0.0 --prod --aot]",
+    " [pc=0x9526e3] node::OnFatalError(char const*, char const*) [ng serve --host=0.0.0.0 --prod --aot]",
+    " [pc=0xb28c2e] v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [ng serve --host=0.0.0.0 --prod --aot]",
+    " [pc=0xb28e64] v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [ng serve --host=0.0.0.0 --prod --aot]",
+    " [pc=0xf25bd2]  [ng serve --host=0.0.0.0 --prod --aot]",
+    " [pc=0xf25cd8] v8::internal::Heap::CheckIneffectiveMarkCompact(unsigned long, double) [ng serve --host=0.0.0.0 --prod --aot]",
+    " [pc=0xf323f8] v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::GCCallbackFlags) [ng serve --host=0.0.0.0 --prod --aot]",
+    " [pc=0xf32f0b] v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [ng serve --host=0.0.0.0 --prod --aot]",
+    " [pc=0xf35c41] v8::internal::Heap::AllocateRawWithRetryOrFail(int, v8::internal::AllocationSpace, v8::internal::AllocationAlignment) [ng serve --host=0.0.0.0 --prod --aot]",
+    " [pc=0xeffe74] v8::internal::Factory::NewFillerObject(int, bool, v8::internal::AllocationSpace) [ng serve --host=0.0.0.0 --prod --aot]",
+    " [pc=0x11b582e] v8::internal::Runtime_AllocateInNewSpace(int, v8::internal::Object**, v8::internal::Isolate*) [ng serve --host=0.0.0.0 --prod --aot]",
+    " [pc=0x4a7fe84fc5d] "
+  ],
+  "javascriptHeap": {
+    "totalMemory": 1521930240,
+    "totalCommittedMemory": 1511112312,
+    "usedMemory": 1400582840,
+    "availableMemory": 20897600,
+    "memoryLimit": 1526909922,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 524288,
+        "committedMemory": 42224,
+        "capacity": 515584,
+        "used": 33520,
+        "available": 482064
+      },
+      "new_space": {
+        "memorySize": 33554432,
+        "committedMemory": 24788736,
+        "capacity": 16498688,
+        "used": 1318592,
+        "available": 15180096
+      },
+      "old_space": {
+        "memorySize": 1313542144,
+        "committedMemory": 1312948936,
+        "capacity": 1247046496,
+        "used": 1246598768,
+        "available": 447728
+      },
+      "code_space": {
+        "memorySize": 12582912,
+        "committedMemory": 11876992,
+        "capacity": 10514304,
+        "used": 10514304,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 36188160,
+        "committedMemory": 35917120,
+        "capacity": 19098960,
+        "used": 19098960,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 125538304,
+        "committedMemory": 125538304,
+        "capacity": 127806408,
+        "used": 123018696,
+        "available": 4787712
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 0,
+        "used": 0,
+        "available": 0
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 126.592,
+    "kernelCpuSeconds": 126.592,
+    "cpuConsumptionPercent": 1.63418e-05,
+    "maxRss": 1782214656,
+    "pageFaults": {
+      "IORequired": 289,
+      "IONotRequired": 1106474
+    },
+    "fsActivity": {
+      "reads": 99728,
+      "writes": 0
+    }
+  },
+  "uvthreadResourceUsage": {
+    "userCpuSeconds": 62.2586,
+    "kernelCpuSeconds": 62.2586,
+    "cpuConsumptionPercent": 8.03697e-06,
+    "fsActivity": {
+      "reads": 99440,
+      "writes": 0
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "HOSTNAME": "13031e2b1b7a",
+    "LANG": "C.UTF-8",
+    "HOME": "/root"
+  },
+  "userLimits": {
+    "core_file_size_blocks": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "data_seg_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "file_size_blocks": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_locked_memory_bytes": {
+      "soft": 16777216,
+      "hard": 16777216
+    },
+    "max_memory_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "open_files": {
+      "soft": 1048576,
+      "hard": 1048576
+    },
+    "stack_size_bytes": {
+      "soft": 8388608,
+      "hard": "unlimited"
+    },
+    "cpu_time_seconds": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_user_processes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "virtual_memory_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    }
+  },
+  "sharedObjects": [
+    "linux-vdso.so.1",
+    "/lib/x86_64-linux-gnu/libdl.so.2",
+    "/lib/x86_64-linux-gnu/librt.so.1",
+    "/usr/lib/x86_64-linux-gnu/libstdc++.so.6",
+    "/lib/x86_64-linux-gnu/libm.so.6",
+    "/lib/x86_64-linux-gnu/libgcc_s.so.1",
+    "/lib/x86_64-linux-gnu/libpthread.so.0",
+    "/lib/x86_64-linux-gnu/libc.so.6",
+    "/lib64/ld-linux-x86-64.so.2",
+    "/app/node_modules/node-sass/vendor/linux-x64-67/binding.node"
+  ]
+}

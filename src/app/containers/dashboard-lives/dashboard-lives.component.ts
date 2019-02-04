@@ -159,18 +159,6 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
 
         // this.defaults = {}; // takes blank :)
         // console.log(this.transports); 
-
-        setTimeout(() => {
-
-            console.log(this.transports);
-            let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
-
-            for(var i=0; i < this.transports.length; i++){
-                console.log(this.transports[i].coordinates[0].coords);
-                let marker = new H.map.Marker({ lat: this.transports[i].coordinates[0].coords.lat, lng: this.transports[i].coordinates[0].coords.long }, { icon: icon });    
-                this.map.addObject(marker);
-            }
-        }, 1500);
     }
 
     ngAfterViewInit() {
@@ -182,7 +170,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
             this.mapElement.nativeElement,
             defaultLayers.terrain.map,
             {
-                zoom: 14,
+                zoom: 13,
                 center: { lat: -3.04945, lng:  -60.01845 }  
             }
         );
@@ -225,6 +213,18 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         // this.map.addObject(marker4);
         // this.map.addObject(marker5);
         // this.map.addObject(marker6);      
+
+        setTimeout(() => {
+
+            console.log(this.transports);
+            let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
+
+            for(var i=0; i < this.transports.length; i++){
+                console.log(this.transports[i].coordinates[0].coords);
+                let marker = new H.map.Marker({ lat: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.lat, lng: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.long }, { icon: icon });    
+                this.map.addObject(marker);
+            }
+        }, 1300);
     }
 
     create() {
@@ -437,12 +437,12 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     // this.map.Zoom
 
     let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
-    this.map.setZoom(14);
+    this.map.setZoom(13);
     this.map.setCenter( { lat: -3.04945, lng:  -60.01845 } );
 
     for(var i=0; i < this.transports.length; i++){
         console.log(this.transports[i].coordinates[0].coords);
-        let marker = new H.map.Marker({ lat: this.transports[i].coordinates[0].coords.lat, lng: this.transports[i].coordinates[0].coords.long }, { icon: icon });    
+        let marker = new H.map.Marker({ lat: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.lat, lng: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.long }, { icon: icon });    
         this.map.addObject(marker);
     }
 
