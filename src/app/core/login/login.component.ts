@@ -62,7 +62,8 @@ export class LoginComponent implements OnInit {
     this.login.login(this.form.get('enroll').value, this.form.get('password').value).then(
       success => {
         //this.session.loadUser();
-        this.router.navigate(['/dashboard-lives']);
+        //this.router.navigate(['/dashboard-lives']);
+        window.location.replace('/dashboard-lives');
         //console.log(success);
       },
       error => {

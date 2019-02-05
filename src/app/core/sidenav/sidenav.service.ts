@@ -91,10 +91,21 @@ export class SidenavService {
 
   addItem(item: SidenavItem) {
     console.log('adicionando sidenav');
-    const foundIndex = this.items.findIndex((existingItem) => isEqual(existingItem, item));
-    if (foundIndex === -1) {
-      this.setParentRecursive(item);
-      this.items = [...this.items, item];
+    console.log(this.items);
+    if(item.name === 'Configurações' ){
+      if(!this.items.find(x => x.name === 'Configurações' )){
+        const foundIndex = this.items.findIndex((existingItem) => isEqual(existingItem, item));
+        if (foundIndex === -1) {
+          this.setParentRecursive(item);
+          this.items = [...this.items, item];
+        }
+      }
+    }else{
+      const foundIndex = this.items.findIndex((existingItem) => isEqual(existingItem, item));
+      if (foundIndex === -1) {
+        this.setParentRecursive(item);
+        this.items = [...this.items, item];
+      }
     }
   }
 

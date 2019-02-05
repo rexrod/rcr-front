@@ -27,6 +27,8 @@ export class LoginService {
 
   private sistema = 'Sistema VENDAS';
 
+  public sideItem: SidenavItem[];
+
   constructor(
     // private main: MainComponent,
     private router: Router,
@@ -79,10 +81,10 @@ export class LoginService {
 
   public login(email: string, senha: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        console.log('Async Work Complete');
-        //resolve();
-      }, 1000);
+      // setTimeout(() => {
+      //   console.log('Async Work Complete');
+      //   //resolve();
+      // }, 1000);
       this.users.loginUsingPOSTCustom(email,senha).subscribe(res => {
           localStorage.setItem('token', res.access_token);
           //this.sessionStore.dispatchCreateAction(res);
@@ -92,6 +94,9 @@ export class LoginService {
               localStorage.setItem('email', response.email);
               this.session.userName = response.name;
               this.session.userEmail = response.email;
+
+              console.log();
+
               if(response.admin){
                 localStorage.setItem('admin', response.admin);
               
@@ -120,9 +125,11 @@ export class LoginService {
                 // this.session.loadUser();
                 // this.toolbarUserButton.setUserName();
               }
-            });    
-          resolve(res); 
-        }, err => reject(err));
+              resolve(res);
+            });     
+        }, 
+          err => reject(err)
+        );
     });
   }
 

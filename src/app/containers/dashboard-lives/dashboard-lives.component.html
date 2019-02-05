@@ -65,7 +65,7 @@
 
           <!-- TABLE HEADER -->
           <!-- The header is separate so you do not lose the filters or the sorting and keep the layout-->
-          <div id="tmaster">
+          <!-- <div id="tmaster"> -->
             <!-- <div id="thead" matSort>
               <div class="table-header">
                 <div *ngFor="let column of columns" class="{{column.property}}" mat-sort-header="{{column.property}}" 
@@ -77,8 +77,8 @@
             <!-- border:1px solid black; -->
             <div id="teste" style="width: 100%; height: 800px; background: white;" >
               <!-- <div #map id="map" style="width: 100%; height: 800px"></div> -->
-              <div #map id="map" style="width: 98%; 
-                                        height: 98%;
+              <div #map id="map" style="width: 100%; 
+                                        height: 100%;
                                         padding-left: 1%;
                                         padding-right: 1%;
                                         padding-bottom: 1%;
@@ -90,7 +90,7 @@
                 <dashboard-live-map-button *ngIf="textoRastrear != 'Rastrear'" class="button-custom" [transport]="transport"></dashboard-live-map-button>
               </div>
               
-            </div>
+            <!-- </div> -->
             <div id="tbody">
             </div>
             <!-- TABLE BODY -->
