@@ -19,6 +19,7 @@ const PortugueseRangeLabel = (page: number, pageSize: number, length: number) =>
 export function getPortuguesePaginatorIntl() {
   const paginatorIntl = new MatPaginatorIntl();
   
+  // paginatorIntl.itemsPerPageLabel = 'Itens por página:';
   paginatorIntl.itemsPerPageLabel = 'Itens por página:';
   paginatorIntl.nextPageLabel = 'Próxima página';
   paginatorIntl.previousPageLabel = 'Voltar página';
