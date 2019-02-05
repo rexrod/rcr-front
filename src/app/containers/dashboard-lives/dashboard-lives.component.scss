@@ -116,7 +116,7 @@ mat-form-field {
             #table-component {
                 //background-color: #273B56;
                 flex: 1 1 auto;
-                display: flex;
+                // display: flex;
                 flex-direction: column;
                 #tfilter {
                     @extend %flex-center;
