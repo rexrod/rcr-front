@@ -6,6 +6,14 @@ export interface Transport {
     vehiclePlate?: string;
     thirdCompany?: string;
     __v?: number;
+    tracker?: {
+      _id?: string,
+      serialKey?: string,
+      notes?: string,
+      trackerModel?: string,
+      __v?: string,
+      vehicle?: string
+    },
     trackerSerial?:  string;
     coordinates?: [{
       coords?: {
@@ -16,4 +24,3 @@ export interface Transport {
     tracker?: string;
     }]
 }
-

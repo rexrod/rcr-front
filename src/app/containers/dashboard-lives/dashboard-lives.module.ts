@@ -11,6 +11,8 @@ import { DashboardLivesRoutingModule } from './dashboard-lives-routing.module';
 import { DashboardLivesComponent } from './dashboard-lives.component';
 import { DashboardLiveCreateUpdateModule} from './dashboard-live-create-update/dashboard-live-create-update.module';
 import { AgmCoreModule } from '@agm/core';
+import { DashboardLiveMapButtonModule } from './dashboard-live-map-button/dashboard-live-map-button.module';
+import { DashboardLiveMapButtonComponent } from './dashboard-live-map-button/dashboard-live-map-button.component';
 
 @NgModule({
   imports: [
@@ -19,6 +21,7 @@ import { AgmCoreModule } from '@agm/core';
     MaterialModule,
     DashboardLivesRoutingModule,
     DashboardLiveCreateUpdateModule,
+    DashboardLiveMapButtonModule,
 
     // Core
     ListModule,
@@ -27,7 +30,10 @@ import { AgmCoreModule } from '@agm/core';
     DialogDeleteModule,
     AgmCoreModule
   ],
-  declarations: [DashboardLivesComponent],
+  declarations: [
+    DashboardLivesComponent,
+    DashboardLiveMapButtonComponent,
+  ],
   exports: [DashboardLivesComponent]
 })
 export class DashboardLivesModule {}

@@ -52,6 +52,8 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     dashboardLives: DashboardLive[];
     
     transports: Transport[];
+    transport: Transport;
+
     // form: FormGroup;
     selectedValue: string;
     lived = false;
@@ -355,7 +357,8 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
 
     console.log('rastreando...');
     const transport =  this.transports.find(x => x.trackerSerial === this.selectedValue );
-    
+    this.transport = transport;
+
     if(!transport.coordinates.length){
         this.snackBar.open('O rastreador ainda não possui coordenadas!', 'OK', {
             duration: 10000

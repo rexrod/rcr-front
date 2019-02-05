@@ -13,6 +13,18 @@ $fields: ('id',
 $length: 100/length($fields)*1%;
 
 
+.button-custom {
+    // border-left: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    display: flex;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    z-index: 2;
+    background-color: white;
+    width: 250px;
+}
+
 @mixin column-width($property) {
     max-width: $property;
     min-width: $property;
