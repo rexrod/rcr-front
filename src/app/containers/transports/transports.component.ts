@@ -335,6 +335,6 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
         }
 
     });
-}
+  }
 }
 

@@ -45,17 +45,28 @@
               <!-- fullName Column -->
               <ng-container *ngFor="let column of columns">
                 <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.name }}</mat-header-cell>
                   <ng-container *ngIf="column.name == 'Rastreador'; else elseBlock">
-                    <mat-cell *matCellDef="let row" fxLayoutAlign="left">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="center"> {{ column.name }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" fxLayoutAlign="center">
                       <ng-container *ngIf="extractValue(row,column.cellContent,column.property);else elseBlock1">
                         <!-- <button mat-stroked-button matTooltip="Remover Rastreador" [matTooltipPosition]="'above'" (click)="removerRastreador(row)"  
                           class="btn-stroked-tracker-remove no-shadow">Remover -->
-                          <button mat-stroked-button matTooltip="Remover Rastreador" [matTooltipPosition]="'above'" (click)="removerRastreador(row)"  
+                          <!-- <button mat-stroked-button matTooltip="Remover Rastreador" [matTooltipPosition]="'above'" (click)="removerRastreador(row)"  
                           style="color: red;
                                  font-size: 13px;
                                  width: 100px;">
                           REMOVER
+                        </button> -->
+                        <span>{{extractValue(row,column.cellContent,column.property)}}</span>
+                        <button mat-mini-fab matTooltip="Remover rastreador" [matTooltipPosition]="'above'" (click)="removerRastreador(row)" id="create" class="no-shadow"
+                                style="background-color: #FFC937;
+                                      width: 25px;
+                                      height: 25px;
+                                      ">
+                          <mat-icon aria-label="Remover" 
+                                    style="font-size: 12px;
+                                          margin-bottom: 200%;
+                                          padding-bottom: 5%;">clear</mat-icon>
                         </button>
                       </ng-container>  
                       <ng-template #elseBlock1>
@@ -64,7 +75,8 @@
                           <button mat-stroked-button matTooltip="Adicionar Rastreador" [matTooltipPosition]="'above'" (click)="adicionarRastreador(row)"
                           style="color: #007EFA;
                                  font-size: 13px;
-                                 width: 100px">
+                                 width: 115px;
+                                 padding-left: 10%;">
                           ADICIONAR
                            <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
                            <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
@@ -74,6 +86,7 @@
                     </mat-cell>
                 </ng-container>
                 <ng-template #elseBlock>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.name }}</mat-header-cell>
                   <mat-cell  *matCellDef="let row" fxLayoutAlign="left">
                     <!-- <span class="fury-mobile-label">{{ column.name }}</span> -->
                     {{ extractValue(row,column.cellContent,column.property) }}

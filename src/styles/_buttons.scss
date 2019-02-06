@@ -19,7 +19,8 @@
 }
 
 .mat-snack-bar-container {
-    background-color: map-get($mat-sgm-primary, 500) !important;
+    // background-color: map-get($mat-sgm-primary, 500) !important;
+    background-color: #202020;
 
     .mat-button-wrapper {
         color: white
