@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot rpa="false" generated="20190206 17:44:21.477" generator="Robot 3.1.1 (Python 2.7.15rc1 on linux2)">
+<suite source="/home/marcus.junior/Documentos/new_rcr/test/login.robot" id="s1" name="Login">
+<test id="s1-t1" name="Open Google">
+<kw name="Open Google">
+<kw name="Open Browser">
+<arguments>
+<arg>${URLwelcome}</arg>
+<arg>${BROWSER}</arg>
+</arguments>
+<msg timestamp="20190206 17:44:21.490" level="FAIL">No keyword with name 'Open Browser' found.</msg>
+<status status="FAIL" endtime="20190206 17:44:21.490" starttime="20190206 17:44:21.490"></status>
+</kw>
+<status status="FAIL" endtime="20190206 17:44:21.490" starttime="20190206 17:44:21.489"></status>
+</kw>
+<status status="FAIL" endtime="20190206 17:44:21.490" critical="yes" starttime="20190206 17:44:21.489">No keyword with name 'Open Browser' found.</status>
+</test>
+<status status="FAIL" endtime="20190206 17:44:21.491" starttime="20190206 17:44:21.478"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="0">Critical Tests</stat>
+<stat fail="1" pass="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="1" id="s1" name="Login" pass="0">Login</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20190206 17:44:21.489" level="ERROR">Error in file '/home/marcus.junior/Documentos/new_rcr/test/login.robot': Importing test library 'ExtendedSelenium2Library' failed: ImportError: No module named ExtendedSelenium2Library
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /home/marcus.junior/.local/bin
+  /usr/lib/python2.7
+  /usr/lib/python2.7/plat-x86_64-linux-gnu
+  /usr/lib/python2.7/lib-tk
+  /usr/lib/python2.7/lib-old
+  /usr/lib/python2.7/lib-dynload
+  /home/marcus.junior/.local/lib/python2.7/site-packages
+  /usr/local/lib/python2.7/dist-packages
+  /usr/lib/python2.7/dist-packages</msg>
+</errors>
+</robot>

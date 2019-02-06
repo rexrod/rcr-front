@@ -352,6 +352,9 @@ mat-form-field {
             flex-flow: column;
         }
     }
+    #map{
+        // height: 0 !important;
+    }
     .mat-paginator-container {
         padding: 0 8px !important;
     }

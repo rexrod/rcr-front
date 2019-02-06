@@ -386,7 +386,10 @@ body {
     #tbody{
         height: 0px !important; // fix layout in the firefox
     }
-        mat-table {
+    mat-table {
+        mat-header-row {
+            display: none;
+        }
         @each $heading in $fields {
             .mat-column-#{$heading} {
                 @include column-width(unset !important);
