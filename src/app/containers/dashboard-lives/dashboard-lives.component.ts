@@ -22,6 +22,7 @@ import { ALL_IN_ONE_TABLE_FAKE_DATA } from './dashboard-lives.fake'; // to test 
 import { trigger, state, transition, style, animate } from '@angular/animations';
 import { TransportControllerService } from '../transports/transports.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { RastreadoresRoutingModule } from '../rastreadores/rastreadores-routing.module';
 
 // export interface Rastreador {
 //     value: string;
@@ -69,6 +70,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
 
     map: any;
     ui: any;
+    group: any;
     
     lat: number = -3.096771;
     lng: number = -59.936741;
@@ -114,6 +116,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
             "app_id": "f9xS9zNUPJwcnpSM5fkl",
             "app_code": "KFOs5agTKxE3hV8cJIA_7Q"
         });
+        // lives: DashboardLivesComponent;
     }
 
     loadData() {
@@ -146,11 +149,96 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         //this.dataSource.data = ALL_IN_ONE_TABLE_FAKE_DATA;
     }
 
+    rastrear(evt?: any) {
+
+        if(evt){
+            this.selectedValue = evt.target.getData();
+        }
+
+        console.log('rastreando...');
+        const transport =  this.transports.find(x => x.trackerSerial === this.selectedValue );
+        this.transport = transport;
+    
+        if(!transport.coordinates.length){
+            this.snackBar.open('O rastreador ainda não possui coordenadas!', 'OK', {
+                duration: 10000
+            });
+        }
+        //   console.log(this.selectedValue);
+    
+        //this.map.clearContent();
+        //this.map.removeObjects(this.map.getObjects()); 
+        //this.map.removeAll();
+        this.group.removeAll();
+        // this.group = new H.map.Group();
+        // this.map.addObject(this.group);
+        //marker.setData(this.transports[i].trackerSerial);
+
+        let points = [];
+    
+        //let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
+        let iconFinal = new H.map.Icon('assets/rcr/icon-local.png');
+        let icon = new H.map.Icon('assets/rcr/icon-logo.png');
+        
+        let marker = new H.map.Marker({ lat: transport.coordinates[0].coords.lat, lng: transport.coordinates[0].coords.long }, { icon: icon });
+        let markerFinal = new H.map.Marker({ lat: transport.coordinates[transport.coordinates.length-1].coords.lat, lng: transport.coordinates[transport.coordinates.length-1].coords.long }, { icon: iconFinal });
+    
+        //this.map.addObject(marker);
+        //this.map.addObject(markerFinal);
+        this.group.addObject(markerFinal);
+
+        for(var i=0; i < transport.coordinates.length; i++){
+        //console.log(transport.coordinates[i].coords);
+        points.push({'lat': transport.coordinates[i].coords.lat, 'lng': transport.coordinates[i].coords.long });
+        }
+    
+        console.log(points);
+    
+        // Initialize a linestring and add all the points to it:
+        let linestring = new H.geo.LineString();
+        points.forEach(function(point) {
+        linestring.pushPoint(point);
+        });
+        
+        // Initialize a polyline with the linestring:
+        let polyline = new H.map.Polyline(linestring, { style: { lineWidth: 10 }});
+        
+        // Add the polyline to the map:
+        //this.map.addObject(polyline);
+        this.group.addObject(polyline);
+
+        // Zoom the map to make sure the whole polyline is visible:
+        this.map.setViewBounds(polyline.getBounds());
+    
+        // Create an info bubble object at a specific geographic location:
+        let bubble = new H.ui.InfoBubble({ lng: transport.coordinates[transport.coordinates.length-1].coords.long, lat: transport.coordinates[transport.coordinates.length-1].coords.lat }, {
+            content: 'Localização atual'
+        });
+    
+        // Add info bubble to the UI:
+        // this.ui.addBubble(bubble);
+    
+        if(transport.coordinates.length > 0){
+            console.log(this.rastreamento);
+            if(this.lived){
+                console.log(this.lived);
+                if(this.rastreamento === undefined){
+                    this.rastreamento = setInterval(() => { this.rastrear(); }, 1000 * 5);
+                }
+                this.textoRastrear = 'Rastreando...';
+            }else{
+                this.textoRastrear = 'Rastreado';
+            }
+            //this.rastreamento = setInterval( this.rastrear() , 1000 * 5 );
+           
+        }
+    }
+    
     ngOnInit() {
         this.dataSource = new MatTableDataSource();
         // loads the data from the main table
         this.loadData();
-
+        // this.rastrear();
         // apply filters
         this.data$.pipe(
             filter(Boolean)
@@ -181,7 +269,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         // Add event listener:
         this.map.addEventListener('tap', function(evt) {
         // Log 'tap' and 'mouse' events:
-        console.log(evt.type, evt.currentPointer.type); 
+            console.log(evt.type, evt.currentPointer.type); 
         });
         // Instantiate the default behavior, providing the mapEvents object: 
         let behavior = new H.mapevents.Behavior(mapEvents);
@@ -222,10 +310,41 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
             console.log(this.transports);
             let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
 
+            this.group = new H.map.Group();
+
+            this.map.addObject(this.group);
+            let that = this;
+            // add 'tap' event listener, that opens info bubble, to the group
+            // this.group.addEventListener('tap', function (evt, that) {
+            //   // event target is the marker itself, group is a parent event target
+            //   // for all objects that it contains
+            // //   let bubble =  new H.ui.InfoBubble(evt.target.getPosition(), {
+            // //     // read custom data
+            // //     content: evt.target.getData()
+            // //   });
+            //   console.log(evt.target.getData());
+            //   this.selectedValue = evt.target.getData();
+            //   that.rastrear();
+            //   // show info bubble
+            // //   this.ui.addBubble(bubble);
+            // }, false);
+
+            this.group.addEventListener('tap', (evt) => this.rastrear(evt),false);
+
+            this.group.addEventListener('tap', (evt) => this.rastrear(evt),false);
+
             for(var i=0; i < this.transports.length; i++){
                 console.log(this.transports[i].coordinates[0].coords);
                 let marker = new H.map.Marker({ lat: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.lat, lng: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.long }, { icon: icon });    
-                this.map.addObject(marker);
+                // this.map.addObject(marker);
+                // marker.setData('rastreador adicionado: ' + this.transports[i].trackerSerial);
+                marker.setData(this.transports[i].trackerSerial);
+                marker.addEventListener('pointerenter',function(evt) {
+                    // evt.target.style.opacity = 0.6
+                    console.log(evt.target.style.opacity); 
+                });
+
+                this.group.addObject(marker);
             }
         }, 1300);
     }
@@ -354,82 +473,6 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     }
   }
 
-  rastrear(): void{
-
-    console.log('rastreando...');
-    const transport =  this.transports.find(x => x.trackerSerial === this.selectedValue );
-    this.transport = transport;
-
-    if(!transport.coordinates.length){
-        this.snackBar.open('O rastreador ainda não possui coordenadas!', 'OK', {
-            duration: 10000
-        });
-    }
-
-
-    //   console.log(this.selectedValue);
-
-    //this.map.clearContent();
-    this.map.removeObjects(this.map.getObjects()); 
-
-    let points = [];
-
-    //let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
-    let iconFinal = new H.map.Icon('assets/rcr/icon-local.png');
-    let icon = new H.map.Icon('assets/rcr/icon-logo.png');
-    
-    let marker = new H.map.Marker({ lat: transport.coordinates[0].coords.lat, lng: transport.coordinates[0].coords.long }, { icon: icon });
-    let markerFinal = new H.map.Marker({ lat: transport.coordinates[transport.coordinates.length-1].coords.lat, lng: transport.coordinates[transport.coordinates.length-1].coords.long }, { icon: iconFinal });
-
-    //this.map.addObject(marker);
-    this.map.addObject(markerFinal);
-
-    for(var i=0; i < transport.coordinates.length; i++){
-    //console.log(transport.coordinates[i].coords);
-    points.push({'lat': transport.coordinates[i].coords.lat, 'lng': transport.coordinates[i].coords.long });
-    }
-
-    console.log(points);
-
-    // Initialize a linestring and add all the points to it:
-    let linestring = new H.geo.LineString();
-    points.forEach(function(point) {
-    linestring.pushPoint(point);
-    });
-    
-    // Initialize a polyline with the linestring:
-    let polyline = new H.map.Polyline(linestring, { style: { lineWidth: 10 }});
-    
-    // Add the polyline to the map:
-    this.map.addObject(polyline);
-    
-    // Zoom the map to make sure the whole polyline is visible:
-    this.map.setViewBounds(polyline.getBounds());
-
-    // Create an info bubble object at a specific geographic location:
-    let bubble = new H.ui.InfoBubble({ lng: transport.coordinates[transport.coordinates.length-1].coords.long, lat: transport.coordinates[transport.coordinates.length-1].coords.lat }, {
-        content: 'Localização atual'
-    });
-
-    // Add info bubble to the UI:
-    // this.ui.addBubble(bubble);
-
-    if(transport.coordinates.length > 0){
-        console.log(this.rastreamento);
-        if(this.lived){
-            console.log(this.lived);
-            if(this.rastreamento === undefined){
-                this.rastreamento = setInterval(() => { this.rastrear(); }, 1000 * 5);
-            }
-            this.textoRastrear = 'Rastreando...';
-        }else{
-            this.textoRastrear = 'Rastreado';
-        }
-        //this.rastreamento = setInterval( this.rastrear() , 1000 * 5 );
-       
-    }
-  }
-
   desativarRastrear(){
     console.log('desativando rastreamento...');
     console.log(this.rastreamento);
@@ -437,7 +480,8 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     this.textoRastrear = 'Rastrear';  
     this.lived = false;
 
-    this.map.removeObjects(this.map.getObjects());
+    // this.map.removeObjects(this.map.getObjects());
+    this.group.removeAll();
     // this.map.Zoom
 
     let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
@@ -447,9 +491,12 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     for(var i=0; i < this.transports.length; i++){
         console.log(this.transports[i].coordinates[0].coords);
         let marker = new H.map.Marker({ lat: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.lat, lng: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.long }, { icon: icon });    
-        this.map.addObject(marker);
+        //this.map.addObject(marker);
+        marker.setData(this.transports[i].trackerSerial);
+        this.group.addObject(marker);
     }
 
+    this.group.addEventListener('tap', (evt) => this.rastrear(evt),false);
   }
 }
 

@@ -38,8 +38,8 @@ export class TransportControllerService {
         //formData.set('password', <any>senha);
         formData.set('grant_type', 'password');
         
-        console.log(formData.getAll);
-        console.log(formData.toString());
+        // console.log(formData.getAll);
+        // console.log(formData.toString());
         
         return this.httpClient.get<Transport>(environment.origin.transports + '/transports/alltransports',httpOptions,
         );
@@ -65,8 +65,8 @@ export class TransportControllerService {
         //formData.set('password', <any>senha);
         formData.set('grant_type', 'password');
         
-        console.log(formData.getAll);
-        console.log(formData.toString());
+        // console.log(formData.getAll);
+        // console.log(formData.toString());
         
         return this.httpClient.get<Transport>('https://lupa-v1.herokuapp.com/auth/v1/transports/alltransports',httpOptions,
         );
@@ -75,7 +75,7 @@ export class TransportControllerService {
     public updateTransport(transport: any): Observable<any> {
         
         let token = localStorage.getItem('token');
-        console.log(token);
+        // console.log(token);
         const httpOptions = {
             headers: new HttpHeaders({
             "Content-Type":  "application/x-www-form-urlencoded",
@@ -91,10 +91,10 @@ export class TransportControllerService {
         formData.set('capacity', transport.capacity);
         formData.set('thirdCompany', transport.thirdCompany);
         
-        console.log(formData.getAll);
-        console.log(formData.toString());
-        console.log(httpOptions); 
-        console.log(transport._id);  
+        // console.log(formData.getAll);
+        // console.log(formData.toString());
+        // console.log(httpOptions); 
+        // console.log(transport._id);  
         //console.log(transport.idRastreador);
 
         // if(transport.idRastreador !== null){
@@ -130,7 +130,7 @@ export class TransportControllerService {
     public deleteTransport(transport: any): Observable<any> {
         
         let token = localStorage.getItem('token');
-        console.log(token);
+        // console.log(token);
         const httpOptions = {
             headers: new HttpHeaders({
             "Content-Type":  "application/x-www-form-urlencoded",
@@ -138,7 +138,7 @@ export class TransportControllerService {
             }),
         };
                
-        console.log(transport);  
+        // console.log(transport);  
 
         return this.httpClient.delete( environment.origin.transports + '/transports/' + transport.id, httpOptions);
     }
@@ -146,7 +146,7 @@ export class TransportControllerService {
     public removerRastreador(transport: any): Observable<any> {
         
         let token = localStorage.getItem('token');
-        console.log(token);
+        // console.log(token);
         const httpOptions = {
             headers: new HttpHeaders({
             "Content-Type":  "application/x-www-form-urlencoded",
@@ -162,7 +162,7 @@ export class TransportControllerService {
     public adicionarRastreador(transport: any): Observable<any> {
         
         let token = localStorage.getItem('token');
-        console.log(token);
+        // console.log(token);
         const httpOptions = {
             headers: new HttpHeaders({
             "Content-Type":  "application/x-www-form-urlencoded",
@@ -170,7 +170,7 @@ export class TransportControllerService {
             }),
         };
 
-        console.log(transport);
+        // console.log(transport);
         const formData = new URLSearchParams();
          
         formData.set('trackerSerial', transport.trackerSerial);

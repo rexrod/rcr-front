@@ -39,8 +39,8 @@ export class UserControllerCustomService {
         //formData.set('password', <any>senha);
         formData.set('grant_type', 'password');
         
-        console.log(formData.getAll);
-        console.log(formData.toString());
+        // console.log(formData.getAll);
+        // console.log(formData.toString());
  
         //https://lupa-v1.herokuapp.com/auth/v1/admin/allprofiles
         return this.httpClient.get<Transport>(environment.origin.transports + '/admin/allprofiles', httpOptions,);
@@ -65,8 +65,8 @@ export class UserControllerCustomService {
         formData.set('password', user.password);
         formData.set('registration', user.registration);
   
-        console.log(formData.getAll);
-        console.log(formData.toString());
+        // console.log(formData.getAll);
+        // console.log(formData.toString());
         
         return this.httpClient.post<Rastreador>('https://lupa-v1.herokuapp.com/v1/oauth2/register', formData.toString(), httpOptions,);
     }
@@ -74,7 +74,7 @@ export class UserControllerCustomService {
     public updateUser(user: User): Observable<any> {
         
         let token = localStorage.getItem('token');
-        console.log(token);
+        // console.log(token);
         const httpOptions = {
             headers: new HttpHeaders({
             "Content-Type":  "application/x-www-form-urlencoded",
@@ -111,7 +111,7 @@ export class UserControllerCustomService {
     public atualizarStatus(user: any): Observable<any> {
         
         let token = localStorage.getItem('token');
-        console.log(token);
+        // console.log(token);
         const httpOptions = {
             headers: new HttpHeaders({
             "Content-Type":  "application/x-www-form-urlencoded",

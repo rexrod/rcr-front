@@ -35,8 +35,8 @@ export class RastreadoresControllerService {
         //formData.set('password', <any>senha);
         formData.set('grant_type', 'password');
         
-        console.log(formData.getAll);
-        console.log(formData.toString());
+        // console.log(formData.getAll);
+        // console.log(formData.toString());
         
         return this.httpClient.get<Rastreador>(environment.origin.tracker + '/trackers/alltrackers',httpOptions,
         );
@@ -59,8 +59,8 @@ export class RastreadoresControllerService {
         formData.set('notes', rastreador.notes);
         formData.set('trackerModel', rastreador.trackerModel);
   
-        console.log(formData.getAll);
-        console.log(formData.toString());
+        // console.log(formData.getAll);
+        // console.log(formData.toString());
         
         return this.httpClient.post<Rastreador>(environment.origin.tracker + '/trackers/registertracker', formData.toString(), httpOptions,);
     }
@@ -68,7 +68,7 @@ export class RastreadoresControllerService {
     public updateRastreador(rastreador: Rastreador): Observable<any> {
         
         let token = localStorage.getItem('token');
-        console.log(token);
+        // console.log(token);
         const httpOptions = {
             headers: new HttpHeaders({
             "Content-Type":  "application/x-www-form-urlencoded",
@@ -83,8 +83,8 @@ export class RastreadoresControllerService {
         formData.set('notes', rastreador.notes);
         formData.set('trackerModel', rastreador.trackerModel);
   
-        console.log(formData.getAll);
-        console.log(formData.toString());
+        // console.log(formData.getAll);
+        // console.log(formData.toString());
 
         return this.httpClient.put( environment.origin.tracker + '/trackers/' + rastreador._id, formData.toString(), httpOptions);
     }
@@ -92,7 +92,7 @@ export class RastreadoresControllerService {
     public deleteRastreador(ratreadores: any): Observable<any> {
         
         let token = localStorage.getItem('token');
-        console.log(token);
+        // console.log(token);
         const httpOptions = {
             headers: new HttpHeaders({
             "Content-Type":  "application/x-www-form-urlencoded",
@@ -100,7 +100,7 @@ export class RastreadoresControllerService {
             }),
         };
                
-        console.log(ratreadores);  
+        // console.log(ratreadores);  
 
         return this.httpClient.delete( environment.origin.tracker + '/trackers/' + ratreadores.id, httpOptions);
     }
