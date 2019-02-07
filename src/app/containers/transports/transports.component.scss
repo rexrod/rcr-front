@@ -113,6 +113,19 @@ body {
     align-items: center;
 }
 
+.md-form.mat-2 input[type=text] {
+    border-width: 1px !important;
+    border-style: solid;
+    border-color: #ced4da;
+    border-radius: 5px;
+    padding-top: .5rem;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: .3rem;
+    font-size: .875rem;
+    line-height: 1.5;
+  }
+
 #background-transport {
     height: 100%;
     flex-direction: column;
@@ -159,6 +172,7 @@ body {
                     #input-filter {
                         @extend %flex-center;
                         max-width: 76.5%;
+
                         fury-list {
                             flex: 1 1 auto;
                             .fury-list-table {

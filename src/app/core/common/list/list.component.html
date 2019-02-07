@@ -3,9 +3,11 @@
     fxLayoutGap.gt-xs="24px">
     <div fxLayout="column" fxLayoutAlign="start baseline" fxLayoutGap="24px" fxFlex="grow" fxLayout.gt-xs="row">
       <div class="fury-list-name">{{ name }}</div>
-      <mat-form-field class="fury-filter-input" floatPlaceholder="never" fxFlex>
+      <!-- <mat-form-field class="fury-filter-input" floatPlaceholder="never" fxFlex> -->
+      <mat-form-field class="fury-filter-input" fxFlex>
         <mat-icon class="fury-filter-input-icon" matPrefix>search</mat-icon>
-        <input matInput #filter placeholder="Buscar na lista&hellip;">
+        <input matInput #filter>
+        <!-- <input matInput #filter placeholder="Buscar na lista&hellip;"> -->
       </mat-form-field>
     </div>
 
