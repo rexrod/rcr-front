@@ -121,7 +121,7 @@ mat-form-field {
                 #tfilter {
                     @extend %flex-center;
                     display: flex;
-                    min-height: 64px;
+                    min-height: 74px;
                     //box-shadow: 0px 3px 6px rgba( black, 0.16);
                     color: $theme-background;
                     z-index: 2;
@@ -132,7 +132,7 @@ mat-form-field {
                         display: flex;
                         flex: 1 1 auto;
                         max-width: 15%; //background: yellow;
-                        border-right: 1px #707070 solid;
+                        //border-right: 1px #707070 solid;
                         span {
                             flex: 1 1 auto;
                         }

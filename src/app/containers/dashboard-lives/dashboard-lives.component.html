@@ -27,28 +27,29 @@
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
             </div> -->
-            <div id="input-filter" style="margin-left: 20px">
-              <mat-form-field>
+            <!-- <div id="input-filter" style="margin-left: 20px"> -->
+            <div id="input-filter">  
+              <!-- <mat-form-field>
                   <mat-select placeholder="Rastreadores" [(ngModel)]="selectedValue" id="idRastreador" [disabled]="textoRastrear != 'Rastrear'"> 
                     <mat-option *ngFor="let rastreador of rastreadores" [value]="rastreador">
                       {{rastreador}}
                     </mat-option>
                   </mat-select>
-                </mat-form-field>
+                </mat-form-field> -->
               
-              <!-- <div style="width: 100%">
-              <mdc-form-field>  
-                <mdc-select placeholder="Rastreadores" outlined class="custom-select-outline-color">
-                  <mdc-menu style="width: 300px">
-                    <mdc-list>
-                      <mdc-list-item *ngFor="let rastreador of rastreadores" [value]="rastreador">
-                        {{rastreador}}
-                      </mdc-list-item>
-                    </mdc-list>
-                  </mdc-menu>
-                </mdc-select>
-              </mdc-form-field>
-            </div> -->
+              <div style="width: 100%">
+                <mdc-form-field>  
+                  <mdc-select placeholder="Rastreadores" floatLabel="false" [(ngModel)]="selectedValue" [disabled]="textoRastrear != 'Rastrear'" outlined class="custom-select-outline-color">
+                    <mdc-menu style="width: 310px">
+                      <mdc-list>
+                        <mdc-list-item *ngFor="let rastreador of rastreadores" [value]="rastreador">
+                          {{rastreador}}
+                        </mdc-list-item>
+                      </mdc-list>
+                    </mdc-menu>
+                  </mdc-select>
+                </mdc-form-field>
+              </div>
                 <!-- <mat-form-field>
                   <mat-select placeholder="Favorite food" [(ngModel)]="selectedValue" name="food">
                     <mat-option *ngFor="let food of foods" [value]="food.value">
