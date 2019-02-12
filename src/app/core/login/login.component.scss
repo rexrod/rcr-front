@@ -137,6 +137,7 @@ body {
             flex: 1 1 auto;
             flex-direction: column;
             display: flex;
+
             #image {
               //background-color: gray;
               flex: 1 1 auto;
@@ -185,6 +186,7 @@ body {
               align-content: center;
               align-items: center;
               display: flex;
+
               #enroll {
                 flex: 1 1 auto; // flex: <'flex-grow'> <'flex-shrink'> <'flex-basis'> 
               }
@@ -250,7 +252,8 @@ body {
                             // font-size: 12px;
                           }
                         } 
-            }
+            } 
+
           }
           }
       

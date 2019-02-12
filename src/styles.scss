@@ -1,3 +1,8 @@
+$mdc-theme-primary: #1565c0; // primary color
+$mdc-theme-secondary: #388e3c; // secondary color
+
+@import "~@angular-mdc/theme/material";
+
 /* You can add global styles to this file, and also import other style files */
 @import '~normalize.css/normalize.css';
 @import '~angular-calendar/scss/angular-calendar.scss';
@@ -48,4 +53,17 @@
   //$sidenav-background-hover;
   z-index: 9999;
   pointer-events: none;
+}
+
+.custom-select-shape-radius {
+  @include mdc-select-shape-radius(50%);
+}
+
+.custom-select-outline-shape-radius {
+  @include mdc-select-outline-shape-radius(50%);
+}
+
+.custom-select-outline-color {
+  //@include mdc-select-outline-color(green);
+  width: 100%;
 }

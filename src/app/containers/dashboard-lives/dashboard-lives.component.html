@@ -35,7 +35,20 @@
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
-
+              
+              <!-- <div style="width: 100%">
+              <mdc-form-field>  
+                <mdc-select placeholder="Rastreadores" outlined class="custom-select-outline-color">
+                  <mdc-menu style="width: 300px">
+                    <mdc-list>
+                      <mdc-list-item *ngFor="let rastreador of rastreadores" [value]="rastreador">
+                        {{rastreador}}
+                      </mdc-list-item>
+                    </mdc-list>
+                  </mdc-menu>
+                </mdc-select>
+              </mdc-form-field>
+            </div> -->
                 <!-- <mat-form-field>
                   <mat-select placeholder="Favorite food" [(ngModel)]="selectedValue" name="food">
                     <mat-option *ngFor="let food of foods" [value]="food.value">
@@ -45,6 +58,7 @@
                 </mat-form-field> -->
             </div>
             <div id="input-lived" style="margin-left: 20px">
+
               <mat-checkbox [disabled]="textoRastrear != 'Rastrear'" [(ngModel)]="lived">Tempo real</mat-checkbox>
             </div>
             <div style="margin-left: 20px">

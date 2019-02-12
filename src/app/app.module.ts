@@ -31,6 +31,14 @@ import { ApiModule as AppActivitiesModule } from './module/activities';
 import { MatPaginatorIntl } from '@angular/material';
 import { getPortuguesePaginatorIntl } from './intl/portuguese-paginator-intl';
 
+import {
+  MdcFabModule,
+  MdcIconModule,
+  MdcMenuModule,
+  MdcTextFieldModule,
+  MdcFormFieldModule,
+} from '@angular-mdc/web';
+
 @NgModule({
 //  , ProductsComponent
   declarations: [AppComponent],
@@ -61,6 +69,11 @@ import { getPortuguesePaginatorIntl } from './intl/portuguese-paginator-intl';
     // Register a Service Worker (optional)
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     // PipeModule.forRoot()
+    MdcFabModule,
+    MdcIconModule,
+    MdcMenuModule,
+    MdcTextFieldModule,
+    MdcFormFieldModule,
   ],
   providers: [
     SessionService,

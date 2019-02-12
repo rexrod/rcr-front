@@ -33,6 +33,17 @@ import {
   MatTooltipModule
 } from '@angular/material';
 
+import {
+  MdcFabModule,
+  MdcIconModule,
+  MdcMenuModule,
+  MdcTextFieldModule,
+  MdcFormFieldModule,
+  MdcSelectModule,
+  MdcListModule,
+  MdcMenuSurfaceModule,
+} from '@angular-mdc/web';
+
 @NgModule({
   imports: [
     CommonModule
@@ -67,7 +78,16 @@ import {
     MatPaginatorModule,
     MatSortModule,
     MatStepperModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MdcFabModule,
+    MdcIconModule,
+    MdcMenuModule,
+    MdcTextFieldModule,
+    MdcFormFieldModule,
+    MdcSelectModule,
+    MdcListModule,
+    MdcMenuModule,
+    MdcMenuSurfaceModule,
   ]
 })
 export class MaterialModule {

@@ -17,6 +17,7 @@ import { DialogUserPerfilComponent } from './dialog-user-perfil.component';
 import {NgxMaskModule} from 'ngx-mask';
 import { DialogPanelModule } from 'app/core/common/dialog-panel/dialog-panel.module';
 import { from } from '../../../../../../node_modules/rxjs';
+import { MaterialModule } from 'app/core/common/material-components.module';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { from } from '../../../../../../node_modules/rxjs';
     MatDatepickerModule,
     MatSidenavModule,
     MatDividerModule,
-    DialogPanelModule
+    DialogPanelModule,
+    MaterialModule,
   ],
   declarations: [DialogUserPerfilComponent],
   entryComponents: [DialogUserPerfilComponent],

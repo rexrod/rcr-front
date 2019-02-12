@@ -31,14 +31,20 @@
                   <div class="name field" >
                       <mat-form-field>
                           <input matInput placeholder="Nome" pattern="^(?!\s*$).+" formControlName="name" id="name" required/>
-                      </mat-form-field>                   
+                      </mat-form-field>
+                      <!-- <mdc-form-field dir="rtl">
+                        <mdc-text-field formControlName="name" id="name" outlined></mdc-text-field>
+                      </mdc-form-field>                    -->
                   </div>
               </div>
               <div class="row"> 
                   <div class="email field">
                       <mat-form-field>
                           <input matInput placeholder="Email" pattern="^(?!\s*$).+" formControlName="email" id="email" required />
-                      </mat-form-field>                   
+                      </mat-form-field>      
+                      <!-- <mdc-form-field style="margin-top: 10%;">
+                        <mdc-text-field formControlName="email" label="Email" id="email" outlined></mdc-text-field>
+                      </mdc-form-field>              -->
                   </div>
               </div>
               <div class="row"> 

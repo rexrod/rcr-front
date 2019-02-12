@@ -51,13 +51,16 @@
                 <div id="center">
                     <!-- class="logo" -->
                     <!-- <img class="logo" src="assets/rcr/logo_login.png"> -->
-                    <div id="image">
+                    <!-- <div id="image"> -->
                         <!-- <div class="circle"> -->
                         <!-- <div class="photo"> -->
                             <!-- </div> -->
-                        <div>    
+                        <!-- <div>    
                             <img class="logo" src="assets/rcr/logo_login.png">
-                        </div>
+                        </div> -->
+                    <!-- </div> -->
+                    <div id="image">
+                        <img src="assets/rcr/logo_login.png">
                     </div>
                     <form [formGroup]="form" (ngSubmit)="send()">
                         <!-- <div class="idCompany">
@@ -74,12 +77,18 @@
                                 <input matInput placeholder="Email" formControlName="enroll">
                                 <!--  [formGroup]="form" [formControl]="user" -->
                             </mat-form-field>
+                            <!-- <mdc-form-field id="enroll">
+                                <mdc-text-field formControlName="enroll" label="Email" outlined></mdc-text-field>
+                            </mdc-form-field> -->
                         </div>
                         <div class="password">
                             <mat-form-field id="password">
-                                <input matInput placeholder="Senha" type="password" formControlName="password">
+                                <input matInput placeholder="Senha" type="password" formControlName="password" outlined>
                                 <!--  [formGroup]="form" [formControl]="user" -->
-                            </mat-form-field>
+                            </mat-form-field>  
+                            <!-- <mdc-form-field id="password">
+                                <mdc-text-field type="password" formControlName="password" label="Senha" outlined></mdc-text-field>
+                            </mdc-form-field> -->
                         </div>
                         <!-- <div id="problem"> -->
                             <!-- <span class="problem" color="primary">Problemas para Entrar?</span> -->
