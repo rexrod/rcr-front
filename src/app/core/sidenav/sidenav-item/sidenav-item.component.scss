@@ -34,8 +34,10 @@
   white-space: nowrap;
   letter-spacing: 0.04em;
   //background: #3F4ADE;
-  box-shadow: 0px 0.5px 0px rgba( white, 0.16);
-  
+  box-shadow: inset 0px 0.5px 0px rgba( white, 0.16);
+  //inset 0px 0.5px 0px 0px rgba(255, 255, 255, 0.16)
+  background-color: #3F4ADE;
+  //border-bottom: 1px solid #000000;
 
   .icon {
     width: $sidenav-item-icon-font-size;

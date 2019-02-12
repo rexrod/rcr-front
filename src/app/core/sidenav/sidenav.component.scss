@@ -12,8 +12,8 @@ h3{
 .sidenav {
   width: $sidenav-width;
   max-width: $sidenav-width;
-  background: $sidenav-background;
-  //background: white;
+  //background: $sidenav-background;
+  background: white;
   z-index: $sidenav-z-index;
   height: 100%;
 
@@ -26,7 +26,7 @@ h3{
     min-height: $sidenav-toolbar-height;
     max-height: $sidenav-toolbar-height;
     overflow: hidden;
-    margin-bottom: $spacing/3;
+    //margin-bottom: $spacing/3;
 
     @include mat-elevation($sidenav-toolbar-elevation);
 
