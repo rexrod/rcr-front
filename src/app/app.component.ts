@@ -107,7 +107,7 @@ position: 27
 
 menu.push({ 
 name: 'Relatórios', 
-// routeOrFunction: 'reports', 
+routeOrFunction: 'reports', 
 icon: 'description', 
 position: 28 
 });

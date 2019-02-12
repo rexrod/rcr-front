@@ -24,10 +24,10 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-// { 
-// path: 'reports', 
-// loadChildren: 'app/containers/reports/reports.module#ReportsModule', 
-// },
+  { 
+  path: 'reports', 
+  loadChildren: 'app/containers/reports/reports.module#ReportsModule', 
+  },
 
 
 { 

@@ -1,12 +1,19 @@
 
 @import "_custom_color_scheme.scss";
-$theme-background: map-get($map: $mat-sgm-primary, $key: 500);
+// $theme-background: map-get($map: $mat-sgm-primary, $key: 500);
+$theme-background: #000000;
 
 // Lista de campos
-$fields: ('id',
-'name',
+$fields: ('trackerSerial',
+'trackerModel',
+'type',
+'vehiclePlate',
+'date',
+'status',
 'actions'
 );
+
+
 
 // Padroniza o tamanho dos campos
 $length: 100/length($fields)*1%;
@@ -37,12 +44,15 @@ $length: 100/length($fields)*1%;
             margin-left: auto;
             margin-right: auto;
             padding-left: 24px; // sorting arrow discount
+            font-size: 90%;
         }
 
         .mat-column-#{$heading} {
             @include column-width($length);
             margin-left: auto;
             margin-right: auto;
+            font-size: 90%;
+            color: white;
             @if #{$heading}==actions {
                 button {
                     margin: 5px;
@@ -87,17 +97,17 @@ body {
                     @extend %flex-center;
                     display: flex;
                     min-height: 64px;
-                    box-shadow: 0px 3px 6px rgba( black, 0.16);
+                    box-shadow: 0px 0px 3px rgba( black, 0.16);
                     color: $theme-background;
                     z-index: 2;
                     #title {
                         text-align: center;
-                        font-size: 150%;
+                        font-size: 120%;
                         font-weight: bold;
                         display: flex;
                         flex: 1 1 auto;
                         max-width: 15%; //background: yellow;
-                        border-right: 1px #707070 solid;
+                        // border-right: 1px #707070 solid;
                         span {
                             flex: 1 1 auto;
                         }
@@ -125,7 +135,9 @@ body {
                     }
                     #add {
                         display: flex;
-                        max-width: 8.5%;
+                        //max-width: 8.5%;
+                        max-width: 10%;
+                        padding-right: 2%;
                         @extend %flex-center;
                         button {
                             box-shadow: 0px 3px 6px rgba( black, 0.26);
@@ -158,14 +170,18 @@ body {
                         align-items: flex-start;
                         text-align: center;
                         display: flex;
-                        box-shadow: 0px 3px 6px rgba( black, 0.16);
+                        box-shadow: 0px 0px 3px rgba( black, 0.16);
                         z-index: 1;
                         overflow: auto;
                         height: 0;
                         mat-table {
                             width: 100%;
                             mat-header-row {
-                                display: none;
+                                //display: none;
+                                @extend %table-columns;
+                                background-color: #BDC3C7;
+                                border-bottom-width: 0;
+                                border-top-width: 0;
                             }
                             .mat-header-cell:first-child {
                                 padding-left: unset !important;
@@ -181,7 +197,7 @@ body {
                                 align-items: center !important;
                                 padding-left: unset !important;
                                 padding-right: unset !important;
-                                font-size: 100%;
+                                font-size: 90%;
                             }
                             .mat-column-expandedDetail {
                                 
@@ -280,7 +296,10 @@ body {
     #tbody{
         height: 0px !important; // fix layout in the firefox
     }
-        mat-table {
+    mat-table {
+        mat-header-row {
+            display: none;
+        }
         @each $heading in $fields {
             .mat-column-#{$heading} {
                 @include column-width(unset !important);
