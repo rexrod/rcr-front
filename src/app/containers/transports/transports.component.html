@@ -62,7 +62,7 @@
                           REMOVER
                         </button> -->
                         <span>{{extractValue(row,column.cellContent,column.property)}}</span>
-                        <button mat-mini-fab matTooltip="Remover rastreador" [matTooltipPosition]="'above'" (click)="removerRastreador(row)" id="create" class="no-shadow"
+                        <!-- <button mat-mini-fab matTooltip="Remover rastreador" [matTooltipPosition]="'above'" (click)="removerRastreador(row)" id="create" class="no-shadow"
                                 style="background-color: #FFC937;
                                       width: 25px;
                                       height: 25px;
@@ -71,7 +71,18 @@
                                     style="font-size: 12px;
                                           margin-bottom: 200%;
                                           padding-bottom: 5%;">clear</mat-icon>
-                        </button>
+                        </button> -->
+                        <!-- <button mdc-fab mini>
+                          <mdc-icon>cancel</mdc-icon>
+                        </button> -->
+                        <!-- <button mdcIconButton>
+                          <mdc-icon>cancel</mdc-icon>
+                        </button> -->
+                        <!-- <button mat-icon-button matTooltip="Remover rastreador" [matTooltipPosition]="'above'" (click)="removerRastreador(row)" class="btn-icon-custom no-shadow" style="color: #FFC937;">
+                          <mat-icon aria-label="Editar">cancel</mat-icon>
+                        </button> -->
+                        <mat-icon aria-label="Editar" matTooltip="Remover rastreador" [matTooltipPosition]="'above'" (click)="removerRastreador(row)" class="btn-icon-custom no-shadow" style="color: #FFC937;" >cancel</mat-icon>
+
                       </ng-container>  
                       <ng-template #elseBlock1>
                           <!-- <button mat-stroked-button matTooltip="Adicionar Rastreador" [matTooltipPosition]="'above'" (click)="adicionarRastreador(row)"  
