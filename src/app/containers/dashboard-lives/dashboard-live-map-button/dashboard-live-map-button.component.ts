@@ -49,7 +49,7 @@ export class DashboardLiveMapButtonComponent implements OnInit {
     month[10] = "11";
     month[11] = "12";
 
-    this.hora = this.data.getHours() + ':' + this.data.getMinutes();
+    this.hora = ("0" + this.data.getHours()).slice(-2) + ':' + ("0" + this.data.getMinutes()).slice(-2) ;
     this.data = this.data.getDate() + '/' + month[this.data.getMonth()] + '/' + this.data.getFullYear();
   }
 
