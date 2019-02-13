@@ -124,7 +124,8 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
               month[10] = "11";
               month[11] = "12";
           
-              let hora = data.getHours() + ':' + data.getMinutes();
+              //let hora = data.getHours() + ':' + data.getMinutes();
+              let hora = ("0" + data.getHours()).slice(-2) + ':' + ("0" + data.getMinutes()).slice(-2) ;
               this.transport.date = data.getDate() + '/' + month[data.getMonth()] + '/' + data.getFullYear() + ' - ' + hora;
 
               //this.transport.date = trans.data[i].coordinates[0].date;
