@@ -120,6 +120,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     }
 
     loadData() {
+
         this.apiTransport.getAll()
           .subscribe(trans => {
             console.log(trans);
@@ -128,6 +129,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
             // this.dataSource.data = trans.data; //transports;
             
             this.transports = [];
+            this.rastreadores = [];
             for(var i=0; i < trans.data.length; i++){
               console.log(trans.data[i]);
               
@@ -147,6 +149,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
                }
            });
         //this.dataSource.data = ALL_IN_ONE_TABLE_FAKE_DATA;
+        console.log('loaddata call here');
     }
 
     rastrear(evt?: any) {
@@ -159,6 +162,8 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         const transport =  this.transports.find(x => x.trackerSerial === this.selectedValue );
         this.transport = transport;
     
+        console.log(transport.coordinates.length);
+        
         if(!transport.coordinates.length){
             this.snackBar.open('O rastreador ainda não possui coordenadas!', 'OK', {
                 duration: 10000
@@ -229,11 +234,12 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
             }else{
                 this.textoRastrear = 'Rastreado';
             }
-            //this.rastreamento = setInterval( this.rastrear() , 1000 * 5 );
-           
+            //this.rastreamento = setInterval( this.rastrear() , 1000 * 5 );      
         }
+
+        this.loadData();
     }
-    
+
     ngOnInit() {
         this.dataSource = new MatTableDataSource();
         // loads the data from the main table
