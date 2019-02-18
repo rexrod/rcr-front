@@ -1,0 +1,368 @@
+html,
+body {
+  height: 100%;
+  margin: 0px;
+  align-items: center;
+}
+
+.background {
+  height: 100%;
+  flex-direction: column;
+  box-sizing: border-box;
+  display: flex;
+  // justify-content: center;
+  // align-content: center;
+  // align-items: center;
+  // max-width: 100%;
+  //background: #335D53;
+  //background-image: url(/assets/rcr/img-bg@2x.png), url(/assets/rcr/mapa2@2x.png);
+  //background-image: url(/assets/rcr/img-bg@2x.png);
+  //background-position: left, center;
+  //background-size: cover;
+  //background-color: white;
+  //background-position: -192px 100%, 100% 100%;
+  justify-content: center;
+  align-content: left;
+  align-items: flex-end;
+  max-width: 100%;
+  background-image: url(/assets/rcr/img-bg@2x.png);
+  background-size: contain;
+  position: relative;
+  left: -10%;
+
+  .background2{
+    // height: 100%;
+    // flex-direction: column;
+    // box-sizing: border-box;
+    // display: flex;
+    // justify-content: center;
+    // align-content: center;
+    // align-items: center;
+    // max-width: 100%;
+    // background-image: url(/assets/rcr/mapa2@2x.png);
+    // background-size: cover;  
+    height: 71vh;
+    width: 50vw;
+    background-image: url(/assets/rcr/mapa2@2x.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  #login {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: stretch;
+    align-items: stretch;
+    align-content: stretch;
+    //height: 61.76%; // height:50.6%; // to compare with the image prototype
+    //width: 64.41%;
+    height: 50%; // height:50.6%; // to compare with the image prototype
+    width: 40%;
+    position: absolute;
+    //opacity: 0.4;
+    // top: 100px;
+    // left: 300px;
+    #card {
+      flex: 1 1 auto;
+      display: flex;
+      flex-wrap: wrap;
+      //box-shadow: 0 60px 80px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+      //background-color: rgba(255, 255, 255, .95);
+
+      // border-top-left-radius: 20px; // this value is to hide border of the background
+      // border-bottom-left-radius: 20px; // this value is to hide border of the background
+      // border-top-right-radius: 13px;
+      // border-bottom-right-radius: 13px;
+      #logo {
+        background-image: url(/assets/rcr/img-bg@2x.png);
+        background-size: cover;
+        background-position: left;
+        //background-color: #273B56;
+        background-color:#3F4ADE;
+        flex: 1 0 40.77%;
+        display: flex;
+        flex-direction: column;
+        border-top-left-radius: 13px;
+        border-bottom-left-radius: 13px;
+        box-shadow: 5px 10px 60px rgba(0, 0, 0, 0.2); // 10px 0px -24px rgba(0,0,0,0.2);
+        #title {
+          flex: 1 1 50%; //background: blue;
+          align-content: flex-end;
+          justify-content: center;
+          align-items: flex-end;
+          display: flex;
+          min-height: 64px;
+          .text {
+            font-size: 350%;
+            font-weight: 500;
+            color: rgba( #FFFFFF, 0.8);
+          }
+        }
+        #subtitle {
+          flex: 1 1 50%; //background: red;
+          align-content: flex-start;
+          justify-content: center;
+          align-items: flex-start;
+          text-align: center;
+          display: flex;
+          .text {
+            font-size: 90%;
+            font-weight: lighter;
+            color: rgba( #FFFFFF, 0.8);
+          }
+        }
+      }
+      #conteiner {
+        // flex: 1 1 59.23%;
+        flex: 1 1 auto;
+        flex-direction: row;
+        box-sizing: border-box;
+        display: flex;
+        min-height: 292px;
+        #left {
+          // background: green;
+          max-width: 25%;
+          flex: 1 1 auto;
+          display: flex;
+          flex-direction: column;
+          .tag{
+            flex: 1 1 auto;
+            // background-color: red;
+            border: 2px unset solid;
+            width: 100%;
+            height: 100%;
+            margin-top: 10px;
+            .button{
+              width: 53%;
+              height: 100%;
+              border: 1px #95989A solid;  
+              border-top-right-radius: 13px;       
+              border-bottom-right-radius: 13px;   
+              box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); 
+              filter: opacity(50%);
+              .img{
+                height: 100%;
+                justify-content: center;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                
+                .icon{
+                  width: 58px;
+                  height: 58px; 
+                  background-size: cover;
+                }
+                .text{
+                  color: #273B56;
+                  font-size: 12px;
+                }
+              }   
+            }
+            .active{
+              width: 64%;
+              border: 1px #273B56 solid;
+              filter: opacity(100%);
+              // opacity: 1;
+            }
+          }
+        }
+       
+          #center {
+            // background: yellow;
+            max-width: 100%;
+            flex: 1 1 auto;
+            flex-direction: column;
+            display: flex;
+
+            #image {
+              //background-color: gray;
+              //flex: 1 1 auto;
+              //display: flex;
+              box-sizing: border-box;
+              max-height: 33.58%;
+              justify-content: center;
+              align-content: center;
+              align-items: center;
+              margin-top: 10%;
+              margin-bottom: 7%;
+              // .circle {
+                .photo {
+                  min-width: 235px;
+                  min-height: 90px;
+                  //background-image: url(/assets/rcr/logo_login.png);
+                  background-size: cover;
+                  width: auto;
+                  height: auto;
+                  // border-radius: 50%;
+                  // border: 3px solid #263B55;
+                  z-index: 5; // background: #FFF;
+                  position: relative;
+                }
+              .image-title{
+                margin-top: 2%;
+                //font-family: "Raleway";
+                color: rgba(110, 116, 125, 1);
+                font-size: 26px;
+                font-weight: lighter;
+                //ExtraLight - 26px rgba(110, 116, 125, 1)
+              }    
+              // }
+            }
+            form {
+              display: contents;
+              .idCompany {
+                //background-color: white;
+                flex: 1 1 100%;
+                box-sizing: border-box;
+                max-height: 10.35%;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                display: flex;
+                #idCompany {
+                  flex: 1 1 auto; // flex: <'flex-grow'> <'flex-shrink'> <'flex-basis'> 
+                }
+              }
+            .enroll {
+              //background-color: white;
+              flex: 1 1 100%;
+              box-sizing: border-box;
+              max-height: 10.35%;
+              justify-content: center;
+              align-content: center;
+              align-items: center;
+              display: flex;
+              margin-bottom: 5%;
+              #enroll {
+                flex: 1 1 auto; // flex: <'flex-grow'> <'flex-shrink'> <'flex-basis'> 
+              }
+            }
+            .password {
+              //background-color: gray;
+              flex: 1 1 auto;
+              box-sizing: border-box;
+              max-height: 10.35%;
+              justify-content: center;
+              align-content: center;
+              align-items: center;
+              display: flex;
+              #password {
+                flex: 1 1 auto;
+              }
+            }
+            #problem {
+              //background-color: white;
+              flex: 1 1 auto;
+              box-sizing: border-box;
+              max-height: 10.77%;
+              justify-content: flex-end;
+              align-content: center;
+              align-items: flex-end;
+              display: flex;
+              .problem {
+                font-size: 66%;
+                opacity: 0.8;
+              }
+            }
+            #btn-login {
+              //background-color: gray;
+              flex: 1 1 auto;
+              box-sizing: border-box;
+              max-height: 34.95%;
+              justify-content: center;
+              align-content: center;
+              align-items: center;
+              display: flex;
+              .btn-login {
+                //flex: .82 1 0%;
+                flex: 0.1 1 20%;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+                font-size: 100%;
+                font-weight: 500;
+                height: 45%;
+                //color: #F8AD2F
+                background: #F8AD2F;
+              }
+                        .img{
+                          height: 100%;
+                          justify-content: center;
+                          display: flex;
+                          align-items: center;
+                          flex-direction: column;
+                          
+                          .icon{
+                            width: 150px;
+                            height: 150px; 
+                            background-size: cover;
+                          }
+                          .text{
+                            color: #273B56;
+                            // font-size: 12px;
+                          }
+                        } 
+            } 
+
+          }
+          }
+      
+        #right {
+          // background: purple;
+          max-width: 25%;
+          flex: 1 1 auto;
+        }
+      }
+    }
+  }
+  #dateFooter {
+    position: relative;
+    bottom: -11%;
+    font-size: 115%;
+    font-weight: 100;
+    color: rgba( #FFFFFF, 0.5)
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #login {
+    height: 100% !important;
+    width: 100% !important;
+    #card {
+      border-radius: unset !important;
+      flex-direction: column;
+      #logo {
+        border-radius: unset !important;
+      }
+    }
+    // .photo {
+    //   min-width: 100px !important;
+    //   min-height: 100px !important;
+    // }
+  }
+  #dateFooter {
+    display: none !important;
+  }
+}
+@media only screen and (max-height: 480px) {
+  #login {
+    height: 100% !important;
+    width: 100% !important;
+    #card {
+      border-radius: unset !important;
+      #logo {
+        border-radius: unset !important;
+      }
+    }
+    // .photo {
+    //   min-width: 100px !important;
+    //   min-height: 100px !important;
+    // }
+  }
+  #dateFooter {
+    display: none !important;
+  }
+}
+
+.blue-snackbar {
+  background-color: #202020;
+}

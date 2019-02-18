@@ -5,7 +5,7 @@ import { LayoutComponent } from './core/layout/layout.component';
 const routes: Routes = [
   {
     path: 'login',
-    loadChildren: 'app/core/login/login.module#LoginModule',
+    loadChildren: 'app/core/login-custom/login.module#LoginModule',
   },
   {
     path: 'register',
@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: '',
     //loadChildren: 'app/containers/dashboard/dashboard.module#DashboardModule',
-    loadChildren: 'app/core/login/login.module#LoginModule',    
+    loadChildren: 'app/core/login-custom/login.module#LoginModule',    
   },
   {
     path: '',

@@ -1,0 +1,148 @@
+<div class="background">
+    <div class=background2></div>
+    <div id="login">
+        <div id="card">
+            <!-- <div id="logo">
+                <div id="title">
+                    <span class="text">RCR</span> 
+                </div>
+                <div id="subtitle">
+                    <span class="text">Sistema de Rastreamento de Cargas e Rotas</span>
+                </div>
+            </div> -->
+            <div id="conteiner">
+
+                <div id="left">
+                    <!-- left -->
+                    <!-- <div class="tag">
+                        <div class="button" [class.active]="inputType=='password'" (click)="inputType='password'">
+                            <div class="img">
+                                <div class="icon" [ngStyle]="{'background-image': 'url(/assets/login/password.png)'}"></div>
+                                <div class="text">
+                                    Senha
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tag">
+                        <div class="button" [class.active]="inputType=='biometry'" (click)="inputType='biometry'">
+                            <div class="img">
+                                <div class="icon" [ngStyle]="{'background-image': 'url(/assets/login/finger.png)'}"></div>
+                                <div class="text">
+                                    Biometria
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tag">
+                        <div class="button" [class.active]="inputType=='credential'" (click)="inputType='credential'">
+                            <div class="img">
+                                <div class="icon" [ngStyle]="{'background-image': 'url(/assets/login/credential.png)'}"></div>
+                                <div class="text">
+                                    Credencial
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="tag"></div>
+                    <div class="tag"></div>
+                    <div class="tag"></div> -->
+                    <!-- <div class="tag"></div> -->
+                </div>
+                <div id="center">
+                    <!-- class="logo" -->
+                    <!-- <img class="logo" src="assets/rcr/logo_login.png"> -->
+                    <!-- <div id="image"> -->
+                        <!-- <div class="circle"> -->
+                        <!-- <div class="photo"> -->
+                            <!-- </div> -->
+                        <!-- <div>    
+                            <img class="logo" src="assets/rcr/logo_login.png">
+                        </div> -->
+                    <!-- </div> -->
+                    <div id="image">
+                        <img src="assets/rcr/logo_login.png">
+                        <div class="image-title">
+                            <span>Sistema de Rastreamento de Cargas e Rotas</span>
+                        </div>
+                    </div>
+                    <!-- <div id="image-title">
+                            <span class="text">Sistema de Rastreamento de Cargas e Rotas</span> -->
+                            <!-- <h1>Sistema de Rastreamento de Cargas e Rotas</h1> -->
+                    <!-- </div> -->
+                    <form [formGroup]="form" (ngSubmit)="send()">
+                        <!-- <div class="idCompany">
+                            <mat-form-field id="idCompany">
+                                <mat-select placeholder="Selecione a Empresa" formControlName="idCompany" required>
+                                    <mat-option *ngFor="let company of companies" [value]="company.idCompany">
+                                        {{company.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div> -->
+                        <div class="enroll">
+                            <!-- <mat-form-field id="enroll">
+                                <input matInput placeholder="Email" formControlName="enroll">
+                            </mat-form-field> -->
+                            <mdc-form-field id="enroll" fluid>
+                                <mdc-text-field formControlName="enroll" label="Email" outlined></mdc-text-field>
+                            </mdc-form-field>
+                        </div>
+                        <div class="password">
+                            <!--  [formGroup]="form" [formControl]="user" -->
+                            <!-- <mat-form-field id="password">
+                                <input matInput placeholder="Senha" type="password" formControlName="password" outlined>
+                            </mat-form-field>   -->
+                            <mdc-form-field id="password" fluid>
+                                <mdc-text-field type="password" formControlName="password" label="Senha" outlined></mdc-text-field>
+                            </mdc-form-field>
+                        </div>
+                        <!-- <div id="problem"> -->
+                            <!-- <span class="problem" color="primary">Problemas para Entrar?</span> -->
+                        <!-- </div> -->
+                        <div id="btn-login" *ngIf="inputType=='password'">
+                            <!-- <button mat-raised-button *ngIf="!visible" [disabled]="!form.valid" class="btn-rounded btn-login"
+                                color="primary">Login</button> -->
+                            <!-- <button mat-raised-button *ngIf="!visible" class="btn-rounded btn-login"
+                                color="primary">Entrar</button> -->
+                            <button mat-raised-button *ngIf="!visible" class="btn-login"
+                                color="primary">ENTRAR</button>        
+                            <mat-spinner *ngIf="visible"></mat-spinner>
+                        </div>
+                        <div class="enroll">
+                            <p class="extra">
+                                <!-- Don't have an account?<br/> -->
+                                <a [routerLink]="['/register']">Criar nova conta</a>
+                            </p>
+                        </div>
+                        <div id="btn-login" *ngIf="inputType=='biometry'">
+                            <div class="img">
+                                <div class="icon" [ngStyle]="{'background-image': 'url(/assets/login/finger5.png)'}"></div>
+                                <div class="text">
+                                    Biometria
+                                </div>
+                            </div>
+                            <mat-spinner *ngIf="visible"></mat-spinner>
+                        </div>
+                        <div id="btn-login" *ngIf="inputType=='credential'">
+                            <div class="img">
+                                <div class="icon" [ngStyle]="{'background-image': 'url(/assets/login/credential5.png)'}"></div>
+                                <div class="text">
+                                    Credencial
+                                </div>
+                            </div>
+                            <mat-spinner *ngIf="visible"></mat-spinner>
+                        </div>
+                    </form>
+                </div>
+                <div id="right">
+                    <!-- Right -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="dateFooter" style="color: #3F4ADE">
+        <!-- {{ dateFooter }} -->
+    </div>
+</div>
