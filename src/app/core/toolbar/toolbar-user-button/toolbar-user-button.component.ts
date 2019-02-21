@@ -7,6 +7,7 @@ import { Rastreador } from 'app/models/rastreadores/rastreadores.model';
 import { User } from 'app/models/users/users.model';
 import { SessionService } from 'app/service/session.service';
 import { DialogChangePasswordComponent } from './dialog-change-password/dialog-change-password.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'fury-toolbar-user-button',
@@ -31,6 +32,7 @@ export class ToolbarUserButtonComponent implements OnInit {
     public snackBar: MatSnackBar,
     private apiUser: UserControllerService,
     public session: SessionService,
+    private router: Router,
   ) { 
 
     
@@ -132,10 +134,11 @@ export class ToolbarUserButtonComponent implements OnInit {
                           duration: 10000
                       });
 
-                      this.apiUser.loginUsingPOSTCustom(this.session.userEmail,_user.newPassword).subscribe(res => {
-                        localStorage.setItem('token', res.access_token);
-                        //this.session.userEmail = res.email;                               
-                      }, err => console.log(err));
+                      // this.apiUser.loginUsingPOSTCustom(this.session.userEmail,_user.newPassword).subscribe(res => {
+                      //   localStorage.setItem('token', res.access_token);
+                      //   //this.session.userEmail = res.email;                               
+                      // }, err => console.log(err));
+                      this.router.navigate(['/login']);
                   },
                   error => {
                       console.log(error);

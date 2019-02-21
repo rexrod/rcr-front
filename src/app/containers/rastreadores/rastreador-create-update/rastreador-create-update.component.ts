@@ -43,7 +43,7 @@ export class RastreadorCreateUpdateComponent implements OnInit {
       // Used in the Update Mode to fill the fields
       this.form = this.fb.group({
         _id: [this.defaults._id || null],
-        serialKey: [this.defaults.serialKey],
+        serialKey: {value:[this.defaults.serialKey], disabled: true},
         trackerModel: [this.defaults.trackerModel],
         notes: [this.defaults.notes],
       });

@@ -1,14 +1,14 @@
 
-import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild, ElementRef, ViewEncapsulation, Injectable } from '@angular/core';
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/internal/Observable';
 import { ReplaySubject } from 'rxjs/internal/ReplaySubject';
-import { filter } from 'rxjs/operators';
+import { filter, startWith, debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
 import { ListColumn } from '../../core/common/list/list-column.model';
 import { fadeOutAnimation } from '../../core/common/route.animation';
 
-import { DashboardLive } from 'app/models/dashboard-lives/dashboard-lives.model';
-import { DashboardLiveCreateUpdateComponent } from './dashboard-live-create-update/dashboard-live-create-update.component';
+import { DashboardRoutes } from 'app/models/dashboard-routes/dashboard-routes.model';
+import { DashboardRoutesCreateUpdateComponent } from './dashboard-routes-create-update/dashboard-routes-create-update.component';
 import { DialogDeleteComponent } from '../../core/common/dialog-delete/dialog-delete.component';
 import { HttpClient, HttpHeaders, HttpParams,
     HttpResponse, HttpEvent }                           from '@angular/common/http';
@@ -18,11 +18,14 @@ import { Coordinates } from 'app/models/transports/coordinates.model';
 
 // To work with fake data
 import { of } from 'rxjs/internal/observable/of'; // to test without data
-import { ALL_IN_ONE_TABLE_FAKE_DATA } from './dashboard-lives.fake'; // to test without data
+import { ALL_IN_ONE_TABLE_FAKE_DATA } from './dashboard-routes.fake'; // to test without data
 import { trigger, state, transition, style, animate } from '@angular/animations';
 import { TransportControllerService } from '../transports/transports.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { RastreadoresRoutingModule } from '../rastreadores/rastreadores-routing.module';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/map';
 
 // export interface Rastreador {
 //     value: string;
@@ -31,10 +34,66 @@ import { RastreadoresRoutingModule } from '../rastreadores/rastreadores-routing.
 
 declare var H: any;
 
+@Injectable() 
+export class Service {
+    [x: string]: any;
+
+  constructor(private httpClient: HttpClient) { }
+
+  getSuggestions(search): Observable<any[]> {
+    console.log('Search: ' + search);
+    
+    if(search === ''){
+        search = 'Rua Diamantina';
+    }
+    const url = 'https://autocomplete.geocoder.api.here.com/6.2/suggest.json';
+    const query = '?' +
+                  'query=' +  encodeURIComponent(search) +   // The search text which is the basis of the query
+                  '&beginHighlight=' + encodeURIComponent('<mark>') + //  Mark the beginning of the match in a token. 
+                  '&endHighlight=' + encodeURIComponent('</mark>') + //  Mark the end of the match in a token. 
+                  '&maxresults=5' +  // The upper limit the for number of suggestions to be included in the response.  Default is set to 5.
+                  '&app_id=' + 'f9xS9zNUPJwcnpSM5fkl' +
+                  '&app_code=' + 'KFOs5agTKxE3hV8cJIA_7Q';
+
+    //this.httpClient.get<any>('https://jsonplaceholder.typicode.com/users')
+    const endpoint = url + query;
+    console.log(endpoint);
+    let suggestions: any;
+    suggestions = this.httpClient.get<any>(url + query); 
+    return this.httpClient.get<any>('https://jsonplaceholder.typicode.com/users');
+  }
+
+}
+
+@Injectable()
+export class AppService {
+
+    url: string
+    constructor(private http : HttpClient){
+        this.url  = 'https://autocomplete.geocoder.api.here.com/6.2/suggest.json';
+    }
+
+    search_word(term){
+
+        const query = '?' +
+                    'query=' +  encodeURIComponent(term) +   // The search text which is the basis of the query
+                    //'&beginHighlight=' + encodeURIComponent('<mark>') + //  Mark the beginning of the match in a token. 
+                    //'&endHighlight=' + encodeURIComponent('</mark>') + //  Mark the end of the match in a token. 
+                    '&maxresults=8' +  // The upper limit the for number of suggestions to be included in the response.  Default is set to 5.
+                    '&app_id=' + 'f9xS9zNUPJwcnpSM5fkl' +
+                    '&app_code=' + 'KFOs5agTKxE3hV8cJIA_7Q';
+
+
+        return this.http.get<any>(this.url + query).map(res => {
+            console.log(res);
+            return res.suggestions;
+        })
+    }
+}
 @Component({
-    selector: 'fury-dashboard-lives',
-    templateUrl: './dashboard-lives.component.html',
-    styleUrls: ['./dashboard-lives.component.scss'],
+    selector: 'fury-dashboard-routes',
+    templateUrl: './dashboard-routes.component.html',
+    styleUrls: ['./dashboard-routes.component.scss'],
     animations: [fadeOutAnimation,
         trigger('detailExpand', [
             state('collapsed, void', style({ height: '0px', minHeight: '0', display: 'none' })),
@@ -46,17 +105,29 @@ declare var H: any;
     encapsulation: ViewEncapsulation.None,
     providers: [TransportControllerService]
 })
-export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy {
+export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestroy {
+    
+    // filter(arg0: any): any {
+    //     throw new Error("Method not implemented.");
+    // }
 
-    subject$: ReplaySubject<DashboardLive[]> = new ReplaySubject<DashboardLive[]>(1);
-    data$: Observable<DashboardLive[]> = this.subject$.asObservable();
-    dashboardLives: DashboardLive[];
+    // myControl = new FormControl();
+    // filteredOptions: Observable<any[]>;
+
+    searchTerm : FormControl = new FormControl();
+    searchResult = [];
+    positions = [];
+
+    subject$: ReplaySubject<DashboardRoutes[]> = new ReplaySubject<DashboardRoutes[]>(1);
+    data$: Observable<DashboardRoutes[]> = this.subject$.asObservable();
+    dashboardLives: DashboardRoutes[];
     
     transports: Transport[];
     transport: Transport;
 
     // form: FormGroup;
     selectedValue: string;
+    searchValue: string;
     lived = false;
 
     @Input()
@@ -89,7 +160,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         { name: '', property: 'name', visible: true, isModelProperty: true },
         { name: '', property: 'actions', visible: true }
     ] as ListColumn[];
-    dataSource: MatTableDataSource<DashboardLive> | null;
+    dataSource: MatTableDataSource<DashboardRoutes> | null;
 
     get visibleColumns() {
         return this.columns.filter(column => column.visible).map(column => column.property);
@@ -110,37 +181,72 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         public snackBar: MatSnackBar,
         private apiTransport: TransportControllerService,
         protected httpClient: HttpClient, 
-        // private apiDashboardLive: DashboardLiveControllerService
+        // private apiDashboardLive: DashboardLiveControllerService,
+        private service: Service,
+        private services: AppService
     ) { 
         this.platform = new H.service.Platform({
             "app_id": "f9xS9zNUPJwcnpSM5fkl",
             "app_code": "KFOs5agTKxE3hV8cJIA_7Q"
         });
         // lives: DashboardLivesComponent;
+
+        // this.filteredOptions = this.myControl.valueChanges
+        // .pipe(
+        //   startWith(null),
+        //   debounceTime(200),
+        //   distinctUntilChanged(),
+        //   switchMap(val => {
+        //     console.log(val);
+        //     return this.filter(val || '')
+        //   })       
+        // );
+        
+        this.searchTerm.setValue("Brasil, Manaus, ");
+
+        this.searchTerm.valueChanges
+        .debounceTime(400) 
+        .subscribe(data => {
+            this.services.search_word(data).subscribe(response =>{
+                this.searchResult = response
+            })
+        })
     }
 
+    
+    filter(val: string): Observable<any[]> {
+        console.log('filter: ' + val);
+        return this.service.getSuggestions(val)
+        .pipe(
+          map(response => response.filter(option => { 
+            console.log('Entrou aqui: ' + option.suggestions);
+            return option.label.toLowerCase().indexOf(val.toLowerCase()) === 0
+          }))
+        )
+    }
+    
     loadData() {
 
         this.apiTransport.getAll()
           .subscribe(trans => {
-            console.log(trans);
-            console.log(trans.data);
+            // console.log(trans);
+            // console.log(trans.data);
             // this.transports = trans;
             // this.dataSource.data = trans.data; //transports;
             
             this.transports = [];
             this.rastreadores = [];
             for(var i=0; i < trans.data.length; i++){
-              console.log(trans.data[i]);
+              //console.log(trans.data[i]);
               
             //   if(trans.data[i].trackerSerial){
               if(trans.data[i].coordinates.length > 0){  
                 this.transports.push(trans.data[i]);
-                console.log(this.transports);
+                //console.log(this.transports);
                 this.rastreadores.push(trans.data[i].trackerSerial);
               }
             }
-            console.log(this.rastreadores);
+            //console.log(this.rastreadores);
           },
            error => {
                if (error.status === 0 || error.status === 404) {
@@ -149,7 +255,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
                }
            });
         //this.dataSource.data = ALL_IN_ONE_TABLE_FAKE_DATA;
-        console.log('loaddata call here');
+        //console.log('loaddata call here');
     }
 
     rastrear(evt?: any) {
@@ -158,11 +264,11 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
             this.selectedValue = evt.target.getData();
         }
 
-        console.log('rastreando...');
+        //console.log('rastreando...');
         const transport =  this.transports.find(x => x.trackerSerial === this.selectedValue );
         this.transport = transport;
     
-        console.log(transport.coordinates.length);
+        //console.log(transport.coordinates.length);
         
         if(!transport.coordinates.length){
             this.snackBar.open('O rastreador ainda não possui coordenadas!', 'OK', {
@@ -197,7 +303,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         points.push({'lat': transport.coordinates[i].coords.lat, 'lng': transport.coordinates[i].coords.long });
         }
     
-        console.log(points);
+        //console.log(points);
     
         // Initialize a linestring and add all the points to it:
         let linestring = new H.geo.LineString();
@@ -206,7 +312,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         });
         
         // Initialize a polyline with the linestring:
-        let polyline = new H.map.Polyline(linestring,{
+        let polyline = new H.map.Polyline(linestring, { 
             style: { lineWidth: 10 },
             arrows: { fillColor: 'white', frequency: 2, width: 0.8, length: 0.7 }
         });
@@ -227,9 +333,9 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         // this.ui.addBubble(bubble);
     
         if(transport.coordinates.length > 0){
-            console.log(this.rastreamento);
+            //console.log(this.rastreamento);
             if(this.lived){
-                console.log(this.lived);
+                //console.log(this.lived);
                 if(this.rastreamento === undefined){
                     this.rastreamento = setInterval(() => { this.rastrear(); }, 1000 * 5);
                 }
@@ -271,14 +377,15 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
             defaultLayers.normal.map,
             {
                 zoom: 13,
-                center: { lat: -3.04945, lng:  -60.01845 }  
+                //center: { lat: -3.04945, lng:  -60.01845 }  
+                center: { lat: -3.0791, lng:  -60.00613 } 
             }
         );
         let mapEvents = new H.mapevents.MapEvents(this.map);
         // Add event listener:
         this.map.addEventListener('tap', function(evt) {
         // Log 'tap' and 'mouse' events:
-            console.log(evt.type, evt.currentPointer.type); 
+            //console.log(evt.type, evt.currentPointer.type); 
         });
         // Instantiate the default behavior, providing the mapEvents object: 
         let behavior = new H.mapevents.Behavior(mapEvents);
@@ -314,56 +421,59 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         // this.map.addObject(marker5);
         // this.map.addObject(marker6);      
 
-        setTimeout(() => {
+        this.group = new H.map.Group();
+        this.map.addObject(this.group);
 
-            console.log(this.transports);
-            let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
+        // setTimeout(() => {
 
-            this.group = new H.map.Group();
+        //     console.log(this.transports);
+        //     let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
 
-            this.map.addObject(this.group);
-            let that = this;
-            // add 'tap' event listener, that opens info bubble, to the group
-            // this.group.addEventListener('tap', function (evt, that) {
-            //   // event target is the marker itself, group is a parent event target
-            //   // for all objects that it contains
-            // //   let bubble =  new H.ui.InfoBubble(evt.target.getPosition(), {
-            // //     // read custom data
-            // //     content: evt.target.getData()
-            // //   });
-            //   console.log(evt.target.getData());
-            //   this.selectedValue = evt.target.getData();
-            //   that.rastrear();
-            //   // show info bubble
-            // //   this.ui.addBubble(bubble);
-            // }, false);
+        //     this.group = new H.map.Group();
 
-            this.group.addEventListener('tap', (evt) => this.rastrear(evt),false);
+        //     this.map.addObject(this.group);
+        //     let that = this;
+        //     // add 'tap' event listener, that opens info bubble, to the group
+        //     // this.group.addEventListener('tap', function (evt, that) {
+        //     //   // event target is the marker itself, group is a parent event target
+        //     //   // for all objects that it contains
+        //     // //   let bubble =  new H.ui.InfoBubble(evt.target.getPosition(), {
+        //     // //     // read custom data
+        //     // //     content: evt.target.getData()
+        //     // //   });
+        //     //   console.log(evt.target.getData());
+        //     //   this.selectedValue = evt.target.getData();
+        //     //   that.rastrear();
+        //     //   // show info bubble
+        //     // //   this.ui.addBubble(bubble);
+        //     // }, false);
 
-            this.group.addEventListener('tap', (evt) => this.rastrear(evt),false);
+        //     this.group.addEventListener('tap', (evt) => this.rastrear(evt),false);
 
-            for(var i=0; i < this.transports.length; i++){
-                console.log(this.transports[i].coordinates[0].coords);
-                let marker = new H.map.Marker({ lat: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.lat, lng: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.long }, { icon: icon });    
-                // this.map.addObject(marker);
-                // marker.setData('rastreador adicionado: ' + this.transports[i].trackerSerial);
-                marker.setData(this.transports[i].trackerSerial);
-                marker.addEventListener('pointerenter',function(evt) {
-                    // evt.target.style.opacity = 0.6
-                    console.log(evt.target.style.opacity); 
-                });
+        //     this.group.addEventListener('tap', (evt) => this.rastrear(evt),false);
 
-                this.group.addObject(marker);
-            }
-        }, 1300);
+        //     for(var i=0; i < this.transports.length; i++){
+        //         console.log(this.transports[i].coordinates[0].coords);
+        //         let marker = new H.map.Marker({ lat: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.lat, lng: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.long }, { icon: icon });    
+        //         // this.map.addObject(marker);
+        //         // marker.setData('rastreador adicionado: ' + this.transports[i].trackerSerial);
+        //         marker.setData(this.transports[i].trackerSerial);
+        //         marker.addEventListener('pointerenter',function(evt) {
+        //             // evt.target.style.opacity = 0.6
+        //             //console.log(evt.target.style.opacity); 
+        //         });
+
+        //         this.group.addObject(marker);
+        //     }
+        // }, 1300);
     }
 
     create() {
 
-        this.dialog.open(DashboardLiveCreateUpdateComponent, {
+        this.dialog.open(DashboardRoutesCreateUpdateComponent, {
             width: '61%', height: '77%',
             panelClass: 'dialog-create-update'
-        }).afterClosed().subscribe((dashboardLive: DashboardLive) => {
+        }).afterClosed().subscribe((dashboardLive: DashboardRoutes) => {
 
             if (dashboardLive) {
                 // this.apiDashboardLive.createUsingPOST(dashboardLive).
@@ -388,7 +498,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
 
     update(dashboardLive) {
 
-        this.dialog.open(DashboardLiveCreateUpdateComponent, {
+        this.dialog.open(DashboardRoutesCreateUpdateComponent, {
             data: dashboardLive,
             width: '61%', height: '77%',
             panelClass: 'dialog-create-update'
@@ -418,7 +528,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         this.dialog.open(DialogDeleteComponent, {
             data: { id: dashboardLive.id, displayName: dashboardLive.id },
             panelClass: 'dialog-delete'
-        }).afterClosed().subscribe((_dashboardLive: DashboardLive) => {
+        }).afterClosed().subscribe((_dashboardLive: DashboardRoutes) => {
 
             if (_dashboardLive && _dashboardLive.id) {
                 // this.apiDashboardLive.deleteUsingDELETE(_dashboardLive.id).
@@ -513,23 +623,25 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     //this.map.setZoom(13);
     //this.map.setCenter( { lat: -3.04945, lng:  -60.01845 } );
 
+    console.log('Rota: ' + this.searchTerm.value);
     var map = this.map;
-    var group = this.group;
-    const transport =  this.transports.find(x => x.trackerSerial === this.selectedValue );
-    this.transport = transport;
+    //console.log(this.group);
+    //console.log(this.group.forEach());
+    //console.log(this.group.getObjects());
+    console.log(this.positions);
 
+    var group = this.group;
+ 
     // Create the parameters for the routing request:
-    let routingParameters = {
+    let routingParameters = {};
         // The routing mode:
-        'mode': 'fastest;car',
+    routingParameters['mode'] = 'fastest;car';
         // The start point of the route:
-        'waypoint0': 'geo!' + transport.coordinates[0].coords.lat + ',' + transport.coordinates[0].coords.long,
-        // The end point of the route:
-        'waypoint1': 'geo!' + transport.coordinates[transport.coordinates.length-1].coords.lat + ',' + transport.coordinates[transport.coordinates.length-1].coords.long,
-        // To retrieve the shape of the route we choose the route
-        // representation mode 'display'
-        'representation': 'display'
-    };
+    for(var i=0; i < this.positions.length; i++){
+        routingParameters['waypoint' + i] = 'geo!' + this.positions[i].lat + ',' + this.positions[i].lng;
+    }
+
+    routingParameters['representation'] = 'display';
 
     // Define a callback function to process the routing response:
     let onResult = function(result) {
@@ -560,7 +672,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
 
         // Create a polyline to display the route:
         let routeLine = new H.map.Polyline(linestring, {
-            style: { strokeColor: 'green', lineWidth: 6 },
+            style: { strokeColor: 'blue', lineWidth: 7 },
             arrows: { fillColor: 'white', frequency: 2, width: 0.8, length: 0.7 }
         });
 
@@ -596,6 +708,57 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     function(error) {
         alert(error.message);
     });
+  }
+
+  pesquisarEndereco(){
+
+    console.log('Rota: ' + this.searchTerm.value);
+    this.searchValue = this.searchTerm.value;
+
+    var group = this.group;
+    console.log(this.searchValue);
+    // Create the parameters for the geocoding request:
+    let geocodingParams = {
+        searchText: this.searchValue
+    };
+    
+    var positions = this.positions
+
+    // Define a callback function to process the geocoding response:
+    let onResult = function(result) {
+        var locations = result.Response.View[0].Result,position,marker;
+        // Add a marker for each location found
+        for (var i = 0;  i < locations.length; i++) {
+            position = {
+            lat: locations[i].Location.DisplayPosition.Latitude,
+            lng: locations[i].Location.DisplayPosition.Longitude
+            };
+
+            positions.push(position);
+            
+            marker = new H.map.Marker(position);
+            group.addObject(marker);
+        }
+    };
+    
+    // Get an instance of the geocoding service:
+    let geocoder = this.platform.getGeocodingService();
+    
+    // Call the geocode method with the geocoding parameters,
+    // the callback and an error callback function (called if a
+    // communication error occurs):
+    geocoder.geocode(geocodingParams, onResult, function(e) {
+        alert(e);
+    });
+  }
+
+  limpar(){
+
+    console.log('Entrou no limpar()');
+    this.group.removeAll();
+    this.searchTerm.setValue("Brasil, Manaus, ");
+    //this.map.setZoom(13);
+    //this.map.setCenter( { lat: -3.04945, lng:  -60.01845 } );
   }
 }
 

@@ -41,7 +41,11 @@ path: 'dashboard-lives',
 loadChildren: 'app/containers/dashboard-lives/dashboard-lives.module#DashboardLivesModule', 
 //loadChildren: 'app/demo/maps/google-maps/google-maps.module#GoogleMapsModule', 
 },
-
+{ 
+  path: 'dashboard-routes', 
+  loadChildren: 'app/containers/dashboard-routes/dashboard-routes.module#DashboardRoutesModule', 
+  //loadChildren: 'app/demo/maps/google-maps/google-maps.module#GoogleMapsModule', 
+},
 
 { 
 path: 'transports', 

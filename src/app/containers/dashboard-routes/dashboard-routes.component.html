@@ -1,5 +1,5 @@
 
-<div id="background-dashboard-live">
+<div id="background-dashboard-routes">
     <div id="conteiner">
       <div id="card">
         <div id="table-component">
@@ -9,7 +9,7 @@
               <span>Live View</span>
             </div> -->
             <div id="title">
-                <span>Live View</span>
+                <span>Rotas</span>
               </div>
             <!-- <div id="input-filter">
               <fury-list [columns]="columns" (filterChange)="onFilterChange($event)" fxLayoutAlign="center center" fxLayout="row"></fury-list>
@@ -36,9 +36,33 @@
                     </mat-option>
                   </mat-select>
                 </mat-form-field> -->
-              
-              <div style="width: 100%">
-                <mdc-form-field fluid>  
+
+                <mat-form-field>
+                  <mat-icon class="fury-filter-input-icon" matPrefix>search</mat-icon>
+                  <input type="text" placeholder="" aria-label="Number" matInput [formControl]="searchTerm" [matAutocomplete]="auto"> 
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let item of searchResult" [value]="item.label">
+                      {{ item.label }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+
+                <!-- <mat-form-field>
+                  <input matInput [matAutocomplete]="auto" [formControl]="myControl">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let user of filteredOptions | async" [value]="user.name">
+                      <span>{{ user.name }}</span>
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field> -->
+
+              <!-- <div style="width: 100%"> -->
+                
+                <!-- <mdc-form-field id="search" fluid>
+                  <mdc-text-field  [(ngModel)]="searchValue" label="Buscar endereço..." outlined></mdc-text-field>
+                </mdc-form-field> -->
+
+                <!-- <mdc-form-field fluid>  
                   <mdc-select placeholder="Rastreadores" floatLabel="false" [(ngModel)]="selectedValue" [disabled]="textoRastrear != 'Rastrear'" outlined class="custom-select-outline-color">
                     <mdc-menu style="width: 310px">
                       <mdc-list>
@@ -48,9 +72,10 @@
                       </mdc-list>
                     </mdc-menu>
                   </mdc-select>
-                </mdc-form-field>
-              </div>
-                <!-- <mat-form-field>
+                </mdc-form-field> -->
+              <!-- </div> -->
+
+              <!-- <mat-form-field>
                   <mat-select placeholder="Favorite food" [(ngModel)]="selectedValue" name="food">
                     <mat-option *ngFor="let food of foods" [value]="food.value">
                       {{food.viewValue}}
@@ -58,7 +83,8 @@
                   </mat-select>
                 </mat-form-field> -->
             </div>
-            <div id="input-lived" style="margin-left: 20px">
+
+            <!-- <div id="input-lived" style="margin-left: 20px">
 
               <mat-checkbox [disabled]="textoRastrear != 'Rastrear'" [(ngModel)]="lived">Tempo real</mat-checkbox>
             </div>
@@ -68,9 +94,16 @@
             <div style="margin-left: 20px" *ngIf="textoRastrear != 'Rastrear'">
                <button  mat-raised-button id="cancelar" (click)="desativarRastrear()">Cancelar Rastreamento</button>
             </div>
-            <!-- <div style="margin-left: 20px" *ngIf="textoRastrear != 'Rastrear'">
-                <button  mat-raised-button id="rota" (click)="calcularRota()">Verificar Melhor Rota</button>  
-            </div> -->
+            -->
+            <div style="margin-left: 20px">
+              <button  mat-raised-button id="pesquisar" (click)="pesquisarEndereco()">Adicionar Ponto de Encontro</button>
+            </div> 
+            <div style="margin-left: 20px">
+              <button  mat-raised-button id="rota" (click)="calcularRota()">Calcular Rota</button>
+            </div> 
+            <div style="margin-left: 20px">
+                <button  mat-raised-button id="limpar" (click)="limpar()">Limpar</button>
+              </div> 
             <!-- <div id="add">
               <button mat-mini-fab color="primary"  matTooltip="Adicionar Item" [matTooltipPosition]="'above'" (click)="create()" id="create">
                 <mat-icon aria-label="Adicionar">add</mat-icon>
@@ -102,7 +135,7 @@
                                         border-color:  rgba(0, 0, 0, 0.05);
                                         position: relative;">
                                         <!-- beige  -->
-                <dashboard-live-map-button *ngIf="textoRastrear != 'Rastrear'" class="button-custom" [transport]="transport"></dashboard-live-map-button>
+                <dashboard-routes-map-button *ngIf="textoRastrear != 'Rastrear'" class="button-custom" [transport]="transport"></dashboard-routes-map-button>
               </div>
               
             <!-- </div> -->
