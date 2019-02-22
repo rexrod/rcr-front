@@ -117,6 +117,7 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
     searchTerm : FormControl = new FormControl();
     searchResult = [];
     positions = [];
+    places = false;
 
     subject$: ReplaySubject<DashboardRoutes[]> = new ReplaySubject<DashboardRoutes[]>(1);
     data$: Observable<DashboardRoutes[]> = this.subject$.asObservable();
@@ -757,9 +758,59 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
     console.log('Entrou no limpar()');
     this.group.removeAll();
     this.searchTerm.setValue("Brasil, Manaus, ");
+    this.positions = [];
     //this.map.setZoom(13);
     //this.map.setCenter( { lat: -3.04945, lng:  -60.01845 } );
   }
+
+  pesquisarLugares(){
+
+    var group = this.group;
+    this.searchValue = this.searchTerm.value;
+
+    // Obtain a Search object through which to submit search
+    // requests:
+    let search = new H.places.Search(this.platform.getPlacesService()),
+      searchResult, error;
+
+    // Define search parameters:
+    let params = {
+    // Plain text search for places with the word "hotel"
+    // associated with them:
+      'q': this.searchValue,
+    //  Search in the Chinatown district in San Francisco:
+      'at': '-3.04945,-60.01845'
+    };
+
+    // Define a callback function to handle data on success:
+    function onResult(data) {
+      addPlacesToMap(data.results);
+    }
+
+    // Define a callback function to handle errors:
+    function onError(data) {
+      error = data;
+    }
+
+    var positions = this.positions;
+
+    // This function adds markers to the map, indicating each of
+    // the located places:
+    function addPlacesToMap(result) {
+      group.addObjects(result.items.map(function (place) {
+      var marker = new H.map.Marker(
+         {lat: place.position[0],lng: place.position[1]})
+
+      positions.push({lat: place.position[0],lng: place.position[1]});
+      return marker;
+      }));
+    }
+
+    // Run a search request with parameters, headers (empty), and
+    // callback functions:
+    search.request(params, {}, onResult, onError);
+  }
+
 }
 
     
