@@ -26,9 +26,9 @@ export class AppComponent {
     let admin = localStorage.getItem('admin');
     //console.log(this.router.url);
     //console.log(this.location.path());
-    console.log('Usuário administrador: ' + admin);
+    //console.log('Usuário administrador: ' + admin);
       if(admin){
-        console.log(menu);
+        //console.log(menu);
 
         let configAdded: boolean = false;
 

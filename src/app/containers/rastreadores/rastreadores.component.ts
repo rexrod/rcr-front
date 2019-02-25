@@ -70,8 +70,8 @@ export class RastreadoresComponent implements OnInit, AfterViewInit, OnDestroy {
     loadData() {
         this.apiRastreador.getAll()
           .subscribe(rastreadores => {
-            console.log(rastreadores);
-            console.log(rastreadores.data);
+            //console.log(rastreadores);
+            //console.log(rastreadores.data);
             this.rastreadores = rastreadores;
             this.dataSource.data = rastreadores.data; 
             this.paginator.firstPage();
@@ -79,7 +79,7 @@ export class RastreadoresComponent implements OnInit, AfterViewInit, OnDestroy {
            error => {
                if (error.status === 0 || error.status === 404) {
                    //this.snackBar.open('Esse serviço está indisponível no momento.', 'OK', {});
-                   console.log(error);
+                   //console.log(error);
                }
            });
            //this.dataSource.data = ALL_IN_ONE_TABLE_FAKE_DATA;
@@ -123,10 +123,19 @@ export class RastreadoresComponent implements OnInit, AfterViewInit, OnDestroy {
                             this.loadData();
                         },
                         error => {
-                            this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
-                            'OK', {
-                                duration: 10000
-                            });
+                            console.log(error);
+                            //console.log(error.error.error);
+                            if(error.error.error === 'invalid_insert'){
+                                this.snackBar.open('Já existe um rastreador cadastrado com esse serial key.', 'OK', {
+                                    duration: 10000
+                                });
+                            }else{
+                                this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+                                'OK', {
+                                    duration: 10000
+                                });
+                            }
+                            //error: "invalid_insert"
                         });
             }
 

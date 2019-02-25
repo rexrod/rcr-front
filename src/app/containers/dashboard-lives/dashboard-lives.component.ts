@@ -123,24 +123,24 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
 
         this.apiTransport.getAll()
           .subscribe(trans => {
-            console.log(trans);
-            console.log(trans.data);
+            //console.log(trans);
+            //console.log(trans.data);
             // this.transports = trans;
             // this.dataSource.data = trans.data; //transports;
             
             this.transports = [];
             this.rastreadores = [];
             for(var i=0; i < trans.data.length; i++){
-              console.log(trans.data[i]);
+              //console.log(trans.data[i]);
               
             //   if(trans.data[i].trackerSerial){
               if(trans.data[i].coordinates.length > 0){  
                 this.transports.push(trans.data[i]);
-                console.log(this.transports);
+                //console.log(this.transports);
                 this.rastreadores.push(trans.data[i].trackerSerial);
               }
             }
-            console.log(this.rastreadores);
+            //console.log(this.rastreadores);
           },
            error => {
                if (error.status === 0 || error.status === 404) {
@@ -149,7 +149,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
                }
            });
         //this.dataSource.data = ALL_IN_ONE_TABLE_FAKE_DATA;
-        console.log('loaddata call here');
+        //console.log('loaddata call here');
     }
 
     rastrear(evt?: any) {
@@ -158,11 +158,11 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
             this.selectedValue = evt.target.getData();
         }
 
-        console.log('rastreando...');
+        //console.log('rastreando...');
         const transport =  this.transports.find(x => x.trackerSerial === this.selectedValue );
         this.transport = transport;
     
-        console.log(transport.coordinates.length);
+        //console.log(transport.coordinates.length);
         
         if(!transport.coordinates.length){
             this.snackBar.open('O rastreador ainda não possui coordenadas!', 'OK', {
@@ -197,7 +197,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         points.push({'lat': transport.coordinates[i].coords.lat, 'lng': transport.coordinates[i].coords.long });
         }
     
-        console.log(points);
+        //console.log(points);
     
         // Initialize a linestring and add all the points to it:
         let linestring = new H.geo.LineString();
@@ -207,8 +207,10 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         
         // Initialize a polyline with the linestring:
         let polyline = new H.map.Polyline(linestring,{
-            style: { lineWidth: 10 },
-            arrows: { fillColor: 'white', frequency: 2, width: 0.8, length: 0.7 }
+            //style: { lineWidth: 10 },
+            //style: { strokeColor: 'black', lineWidth: 7 },
+            style: { strokeColor: 'black', lineWidth: 4 },
+            //arrows: { fillColor: 'white', frequency: 2, width: 0.8, length: 0.7 }
         });
         
         // Add the polyline to the map:
@@ -227,9 +229,9 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         // this.ui.addBubble(bubble);
     
         if(transport.coordinates.length > 0){
-            console.log(this.rastreamento);
+            //console.log(this.rastreamento);
             if(this.lived){
-                console.log(this.lived);
+                //console.log(this.lived);
                 if(this.rastreamento === undefined){
                     this.rastreamento = setInterval(() => { this.rastrear(); }, 1000 * 5);
                 }
@@ -316,7 +318,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
 
         setTimeout(() => {
 
-            console.log(this.transports);
+            //console.log(this.transports);
             let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
 
             this.group = new H.map.Group();
@@ -343,14 +345,14 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
             this.group.addEventListener('tap', (evt) => this.rastrear(evt),false);
 
             for(var i=0; i < this.transports.length; i++){
-                console.log(this.transports[i].coordinates[0].coords);
+                //console.log(this.transports[i].coordinates[0].coords);
                 let marker = new H.map.Marker({ lat: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.lat, lng: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.long }, { icon: icon });    
                 // this.map.addObject(marker);
                 // marker.setData('rastreador adicionado: ' + this.transports[i].trackerSerial);
                 marker.setData(this.transports[i].trackerSerial);
                 marker.addEventListener('pointerenter',function(evt) {
                     // evt.target.style.opacity = 0.6
-                    console.log(evt.target.style.opacity); 
+                    //console.log(evt.target.style.opacity); 
                 });
 
                 this.group.addObject(marker);
@@ -483,8 +485,8 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   desativarRastrear(){
-    console.log('desativando rastreamento...');
-    console.log(this.rastreamento);
+    //console.log('desativando rastreamento...');
+    //console.log(this.rastreamento);
     clearInterval(this.rastreamento); 
     this.textoRastrear = 'Rastrear';  
     this.lived = false;
@@ -498,7 +500,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     this.map.setCenter( { lat: -3.04945, lng:  -60.01845 } );
 
     for(var i=0; i < this.transports.length; i++){
-        console.log(this.transports[i].coordinates[0].coords);
+        //console.log(this.transports[i].coordinates[0].coords);
         let marker = new H.map.Marker({ lat: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.lat, lng: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.long }, { icon: icon });    
         //this.map.addObject(marker);
         marker.setData(this.transports[i].trackerSerial);

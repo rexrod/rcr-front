@@ -41,7 +41,7 @@ export class Service {
   constructor(private httpClient: HttpClient) { }
 
   getSuggestions(search): Observable<any[]> {
-    console.log('Search: ' + search);
+    //console.log('Search: ' + search);
     
     if(search === ''){
         search = 'Rua Diamantina';
@@ -57,7 +57,7 @@ export class Service {
 
     //this.httpClient.get<any>('https://jsonplaceholder.typicode.com/users')
     const endpoint = url + query;
-    console.log(endpoint);
+    //console.log(endpoint);
     let suggestions: any;
     suggestions = this.httpClient.get<any>(url + query); 
     return this.httpClient.get<any>('https://jsonplaceholder.typicode.com/users');
@@ -85,7 +85,7 @@ export class AppService {
 
 
         return this.http.get<any>(this.url + query).map(res => {
-            console.log(res);
+            //console.log(res);
             return res.suggestions;
         })
     }
@@ -216,11 +216,11 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
 
     
     filter(val: string): Observable<any[]> {
-        console.log('filter: ' + val);
+        //console.log('filter: ' + val);
         return this.service.getSuggestions(val)
         .pipe(
           map(response => response.filter(option => { 
-            console.log('Entrou aqui: ' + option.suggestions);
+            //console.log('Entrou aqui: ' + option.suggestions);
             return option.label.toLowerCase().indexOf(val.toLowerCase()) === 0
           }))
         )
@@ -386,7 +386,7 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
         // Add event listener:
         this.map.addEventListener('tap', function(evt) {
         // Log 'tap' and 'mouse' events:
-            //console.log(evt.type, evt.currentPointer.type); 
+            console.log(evt.type, evt.currentPointer.type); 
         });
         // Instantiate the default behavior, providing the mapEvents object: 
         let behavior = new H.mapevents.Behavior(mapEvents);
@@ -755,7 +755,7 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
 
   limpar(){
 
-    console.log('Entrou no limpar()');
+    //console.log('Entrou no limpar()');
     this.group.removeAll();
     this.searchTerm.setValue("Brasil, Manaus, ");
     this.positions = [];

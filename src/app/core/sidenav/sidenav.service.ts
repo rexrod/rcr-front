@@ -90,8 +90,8 @@ export class SidenavService {
   }
 
   addItem(item: SidenavItem) {
-    console.log('adicionando sidenav');
-    console.log(this.items);
+    //console.log('adicionando sidenav');
+    //console.log(this.items);
     if(item.name === 'Configurações' ){
       if(!this.items.find(x => x.name === 'Configurações' )){
         const foundIndex = this.items.findIndex((existingItem) => isEqual(existingItem, item));

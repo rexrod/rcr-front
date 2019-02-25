@@ -130,10 +130,20 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
                         },
                         error => {
                             console.log(error);
-                            this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
-                            'OK', {
-                                duration: 10000
-                            });
+                            if(error.error.error === 'username_invalid'){
+                                this.snackBar.open('Já existe um usuário cadastrado com este e-mail.', 'OK', {
+                                    duration: 10000
+                                });
+                            }else if(error.error.error_description.includes('registration_1')){
+                                this.snackBar.open('Já existe um usuário cadastrado com esta matricula.', 'OK', {
+                                    duration: 10000
+                                });
+                            }else{
+                                this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+                                'OK', {
+                                    duration: 10000
+                                });
+                            }
                          });
             }
 
@@ -159,10 +169,20 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
                         },
                         error => {
                             console.log(error);
-                            this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
-                            'OK', {
-                                duration: 10000
-                            });
+                            if(error.error.message.includes('email_1')){
+                                this.snackBar.open('Já existe um usuário cadastrado com este e-mail.', 'OK', {
+                                    duration: 10000
+                                });
+                            }else if(error.error.message.includes('registration_1')){
+                                this.snackBar.open('Já existe um usuário cadastrado com esta matricula.', 'OK', {
+                                    duration: 10000
+                                });
+                            }else{
+                                this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+                                'OK', {
+                                    duration: 10000
+                                });
+                            }
                         });
             }
         });
