@@ -61,7 +61,9 @@
                                  width: 100px;">
                           REMOVER
                         </button> -->
-                        <span>{{extractValue(row,column.cellContent,column.property)}}</span>
+                        
+                        <!-- <span>{{extractValue(row,column.cellContent,column.property)}}</span> -->
+                        
                         <!-- <button mat-mini-fab matTooltip="Remover rastreador" [matTooltipPosition]="'above'" (click)="removerRastreador(row)" id="create" class="no-shadow"
                                 style="background-color: #FFC937;
                                       width: 25px;
@@ -81,8 +83,14 @@
                         <!-- <button mat-icon-button matTooltip="Remover rastreador" [matTooltipPosition]="'above'" (click)="removerRastreador(row)" class="btn-icon-custom no-shadow" style="color: #FFC937;">
                           <mat-icon aria-label="Editar">cancel</mat-icon>
                         </button> -->
+                        
+                        <button mat-stroked-button disabled
+                        style=" font-size: 13px;
+                               width: 115px;">
+                         {{extractValue(row,column.cellContent,column.property)}} 
+                       </button>
                         <mat-icon aria-label="Editar" matTooltip="Remover rastreador" [matTooltipPosition]="'above'" (click)="removerRastreador(row)" class="btn-icon-custom no-shadow" style="color: #FFC937;" >cancel</mat-icon>
-
+                        
                       </ng-container>  
                       <ng-template #elseBlock1>
                           <!-- <button mat-stroked-button matTooltip="Adicionar Rastreador" [matTooltipPosition]="'above'" (click)="adicionarRastreador(row)"  
@@ -90,11 +98,13 @@
                           <button mat-stroked-button matTooltip="Adicionar Rastreador" [matTooltipPosition]="'above'" (click)="adicionarRastreador(row)"
                           style="color: #007EFA;
                                  font-size: 13px;
-                                 width: 115px;">
+                                 width: 115px;
+                                margin-right: 15%;">
                           ADICIONAR
                            <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
                            <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
                          </button>
+                        
                         <!-- <mat-icon matTooltip="Usuário Inativo" aria-label="Status">check_box_outline_blank</mat-icon> -->
                       </ng-template>
                     </mat-cell>
