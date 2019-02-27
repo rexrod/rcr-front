@@ -51,6 +51,10 @@ loadChildren: 'app/containers/dashboard-lives/dashboard-lives.module#DashboardLi
 path: 'transports', 
 loadChildren: 'app/containers/transports/transports.module#TransportsModule', 
 },    
+{ 
+  path: 'transports-employee', 
+  loadChildren: 'app/containers/transports-employee/transports.module#TransportsModule', 
+}, 
       {
         path: 'profiles',
         loadChildren: 'app/containers/profiles/profiles.module#ProfilesModule',
@@ -58,6 +62,10 @@ loadChildren: 'app/containers/transports/transports.module#TransportsModule',
       {
         path: 'users',
         loadChildren: 'app/containers/users/users.module#UsersModule',
+      },
+      {
+        path: 'employees',
+        loadChildren: 'app/containers/employees/employees.module#EmployeesModule',
       },
       {
         path: 'configurations',

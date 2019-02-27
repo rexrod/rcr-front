@@ -4,65 +4,17 @@
 $theme-background: #000000;
 
 // Lista de campos
-$fields: ('_id',
-'type',
-'capacity',
-'vehiclePlate',
-'description',
-'thirdCompany',
-'trackerSerial',
-'actions',
+$fields: ('id',
+'name',
+'address',
+'company',
+'status',
+'actions'
 );
-
-// _id?: string;
-// type?: string;
-// capacity?: string;
-// vehiclePlate?: string;
-// thirdCompany?: string;
-// __v?: number;
-// coordinates
 
 // Padroniza o tamanho dos campos
 $length: 100/length($fields)*1%;
 
-
-.btn-stroked-tracker-add {
-    //color: map-get($mat-sgm-primary, 500) !important;
-    color: #007EFA;
-    //background-color:unset !important;
-    background-color:transparent;
-    border: 1px solid !important;
-    line-height: 1.70;
-    width: 100px;
-    cursor: pointer;
-}
-
-.btn-stroked-tracker-add:hover {
-    //color: map-get($mat-sgm-primary, 500) !important;
-    color: white;
-    background-color: #007EFA;
-    //background-color:transparent !important;
-    border: 1px solid !important;
-  }
-
-.btn-stroked-tracker-remove {
-    //color: map-get($mat-sgm-primary, 500) !important;
-    color: red;
-    //background-color:unset !important;
-    background-color:transparent;
-    border: 1px solid !important;
-    line-height: 1.70;
-    width: 100px;
-    cursor: pointer;
-}
-
-.btn-stroked-tracker-remove:hover {
-    //color: map-get($mat-sgm-primary, 500) !important;
-    color: white;
-    background-color: red;
-    //background-color:transparent !important;
-    border: 1px solid !important;
-}
 
 @mixin column-width($property) {
     max-width: $property;
@@ -114,20 +66,7 @@ body {
     align-items: center;
 }
 
-.md-form.mat-2 input[type=text] {
-    border-width: 1px !important;
-    border-style: solid;
-    border-color: #ced4da;
-    border-radius: 5px;
-    padding-top: .5rem;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-bottom: .3rem;
-    font-size: .875rem;
-    line-height: 1.5;
-  }
-
-#background-transport {
+#background-employee {
     height: 100%;
     flex-direction: column;
     box-sizing: border-box;
@@ -173,7 +112,6 @@ body {
                     #input-filter {
                         @extend %flex-center;
                         max-width: 76.5%;
-
                         fury-list {
                             flex: 1 1 auto;
                             .fury-list-table {
@@ -212,14 +150,14 @@ body {
                         text-align: center;
                         //min-height: 35px;
                         background-color: #BDC3C7;
- 
+
                         .mat-sort-header-container {
                             display: flex;
                             justify-content: center !important;
                         }
                         .table-header {
                             width: 100%;
-                            color: $theme-background;
+                            //color: $theme-background;
                             color: white;
                             display: inline-flex;
                             flex: 2 1 auto;
@@ -240,10 +178,9 @@ body {
                         mat-table {
                             width: 100%;
                             mat-header-row {
-                                //display: none;
+                                // display: none;
                                 @extend %table-columns;
                                 background-color: #BDC3C7;
-                                border-width: 0;
                                 border-bottom-width: 0;
                                 border-top-width: 0;
                             }
@@ -306,13 +243,7 @@ body {
     }
 }
 
-.btn-icon-custom{
-    color: #646D77;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-caption formatting
+// caption formatting
 .circle-small {
     width: 16px;
     height: 16px;
@@ -343,9 +274,6 @@ caption formatting
     .mat-paginator-range-label {
         margin: unset !important;
     }
-    mat-header-row {
-        display: none;
-    }
 }
 
 @media screen and (max-width: 800px) {
@@ -368,7 +296,6 @@ caption formatting
     }
     #tbody{
         height: 0px !important; // fix layout in the firefox
-        
     }
     mat-table {
         mat-header-row {
@@ -379,6 +306,7 @@ caption formatting
                 @include column-width(unset !important);
             }
         }
+
         mat-row {
             flex-flow: column;
         }

@@ -59,7 +59,6 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
         { name: 'Empresa', property: 'thirdCompany', visible: true, isModelProperty: true },
         { name: 'Rastreador', property: 'trackerSerial', visible: true, isModelProperty: true },
         { name: 'Coordenadas', property: 'coordinates', visible: false, isModelProperty: true },
-        { name: 'Rotas', property: 'routes', visible: false, isModelProperty: true },
         { name: '', property: 'actions', visible: true }
     ] as ListColumn[];
     dataSource: MatTableDataSource<Transport> | null;
@@ -82,24 +81,26 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
     loadData() {
         this.apiTransport.getAll()
           .subscribe(transports => {
+            //console.log(transports);
             //console.log(transports.data);
 
             this.transports = [];
-            for(var i=0; i < transports.data.length; i++){      
-              if((transports.data[i].segment == 'Carga') || 
-                 (transports.data[i].segment == undefined) ||
-                 (transports.data[i].segment == 'undefined')){  
+            for(var i=0; i < transports.data.length; i++){
+              console.log(transports.data[i].segment);  
+              if(transports.data[i].segment === 'Funcionarios'){  
                 this.transports.push(transports.data[i]);
+
               }
             }
 
-            this.dataSource.data = this.transports;//transports.data; //transports;
+            //this.transports = transports;
+            this.dataSource.data = this.transports //transports.data; //transports;
             this.paginator.firstPage();
           },
            error => {
-               console.log(error);
                if (error.status === 0 || error.status === 404) {
                    //this.snackBar.open('Esse serviço está indisponível no momento.', 'OK', {});
+                  console.log(error);
                }
            });
            //this.dataSource.data = ALL_IN_ONE_TABLE_FAKE_DATA;

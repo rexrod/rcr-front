@@ -5,6 +5,8 @@ export interface Transport {
     capacity?: string;
     vehiclePlate?: string;
     thirdCompany?: string;
+    segment?: string;
+    description?: string;
     __v?: number;
     tracker?: {
       _id?: string,
@@ -22,5 +24,8 @@ export interface Transport {
       },
     date?: string;
     tracker?: string;
-    }]
+    }],
+    routes?: {
+      employees?: []
+    }
 }

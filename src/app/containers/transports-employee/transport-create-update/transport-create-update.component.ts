@@ -85,7 +85,7 @@ export class TransportCreateUpdateComponent implements OnInit {
         capacity: [this.defaults.capacity],
         thirdCompany: [this.defaults.thirdCompany],  
         idRastreador: [this.defaults.idRastreador],
-        description: [this.defaults.description],      
+        description: [this.defaults.description],    
         segment: {value:[this.defaults.segment], disabled: true},
       });
 
@@ -175,7 +175,7 @@ export class TransportCreateUpdateComponent implements OnInit {
     formData.set('thirdCompany', transport.thirdCompany);
     formData.set('segment', transport.segment);
     formData.set('description', transport.description);
-    
+
     console.log(formData.getAll);
     console.log(formData.toString());
     console.log(httpOptions);

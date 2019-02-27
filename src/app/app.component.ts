@@ -48,7 +48,7 @@ export class AppComponent {
               {
                 name: 'Usuários',
                 routeOrFunction: '/users',
-                icon: 'supervised_user_circle',
+                //icon: 'supervised_user_circle',
                 position: 1
               },
               // {
@@ -100,9 +100,29 @@ menu.push({
 
 menu.push({ 
 name: 'Transportes', 
-routeOrFunction: 'transports', 
+//routeOrFunction: 'transports', 
 icon: 'map', 
-position: 25 
+position: 25,
+subItems: [
+  {
+    name: 'Cargas',
+    routeOrFunction: '/transports',
+    //icon: 'supervised_user_circle',
+    position: 1
+  },
+  {
+    name: 'Funcionários',
+    routeOrFunction: '/transports-employee',
+    //icon: 'group',
+    position: 2
+  },
+  {
+    name: 'Outros',
+    //routeOrFunction: '/transports-employee',
+    //icon: 'group',
+    position: 3
+  }
+ ] 
 });
 
 menu.push({ 
@@ -113,10 +133,17 @@ position: 27
 });
 
 menu.push({ 
+  name: 'Funcionários', 
+  routeOrFunction: 'employees', 
+  icon: 'supervised_user_circle', 
+  position: 28 
+});
+
+menu.push({ 
 name: 'Relatórios', 
 routeOrFunction: 'reports', 
 icon: 'description', 
-position: 28 
+position: 29 
 });
 
 

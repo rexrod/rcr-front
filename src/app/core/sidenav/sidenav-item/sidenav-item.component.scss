@@ -34,7 +34,7 @@
   white-space: nowrap;
   letter-spacing: 0.04em;
   //background: #3F4ADE;
-  box-shadow: inset 0px 0.5px 0px rgba( white, 0.16);
+  box-shadow: inset 0px 0.5px 0px rgba( white, 0.16) !important;
   //inset 0px 0.5px 0px 0px rgba(255, 255, 255, 0.16)
   background-color: #3F4ADE;
   //border-bottom: 1px solid #000000;
@@ -76,11 +76,20 @@
     //color: #FFC937;
   }
 
+
+  // .sidenav-item.level-2[_ngcontent-c15] {
+  //   background: #2935da;
+  //   padding-left: 46px;
+  //   box-shadow: inset 0px 0.5px 0px rgba( white, 0.16);
+  //   /* box-shadow: 0px 0.5px 0px rgba(255, 255, 255, 0.16); */
+  // }
+
   &.active {
     background: $sidenav-background-active;
     //color: $sidenav-item-color-hover;
     color: #FFC937;
-    box-shadow: 0px 0.5px 0px rgba( white, 0.16);
+    //box-shadow: 0px 0.5px 0px rgba( white, 0.16);
+    //box-shadow: inset 0px 0.5px 0px rgba( white, 0.16) !important;
   }
 
   @keyframes fadein {

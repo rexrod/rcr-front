@@ -13,6 +13,7 @@ export const environment = {
     transports: 'https://lupa-v1.herokuapp.com/auth/v1',
     tracker: 'https://lupa-v1.herokuapp.com/auth/v1',
     users: 'https://lupa-v1.herokuapp.com/auth/v1',
+    employees: 'https://lupa-v1.herokuapp.com/auth/v1',
 
 // from template    
     notices: '',
