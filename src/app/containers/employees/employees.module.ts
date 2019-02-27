@@ -10,6 +10,7 @@ import { DialogDeleteModule } from '../../core/common/dialog-delete/dialog-delet
 import { EmployeesRoutingModule } from './employees-routing.module';
 import { EmployeesComponent } from './employees.component';
 import { EmployeesCreateUpdateModule} from './employee-create-update/employee-create-update.module';
+import { DialogStatusModule } from 'app/core/common/dialog-change-status/dialog-status.module';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { EmployeesCreateUpdateModule} from './employee-create-update/employee-cr
     ListModule,
     PageModule,
     BreadcrumbsModule,
-    DialogDeleteModule
+    DialogDeleteModule,
+    DialogStatusModule,
   ],
   declarations: [EmployeesComponent],
   exports: [EmployeesComponent]

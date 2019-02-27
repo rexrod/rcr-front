@@ -14,14 +14,32 @@
                         </mat-form-field>                   
                     </div>
                 </div>
-                <div class="row"> 
+                <div class="row" *ngIf="isCreateMode()"> 
+                    <div class="name field">
+                        <mat-form-field>
+                            <mat-select [(value)]="selected" placeholder="Tipo de Veículo" (selectionChange)="typeChanged($event.value)">
+                                <!-- <mat-option>None</mat-option> -->
+                                <mat-option value="Carreta">Carreta</mat-option>
+                                <mat-option value="Ônibus">Ônibus</mat-option>
+                                <mat-option value="Carro">Carro</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <!-- <p>Segmento: {{selected}}</p> -->
+                    </div>
+                </div>
+                <div class="row" *ngIf="isCreateMode()"> 
+                    <div class="name field">
+                        <p>Segmento: {{selectedSegment}}</p>                   
+                    </div>
+                </div>
+                <div class="row" *ngIf="isUpdateMode()"> 
                     <div class="name field">
                         <mat-form-field>
                             <input matInput placeholder="Tipo de Veículo" pattern="^(?!\s*$).+" formControlName="type" id="type" required />
                         </mat-form-field>                   
                     </div>
                 </div>
-                <div class="row"> 
+                <div class="row" *ngIf="isUpdateMode()"> 
                     <div class="segment field">
                         <mat-form-field>
                             <input matInput placeholder="Segmento" pattern="^(?!\s*$).+" formControlName="segment" id="segment" required/>

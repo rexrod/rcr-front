@@ -12,6 +12,44 @@ $fields: ('id',
 'actions'
 );
 
+.btn-stroked-active {
+    //color: map-get($mat-sgm-primary, 500) !important;
+    color: green;
+    //background-color:unset !important;
+    background-color:transparent;
+    border: 1px solid !important;
+    line-height: 1.70;
+    width: 100px;
+    cursor: pointer;
+}
+
+.btn-stroked-active:hover {
+    //color: map-get($mat-sgm-primary, 500) !important;
+    color: white;
+    background-color: green;
+    //background-color:transparent !important;
+    border: 1px solid !important;
+  }
+
+.btn-stroked-inactive {
+    //color: map-get($mat-sgm-primary, 500) !important;
+    color: red;
+    //background-color:unset !important;
+    background-color:transparent;
+    border: 1px solid !important;
+    line-height: 1.70;
+    width: 100px;
+    cursor: pointer;
+}
+
+.btn-stroked-inactive:hover {
+    //color: map-get($mat-sgm-primary, 500) !important;
+    color: white;
+    background-color: red;
+    //background-color:transparent !important;
+    border: 1px solid !important;
+}
+
 // Padroniza o tamanho dos campos
 $length: 100/length($fields)*1%;
 

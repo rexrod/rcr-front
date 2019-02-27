@@ -16,6 +16,7 @@ import { ALL_IN_ONE_TABLE_FAKE_DATA } from './employees.fake'; // to test withou
 import { trigger, state, transition, style, animate } from '@angular/animations';
 import { EmployeesControllerService } from './employees.service';
 import { Employees } from '../../models/employees/employees.model';
+import { DialogStatusComponent } from 'app/core/common/dialog-change-status/dialog-status.component';
 
 @Component({
     selector: 'fury-employees',
@@ -49,7 +50,7 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
         { name: 'Nome', property: 'name', visible: true, isModelProperty: true },
         { name: 'Endereço', property: 'address', visible: true, isModelProperty: true },
         { name: 'Empresa', property: 'company', visible: true, isModelProperty: true },
-        { name: 'Status', property: 'status', visible: false, isModelProperty: true },
+        { name: 'Status', property: 'status', visible: true, isModelProperty: true },
         { name: '', property: 'actions', visible: true }
     ] as ListColumn[];
     dataSource: MatTableDataSource<Employees> | null;
@@ -243,5 +244,64 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
       this.expandedElement = row;
     }
   }
+
+  ativarUsuario(employee) {
+
+    this.dialog.open(DialogStatusComponent, {
+        data: { id: employee.id, displayName: employee.name, title: 'Deseja ativar o funcionário?' },
+        panelClass: 'dialog-status'
+    }).afterClosed().subscribe((_employee: Employees) => {
+
+        if (_employee) {
+             this.apiEmployee.atualizarStatus(_employee).
+                subscribe(
+                    success => {
+                        this.snackBar.open('Funcionário ativado com sucesso!', 'OK', {
+                            duration: 10000
+                        });
+                        // Reload the table after the post
+                        this.loadData();
+                    },
+                    error => {
+                        console.log(error);
+                        this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+                        'OK', {
+                            duration: 10000
+                        });
+                    });
+        }
+
+    });
+}
+
+desativarUsuario(employee) {
+
+    this.dialog.open(DialogStatusComponent, {
+        data: { id: employee.id, displayName: employee.name, title: 'Deseja desativar o funcionário?' },
+        panelClass: 'dialog-status'
+    }).afterClosed().subscribe((_employee: Employees) => {
+
+        if (_employee) {
+             this.apiEmployee.atualizarStatus(_employee).
+                subscribe(
+                    success => {
+                        this.snackBar.open('Funcionário desativado com sucesso!', 'OK', {
+                            duration: 10000
+                        });
+                        // Reload the table after the post
+                        this.loadData();
+                    },
+                    error => {
+                        console.log(error);
+                        this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+                        'OK', {
+                            duration: 10000
+                        });
+                    });
+        }
+
+    });
+}
+
 }
 

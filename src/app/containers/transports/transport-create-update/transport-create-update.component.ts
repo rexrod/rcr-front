@@ -24,7 +24,8 @@ export class TransportCreateUpdateComponent implements OnInit {
   form: FormGroup;
   mode: 'create' | 'update' = 'create';
   rastreadores: Rastreador[];
-
+  selected: string;
+  selectedSegment: string;
   progress = false;
   hideElement = true;
 
@@ -80,7 +81,7 @@ export class TransportCreateUpdateComponent implements OnInit {
       console.log(this.fb);
       this.form = this.fb.group({
         _id: [this.defaults._id || null],
-        type: [this.defaults.type],
+        type:  {value:[this.defaults.type], disabled: true}, //[this.defaults.type],
         vehiclePlate: [this.defaults.vehiclePlate],
         capacity: [this.defaults.capacity],
         thirdCompany: [this.defaults.thirdCompany],  
@@ -169,11 +170,13 @@ export class TransportCreateUpdateComponent implements OnInit {
 
     const formData = new URLSearchParams();
     // append your data
-    formData.set('type', transport.type);
+    // formData.set('type', transport.type);
     formData.set('vehiclePlate', transport.vehiclePlate);
+    formData.set('type', this.selected);
+    formData.set('segment', this.selectedSegment);
     formData.set('capacity', transport.capacity);
     formData.set('thirdCompany', transport.thirdCompany);
-    formData.set('segment', transport.segment);
+    //formData.set('segment', transport.segment);
     formData.set('description', transport.description);
     
     console.log(formData.getAll);
@@ -185,5 +188,14 @@ export class TransportCreateUpdateComponent implements OnInit {
     return promise;
   }
 
+  typeChanged(value){
+    if(value == 'Carreta'){
+      this.selectedSegment = 'Carga';
+    }else if(value == 'Ônibus'){
+      this.selectedSegment = 'Funcionarios';
+    }else if(value == 'Carro'){
+      this.selectedSegment = 'Funcionarios';
+    }
+  }
 }
 

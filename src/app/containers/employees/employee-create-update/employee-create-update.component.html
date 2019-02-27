@@ -10,32 +10,39 @@
                 <div class="row" style="display: none"> 
                     <div class="id field" >
                         <mat-form-field>
-                            <input matInput placeholder="Id" pattern="^(?!\s*$).+" formControlName="_id" id="_id" />
+                            <input matInput placeholder="Id" pattern="^(?!\s*$).+" formControlName="id" id="_id" />
                             <!-- <input *ngIf="isUpdateMode()" disabled matInput placeholder="Id" pattern="^(?!\s*$).+" formControlName="_id" id="_id" /> -->
                         </mat-form-field>                   
                     </div>
                 </div>
                 <div class="row"> 
-                    <div class="serialKey field"  >
+                    <div class="name field"  >
                         <mat-form-field>
-                            <input matInput placeholder="Serial Key" pattern="^(?!\s*$).+" formControlName="serialKey" id="serialKey" />
+                            <input matInput placeholder="Nome" pattern="^(?!\s*$).+" formControlName="name" id="name" />
                         </mat-form-field>                   
                     </div>
                 </div>
                 <div class="row"> 
-                    <div class="trackerModel field" >
+                    <div class="address field" >
                         <mat-form-field>
-                            <input matInput placeholder="Modelo" pattern="^(?!\s*$).+" formControlName="trackerModel" id="trackerModel" />
+                            <input matInput placeholder="Endereço" pattern="^(?!\s*$).+" formControlName="address" id="address" />
                         </mat-form-field>                   
                     </div>
                 </div>
                 <div class="row"> 
-                    <div class="notes field" >
+                    <div class="company field" >
                         <mat-form-field>
-                            <input matInput placeholder="Observações" pattern="^(?!\s*$).+" formControlName="notes" id="notes" />
+                            <input matInput placeholder="Empresa" pattern="^(?!\s*$).+" formControlName="company" id="company" />
                         </mat-form-field>                   
                     </div>
                 </div>
+                <!-- <div class="row"> 
+                    <div class="status field" >
+                        <mat-form-field>
+                            <input matInput placeholder="Status" pattern="^(?!\s*$).+" formControlName="status" id="status" />
+                        </mat-form-field>                   
+                    </div>
+                </div> -->
             </form>
         </div>
     </div>
@@ -45,4 +52,3 @@
     </div>
 
 </fury-dialog-panel>
-

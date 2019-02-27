@@ -57,7 +57,9 @@ export class EmployeesControllerService {
         formData.set('name', employee.name);
         formData.set('registration', employee.registration);
         formData.set('address', employee.address);
-  
+        formData.set('company', employee.company);
+        formData.set('status', employee.status);
+
         // console.log(formData.getAll);
         // console.log(formData.toString());
         
@@ -81,7 +83,9 @@ export class EmployeesControllerService {
         formData.set('name', employee.name);
         formData.set('registration', employee.registration);
         formData.set('address', employee.address);
-  
+        formData.set('company', employee.company);
+        formData.set('status', employee.status);
+
         // console.log(formData.getAll);
         // console.log(formData.toString());
 
@@ -102,6 +106,22 @@ export class EmployeesControllerService {
         // console.log(ratreadores);  
 
         return this.httpClient.delete( environment.origin.employees + '/employee/' + employee.id, httpOptions);
+    }
+
+    public atualizarStatus(employee: any): Observable<any> {
+        
+        let token = localStorage.getItem('token');
+        // console.log(token);
+        const httpOptions = {
+            headers: new HttpHeaders({
+            "Content-Type":  "application/x-www-form-urlencoded",
+            "Authorization": "Bearer " + `${token}`
+            }),
+        };
+
+        const formData = new URLSearchParams();
+         
+        return this.httpClient.put( environment.origin.employees + '/employee/status/' + employee.id, formData, httpOptions);
     }
 
 }
