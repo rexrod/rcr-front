@@ -7,6 +7,6 @@ staging:
    - apt-get update -qy
    - apt-get install -y ruby-dev
    - gem install dpl
-   - dpl --provider=heroku --app=lupa-web-v1 --api-key=$HEROKU_API_DEV_KEY
+   - dpl --provider=heroku --app=rcr-frontend-angular --api-key=$HEROKU_API_DEV_KEY
  only:
    - marcus
