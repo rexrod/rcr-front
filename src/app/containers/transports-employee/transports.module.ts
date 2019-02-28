@@ -12,6 +12,7 @@ import { DialogRastreadorModule } from '../../core/common/dialog-rastreador/dial
 import { TransportsRoutingModule } from './transports-routing.module';
 import { TransportsComponent } from './transports.component';
 import { TransportCreateUpdateModule} from './transport-create-update/transport-create-update.module';
+import { DashboardRoutesModule } from '../dashboard-routes-employee/dashboard-routes.module';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { TransportCreateUpdateModule} from './transport-create-update/transport-
     PageModule,
     BreadcrumbsModule,
     DialogDeleteModule,
-    DialogRastreadorModule
+    DialogRastreadorModule,
+    DashboardRoutesModule,
   ],
   declarations: [TransportsComponent],
   exports: [TransportsComponent]

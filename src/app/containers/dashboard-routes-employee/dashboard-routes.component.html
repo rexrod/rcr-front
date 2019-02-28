@@ -1,0 +1,155 @@
+<!-- <div>
+    <span>Adicionar Funcionários</span>
+    <div fxLayoutAlign="right">
+        <button type="button" class="mat-icon-button" mat-dialog-close>
+          <span class="mat-button-wrapper">
+            <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">close</mat-icon>
+          </span>
+        </button>
+    </div>
+</div>   -->
+
+<div id="background-dashboard-routes-employee">
+    <div id="conteiner">
+      <div id="card">
+        <div id="table-component">
+          <!-- TABLE FILTER -->
+          <div id="tfilter">
+            <!-- <div id="title" fxLayoutAlign="left" fxLayout="row">
+              <span>Live View</span>
+            </div> -->
+            <!-- <div id="title">
+                <span>Rotas</span>
+            </div> -->
+            <!-- <div id="input-filter">
+              <fury-list [columns]="columns" (filterChange)="onFilterChange($event)" fxLayoutAlign="center center" fxLayout="row"></fury-list>
+            </div>
+            -->
+            <!-- <div style="margin-left: 50px"> 
+              <mat-form-field>
+                <input matInput placeholder="Buscar..." value="">
+              </mat-form-field>
+            </div>
+            <div style="margin-left: 20px">
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Data">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div> -->
+            <!-- <div id="input-filter" style="margin-left: 20px"> -->
+            
+            <div id="input-employee">
+              <mat-form-field>
+                  <mat-select placeholder="Funcionários" [(ngModel)]="employeeValue" id="idEmployee" (selectionChange)="employeeChange($event.value)"> 
+                    <mat-option *ngFor="let employee of employees" [value]="employee">
+                      {{employee.name}}
+                    </mat-option>
+                  </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div id="input-filter" style="margin-left: 20px">  
+
+                <mat-form-field>
+                  <input matInput placeholder="Endereço do Funcionário" aria-label="Number" matInput [(ngModel)]="addressValue"> 
+                </mat-form-field>
+  
+                <!-- <mat-form-field>
+                  <mat-icon class="fury-filter-input-icon" matPrefix>search</mat-icon>
+                  <input type="text" placeholder="" aria-label="Number" matInput [formControl]="searchTerm" [matAutocomplete]="auto"> 
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let item of searchResult" [value]="item.label">
+                      {{ item.label }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field> -->
+
+            </div>
+
+            <!-- <div id="input-lived" style="margin-left: 20px">
+              <mat-checkbox [(ngModel)]="places">Pesquisar por lugares</mat-checkbox>
+            </div> -->
+            <!-- 
+            <div style="margin-left: 20px">
+              <button  mat-raised-button id="rastrear" [disabled]="textoRastrear != 'Rastrear'" (click)="rastrear()">{{textoRastrear}}</button>
+            </div>
+            <div style="margin-left: 20px" *ngIf="textoRastrear != 'Rastrear'">
+               <button  mat-raised-button id="cancelar" (click)="desativarRastrear()">Cancelar Rastreamento</button>
+            </div>
+            -->
+            <div style="margin-left: 15px">
+              <button  mat-raised-button id="pesquisar" (click)="pesquisarLugares()">INCLUIR</button>
+            </div> 
+            <div style="margin-left: 15px">
+              <button  mat-raised-button id="rota" (click)="calcularRota()">VER ROTA</button>
+            </div> 
+            <div style="margin-left: 15px">
+                <button  mat-raised-button id="limpar" (click)="limpar()">LIMPAR</button>
+            </div> 
+            <div style="margin-left: 15px">
+              <button  mat-raised-button id="confirmar" (click)="confirmarRota()">CONFIRMAR</button>
+          </div> 
+            <!-- <div id="add">
+              <button mat-mini-fab color="primary"  matTooltip="Adicionar Item" [matTooltipPosition]="'above'" (click)="create()" id="create">
+                <mat-icon aria-label="Adicionar">add</mat-icon>
+              </button>
+            </div> -->
+          </div>
+
+          <!-- TABLE HEADER -->
+          <!-- The header is separate so you do not lose the filters or the sorting and keep the layout-->
+          <!-- <div id="tmaster"> -->
+            <!-- <div id="thead" matSort>
+              <div class="table-header">
+                <div *ngFor="let column of columns" class="{{column.property}}" mat-sort-header="{{column.property}}" 
+                [style.display]="column.visible ? 'flex' : 'none'" fxLayoutAlign="center">
+                  {{column.name | uppercase}}
+                </div>
+              </div>
+            </div> -->
+            <!-- border:1px solid black; -->
+            <div id="teste" style="width: 100%; height: 95%; background: white;" >
+              <!-- <div #map id="map" style="width: 100%; height: 800px"></div> -->
+              <div #map id="map" style="width: 100%; 
+                                        height: 100%;
+                                        padding-left: 1%;
+                                        padding-right: 1%;
+                                        padding-bottom: 1%;
+                                        padding-top: 1%;
+                                        border:1px solid;
+                                        border-color:  rgba(0, 0, 0, 0.05);
+                                        position: relative;">
+                                        <!-- beige  -->
+                <dashboard-routes-map-button *ngIf="textoRastrear != 'Rastrear'" class="button-custom" [transport]="transport"></dashboard-routes-map-button>
+              </div>
+              
+            <!-- </div> -->
+            <div id="tbody">
+            </div>
+            <!-- TABLE BODY -->
+            <!-- <agm-map id="map" [latitude]="lat" [longitude]="lng">
+                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+            </agm-map> -->
+
+            <!-- <div id="tbody"> -->
+
+              <!-- <agm-map class="fury-map" [latitude]="lat" [longitude]="lng" style="width: 50%;height: 50%;">
+                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+              </agm-map> -->
+
+              <!-- <agm-map id="map" [latitude]="lat" [longitude]="lng">
+                  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+              </agm-map> -->
+      
+            <!-- </div> -->
+          
+          </div>
+          <!-- TABLE FOOTER -->
+          <!-- <div id="tfooter">
+            <mat-paginator class="paginator" [pageSize]="pageSize" color="primary"></mat-paginator>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>

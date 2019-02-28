@@ -4,65 +4,25 @@
 $theme-background: #000000;
 
 // Lista de campos
-$fields: ('_id',
-'type',
-'capacity',
-'vehiclePlate',
-'description',
-'thirdCompany',
-'trackerSerial',
-'routes',
-'actions',
+$fields: ('id',
+'name',
+'actions'
 );
-
-// _id?: string;
-// type?: string;
-// capacity?: string;
-// vehiclePlate?: string;
-// thirdCompany?: string;
-// __v?: number;
-// coordinates
 
 // Padroniza o tamanho dos campos
 $length: 100/length($fields)*1%;
 
 
-.btn-stroked-tracker-add {
-    //color: map-get($mat-sgm-primary, 500) !important;
-    color: #007EFA;
-    //background-color:unset !important;
-    background-color:transparent;
-    border: 1px solid !important;
-    line-height: 1.70;
-    width: 100px;
-    cursor: pointer;
-}
-
-.btn-stroked-tracker-add:hover {
-    //color: map-get($mat-sgm-primary, 500) !important;
-    color: white;
-    background-color: #007EFA;
-    //background-color:transparent !important;
-    border: 1px solid !important;
-  }
-
-.btn-stroked-tracker-remove {
-    //color: map-get($mat-sgm-primary, 500) !important;
-    color: red;
-    //background-color:unset !important;
-    background-color:transparent;
-    border: 1px solid !important;
-    line-height: 1.70;
-    width: 100px;
-    cursor: pointer;
-}
-
-.btn-stroked-tracker-remove:hover {
-    //color: map-get($mat-sgm-primary, 500) !important;
-    color: white;
-    background-color: red;
-    //background-color:transparent !important;
-    border: 1px solid !important;
+.button-custom {
+    // border-left: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    display: flex;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    z-index: 2;
+    background-color: white;
+    width: 250px;
 }
 
 @mixin column-width($property) {
@@ -90,15 +50,12 @@ $length: 100/length($fields)*1%;
             margin-left: auto;
             margin-right: auto;
             padding-left: 24px; // sorting arrow discount
-            font-size: 90%;
         }
 
         .mat-column-#{$heading} {
             @include column-width($length);
             margin-left: auto;
             margin-right: auto;
-            font-size: 90%;
-            color: white;
             @if #{$heading}==actions {
                 button {
                     margin: 5px;
@@ -115,20 +72,85 @@ body {
     align-items: center;
 }
 
-.md-form.mat-2 input[type=text] {
-    border-width: 1px !important;
-    border-style: solid;
-    border-color: #ced4da;
-    border-radius: 5px;
-    padding-top: .5rem;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-bottom: .3rem;
-    font-size: .875rem;
-    line-height: 1.5;
-  }
+mat-form-field {
+    flex: 1 1 auto;
+}
 
-#background-transport-employee {
+#rastrear {
+    flex: .5 1 auto;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    font-size: 100%;
+    background-color: #FFC937;
+    color: white;
+    font-weight: normal;
+}
+
+#confirmar {
+    flex: .5 1 auto;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    font-size: 100%;
+    background-color: #FFC937;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+#pesquisar {
+    flex: .5 1 auto;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    font-size: 100%;
+    background-color: black;//#FFC937;
+    color: white;
+    font-weight: 500;
+    width: 95px;
+    font-size: 14px;
+}
+
+#rota {
+    flex: .5 1 auto;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    font-size: 100%;
+    background-color: #3F4ADE;//rgb(216, 214, 209);
+    color: white;
+    font-weight: 500;
+    width: 95px;
+    font-size: 14px;
+}
+
+#cancelar {
+    flex: .5 1 auto;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    font-size: 100%;
+    background-color: red;
+    color: white;
+    font-weight: normal;
+}
+
+#limpar {
+    flex: .5 1 auto;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    font-size: 100%;
+    background-color: red;
+    color: white;
+    font-weight: 500;
+    width: 95px;
+    font-size: 14px;
+}
+
+
+.form-title-routes {
+    font-size: 120%;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    height: 20%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+#background-dashboard-routes-employee {
+    
     height: 100%;
     flex-direction: column;
     box-sizing: border-box;
@@ -141,8 +163,8 @@ body {
         justify-content: stretch;
         align-items: stretch;
         align-content: stretch;
-        height: 91%;
-        width: 91%;
+        height: 96%;
+        width: 96%;
         #card {
             flex: 1 1 auto;
             display: flex;
@@ -150,30 +172,55 @@ body {
             #table-component {
                 //background-color: #273B56;
                 flex: 1 1 auto;
-                display: flex;
+                // display: flex;
                 flex-direction: column;
                 #tfilter {
                     @extend %flex-center;
                     display: flex;
-                    min-height: 64px;
-                    box-shadow: 0px 0px 3px rgba( black, 0.16);
+                    min-height: 74px;
+                    //box-shadow: 0px 3px 6px rgba( black, 0.16);
                     color: $theme-background;
                     z-index: 2;
                     #title {
                         text-align: center;
-                        font-size: 120%;
+                        font-size: 150%;
                         font-weight: bold;
                         display: flex;
                         flex: 1 1 auto;
                         max-width: 15%; //background: yellow;
-                        // border-right: 1px #707070 solid;
+                        //border-right: 1px #707070 solid;
                         span {
                             flex: 1 1 auto;
                         }
                     }
                     #input-filter {
                         @extend %flex-center;
-                        max-width: 76.5%;
+                        // max-width: 76.5%;
+                        max-width: 70.5%;
+
+                        .fury-filter-input-icon {
+                            width: 1.2em;
+                            color: #C0C6C9;
+                            height: 22px;
+                            font-size: 22px;
+                        }
+
+                        // .mat-form-field-underline{
+                        //     display: none;
+                        // }
+
+                        // .mat-form-field-wrapper{
+                        //     border-width: 1px !important;
+                        //     border-style: solid;
+                        //     border-color: #BDC3C7; //#ced4da; 
+                        //     border-radius: 5px;
+                        //     padding-top: .5rem;
+                        //     padding-left: 8px;
+                        //     padding-right: 8px;
+                        //     padding-bottom: .3rem;
+                        //     font-size: .875rem;
+                        //     //line-height: 1.5;
+                        // }
 
                         fury-list {
                             flex: 1 1 auto;
@@ -195,15 +242,31 @@ body {
                     }
                     #add {
                         display: flex;
-                        // max-width: 8.5%;
-                        max-width: 10%;
-                        padding-right: 2%;
+                        max-width: 8.5%;
                         @extend %flex-center;
                         button {
                             box-shadow: 0px 3px 6px rgba( black, 0.26);
                         }
                     }
                 }
+                // #map {
+                //     flex: 10 1 auto; // background: brown;
+                //    // align-items: flex-start;
+                //    // text-align: center;
+                //     display: flex;
+                //     box-sizing: border-box;
+                //     height: 91%;
+                //     width: 91%;
+               
+                //    // box-shadow: 0px 3px 6px rgba( black, 0.16);
+                //    // z-index: 1;
+                //    // overflow: auto;
+                //    //height: 0;
+                //    // width: 1280px; 
+                //    // height: 768px;
+                //    // min-height: 500px;
+                //    // min-width: 500px;
+                // }
                 #tmaster {
                     display: flex;
                     flex: 12 1 auto;
@@ -211,9 +274,7 @@ body {
                     #thead {
                         @extend %flex-center;
                         text-align: center;
-                        //min-height: 35px;
-                        background-color: #BDC3C7;
- 
+                        min-height: 35px;
                         .mat-sort-header-container {
                             display: flex;
                             justify-content: center !important;
@@ -221,9 +282,7 @@ body {
                         .table-header {
                             width: 100%;
                             color: $theme-background;
-                            color: white;
                             display: inline-flex;
-                            flex: 2 1 auto;
                             font-weight: bold;
                             /* HEADER */
                             @extend %table-columns;
@@ -234,19 +293,17 @@ body {
                         align-items: flex-start;
                         text-align: center;
                         display: flex;
-                        box-shadow: 0px 0px 3px rgba( black, 0.16);
+                        //box-shadow: 0px 3px 6px rgba( black, 0.16);
                         z-index: 1;
                         overflow: auto;
                         height: 0;
+                        #map{
+                            width: 100%;
+                        }
                         mat-table {
                             width: 100%;
                             mat-header-row {
-                                //display: none;
-                                @extend %table-columns;
-                                background-color: #BDC3C7;
-                                border-width: 0;
-                                border-bottom-width: 0;
-                                border-top-width: 0;
+                                display: none;
                             }
                             .mat-header-cell:first-child {
                                 padding-left: unset !important;
@@ -262,7 +319,7 @@ body {
                                 align-items: center !important;
                                 padding-left: unset !important;
                                 padding-right: unset !important;
-                                font-size: 90%;
+                                font-size: 100%;
                             }
                             .mat-column-expandedDetail {
                                 
@@ -307,13 +364,7 @@ body {
     }
 }
 
-.btn-icon-custom{
-    color: #646D77;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-caption formatting
+// caption formatting
 .circle-small {
     width: 16px;
     height: 16px;
@@ -339,13 +390,10 @@ caption formatting
         font-size: 100% !important;
     }
     .fury-filter-input{
-        width: 140px;
+        width: 80px;
     }
     .mat-paginator-range-label {
         margin: unset !important;
-    }
-    mat-header-row {
-        display: none;
     }
 }
 
@@ -357,7 +405,7 @@ caption formatting
         width: unset !important;
     }
     #tfilter {
-        #title, #input-filter, #add{
+        #title, #input-filter, #add, #input-lived{
             @extend %unset-width;
         }
         #add{
@@ -369,20 +417,24 @@ caption formatting
     }
     #tbody{
         height: 0px !important; // fix layout in the firefox
-        
+        // .agm-map-container-inner {
+        //     height: 100%;
+        //     width: 100%;
+        // }
     }
-    mat-table {
-        mat-header-row {
-            display: none;
-        }
+        mat-table {
         @each $heading in $fields {
             .mat-column-#{$heading} {
                 @include column-width(unset !important);
             }
         }
+
         mat-row {
             flex-flow: column;
         }
+    }
+    #map{
+        // height: 0 !important;
     }
     .mat-paginator-container {
         padding: 0 8px !important;
@@ -394,5 +446,9 @@ caption formatting
             display: none !important;
         }
     }
+    
+    // .agm-map-container-inner {
+    //     height: 100%;
+    // }
 }
 

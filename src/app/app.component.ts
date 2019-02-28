@@ -91,12 +91,12 @@ menu.push({
   position: 0 
   });
 
-  menu.push({ 
-    name: 'Rotas', 
-    routeOrFunction: 'dashboard-routes', 
-    icon: 'departure_board', 
-    position: 0 
-  });
+  // menu.push({ 
+  //   name: 'Rotas', 
+  //   routeOrFunction: 'dashboard-routes', 
+  //   icon: 'departure_board', 
+  //   position: 0 
+  // });
 
 menu.push({ 
 name: 'Transportes', 

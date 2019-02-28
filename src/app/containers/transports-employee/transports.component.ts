@@ -22,6 +22,7 @@ import { ALL_IN_ONE_TABLE_FAKE_DATA } from './transports.fake'; // to test witho
 import { trigger, state, transition, style, animate } from '@angular/animations';
 import { tick } from '@angular/core/testing';
 import { DialogRastreadorComponent } from 'app/core/common/dialog-rastreador/dialog-rastreador.component';
+import { DashboardRoutesComponent } from '../dashboard-routes-employee/dashboard-routes.component';
 
 @Component({
     selector: 'fury-transports',
@@ -59,6 +60,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
         { name: 'Empresa', property: 'thirdCompany', visible: true, isModelProperty: true },
         { name: 'Rastreador', property: 'trackerSerial', visible: true, isModelProperty: true },
         { name: 'Coordenadas', property: 'coordinates', visible: false, isModelProperty: true },
+        { name: 'Rota', property: 'routes', visible: true, isModelProperty: true },
         { name: '', property: 'actions', visible: true }
     ] as ListColumn[];
     dataSource: MatTableDataSource<Transport> | null;
@@ -86,7 +88,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
 
             this.transports = [];
             for(var i=0; i < transports.data.length; i++){
-              console.log(transports.data[i].segment);  
+              //console.log(transports.data[i].segment);  
               if(transports.data[i].segment === 'Funcionarios'){  
                 this.transports.push(transports.data[i]);
 
@@ -98,9 +100,9 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
             this.paginator.firstPage();
           },
            error => {
+               console.log(error);
                if (error.status === 0 || error.status === 404) {
                    //this.snackBar.open('Esse serviço está indisponível no momento.', 'OK', {});
-                  console.log(error);
                }
            });
            //this.dataSource.data = ALL_IN_ONE_TABLE_FAKE_DATA;
@@ -262,6 +264,8 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     extractValue(_row, _cell, _property) {
 
+        //console.log(_row);
+
         if (typeof(_cell) === 'undefined') {
             return _row[_property];
         }
@@ -348,5 +352,49 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     });
   }
+
+  adicionarRota(transport) {
+    console.log('Transporte ID: ' + transport._id);
+    this.dialog.open(DashboardRoutesComponent, {
+        // data: { id: transport._id, displayName: transport.vehiclePlate, displayBody: 'Transporte:', title: 'Deseja associar um rastreador?', type: 'add', trackerSerial: '' },
+        // panelClass: 'dialog-rastreador'
+        data: { id: transport._id },
+        width: '85%', height: '93%',
+    }).afterClosed().subscribe((transport: any) => {
+        this.loadData();
+        // if (transport) {
+        //     this.apiTransport.adicionarRastreador(transport).
+        //     subscribe(
+        //         success => {
+        //             this.snackBar.open('Rastreador associado com sucesso!', 'OK', {
+        //                 duration: 10000
+        //             });
+        //             // Reload the table after the post
+        //             this.loadData();
+        //         },
+        //         error => {
+        //             console.log(error);
+        //             this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+        //             'OK', {
+        //                 duration: 10000
+        //             });
+        //         });
+        // }
+
+    });
+  }
+
+  possuiRota(_transport) {
+
+    //console.log(_transport.routes);
+
+    if(_transport.routes.employees.length > 0){
+        return false;
+    }else{
+        return true;
+    }
+    //return false;
+  }
+
 }
 

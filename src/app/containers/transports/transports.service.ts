@@ -179,4 +179,22 @@ export class TransportControllerService {
 
         return this.httpClient.put( environment.origin.tracker + '/transports/linktracker/' + transport.id, formData.toString(), httpOptions);
     }
+
+    public adicionarRota(employees: any, transport: any): Observable<any> {
+        
+        let token = localStorage.getItem('token');
+        // console.log(token);
+        const httpOptions = {
+            headers: new HttpHeaders({
+            "Content-Type":  "application/json",
+            "Authorization": "Bearer " + `${token}`
+            }),
+        };
+        
+        // console.log(transport);
+        const formData = new URLSearchParams();
+        formData.set('', transport.trackerSerial);
+
+        return this.httpClient.post( environment.origin.transports + '/transports/routes/' + transport.id, employees, httpOptions);
+    }
 }

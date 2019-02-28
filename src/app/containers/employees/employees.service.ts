@@ -73,6 +73,7 @@ export class EmployeesControllerService {
         const httpOptions = {
             headers: new HttpHeaders({
             "Content-Type":  "application/x-www-form-urlencoded",
+            //"Content-Type":  "application/json",
             "Authorization": "Bearer " + `${token}`
             }),
         };
@@ -86,10 +87,17 @@ export class EmployeesControllerService {
         formData.set('company', employee.company);
         formData.set('status', employee.status);
 
+        // console.log(employee.coordinates);
+        // console.log(employee.coordinates.toString());
+        if(employee.coordinates){
+            formData.set('coordinates', employee.coordinates);
+        }
+        // console.log(employee);
         // console.log(formData.getAll);
         // console.log(formData.toString());
 
         return this.httpClient.put( environment.origin.employees + '/employee/' + employee.id, formData.toString(), httpOptions);
+        //return this.httpClient.put( environment.origin.employees + '/employee/' + employee.id, employee.toString(), httpOptions);
     }
 
     public deleteEmployees(employee: any): Observable<any> {

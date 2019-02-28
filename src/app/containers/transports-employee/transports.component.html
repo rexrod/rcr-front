@@ -99,7 +99,7 @@
                           style="color: #007EFA;
                                  font-size: 13px;
                                  width: 115px;
-                                margin-right: 11.7%;">
+                                margin-right: 14.6%;">
                           ADICIONAR
                            <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
                            <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
@@ -110,11 +110,40 @@
                     </mat-cell>
                 </ng-container>
                 <ng-template #elseBlock>
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.name }}</mat-header-cell>
-                  <mat-cell  *matCellDef="let row" fxLayoutAlign="left">
-                    <!-- <span class="fury-mobile-label">{{ column.name }}</span> -->
-                    {{ extractValue(row,column.cellContent,column.property) }}
-                  </mat-cell>
+                  <ng-container *ngIf="column.name == 'Rota'; else elseBlock2">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="center"> {{ column.name }}</mat-header-cell>
+                      <mat-cell *matCellDef="let row" fxLayoutAlign="center">
+                        <ng-container *ngIf="possuiRota(row);else elseBlock3">
+                          <button mat-stroked-button matTooltip="Criar Rota" [matTooltipPosition]="'above'" (click)="adicionarRota(row)"
+                          style="color: #007EFA;
+                                font-size: 13px;
+                                width: 75px;
+                                margin-right: 14.6%;">
+                            CRIAR
+                          </button>
+                        </ng-container>
+                        <ng-template #elseBlock3>
+                          <button mat-stroked-button disabled
+                            style=" font-size: 13px;
+                                  width: 75px;">
+                            <!-- {{extractValue(row,column.cellContent,column.property)}}  -->
+                            <mat-icon>directions_bus</mat-icon>
+                            <mat-icon>group</mat-icon>
+                          </button>
+                          <mat-icon aria-label="Editar" matTooltip="Remover Rota" [matTooltipPosition]="'above'" class="btn-icon-custom no-shadow" style="color: #FFC937;" >cancel</mat-icon>
+                          <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
+                           <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
+                        <!-- directions_bus -->
+                        </ng-template>
+                      </mat-cell>
+                  </ng-container>
+                  <ng-template #elseBlock2>
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.name }}</mat-header-cell>
+                      <mat-cell  *matCellDef="let row" fxLayoutAlign="left">
+                        <!-- <span class="fury-mobile-label">{{ column.name }}</span> -->
+                        {{ extractValue(row,column.cellContent,column.property) }}
+                      </mat-cell>  
+                  </ng-template>
                 </ng-template>
                 </ng-container>
               </ng-container>
