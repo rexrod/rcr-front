@@ -191,7 +191,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     
         //this.map.addObject(marker);
         //this.map.addObject(markerFinal);
-        this.group.addObject(marker);
+        //this.group.addObject(marker);
         this.group.addObject(markerFinal);
 
         for(var i=0; i < transport.coordinates.length; i++){
