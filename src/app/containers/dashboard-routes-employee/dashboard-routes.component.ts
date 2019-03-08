@@ -669,7 +669,7 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
     console.log(this.positions);
 
     var group = this.group;
- 
+    var map = this.map;
     // Create the parameters for the routing request:
     let routingParameters = {};
         // The routing mode:
@@ -733,8 +733,8 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
         group.addObjects([routeLine]);
         
         // Set the map's viewport to make the whole route visible:
-        group.setViewBounds(routeLine.getBounds());
-    }
+        map.setViewBounds(routeLine.getBounds());
+        }
     };
 
     // Get an instance of the routing service:

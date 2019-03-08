@@ -41,7 +41,7 @@
               <!-- fullName Column -->
               <ng-container *ngFor="let column of columns">
                 <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.name }}</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="left"> {{ column.name }}</mat-header-cell>
                   <mat-cell *matCellDef="let row" fxLayoutAlign="left">
                     <!-- <span class="fury-mobile-label">{{ column.name }}</span> -->
                     {{ extractValue(row,column.cellContent,column.property) }}

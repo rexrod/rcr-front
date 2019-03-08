@@ -70,9 +70,9 @@
         </div>
     </div>
     <div class="footer-content" footer-content>
-        <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="saveCustom()"
+        <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-save" (click)="saveCustom()"
             color="primary">SALVAR</button>
-        <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" color="primary"
+        <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-save" color="primary"
             (click)="saveCustom()">ATUALIZAR</button>
     </div>
 

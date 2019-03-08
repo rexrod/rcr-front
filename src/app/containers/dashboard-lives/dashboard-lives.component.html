@@ -28,15 +28,16 @@
               </mat-form-field>
             </div> -->
             <!-- <div id="input-filter" style="margin-left: 20px"> -->
-            <div id="input-filter">  
-              <!-- <mat-form-field>
-                  <mat-select placeholder="Rastreadores" [(ngModel)]="selectedValue" id="idRastreador" [disabled]="textoRastrear != 'Rastrear'"> 
-                    <mat-option *ngFor="let rastreador of rastreadores" [value]="rastreador">
-                      {{rastreador}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field> -->
-              
+            <div id="input-filter" style="margin-left: 20px">   
+              <mat-form-field>
+                <mat-select placeholder="Rastreadores" [(ngModel)]="selectedValue" id="idRastreador" [disabled]="textoRastrear != 'Rastrear'"> 
+                  <mat-option *ngFor="let rastreador of rastreadores" [value]="rastreador">
+                    {{rastreador}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            
+              <!--
               <div style="width: 100%">
                 <mdc-form-field fluid>  
                   <mdc-select placeholder="Rastreadores" floatLabel="false" [(ngModel)]="selectedValue" [disabled]="textoRastrear != 'Rastrear'" outlined class="custom-select-outline-color">
@@ -50,6 +51,7 @@
                   </mdc-select>
                 </mdc-form-field>
               </div>
+              -->
                 <!-- <mat-form-field>
                   <mat-select placeholder="Favorite food" [(ngModel)]="selectedValue" name="food">
                     <mat-option *ngFor="let food of foods" [value]="food.value">

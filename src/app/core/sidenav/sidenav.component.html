@@ -6,23 +6,27 @@
         <!-- <img [routerLink]="['/']" style="height: 35px; margin-left: 26px; margin-bottom: -5px;"
              src="assets/img/logo.png"
              fxFlexAlign="center" class="logo"> -->
-             <img class="logo" [routerLink]="['/']" *ngIf="isCollapsed"
-                src="assets/rcr/navbar_mobile@2x.png">
+             
+            <img class="logo" [routerLink]="['/']" *ngIf="isCollapsed" src="assets/rcr/navbar_mobile@2x.png">
+
         <!-- <h3>RCR</h3> -->
         <img class="logo_principal" src="assets/rcr/logo_login.png">
         <span fxFlex>
             <!-- fill space --></span>
 
+         
+        <!-- <mat-icon class="icon">radio_button_checked</mat-icon> -->
+        <!--    
         <div fxHide fxShow.gt-md fxFlexAlign="center">
             <button class="collapse-toggle" *ngIf="!isCollapsedState" mat-icon-button (click)="toggleCollapsed()">
                 <div class="icon"></div>
-                <!-- <mat-icon class="icon">radio_button_checked</mat-icon> -->
             </button>
             <button class="collapse-toggle" *ngIf="isCollapsedState" mat-icon-button (click)="toggleCollapsed()">
                 <div class="icon"></div>
-                <!-- <mat-icon class="icon">radio_button_unchecked</mat-icon> -->
             </button>
         </div>
+        -->
+        
     </div>
 
     <fury-scrollbar class="sidenav-items" fxFlex="grow" fxLayout="column">

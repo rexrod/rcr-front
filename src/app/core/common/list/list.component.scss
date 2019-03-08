@@ -34,6 +34,7 @@
       font-size: 16px;
       line-height: 1.125;
 
+      /*
       .mat-form-field-underline{
         display: none;
       }
@@ -52,14 +53,17 @@
         font-size: .875rem;
         //line-height: 1.5;
       }
+      */
 
       .fury-filter-input-icon {
         width: 1.2em;
-        color: #C0C6C9; //$theme-icon;
+        //color: #C0C6C9; //$theme-icon;
+        color: $theme-icon;
         // vertical-align: bottom;
         //vertical-align: middle;
         height: 22px;
         font-size: 22px;
+        line-height: 2.125;
       }
     }
 

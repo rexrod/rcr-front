@@ -90,8 +90,8 @@
         </div>
     </div>
     <div class="footer-content" footer-content>
-        <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="saveCustom()">SALVAR</button>
-        <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="save()" style="background-color: #FFC937">ATUALIZAR</button>
+        <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-save" (click)="saveCustom()">SALVAR</button>
+        <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-save" (click)="save()" style="background-color: #FFC937">ATUALIZAR</button>
     </div>
 
 </fury-dialog-panel>

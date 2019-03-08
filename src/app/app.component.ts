@@ -116,12 +116,12 @@ subItems: [
     //icon: 'group',
     position: 2
   },
-  {
-    name: 'Outros',
+  //{
+  //  name: 'Outros',
     //routeOrFunction: '/transports-employee',
     //icon: 'group',
-    position: 3
-  }
+  //  position: 3
+  //}
  ] 
 });
 
