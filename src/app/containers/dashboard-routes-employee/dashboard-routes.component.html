@@ -84,7 +84,7 @@
             <div style="margin-left: 15px">
               <button  mat-raised-button id="rota" (click)="calcularRota()">VER ROTA</button>
             </div> 
-            <div style="margin-left: 15px">
+            <div style="margin-left: 15px" *ngIf="!data.routes"> 
                 <button  mat-raised-button id="limpar" (click)="limpar()">LIMPAR</button>
             </div> 
             <div style="margin-left: 15px">
@@ -121,7 +121,7 @@
                                         border-color:  rgba(0, 0, 0, 0.05);
                                         position: relative;">
                                         <!-- beige  -->
-                <dashboard-routes-map-button *ngIf="textoRastrear != 'Rastrear'" class="button-custom" [transport]="transport"></dashboard-routes-map-button>
+                <dashboard-routes-map-button *ngIf="editando" class="button-custom" [transport]="transport"></dashboard-routes-map-button>
               </div>
               
             <!-- </div> -->

@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, Injectable, Output } from '@angular/core';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar, MatDialogRef } from '@angular/material';
 import { Transport } from 'app/models/transports/transports.model';
+import { Employees } from 'app/models/employees/employees.model';
+import { TransportControllerService } from 'app/containers/transports/transports.service';
+import { DashboardRoutesComponent } from 'app/containers/dashboard-routes/dashboard-routes.component';
 
 @Component({
   selector: 'dashboard-routes-map-button',
@@ -13,6 +16,9 @@ export class DashboardRoutesMapButtonComponent implements OnInit {
 
   isOpen: boolean;
 
+  @Input()
+  employees: any[] = [];
+
   @Input() transport: Transport;
 
   @Output()
@@ -21,41 +27,24 @@ export class DashboardRoutesMapButtonComponent implements OnInit {
   public data;
   public hora;
 
+  employeeValue: any;
+  
   constructor(
     private dialog: MatDialog,
     public snackBar: MatSnackBar,
+    private apiTransport: TransportControllerService,
+    private dialogRef: MatDialogRef<DashboardRoutesComponent>,
   ) {     
   }
 
   ngOnInit() {
-    // this.userName = this.session.getState().admin.establishment.name;
-    this.userName = localStorage.getItem('name');    
-    // this.data = this.transport.coordinates[this.transport.coordinates.length-1].date;
-    this.data = new Date(this.transport.coordinates[this.transport.coordinates.length-1].date);
-    console.log(this.data);
-    console.log(this.data.getMonth());
-
-    let month = new Array();
-    month[0] = "01";
-    month[1] = "02";
-    month[2] = "03";
-    month[3] = "04";
-    month[4] = "05";
-    month[5] = "06";
-    month[6] = "07";
-    month[7] = "08";
-    month[8] = "09";
-    month[9] = "10";
-    month[10] = "11";
-    month[11] = "12";
-
-    this.hora = ("0" + this.data.getHours()).slice(-2) + ':' + ("0" + this.data.getMinutes()).slice(-2) ;
-    this.data = this.data.getDate() + '/' + month[this.data.getMonth()] + '/' + this.data.getFullYear();
+    //console.log(this.transport);    
+    this.employees = this.transport.routes.employees;
   }
 
   toggleDropdown() {
     this.isOpen = !this.isOpen;
-    console.log('Dropdown: ' + this.transport.tracker.notes);
+    //console.log('Dropdown: ' + this.transport.tracker.notes);
   }
 
   onClickOutside() {
@@ -63,6 +52,26 @@ export class DashboardRoutesMapButtonComponent implements OnInit {
   }
 
   logout() {
+  }
+
+  excluirEmployee(employeeValue){
+    console.log(employeeValue);
+
+    let employeeValueJson = {};
+        // The routing mode:
+    employeeValueJson['employeeId'] = this.employeeValue._id;
+
+    this.apiTransport.removerFuncionarioRota(this.transport, employeeValueJson).
+      subscribe(
+          success => {
+              this.snackBar.open('Funcionário removido da rota com sucesso!', 'OK', {
+                  duration: 10000
+              });
+              this.dialogRef.close();    
+          },
+          error => {
+              console.log(error);
+          });
   }
 
 }

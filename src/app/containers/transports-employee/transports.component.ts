@@ -354,7 +354,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   adicionarRota(transport) {
-    console.log('Transporte ID: ' + transport._id);
+    //console.log('Transporte ID: ' + transport._id);
     this.dialog.open(DashboardRoutesComponent, {
         // data: { id: transport._id, displayName: transport.vehiclePlate, displayBody: 'Transporte:', title: 'Deseja associar um rastreador?', type: 'add', trackerSerial: '' },
         // panelClass: 'dialog-rastreador'
@@ -396,5 +396,64 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
     //return false;
   }
 
+  removerRota(transport) {
+
+    this.dialog.open(DialogDeleteComponent, {
+        data: { id: transport._id, displayName: transport.id },
+        panelClass: 'dialog-delete'
+    }).afterClosed().subscribe((_transport: Transport) => {
+        //console.log(_transport);
+        if (_transport) {
+            this.apiTransport.removerRota(_transport).
+                subscribe(
+                    success => {
+                        this.snackBar.open('Rota removida com sucesso.', 'OK', {
+                            duration: 10000
+                        });
+                        // Reload the table after the post
+                        this.loadData();
+                    },
+                    error => {
+                        console.log(error);
+                        this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+                        'OK', {
+                            duration: 10000
+                        });
+                    });
+        }
+
+    });
+  }
+
+  editarRota(transport) {
+    //console.log('Transporte ID: ' + transport._id);
+    this.dialog.open(DashboardRoutesComponent, {
+        // data: { id: transport._id, displayName: transport.vehiclePlate, displayBody: 'Transporte:', title: 'Deseja associar um rastreador?', type: 'add', trackerSerial: '' },
+        // panelClass: 'dialog-rastreador'
+        data: transport,
+        width: '85%', height: '93%',
+    }).afterClosed().subscribe((transport: any) => {
+        this.loadData();
+        // if (transport) {
+        //     this.apiTransport.adicionarRastreador(transport).
+        //     subscribe(
+        //         success => {
+        //             this.snackBar.open('Rastreador associado com sucesso!', 'OK', {
+        //                 duration: 10000
+        //             });
+        //             // Reload the table after the post
+        //             this.loadData();
+        //         },
+        //         error => {
+        //             console.log(error);
+        //             this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+        //             'OK', {
+        //                 duration: 10000
+        //             });
+        //         });
+        // }
+
+    });
+  }
 }
 

@@ -197,4 +197,57 @@ export class TransportControllerService {
 
         return this.httpClient.post( environment.origin.transports + '/transports/routes/' + transport.id, employees, httpOptions);
     }
+
+    public editarRota(employees: any, transport: any): Observable<any> {
+        
+        let token = localStorage.getItem('token');
+        // console.log(token);
+        const httpOptions = {
+            headers: new HttpHeaders({
+            "Content-Type":  "application/json",
+            "Authorization": "Bearer " + `${token}`
+            }),
+        };
+        
+        // console.log(transport);
+        const formData = new URLSearchParams();
+        formData.set('', transport.trackerSerial);
+
+        return this.httpClient.put( environment.origin.transports + '/transports/addemployee/' + transport._id, employees, httpOptions);
+    }
+
+    public removerRota(transport: any): Observable<any> {
+        
+        let token = localStorage.getItem('token');
+        // console.log(token);
+        const httpOptions = {
+            headers: new HttpHeaders({
+            "Content-Type":  "application/x-www-form-urlencoded",
+            "Authorization": "Bearer " + `${token}`
+            }),
+        };
+
+        const formData = new URLSearchParams();
+         
+        return this.httpClient.put( environment.origin.transports + '/transports/unlinkroutes/' + transport.id, formData, httpOptions);
+    }
+
+    
+    public removerFuncionarioRota(transport: any, employee: any): Observable<any> {
+        
+        let token = localStorage.getItem('token');
+        // console.log(token);
+        const httpOptions = {
+            headers: new HttpHeaders({
+            "Content-Type":  "application/json",
+            "Authorization": "Bearer " + `${token}`
+            }),
+            body: employee,
+        };
+
+        console.log(httpOptions);
+        console.log(transport);
+        return this.httpClient.delete( environment.origin.transports + '/transports/removeemployee/' + transport._id, httpOptions);
+    }
+
 }

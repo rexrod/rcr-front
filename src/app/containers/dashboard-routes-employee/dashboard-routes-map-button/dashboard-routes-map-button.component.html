@@ -3,7 +3,7 @@
     <span fxLayout="row" fxLayoutAlign="start center">
       <!-- <img class="avatar" src="assets/rcr/icone user@2x.png"> -->
       <!-- <span class="name" fxHide fxShow.gt-sm>{{session.userName}}</span> -->
-      <span class="name" fxHide fxShow.gt-sm>Veja informações do Rastreador</span>
+      <span class="name" fxHide fxShow.gt-sm>Veja informações do Funcionário</span>
       <mat-icon class="icon" fxHide fxShow.gt-sm>keyboard_arrow_down</mat-icon>
     </span>
   </button>
@@ -13,49 +13,57 @@
       <div class="list">
         <div style="margin-top: 5%;
                     margin-left: 8%;">
-          <mat-icon class="icon-custom ">router</mat-icon>
+          <mat-icon class="icon-custom ">directions_bus</mat-icon>
           <!-- <span class="title">Editar perfil</span> -->
         </div>
+      
         <div style="margin-top: 5%;
                     margin-left: 8%;">
-            <span class="label">{{transport.tracker.trackerModel}}</span>
-            <!-- <span class="title">\n Alterar senha</span> -->
+            <span class="label">{{transport.description}}</span>
+            
         </div>
-        <div>
-            <span class="label-item">{{transport.type}}</span>
+        <div> 
+            <span class="label-item">{{transport.vehiclePlate}}</span>
         </div>
         <mat-divider style="margin-top: 5%"></mat-divider>
+
         <div style="margin-top: 5%;
                     margin-left: 8%;">
-        <span class="label" style="font-size: 12px">PLACA DO VEÍCULO</span>
+          <mat-form-field style="width: 210px">
+            <mat-select placeholder="Funcionários Confirmados" [(ngModel)]="employeeValue" id="idEmployee"> 
+              <mat-option *ngFor="let employee of employees" [value]="employee">
+                {{employee.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div style="margin-top: 5%;
+                    margin-left: 8%;" *ngIf="employeeValue">
+        <span class="label" style="font-size: 12px">NOME DO FUNCIONÁRIO</span>
         <!-- <span class="title">\n Alterar senha</span> -->
         </div>
-        <div>
-        <span class="label-item" style="font-size: 12px">{{transport.vehiclePlate}}</span>
+        <div *ngIf="employeeValue">
+          <span class="label-item" style="font-size: 12px">{{employeeValue.name}}</span>
         </div>
         <div style="margin-top: 5%;
-                    margin-left: 8%;">
-        <span class="label" style="font-size: 12px">EMPRESA ASSOCIADA</span>
+                    margin-left: 8%;" *ngIf="employeeValue">
+          <span class="label" style="font-size: 12px">ENDEREÇO</span>
         <!-- <span class="title">\n Alterar senha</span> -->
         </div>
-        <div>
-        <span class="label-item" style="font-size: 12px">{{transport.thirdCompany}}</span>
+        <div *ngIf="employeeValue">
+        <span class="label-item" style="font-size: 12px">{{employeeValue.address}}</span>
         </div>
+
         <div style="margin-top: 5%;
-                    margin-left: 8%;">
-        <span class="label" style="font-size: 12px">DATA</span>
-        <!-- <span class="title">\n Alterar senha</span> -->
-        </div>
-        <div>
-        <span class="label-item" style="font-size: 12px">{{data}}</span>
-        </div>
-        <div style="margin-top: 5%;
-                    margin-left: 8%;">
-          <span class="label" style="font-size: 12px">HORA</span>
-          <!-- <span class="title">\n Alterar senha</span> -->
-        </div>
-        <div>
-          <span class="label-item" style="font-size: 12px">{{hora}}</span>
+                    margin-left: 8%;" *ngIf="employeeValue">
+          <button mat-stroked-button matTooltip="Remover Funcionário da Rota" [matTooltipPosition]="'above'" (click)="excluirEmployee(employeeValue)"
+            style="color: #007EFA;
+                  font-size: 13px;
+                  width: 90px;
+                  margin-left: 50%;">
+            EXCLUIR
+          </button>
         </div>
         <div style="margin-top: 5%;">
         </div>

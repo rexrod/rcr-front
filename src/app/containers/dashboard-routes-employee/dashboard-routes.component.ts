@@ -137,6 +137,7 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
     addressValue: string;
     searchValue: string;
     lived = false;
+    editando = false;
     
     @Input()
     employees: any[] = [];
@@ -225,6 +226,11 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
         //this.searchTerm.disable;
         //console.log(this.data);
         //this.employeeRoutes.employees = ["5c73fe6768eba032065df362","5c7404ae0bbb8635c617983a"];
+
+        //console.log(this.data);
+        if(this.data){
+            //console.log(this.data);
+        }
     }
 
     
@@ -429,6 +435,32 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
 
         this.group = new H.map.Group();
         this.map.addObject(this.group);
+
+        let iconBus = new H.map.Icon('assets/rcr/icon-rota.png');
+        if(this.data.routes){
+            //console.log('entrou aqui');
+            //console.log(this.data.routes.employees.lenght);
+            for(var i=0; i < this.data.routes.employees.length; i++){
+                var obj = JSON.parse(this.data.routes.employees[i].coordinates);
+                //console.log(this.data.routes.employees[i]);
+                this.positions.push(obj);
+                this.employeeIDs.push(this.data.routes.employees[i]._id);
+
+                //var obj = JSON.parse('{ "name":"John", "age":30, "city":"New York"}');
+                //console.log(obj.lat);
+                //let marker = new H.map.Marker({ lat: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.lat, lng: this.transports[i].coordinates[this.transports[i].coordinates.length-1].coords.long }, { icon: icon });    
+                let marker = new H.map.Marker({ lat: obj.lat, lng: obj.lng},{ icon: iconBus });
+                this.group.addObject(marker);
+            }
+
+            setTimeout(() => {
+                this.editando = true;
+            }, 1000);
+            
+            this.transport = this.data;
+
+            this.calcularRota();
+        }
 
         // setTimeout(() => {
 
@@ -819,15 +851,16 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
       //console.log(result);
       group.addObjects(result.items.map(function (place) {
         //console.log(place);
-        let iconBus = new H.map.Icon('assets/rcr/icon-bus.png');
+        let iconBus = new H.map.Icon('assets/rcr/icon-rota.png');
         var marker = new H.map.Marker(
          {lat: place.position[0],lng: place.position[1]},{ icon: iconBus })
 
       positions.push({"lat": place.position[0],"lng": place.position[1]});
 
       //console.log(positions);
-      employees.coordinates = "{lat:" + place.position[0] + "," + "lng:" + place.position[1]+ "}";
-      //console.log(employees);
+      employees.coordinates = '{"lat":' + place.position[0] + "," + '"lng":' + place.position[1]+ '}';
+      //JSON.parse('{ "name":"John", "age":30, "city":"New York"}');
+      console.log(employees.coordinates);
 
       apiEmployee.updateEmployees(employees).
           subscribe(
@@ -863,7 +896,10 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
     //const employees =  this.employees.find(e => e.id === this.employeeValue.id );
     console.log(this.employeeRoutes);
     console.log( this.data);
-    this.apiTransport.adicionarRota(employeeRoutesJson, this.data).
+
+
+    if(this.data.routes){
+        this.apiTransport.editarRota(employeeRoutesJson, this.data).
         subscribe(
             success => {
                 this.snackBar.open('Rota criada com sucesso!', 'OK', {
@@ -877,6 +913,29 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
             error => {
                 console.log(error);
             });
+    }else{
+        this.apiTransport.adicionarRota(employeeRoutesJson, this.data).
+            subscribe(
+                success => {
+                    this.snackBar.open('Rota criada com sucesso!', 'OK', {
+                        duration: 10000
+                    });
+
+                    //console.log('Coordanada atualizada com sucesso');
+                    this.dialogRef.close(this.data);
+                    // Reload the table after the post
+                },
+                error => {
+                    console.log(error);
+                });
+    }
+  }
+
+  popularRota(){
+    for(var i=0; i < this.positions.length; i++){
+        //routingParameters['waypoint' + i] = 'geo!' + this.positions[i].lat + ',' + this.positions[i].lng;
+        console.log(this.positions[i]);
+    }
   }
 }
 

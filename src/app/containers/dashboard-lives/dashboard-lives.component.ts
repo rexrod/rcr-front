@@ -183,13 +183,15 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     
         //let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
         let iconFinal = new H.map.Icon('assets/rcr/icon-local.png');
-        let icon = new H.map.Icon('assets/rcr/icon-logo.png');
+        //let icon = new H.map.Icon('assets/rcr/icon-logo.png');
+        let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');   
         
         let marker = new H.map.Marker({ lat: transport.coordinates[0].coords.lat, lng: transport.coordinates[0].coords.long }, { icon: icon });
         let markerFinal = new H.map.Marker({ lat: transport.coordinates[transport.coordinates.length-1].coords.lat, lng: transport.coordinates[transport.coordinates.length-1].coords.long }, { icon: iconFinal });
     
         //this.map.addObject(marker);
         //this.map.addObject(markerFinal);
+        this.group.addObject(marker);
         this.group.addObject(markerFinal);
 
         for(var i=0; i < transport.coordinates.length; i++){

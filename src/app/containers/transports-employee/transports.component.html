@@ -123,14 +123,16 @@
                           </button>
                         </ng-container>
                         <ng-template #elseBlock3>
-                          <button mat-stroked-button disabled
-                            style=" font-size: 13px;
+                          <button mat-stroked-button (click)="editarRota(row)" matTooltip="Editar Rota"
+                            style="font-size: 13px;
                                   width: 75px;">
                             <!-- {{extractValue(row,column.cellContent,column.property)}}  -->
-                            <mat-icon>directions_bus</mat-icon>
-                            <mat-icon>group</mat-icon>
+                            <!--mat-icon>directions_bus</mat-icon>-->
+                            <!--mat-icon>group</mat-icon>-->
+                            <img src="assets/rcr/icon-bus-2.png" style="width: 25px;"> 
+                            <img src="assets/rcr/icon-group.png" style="width: 25px;"> 
                           </button>
-                          <mat-icon aria-label="Editar" matTooltip="Remover Rota" [matTooltipPosition]="'above'" class="btn-icon-custom no-shadow" style="color: #FFC937;" >cancel</mat-icon>
+                          <mat-icon aria-label="Editar" matTooltip="Remover Rota" [matTooltipPosition]="'above'" (click)="removerRota(row)" class="btn-icon-custom no-shadow" style="color: #FFC937;" >cancel</mat-icon>
                           <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
                            <!-- <mat-icon aria-label="Editar">edit</mat-icon> -->
                         <!-- directions_bus -->
