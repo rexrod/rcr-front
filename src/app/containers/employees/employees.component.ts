@@ -42,6 +42,8 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
     expandedElement: any;
     pageSize = 10;
     pageSizeOptions: number[] = [5, 10, 25, 100];
+    checked = false;
+    color = 'primary';
 
     // this component is useful for the filter and show colums in table
     @Input()
@@ -75,10 +77,10 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
     ) { }
 
     loadData() {
-        console.log('entrou employee');
+        //console.log('entrou employee');
         this.apiEmployee.getAll()
           .subscribe(employees => {
-            console.log(employees);
+            //console.log(employees);
             //console.log(rastreadores.data);
             this.employees = employees;
             this.dataSource.data = employees; 
@@ -301,7 +303,36 @@ desativarUsuario(employee) {
         }
 
     });
-}
+  }
+    
+    alterarStatusFuncionario(employee) {
+
+        let message: string;
+
+        if(employee.status === true){
+            message = 'Funcionário desativado com sucesso!';
+        }else{
+            message = 'Funcionário ativado com sucesso!';
+        }
+
+        this.apiEmployee.atualizarStatus(employee).
+        subscribe(
+            success => {
+                this.snackBar.open(message, 'OK', {
+                    duration: 10000
+                });
+                // Reload the table after the post
+                this.loadData();
+            },
+            error => {
+                console.log(error);
+                this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+                'OK', {
+                    duration: 10000
+                });
+            });
+
+    }
 
 }
 
