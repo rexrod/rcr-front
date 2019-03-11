@@ -97,6 +97,7 @@ export class TransportCreateUpdateComponent implements OnInit {
   }
 
   save() {
+    //console.log('entrou aqui');
     if (this.mode === 'create') {
       this.createTransport();
     } else if (this.mode === 'update') {
@@ -139,8 +140,13 @@ export class TransportCreateUpdateComponent implements OnInit {
 
   updateTransport() {
     // send the color as object instead of value
+    //console.log('entrou aqui');
+    console.log(this.form.value);
+    console.log(this.defaults);
     const transport = this.form.value;
     transport.id = this.defaults.id;
+    transport.segment = this.defaults.segment;
+    transport.type = this.defaults.type;
     this.dialogRef.close(transport);
   }
 

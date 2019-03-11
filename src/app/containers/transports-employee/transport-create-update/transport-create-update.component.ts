@@ -141,6 +141,8 @@ export class TransportCreateUpdateComponent implements OnInit {
     // send the color as object instead of value
     const transport = this.form.value;
     transport.id = this.defaults.id;
+    transport.segment = this.defaults.segment;
+    transport.type = this.defaults.type;
     this.dialogRef.close(transport);
   }
 

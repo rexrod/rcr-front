@@ -796,7 +796,9 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
     //console.log('Entrou no limpar()');
     this.group.removeAll();
     this.searchTerm.setValue("Brasil, Manaus, ");
+
     this.positions = [];
+    this.employeeIDs = [];
     //this.map.setZoom(13);
     //this.map.setCenter( { lat: -3.04945, lng:  -60.01845 } );
   }
