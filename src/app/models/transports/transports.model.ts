@@ -8,6 +8,7 @@ export interface Transport {
     segment?: string;
     description?: string;
     __v?: number;
+    status?: string;
     tracker?: {
       _id?: string,
       serialKey?: string,

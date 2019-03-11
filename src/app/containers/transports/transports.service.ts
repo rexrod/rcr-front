@@ -245,9 +245,24 @@ export class TransportControllerService {
             body: employee,
         };
 
-        console.log(httpOptions);
-        console.log(transport);
+        //console.log(httpOptions);
+        //console.log(transport);
         return this.httpClient.delete( environment.origin.transports + '/transports/removeemployee/' + transport._id, httpOptions);
     }
 
+    public alterarStatus(transport: any): Observable<any> {
+        
+        let token = localStorage.getItem('token');
+        // console.log(token);
+        const httpOptions = {
+            headers: new HttpHeaders({
+            "Content-Type":  "application/json",
+            "Authorization": "Bearer " + `${token}`
+            }),
+        };
+        
+        const formData = new URLSearchParams();
+        
+        return this.httpClient.put( environment.origin.transports + '/transports/status/' + transport._id, formData, httpOptions);
+    }
 }

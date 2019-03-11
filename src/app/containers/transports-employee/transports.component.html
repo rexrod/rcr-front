@@ -110,7 +110,7 @@
                     </mat-cell>
                 </ng-container>
                 <ng-template #elseBlock>
-                  <ng-container *ngIf="column.name == 'Rota'; else elseBlock2">
+                  <ng-container *ngIf="column.name == 'Rota';">
                       <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="center"> {{ column.name }}</mat-header-cell>
                       <mat-cell *matCellDef="let row" fxLayoutAlign="center">
                         <ng-container *ngIf="possuiRota(row);else elseBlock3">
@@ -138,6 +138,16 @@
                         <!-- directions_bus -->
                         </ng-template>
                       </mat-cell>
+                  </ng-container>
+                  <ng-container *ngIf="column.name == 'Status'; else elseBlock2">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="center"> {{ column.name }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" fxLayoutAlign="center">
+                      <mat-slide-toggle matTooltip="Alterar Status" [matTooltipPosition]="'above'"
+                          [color]="color"
+                          [checked]="row.status"
+                          (click)="alterarStatusTransporte(row)">
+                      </mat-slide-toggle>
+                    </mat-cell>
                   </ng-container>
                   <ng-template #elseBlock2>
                       <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.name }}</mat-header-cell>
@@ -184,9 +194,11 @@
                     <!-- <button matTooltip="Deletar Item" [matTooltipPosition]="'above'" (click)="delete(row)" class="btn-stroked btn-icon no-shadow">
                       <mat-icon aria-label="Deletar">delete</mat-icon>
                     </button> -->
+                    <!--
                     <button mat-icon-button matTooltip="Deletar Item" [matTooltipPosition]="'above'" (click)="delete(row)" class="btn-icon-custom no-shadow" style="color: #646D77;">
                       <mat-icon aria-label="Deletar">delete</mat-icon>
                     </button>
+                    -->
                   </mat-cell>
                 </ng-container>
 
