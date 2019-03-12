@@ -70,7 +70,7 @@ export class ToolbarUserButtonComponent implements OnInit {
                 this.user = <User>success;
 
                 this.dialog.open(DialogUserPerfilComponent, {
-                  width: '41%', height: '57%',
+                  width: '31%', height: '37%',
                   data: { id: '', 
                           displayName: this.user.name,
                           title: 'Deseja ativar o usuário?',
@@ -116,7 +116,7 @@ export class ToolbarUserButtonComponent implements OnInit {
     new Promise((resolve, reject) => {  
 
       this.dialog.open(DialogChangePasswordComponent, {
-        width: '41%', height: '37%',
+        width: '31%', height: '37%',
         data: { id: '', 
                 displayName: '',
                 title: 'Deseja ativar o usuário?',

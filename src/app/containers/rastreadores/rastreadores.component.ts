@@ -108,7 +108,7 @@ export class RastreadoresComponent implements OnInit, AfterViewInit, OnDestroy {
     create() {
 
         this.dialog.open(RastreadorCreateUpdateComponent, {
-            width: '41%', height: '57%',
+            width: '31%', height: '37%',
             panelClass: 'dialog-create-update'
         }).afterClosed().subscribe((rastreador: Rastreador) => {
 
@@ -146,7 +146,7 @@ export class RastreadoresComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this.dialog.open(RastreadorCreateUpdateComponent, {
             data: rastreador,
-            width: '41%', height: '57%',
+            width: '31%', height: '37%',
             panelClass: 'dialog-create-update'
         }).afterClosed().subscribe((_rastreador) => {
             if (_rastreador) {

@@ -50,8 +50,8 @@
               <ng-container *ngFor="let column of columns">
                 <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
                   <ng-container *ngIf="column.name == 'Rastreador'; else elseBlock">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="center"> {{ column.name }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" fxLayoutAlign="center">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="left"> {{ column.name }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" fxLayoutAlign="left">
                       <ng-container *ngIf="extractValue(row,column.cellContent,column.property);else elseBlock1">
                         <!-- <button mat-stroked-button matTooltip="Remover Rastreador" [matTooltipPosition]="'above'" (click)="removerRastreador(row)"  
                           class="btn-stroked-tracker-remove no-shadow">Remover -->
@@ -111,8 +111,8 @@
                 </ng-container>
                 <ng-template #elseBlock>
                   <ng-container *ngIf="column.name == 'Status'; else elseBlock2">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="center"> {{ column.name }}</mat-header-cell>
-                    <mat-cell *matCellDef="let row" fxLayoutAlign="center">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="left"> {{ column.name }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row" fxLayoutAlign="left">
                       <mat-slide-toggle *ngIf="row.status == true" matTooltip="Desativar Transporte" [matTooltipPosition]="'above'"
                           [color]="color"
                           [checked]="row.status"
@@ -161,8 +161,8 @@
 
                 <!-- actions Column -->
                 <ng-container matColumnDef="actions">
-                  <mat-header-cell *matHeaderCellDef fxLayoutAlign="center"></mat-header-cell>
-                  <mat-cell *matCellDef="let row" fxLayoutAlign="center">
+                  <mat-header-cell *matHeaderCellDef fxLayoutAlign="flex-end"></mat-header-cell>
+                  <mat-cell *matCellDef="let row" fxLayoutAlign="flex-end">
                     <!-- <button matTooltip="Editar Item" [matTooltipPosition]="'above'" (click)="update(row)" class="btn-stroked btn-icon no-shadow">
                       <mat-icon aria-label="Editar">edit</mat-icon>
                     </button> -->

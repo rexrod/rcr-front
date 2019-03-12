@@ -137,7 +137,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
     create() {
 
         this.dialog.open(TransportCreateUpdateComponent, {
-            width: '41%', height: '57%',
+            width: '31%', height: '51%',
             panelClass: 'dialog-create-update'
         }).afterClosed().subscribe((transport: Transport) => {
 
@@ -167,7 +167,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
         this.dialog.open(TransportCreateUpdateComponent, {
             data: transport,
             //width: '61%', height: '77%',
-            width: '41%', height: '57%',
+            width: '31%', height: '51%',
             panelClass: 'dialog-create-update'
         }).afterClosed().subscribe((_transport) => {
             if (_transport) {

@@ -118,7 +118,7 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
     create() {
 
         this.dialog.open(EmployeesCreateUpdateComponent, {
-            width: '41%', height: '57%',
+            width: '31%', height: '37%',
             panelClass: 'dialog-create-update'
         }).afterClosed().subscribe((employees: Employees) => {
 
@@ -156,7 +156,7 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this.dialog.open(EmployeesCreateUpdateComponent, {
             data: employees,
-            width: '41%', height: '57%',
+            width: '31%', height: '37%',
             panelClass: 'dialog-create-update'
         }).afterClosed().subscribe((_employees) => {
             if (_employees) {
