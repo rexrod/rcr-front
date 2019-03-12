@@ -17,7 +17,7 @@
                 <div class="row" *ngIf="isCreateMode()"> 
                     <div class="name field">
                         <mat-form-field>
-                            <mat-select [(value)]="selected" placeholder="Tipo de Veículo" (selectionChange)="typeChanged($event.value)">
+                            <mat-select [(value)]="selected" placeholder="Tipo de Veículo" (selectionChange)="typeChanged($event.value)" formControlName="type" id="type" required >
                                 <!-- <mat-option>None</mat-option> -->
                                 <mat-option value="Carreta">Carreta</mat-option>
                                 <mat-option value="Ônibus">Ônibus</mat-option>
