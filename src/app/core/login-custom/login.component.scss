@@ -25,11 +25,12 @@ body {
   align-content: left;
   align-items: flex-end;
   max-width: 100%;
-  background-image: url(/assets/rcr/img-bg@2x.png);
+  //background-image: url(/assets/rcr/img-bg@2x.png);
+  background-image: url(/assets/rcr/login-bg.png);
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
-  left: -10%;
+  //left: -10%;
 
   .background2{
     // height: 100%;
@@ -44,7 +45,7 @@ body {
     // background-size: cover;  
     //height: 71vh;
     //width: 50vw;
-    background-image: url(/assets/rcr/mapa2@2x.png);
+    //background-image: url(/assets/rcr/mapa2@2x.png);
     background-size: contain;
     background-repeat: no-repeat;
     
@@ -66,6 +67,7 @@ body {
     height: 50%; // height:50.6%; // to compare with the image prototype
     width: 40%;
     position: absolute;
+    margin-left: -8%;
     //opacity: 0.4;
     // top: 100px;
     // left: 300px;
