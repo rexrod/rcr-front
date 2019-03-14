@@ -198,7 +198,17 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
 
         for(var i=0; i < transport.coordinates.length; i++){
         //console.log(transport.coordinates[i].coords);
-        points.push({'lat': transport.coordinates[i].coords.lat, 'lng': transport.coordinates[i].coords.long });
+            //console.log(transport.coordinates[i].coords.lat);
+            var latitude = transport.coordinates[i].coords.lat.toString();
+            //console.log(latitude);
+            //console.log(typeof latitude.toString());
+
+            if(latitude.substring(0, 1) == '0'){
+                //console.log(transport.coordinates[i].coords.lat);
+                continue;
+            }
+            //0.5666667
+            points.push({'lat': transport.coordinates[i].coords.lat, 'lng': transport.coordinates[i].coords.long });
         }
     
         //console.log(points);
