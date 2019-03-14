@@ -135,7 +135,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
               
             //   if(trans.data[i].trackerSerial){
               if(trans.data[i].coordinates.length > 0){
-                console.log(trans.data[i]);
+                //console.log(trans.data[i]);
                 if((trans.data[i].status === true) && (trans.data[i].trackerSerial)){
                   this.transports.push(trans.data[i]);
                   this.rastreadores.push(trans.data[i].trackerSerial);

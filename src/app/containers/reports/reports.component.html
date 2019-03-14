@@ -69,7 +69,17 @@
                 </mat-cell>
               </ng-container>
               -->
-
+                <ng-container matColumnDef="route">
+                  <mat-header-cell *matHeaderCellDef fxLayoutAlign="left"></mat-header-cell>
+                  <mat-cell *matCellDef="let row" fxLayoutAlign="left">
+                    <button mat-stroked-button matTooltip="Visualizar Rota" [matTooltipPosition]="'above'" (click)="visualizarRota(row)"  
+                      style="color: #007EFA;
+                             font-size: 13px;
+                             width: 100px;">Visualizar
+                    </button>
+                  </mat-cell>
+                </ng-container>
+          
                 <!-- actions Column -->
                 <ng-container matColumnDef="actions">
                   <mat-header-cell *matHeaderCellDef fxLayoutAlign="flex-end"></mat-header-cell>

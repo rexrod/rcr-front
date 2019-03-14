@@ -10,6 +10,7 @@ import { DialogDeleteModule } from '../../core/common/dialog-delete/dialog-delet
 import { ReportsRoutingModule } from './reports-routing.module';
 import { ReportsComponent } from './reports.component';
 import { ReportCreateUpdateModule} from './report-create-update/report-create-update.module';
+import { DashboardRoutesModule } from '../dashboard-routes-report/dashboard-routes.module';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ReportCreateUpdateModule} from './report-create-update/report-create-up
     ListModule,
     PageModule,
     BreadcrumbsModule,
-    DialogDeleteModule
+    DialogDeleteModule,
+    DashboardRoutesModule,
   ],
   declarations: [ReportsComponent],
   exports: [ReportsComponent]

@@ -21,6 +21,7 @@ import { Transport } from 'app/models/transports/transports.model';
 import { TransportCustom } from 'app/models/transports/transportsCustom.model';
 import { RastreadoresControllerService } from '../rastreadores/rastreadores.service';
 import { Rastreador } from 'app/models/rastreadores/rastreadores.model';
+import { DashboardRoutesComponent } from '../dashboard-routes-report/dashboard-routes.component';
 
 @Component({
     selector: 'fury-reports',
@@ -60,6 +61,7 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
         { name: 'Placa', property: 'vehiclePlate', visible: true, isModelProperty: true },
         { name: 'Data/Hora', property: 'date', visible: true, isModelProperty: true },
         { name: 'Status', property: 'status', visible: true, isModelProperty: true },
+        { name: 'Rota', property: 'route', visible: true},
         { name: 'Ações', property: 'actions', visible: false }
     ] as ListColumn[];
     dataSource: MatTableDataSource<TransportCustom> | null;
@@ -121,6 +123,7 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
                 const rastreador =  this.rastreadores.find(x => x.serialKey == lastTracker );
 
                 this.transport = {}; 
+                this.transport.transportId =  trans.data[i]._id;
                 this.transport.trackerSerial = rastreador.serialKey;
                 this.transport.trackerModel = rastreador.trackerModel;
                 this.transport.type = trans.data[i].type;
@@ -145,7 +148,6 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
                 //let hora = data.getHours() + ':' + data.getMinutes();
                 let hora = ("0" + data.getHours()).slice(-2) + ':' + ("0" + data.getMinutes()).slice(-2) ;
                 this.transport.date = data.getDate() + '/' + month[data.getMonth()] + '/' + data.getFullYear() + ' - ' + hora;
-
                 //this.transport.date = trans.data[i].coordinates[0].date;
               
                 if(trans.data[i].trackerSerial === lastTracker ){
@@ -319,6 +321,18 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.expandedElement = row;
     }
+  }
+
+  visualizarRota(transport) {
+    //console.log('Transporte ID: ' + transport._id);
+    this.dialog.open(DashboardRoutesComponent, {
+        // data: { id: transport._id, displayName: transport.vehiclePlate, displayBody: 'Transporte:', title: 'Deseja associar um rastreador?', type: 'add', trackerSerial: '' },
+        // panelClass: 'dialog-rastreador'
+        data: transport,
+        width: '85%', height: '93%',
+    }).afterClosed().subscribe((transport: any) => {
+        //this.loadData();
+    });
   }
 }
 
