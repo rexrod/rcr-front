@@ -208,6 +208,10 @@ export class RastreadoresComponent implements OnInit, AfterViewInit, OnDestroy {
 
     extractValue(_row, _cell, _property) {
 
+        if(_row.notes == 'null'){
+            _row.notes = '';
+        }
+
         if (typeof(_cell) === 'undefined') {
             return _row[_property];
         }
