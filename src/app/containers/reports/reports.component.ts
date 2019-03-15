@@ -102,11 +102,15 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
           this.transports = [];
           let lastTracker = '';
 
-          for(var i=0; i < trans.data.length; i++){            
+          for(var i=0; i < trans.data.length - 1; i++){
+            
+            if(!trans.data[i].coordinates){
+              continue;
+            }
+            
             if(trans.data[i].coordinates.length > 0){  
-            //   console.log(trans.data[i]);    
 
-              for(var b=0; b < trans.data[i].coordinates.length; i++){
+              for(var b=0; b < trans.data[i].coordinates.length - 1; i++){
                 //console.log(transport.coordinates[i].coords);
                 //points.push({'lat': transport.coordinates[i].coords.lat, 'lng': transport.coordinates[i].coords.long });
               
