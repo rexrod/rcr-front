@@ -3,7 +3,7 @@
 
     <div class="form-content">
         <div class="form-title" header-content>
-            <span>Cadastrar Transportes</span>
+            <span>Cadastrar Transporte</span>
         </div>
         <div class="form-fields">
             <form [formGroup]="form">
@@ -17,7 +17,7 @@
                 <div class="row" *ngIf="isCreateMode()"> 
                     <div class="name field">
                         <mat-form-field>
-                            <mat-select [(value)]="selected" placeholder="Tipo de Veículo" (selectionChange)="typeChanged($event.value)" formControlName="type" id="type" required >
+                            <mat-select [(value)]="selected" placeholder="Tipo de Veículo" formControlName="type" id="type" required >
                                 <!-- <mat-option>None</mat-option> -->
                                 <mat-option value="Carreta">Carreta</mat-option>
                                 <mat-option value="Ônibus">Ônibus</mat-option>
@@ -27,11 +27,26 @@
                         <!-- <p>Segmento: {{selected}}</p> -->
                     </div>
                 </div>
+                <!--(selectionChange)="typeChanged($event.value)"-->
+                <div class="row" *ngIf="isCreateMode()"> 
+                    <div class="name field">
+                        <mat-form-field>
+                            <mat-select [(value)]="selectedSegment" placeholder="Segmento"  formControlName="type" id="type" required> 
+                                <!-- <mat-option>None</mat-option> -->
+                                <mat-option value="Carga">Carga</mat-option>
+                                <mat-option value="Funcionarios">Funcionarios</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <!-- <p>Segmento: {{selected}}</p> -->
+                    </div>
+                </div>
+                <!--
                 <div class="row" *ngIf="isCreateMode()"> 
                         <div class="name field">
                             <p>Segmento: {{selectedSegment}}</p>                   
                         </div>
                 </div>
+                -->
                 <div class="row" *ngIf="isUpdateMode()"> 
                     <div class="name field">
                         <mat-form-field>
