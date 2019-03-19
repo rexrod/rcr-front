@@ -382,11 +382,15 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
         for(var i=0; i < coordinates.length; i++){
 
             var latitude = coordinates[i].coords.lat.toString();
+            var longitude = coordinates[i].coords.long.toString();
             
             if(latitude.substring(0, 1) == '0'){
                 continue;
             }
-
+            
+            if(longitude.substring(0, 1) == '0'){
+                continue;
+            }
             points.push({'lat': coordinates[i].coords.lat, 'lng': coordinates[i].coords.long });
         }
     
