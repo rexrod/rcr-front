@@ -35,6 +35,11 @@
                       <!-- <mdc-form-field dir="rtl">
                         <mdc-text-field formControlName="name" id="name" outlined></mdc-text-field>
                       </mdc-form-field>                    -->
+                      <!--
+                      <mat-form-field style="padding-left: 2%;">
+                        <input matInput placeholder="Matricula" pattern="^(?!\s*$).+" formControlName="registration" id="registration" required />
+                      </mat-form-field>
+                      -->
                   </div>
               </div>
               <div class="row"> 
@@ -47,12 +52,19 @@
                       </mdc-form-field>              -->
                   </div>
               </div>
+              
               <div class="row"> 
                   <div class="registration field">
                       <mat-form-field>
                           <input matInput placeholder="Matricula" pattern="^(?!\s*$).+" formControlName="registration" id="registration" required />
                       </mat-form-field>
                   </div>
+              </div>
+              
+              <div class="row"> 
+                <div class="footer-content">
+                    <button mat-raised-button [disabled]="!form.valid" class="btn-save" (click)="confirm()">SALVAR</button>
+                </div>
               </div>
           </form>
       </div>
@@ -61,10 +73,8 @@
       <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="saveCustom()">SALVAR</button>
       <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-save" (click)="save()" style="background-color: #FFC937">ATUALIZAR</button>
   </div> -->
-  <div class="footer-content" footer-content>
-    <!-- <button mat-raised-button [disabled]="!form.valid" class="btn-rounded btn-rastreador" mat-dialog-close>CANCELAR</button> -->
-    <button mat-raised-button [disabled]="!form.valid" class="btn-save" (click)="confirm()">SALVAR</button>
-  </div>
+  <!---->
+ 
    
 
   </fury-dialog-panel>

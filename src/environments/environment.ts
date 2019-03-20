@@ -10,10 +10,10 @@ export const environment = {
   // backend: 'http://localhost:4200/login', // Put your backend here
   backend: '', 
   origin: {
-    transports: 'https://rcr-transire-api.herokuapp.com/auth/v1',
-    tracker: 'https://rcr-transire-api.herokuapp.com/auth/v1',
-    users: 'https://rcr-transire-api.herokuapp.com/auth/v1',
-    employees: 'https://rcr-transire-api.herokuapp.com/auth/v1',
+    transports: 'https://lupa-v1.herokuapp.com/auth/v1',
+    tracker: 'https://lupa-v1.herokuapp.com/auth/v1',
+    users: 'https://lupa-v1.herokuapp.com/auth/v1',
+    employees: 'https://lupa-v1.herokuapp.com/auth/v1',
 
 // from template    
     notices: '',

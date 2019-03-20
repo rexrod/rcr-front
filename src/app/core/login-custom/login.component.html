@@ -110,10 +110,9 @@
                             <mat-spinner *ngIf="visible" style="height: 50px;width: 50px;"></mat-spinner>
                         </div>
                         <div class="enroll">
-                            <p class="extra">
                                 <!-- Don't have an account?<br/> -->
-                                <a [routerLink]="['/register']">Criar nova conta</a>
-                            </p>
+                                <span id="account-title">Ainda não possui conta?</span><span id="create-title">&nbsp;<a [routerLink]="['/register']" style="text-decoration: none">Criar Conta</a></span>
+                                <!--<a [routerLink]="['/register']">Criar nova conta</a>-->
                         </div>
                         <div id="btn-login" *ngIf="inputType=='biometry'">
                             <div class="img">

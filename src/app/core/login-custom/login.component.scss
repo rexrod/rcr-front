@@ -218,6 +218,23 @@ body {
               }    
               // }
             }
+            #account-title{
+              margin-top: 2%;
+              //font-family: "Raleway";
+              color: rgba(110, 116, 125, 1);
+              font-size: 18px;
+              font-weight: bold;
+              //ExtraLight - 26px rgba(110, 116, 125, 1)
+            }    
+            #create-title{
+              margin-top: 2%;
+              //font-family: "Raleway";
+              color: #3F4ADE;
+              font-size: 18px;
+              font-weight: bold;
+              text-decoration: none;
+              //ExtraLight - 26px rgba(110, 116, 125, 1)
+            }    
             form {
               display: contents;
               .idCompany {
@@ -285,13 +302,14 @@ body {
               display: flex;
               .btn-login {
                 //flex: .82 1 0%;
-                flex: 0.1 1 20%;
-                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+                flex: 1 1 20%;
+                //box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
                 font-size: 100%;
                 font-weight: 500;
                 height: 45%;
                 //color: #F8AD2F
-                background: #F8AD2F;
+                background: #FFC937;
               }
                         .img{
                           height: 100%;

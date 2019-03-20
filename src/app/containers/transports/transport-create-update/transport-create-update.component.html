@@ -100,13 +100,21 @@
                         </mat-form-field>
                     </div>
                 </div> -->
+                <div class="row"> 
+                    <div class="footer-content">
+                        <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-save" (click)="saveCustom()">SALVAR</button>
+                        <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-save" (click)="save()" style="background-color: #FFC937">SALVAR</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
+    <!--
     <div class="footer-content" footer-content>
         <button *ngIf="isCreateMode()" mat-raised-button [disabled]="!form.valid" class="btn-save" (click)="saveCustom()">SALVAR</button>
         <button *ngIf="isUpdateMode()" mat-raised-button [disabled]="!form.valid" class="btn-save" (click)="save()" style="background-color: #FFC937">SALVAR</button>
     </div>
+    -->
 
 </fury-dialog-panel>
 

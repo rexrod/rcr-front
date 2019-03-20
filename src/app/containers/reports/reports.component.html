@@ -1,13 +1,13 @@
 
 <div id="background-report">
+    <div id="title-page">
+        <span>Relatórios</span>
+      </div>
     <div id="conteiner">
       <div id="card">
         <div id="table-component">
           <!-- TABLE FILTER -->
           <div id="tfilter">
-            <div id="title">
-              <span>Relatórios</span>
-            </div>
             <div id="input-filter">
               <fury-list [columns]="columns" (filterChange)="onFilterChange($event)" fxLayoutAlign="center center" fxLayout="row"></fury-list>
             </div>
@@ -75,7 +75,7 @@
                     <button mat-stroked-button matTooltip="Visualizar Rota" [matTooltipPosition]="'above'" (click)="visualizarRota(row)"  
                       style="color: #007EFA;
                              font-size: 13px;
-                             width: 100px;">Visualizar
+                             width: 100px;">VISUALIZAR
                     </button>
                   </mat-cell>
                 </ng-container>

@@ -1,13 +1,18 @@
 
 <div id="background-rastreador">
+    <div id="title-page">
+        <span>Rastreadores</span>
+      </div>
     <div id="conteiner">
       <div id="card">
         <div id="table-component">
           <!-- TABLE FILTER -->
           <div id="tfilter">
+            <!--
             <div id="title">
               <span>Rastreadores</span>
             </div>
+            -->
             <div id="input-filter">
               <fury-list [columns]="columns" (filterChange)="onFilterChange($event)" fxLayoutAlign="center center" fxLayout="row"></fury-list>
             </div>

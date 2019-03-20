@@ -110,6 +110,20 @@ body {
     box-sizing: border-box;
     @extend %flex-center;
     max-width: 100%; //background: green;
+    #title-page {
+        text-align: center;
+        font-size: 120%;
+        font-weight: bold;
+        display: flex;
+        flex: 0.8 1 auto;
+        width: 91%; //background: yellow;
+        justify-content: left;
+        align-items: center;
+        // border-right: 1px #707070 solid;
+        span {
+            flex: 0 1 auto;
+        }
+    }
     #conteiner {
         display: flex;
         flex-direction: column;
@@ -149,7 +163,7 @@ body {
                     }
                     #input-filter {
                         @extend %flex-center;
-                        max-width: 76.5%;
+                        max-width: 100%;
                         fury-list {
                             flex: 1 1 auto;
                             .fury-list-table {
@@ -171,7 +185,7 @@ body {
                     #add {
                         display: flex;
                         // max-width: 8.5%;
-                        max-width: 10%;
+                        max-width: 8%;
                         padding-right: 2%;
                         @extend %flex-center;
                         button {

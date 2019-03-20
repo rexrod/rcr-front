@@ -26,8 +26,15 @@ $color-font: #000000;
 //     }
 
 // }
+
 .dialog-content {
     
+    .mat-form-field-flex {
+        background-color: rgba(0,0,0,.04);
+        border-radius: 4px 4px 0 0;
+        padding: .75em .75em 0 .75em;
+    }
+
     .form-content {
         display: flex;
         flex-direction: column;
@@ -39,9 +46,10 @@ $color-font: #000000;
             font-weight: bold;
             text-align: center;
             height: 20%;
+            padding-left: 9.4%;
             align-items: center;
             display: flex;
-            justify-content: center;
+            justify-content: left;
             // border-bottom: 1px solid #D3D3D3;
         }
 
@@ -71,9 +79,19 @@ $color-font: #000000;
                     margin-left: 10px;
                 }
                 
-                .name,
-                .email,
+
                 .registration {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    //height: 100%;
+                    //padding-left: 2%;
+                    mat-form-field {
+                        flex: .8 1 auto;
+                    }
+                }
+
+                .email {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -81,6 +99,36 @@ $color-font: #000000;
 
                     mat-form-field {
                         flex: .8 1 auto;
+                    }
+                }
+
+                .name {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    //height: 100%;
+
+                    mat-form-field {
+                        flex: .8 1 auto;
+                    }
+                }
+
+                .footer-content {
+                    display: flex;
+                    flex: .9 1 auto;
+                    align-items: center;
+                    justify-content: flex-end;
+            
+                    .btn-save {
+                        flex: .1 1 0%;
+                        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+                        font-size: 12px;
+                        //font-size: 100%;
+                        background-color: #FFC937;
+                        //background-color: #F8AD2F;
+                        color: white;
+                        font-weight: 500;
+                        margin-left: 40px;
                     }
                 }
             }
@@ -101,11 +149,12 @@ $color-font: #000000;
         .btn-save {
             flex: .1 1 0%;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-            font-size: 100%;
+            font-size: 12px;
+            //font-size: 100%;
             background-color: #FFC937;
             //background-color: #F8AD2F;
             color: white;
-            font-weight: lighter;
+            font-weight: 500;
         }
     }
 }
