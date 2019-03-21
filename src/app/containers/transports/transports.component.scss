@@ -4,6 +4,7 @@
 $theme-background: #000000;
 
 // Lista de campos
+/*
 $fields: ('_id',
 'type',
 'capacity',
@@ -14,6 +15,19 @@ $fields: ('_id',
 'status',
 'actions',
 );
+*/
+$fields: (
+'_id',
+'type',
+//'capacity',
+'vehiclePlate',
+'description',
+'thirdCompany',
+'trackerSerial',
+'status',
+'actions',
+);
+
 
 // _id?: string;
 // type?: string;
@@ -25,6 +39,8 @@ $fields: ('_id',
 
 // Padroniza o tamanho dos campos
 $length: 100/length($fields)*1%;
+//$length: auto;
+
 
 /*
 .mat-form-field-flex {
@@ -106,9 +122,16 @@ $length: 100/length($fields)*1%;
             color: white;
             @if #{$heading}==actions {
                 button {
-                    margin: 5px;
+                    //margin: 5px;
                 }
             }
+            
+            @if $heading == description {
+                max-width: 20%;
+                min-width: 20%;
+                width: 20%;  
+            }
+            
         }
     }
 }
@@ -282,6 +305,7 @@ body {
                                 padding-left: unset !important;
                                 padding-right: unset !important;
                                 font-size: 90%;
+                                //margin-left: 5px;
                             }
                             .mat-column-expandedDetail {
                                 

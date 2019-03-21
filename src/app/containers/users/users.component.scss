@@ -9,6 +9,7 @@ $fields: ('id',
 'email',
 'registration',
 'status',
+'teste',
 'actions'
 );
 
@@ -96,7 +97,7 @@ $length: 100/length($fields)*1%;
             justify-content: left;
             @if #{$heading}==actions {
                 button {
-                    margin: 5px;
+                    //margin: 5px;
                     //background-color: #FFC937;
                 }
             }

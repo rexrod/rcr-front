@@ -9,6 +9,7 @@ $fields: ('id',
 'address',
 'company',
 'status',
+'teste',
 'actions'
 );
 
@@ -90,8 +91,20 @@ $length: 100/length($fields)*1%;
             color: white;
             @if #{$heading}==actions {
                 button {
-                    margin: 5px;
+                    //margin: 5px;
                 }
+            }
+
+            @if $heading == name {
+                max-width: 20%;
+                min-width: 25%;
+                width: 25%;  
+            }
+
+            @if $heading == address {
+                max-width: 20%;
+                min-width: 25%;
+                width: 25%;  
             }
         }
     }
