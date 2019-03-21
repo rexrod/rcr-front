@@ -302,6 +302,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.dialog.open(DialogRastreadorComponent, {
         data: { id: transport._id, displayName: transport.vehiclePlate, displayBody: 'Transporte:', title: 'Deseja associar um rastreador?', type: 'add', trackerSerial: '' },
+        width: '15%', height: '22%',
         panelClass: 'dialog-rastreador'
     }).afterClosed().subscribe((transport: Transport) => {
 
@@ -331,6 +332,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.dialog.open(DialogRastreadorComponent, {
         data: { id: transport._id, displayName: transport.trackerSerial, displayBody: 'Serial: ',title: 'Deseja desvincular o rastreador?', type: 'remove',  trackerSerial: '' },
+        height: '15%',
         panelClass: 'dialog-rastreador'
     }).afterClosed().subscribe((_transport: Transport) => {
 
@@ -403,6 +405,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.dialog.open(DialogDeleteComponent, {
         data: { id: transport._id, displayName: transport.id },
+        height: '12%',
         panelClass: 'dialog-delete'
     }).afterClosed().subscribe((_transport: Transport) => {
         //console.log(_transport);

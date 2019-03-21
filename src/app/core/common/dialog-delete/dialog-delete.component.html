@@ -5,6 +5,10 @@
   <p class="item-delete">{{ data.displayName }}</p>
 </div>
 <div mat-dialog-actions>
+  <!--
     <button mat-raised-button class="btn-rounded btn-delete" mat-dialog-close>CANCELAR</button>
-    <button mat-raised-button class="btn-rounded btn-delete" (click)="confirm()">DELETAR</button>
+    <button mat-raised-button class="btn-rounded btn-delete" (click)="confirm()">CONFIRMAR</button>
+  -->
+    <button mat-raised-button class="btn-delete-custom" mat-dialog-close>CANCELAR</button>
+    <button mat-raised-button class="btn-delete-custom" (click)="confirm()">CONFIRMAR</button>
 </div>

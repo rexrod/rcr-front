@@ -3,6 +3,12 @@ $color-font: map-get($map: $mat-sgm-primary, $key: 500);
 
 .dialog-delete{
 
+    .mat-form-field-flex {
+        background-color: rgba(0,0,0,.04);
+        border-radius: 4px 4px 0 0;
+        padding: .75em .75em 0 .75em;
+    }
+
     div{
         text-align: left;
         .title-delete {
@@ -24,4 +30,15 @@ $color-font: map-get($map: $mat-sgm-primary, $key: 500);
         box-shadow: unset;
     }
 
+    .btn-delete-custom{
+        flex: 1 1 0%;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        font-size: 12px;
+        //font-size: 100%;
+        background-color: #FFC937;
+        //background-color: #F8AD2F;
+        color: white;
+        font-weight: 500;
+        //margin-left: 40px;
+    }
 }

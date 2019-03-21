@@ -22,6 +22,7 @@ import { ALL_IN_ONE_TABLE_FAKE_DATA } from './transports.fake'; // to test witho
 import { trigger, state, transition, style, animate } from '@angular/animations';
 import { tick } from '@angular/core/testing';
 import { DialogRastreadorComponent } from 'app/core/common/dialog-rastreador/dialog-rastreador.component';
+import { DialogRastreadorCustomComponent } from 'app/core/common/dialog-rastreador-custom/dialog-rastreador.component';
 
 @Component({
     selector: 'fury-transports',
@@ -297,6 +298,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.dialog.open(DialogRastreadorComponent, {
         data: { id: transport._id, displayName: transport.vehiclePlate, displayBody: 'Transporte:', title: 'Deseja associar um rastreador?', type: 'add', trackerSerial: '' },
+        width: '15%', height: '22%',
         panelClass: 'dialog-rastreador'
     }).afterClosed().subscribe((transport: Transport) => {
 
@@ -326,6 +328,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.dialog.open(DialogRastreadorComponent, {
         data: { id: transport._id, displayName: transport.trackerSerial, displayBody: 'Serial: ',title: 'Deseja desvincular o rastreador?', type: 'remove',  trackerSerial: '' },
+        height: '15%',
         panelClass: 'dialog-rastreador'
     }).afterClosed().subscribe((_transport: Transport) => {
 

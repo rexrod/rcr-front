@@ -1,9 +1,12 @@
 @import "_custom_color_scheme.scss";
-$color-font: map-get($map: $mat-sgm-primary, $key: 500);
+//$color-font: map-get($map: $mat-sgm-primary, $key: 500);
+
+$color-font: #000000;
 
 .dialog-rastreador{
 
     div{
+        flex: 1 1 0%;
         text-align: left;
         .title-status {
             font-size: 20px;
@@ -24,4 +27,42 @@ $color-font: map-get($map: $mat-sgm-primary, $key: 500);
         box-shadow: unset;
     }
 
+    #idRastreador{
+        flex: 1 1 0%;
+        font-size: 14px;
+        font-weight: normal;
+        color: $color-font;
+        box-shadow: unset;
+
+    }
+
+    .btn-rastreador-custom{
+        flex: 1 1 0%;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        font-size: 12px;
+        //font-size: 100%;
+        background-color: #FFC937;
+        //background-color: #F8AD2F;
+        color: white;
+        font-weight: 500;
+        //margin-left: 40px;
+    }
+
+    .div-rastreador{
+        flex: 1 1 0%;
+        text-align: left;
+        //width: 100%;
+        .title-status {
+            font-size: 20px;
+        }    
+
+        mat-form-field{
+            width: 100%;
+        }
+        .mat-form-field-flex {
+            background-color: rgba(0,0,0,.04);
+            border-radius: 4px 4px 0 0;
+            padding: .75em .75em 0 .75em;
+        }
+    }
 }

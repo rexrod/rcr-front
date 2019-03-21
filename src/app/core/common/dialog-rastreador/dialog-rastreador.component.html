@@ -5,7 +5,7 @@
   <p class="item-rastreador">{{ data.displayBody }} {{ data.displayName }}</p>
 </div>
 <ng-container *ngIf="data.type == 'add'">
-  <div>
+  <div class="div-rastreador">
     <mat-form-field>
       <mat-select placeholder="Rastreadores" [(ngModel)]="selectedValue" id="idRastreador"> 
         <mat-option *ngFor="let rastreador of rastreadores" [value]="rastreador.serialKey">
@@ -17,6 +17,10 @@
 </ng-container>
 
 <div mat-dialog-actions>
+    <!--
     <button mat-raised-button class="btn-rounded btn-rastreador" mat-dialog-close>CANCELAR</button>
     <button mat-raised-button class="btn-rounded btn-rastreador" (click)="confirm()">CONFIRMAR</button>
+    -->
+    <button mat-raised-button class="btn-rastreador-custom" mat-dialog-close>CANCELAR</button>
+    <button mat-raised-button class="btn-rastreador-custom" (click)="confirm()">CONFIRMAR</button>
 </div>
