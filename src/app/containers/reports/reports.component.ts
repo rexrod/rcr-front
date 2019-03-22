@@ -122,8 +122,9 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
                 }else{
                   continue;
                 }
-                
+                console.log(trans.data[i].coordinates[b].tracker);
                 console.log(lastTracker);
+                console.log(this.rastreadores);
                 const rastreador =  this.rastreadores.find(x => x.serialKey == lastTracker );
 
                 this.transport = {}; 
@@ -154,7 +155,7 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.transport.date = data.getDate() + '/' + month[data.getMonth()] + '/' + data.getFullYear() + ' - ' + hora;
                 //this.transport.date = trans.data[i].coordinates[0].date;
               
-                if(trans.data[i].trackerSerial === lastTracker ){
+                if(trans.data[i].trackerSerial == lastTracker ){
                   this.transport.status = 'Ativo';
                 }else{
                   this.transport.status = 'Inativo';  
