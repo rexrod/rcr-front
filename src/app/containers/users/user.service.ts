@@ -119,6 +119,7 @@ export class UserControllerCustomService {
             }),
         };
 
+        console.log(user);
         const formData = new URLSearchParams();
          
         return this.httpClient.put( environment.origin.tracker + '/admin/status/' + user.id, formData, httpOptions);

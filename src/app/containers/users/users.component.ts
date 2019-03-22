@@ -47,6 +47,7 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
     expandedElement: any;
     pageSize = 10;
     pageSizeOptions: number[] = [5, 10, 25, 100];
+    color = 'primary';
 
     // this component is useful for the filter and show colums in table
     @Input()
@@ -273,6 +274,34 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
             }
 
         });
+    }
+
+    alterarStatusUsuario(user) {
+        console.log(user);
+        let message: string;
+
+        if(user.status === true){
+            message = 'Usuário desativado com sucesso!';
+        }else{
+            message = 'Usuário ativado com sucesso!';
+        }
+
+        this.apiUser.atualizarStatus(user).
+        subscribe(
+            success => {
+                this.snackBar.open(message, 'OK', {
+                    duration: 10000
+                });
+                // Reload the table after the post
+                this.loadData();
+            },
+            error => {
+                console.log(error);
+                this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+                'OK', {
+                    duration: 10000
+                });
+            });
     }
 
     ngOnDestroy() {

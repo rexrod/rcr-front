@@ -3,7 +3,8 @@
 
     <div class="form-content">
         <div class="form-title" header-content>
-            <span>Cadastrar Rastreador</span>
+            <span *ngIf="isCreateMode()">Cadastrar Rastreador</span>
+            <span *ngIf="isUpdateMode()">Editar Rastreador</span>
         </div>
         <div class="form-fields">
             <form [formGroup]="form">

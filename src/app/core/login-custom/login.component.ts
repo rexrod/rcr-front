@@ -6,10 +6,14 @@ import { LoginService } from './login.service';
 import { Subscription } from 'rxjs';
 import { Utils } from 'app/utils/utils';
 import { fadeOutAnimation } from '../common/route.animation';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { CompanyControllerService, CompanyDTO } from 'app/module/performa';
 import { ToolbarUserButtonComponent } from '../toolbar/toolbar-user-button/toolbar-user-button.component';
 import { SessionService } from 'app/service/session.service';
+import { UserControllerCustomService } from 'app/containers/users/user.service';
+import { UserCreateUpdateComponent } from 'app/containers/users/user-create-update/user-create-update.component';
+import { User } from 'app/models/users/users.model'
+import { UserCreateUpdateCustomComponent } from './user-create-update/user-create-update.component';
 //import { CookieService } from 'ngx-cookie-service;
 
 
@@ -18,7 +22,7 @@ import { SessionService } from 'app/service/session.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   animations: [fadeOutAnimation],
-  providers: [SessionService]
+  providers: [UserControllerCustomService]
 })
 export class LoginComponent implements OnInit {
 
@@ -42,6 +46,8 @@ export class LoginComponent implements OnInit {
     public snackBar: MatSnackBar,
     public session: SessionService,
     // private sessionStore: SessionStoreService,
+    private dialog: MatDialog,
+    private apiUser: UserControllerCustomService
   ) { 
     localStorage.clear();
     //this.toolbarUserButton = ToolbarUserButtonComponent;
@@ -67,12 +73,36 @@ export class LoginComponent implements OnInit {
         //console.log(success);
       },
       error => {
+
+        console.log(error);
+        this.visible = false;
+        if(error.error.error === 'invalid_grant'){
+            this.snackBar.open('O usuário ou senha informados estão incorretos.', 'OK', {
+                duration: 10000
+            });
+        }else if(error.error.error_description.includes('usuario nao esta ativo')){
+            this.snackBar.open('O usuário informado não está ativo.', 'OK', {
+                duration: 10000
+            });
+       }else if(error.error.error_description.includes('usuario nao encontrado')){
+            this.snackBar.open('O usuário informado não está cadastrado.', 'OK', {
+                duration: 10000
+            });
+        }else{
+            this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+            'OK', {
+                duration: 10000
+            });
+        }
+
+        /*
         console.log(error);
         this.visible = false;
         this.snackBar.open('Usuário Inválido!','OK',{
           duration: 30000,
           panelClass: ['blue-snackbar']
         });
+        */
       }
     );
     //this.visible = false;
@@ -124,5 +154,44 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
+  create() {
+
+    this.dialog.open(UserCreateUpdateCustomComponent, {
+        width: '31%', height: '45%',
+        panelClass: 'dialog-create-update'
+    }).afterClosed().subscribe((user: User) => {
+
+        if (user) {
+            this.apiUser.registerUser(user).
+                 subscribe(
+                    success => {
+                        this.snackBar.open('Usuário cadastrado com sucesso!', 'OK', {
+                            duration: 10000
+                        });
+                    // Reload the table after the post
+                       this.loadData();
+                    },
+                    error => {
+                        console.log(error);
+                        if(error.error.error === 'username_invalid'){
+                            this.snackBar.open('Já existe um usuário cadastrado com este e-mail.', 'OK', {
+                                duration: 10000
+                            });
+                        }else if(error.error.error_description.includes('registration_1')){
+                            this.snackBar.open('Já existe um usuário cadastrado com esta matricula.', 'OK', {
+                                duration: 10000
+                            });
+                        }else{
+                            this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
+                            'OK', {
+                                duration: 10000
+                            });
+                        }
+                     });
+        }
+
+    });
+}
 
 }

@@ -189,7 +189,9 @@ body {
               //flex: 1 1 auto;
               //display: flex;
               box-sizing: border-box;
-              max-height: 33.58%;
+              //max-height: 33.58%;
+              //width: 154px;
+              //height: 40px;
               justify-content: center;
               align-content: center;
               align-items: center;
@@ -223,7 +225,7 @@ body {
               //font-family: "Raleway";
               color: rgba(110, 116, 125, 1);
               font-size: 18px;
-              font-weight: bold;
+              font-weight: lighter;
               //ExtraLight - 26px rgba(110, 116, 125, 1)
             }    
             #create-title{
@@ -233,6 +235,7 @@ body {
               font-size: 18px;
               font-weight: bold;
               text-decoration: none;
+              cursor: pointer;
               //ExtraLight - 26px rgba(110, 116, 125, 1)
             }    
             form {

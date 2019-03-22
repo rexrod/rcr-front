@@ -61,7 +61,7 @@
                         </div> -->
                     <!-- </div> -->
                     <div id="image">
-                        <img src="assets/rcr/logo_login.png">
+                        <img src="assets/rcr/logo_login.png" style="width: 140px">
                         <div class="image-title">
                             <span>Sistema de Rastreamento de Cargas e Rotas</span>
                         </div>
@@ -111,7 +111,9 @@
                         </div>
                         <div class="enroll">
                                 <!-- Don't have an account?<br/> -->
-                                <span id="account-title">Ainda não possui conta?</span><span id="create-title">&nbsp;<a [routerLink]="['/register']" style="text-decoration: none">Criar Conta</a></span>
+                                <!--<span id="account-title">Ainda não possui conta?</span><span id="create-title">&nbsp;<a [routerLink]="['/register']" style="text-decoration: none">Criar Conta</a></span>-->
+                                <span id="account-title">Ainda não possui conta?</span><span id="create-title">&nbsp;<a (click)="create()" style="text-decoration: none">Criar Conta</a></span>
+                                
                                 <!--<a [routerLink]="['/register']">Criar nova conta</a>-->
                         </div>
                         <div id="btn-login" *ngIf="inputType=='biometry'">
