@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -11,12 +12,17 @@ import {
   MatSelectModule,
   MatDatepickerModule,
   MatSidenavModule,
-  MatDividerModule
+  MatDividerModule,
+  MatTooltipModule,
+  MatProgressBarModule
 } from '@angular/material';
-import { DialogRastreadorCustomComponent } from './dialog-rastreador.component';
+import { UserCreateUpdateCustomComponent } from './user-create-update.component';
 import {NgxMaskModule} from 'ngx-mask';
 import { from } from '../../../../../node_modules/rxjs';
-import { DialogPanelModule } from '../dialog-panel/dialog-panel.module';
+import { DialogPanelModule } from 'app/core/common/dialog-panel/dialog-panel.module';
+import { PipeModule } from 'app/pipes/pipe.module';
+import { BASE_PATH, SectorControllerService } from 'app/module/companies';
+import { environment } from 'environments/environment';
 @NgModule({
   imports: [
     CommonModule,
@@ -27,16 +33,24 @@ import { DialogPanelModule } from '../dialog-panel/dialog-panel.module';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatRadioModule,
+    MatRadioModule, 
     MatSelectModule,
     NgxMaskModule.forRoot(),
     MatDatepickerModule,
     MatSidenavModule,
     MatDividerModule,
     DialogPanelModule,
+    MatProgressBarModule,
+    MatTooltipModule,
+    PipeModule
   ],
-  declarations: [DialogRastreadorCustomComponent],
-  entryComponents: [DialogRastreadorCustomComponent],
-  exports: [DialogRastreadorCustomComponent]
+  declarations: [UserCreateUpdateCustomComponent],
+  entryComponents: [UserCreateUpdateCustomComponent],
+  exports: [UserCreateUpdateCustomComponent],
+  providers: [
+    {provide: BASE_PATH, useValue: environment.origin.companies},
+    SectorControllerService,
+  ]
 })
-export class DialogRastreadorCustomModule {}
+export class UserCreateUpdateCustomModule {}
+

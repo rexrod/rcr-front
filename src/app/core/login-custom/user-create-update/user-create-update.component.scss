@@ -1,9 +1,11 @@
+
 @import "_custom_color_scheme.scss";
+//$color-font: map-get($map: $mat-sgm-primary, $key: 500);
 $color-font: #000000;
 
 $color-font-warn: map-get($map: $mat-sgm-warn, $key: 500);
 
-.dialog-rastreador {
+.dialog-content {
 
     .mat-form-field-flex {
         background-color: rgba(0,0,0,.04);
@@ -157,49 +159,41 @@ $color-font-warn: map-get($map: $mat-sgm-warn, $key: 500);
     }
 }
 
-/*
-.dialog-rastreador{
 
-    div{
-        flex: 1 1 0%;
-        text-align: left;
-        .title-status {
-            font-size: 20px;
-        }    
-    }
+.dialog-footer {
+    display: flex;
+    padding-right: 24px;
 
-    .item-rastreador{
-        text-align: left;
-        font-weight: normal;
-        color: rgba(0, 0, 0, 0.54);
-    }
+    .footer-content {
+        display: flex;
+        flex: 1 1 auto;
+        align-items: center;
+        justify-content: flex-end;
 
-    .btn-rastreador {
-        flex: 1 1 0%;
-        font-size: 14px;
-        font-weight: normal;
-        color: $color-font;
-        box-shadow: unset;
-    }
-
-    .btn-rastreador-custom{
-        flex: 1 1 0%;
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-        font-size: 12px;
-        //font-size: 100%;
-        background-color: #FFC937;
-        //background-color: #F8AD2F;
-        color: white;
-        font-weight: 500;
-        //margin-left: 40px;
-    }
-
-    .div-rastreador{
-        flex: 1 1 0%;
-        text-align: left;
-        .title-status {
-            font-size: 20px;
-        }    
+        .btn-save {
+            flex: .1 -1 0%;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            font-size: 100%;
+            background-color: #FFC937;
+            color: white;
+            font-weight: lighter;
+            margin-bottom: 0.5%;
+        }
     }
 }
-*/
+
+@media screen and (max-height: 400px) {
+    .btn-save {
+        line-height: 24px !important;
+    }
+}
+
+@media screen and (max-width: 600px),
+(max-height : 600px) {
+    .area-panel {
+        max-width: unset !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+

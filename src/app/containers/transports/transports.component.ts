@@ -22,7 +22,6 @@ import { ALL_IN_ONE_TABLE_FAKE_DATA } from './transports.fake'; // to test witho
 import { trigger, state, transition, style, animate } from '@angular/animations';
 import { tick } from '@angular/core/testing';
 import { DialogRastreadorComponent } from 'app/core/common/dialog-rastreador/dialog-rastreador.component';
-import { DialogRastreadorCustomComponent } from 'app/core/common/dialog-rastreador-custom/dialog-rastreador.component';
 
 @Component({
     selector: 'fury-transports',
