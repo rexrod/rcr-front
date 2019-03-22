@@ -107,7 +107,7 @@
                                 color="primary">Entrar</button> -->
                             <button mat-raised-button *ngIf="!visible" class="btn-login"
                                 color="primary">ENTRAR</button>        
-                            <mat-spinner *ngIf="visible" style="height: 50px;width: 50px;"></mat-spinner>
+                            <mat-spinner *ngIf="visible" [diameter]="50"></mat-spinner>
                         </div>
                         <div class="enroll">
                                 <!-- Don't have an account?<br/> -->

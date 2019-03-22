@@ -132,7 +132,7 @@ mat-form-field {
                         display: flex;
                         flex: 1 1 auto;
                         //max-width: 15%; 
-                        max-width: 6%;
+                        max-width: 7%;
                         //background: yellow;
                         //border-right: 1px #707070 solid;
                         span {
@@ -163,7 +163,7 @@ mat-form-field {
                     }
                     #add {
                         display: flex;
-                        max-width: 8.5%;
+                        max-width: 9%;
                         @extend %flex-center;
                         button {
                             box-shadow: 0px 3px 6px rgba( black, 0.26);

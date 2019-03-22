@@ -134,7 +134,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
     create() {
 
         this.dialog.open(TransportCreateUpdateComponent, {
-            width: '31%', height: '51%',
+            width: '31%', height: '57%',
             panelClass: 'dialog-create-update'
         }).afterClosed().subscribe((transport: Transport) => {
 
@@ -164,7 +164,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
         this.dialog.open(TransportCreateUpdateComponent, {
             data: transport,
             //width: '61%', height: '77%',
-            width: '31%', height: '51%',
+            width: '31%', height: '57%',
             panelClass: 'dialog-create-update'
         }).afterClosed().subscribe((_transport) => {
             if (_transport) {
@@ -297,7 +297,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.dialog.open(DialogRastreadorComponent, {
         data: { id: transport._id, displayName: transport.vehiclePlate, displayBody: 'Transporte:', title: 'Deseja associar um rastreador?', type: 'add', trackerSerial: '' },
-        width: '15%', height: '22%',
+        width: '15%', height: '24%',
         panelClass: 'dialog-rastreador'
     }).afterClosed().subscribe((transport: Transport) => {
 
@@ -327,7 +327,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.dialog.open(DialogRastreadorComponent, {
         data: { id: transport._id, displayName: transport.trackerSerial, displayBody: 'Serial: ',title: 'Deseja desvincular o rastreador?', type: 'remove',  trackerSerial: '' },
-        height: '15%',
+        height: '17%',
         panelClass: 'dialog-rastreador'
     }).afterClosed().subscribe((_transport: Transport) => {
 
