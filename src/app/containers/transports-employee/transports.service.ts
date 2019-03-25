@@ -92,6 +92,7 @@ export class TransportControllerService {
         formData.set('thirdCompany', transport.thirdCompany);
         formData.set('segment', transport.segment);
         formData.set('description', transport.description);
+        formData.set('manager', transport.manager);
         
         // console.log(formData.getAll);
         // console.log(formData.toString());

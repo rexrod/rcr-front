@@ -13,6 +13,7 @@ import { TransportsRoutingModule } from './transports-routing.module';
 import { TransportsComponent } from './transports.component';
 import { TransportCreateUpdateModule} from './transport-create-update/transport-create-update.module';
 import { DashboardRoutesModule } from '../dashboard-routes-employee/dashboard-routes.module';
+import {NgxMaskModule} from 'ngx-mask'
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { DashboardRoutesModule } from '../dashboard-routes-employee/dashboard-ro
     DialogDeleteModule,
     DialogRastreadorModule,
     DashboardRoutesModule,
+    NgxMaskModule,
   ],
   declarations: [TransportsComponent],
   exports: [TransportsComponent]

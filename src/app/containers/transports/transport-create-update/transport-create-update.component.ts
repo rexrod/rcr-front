@@ -69,6 +69,7 @@ export class TransportCreateUpdateComponent implements OnInit {
               idRastreador: new FormControl(),
               description: new FormControl(),
               segment: new FormControl(),
+              manager: new FormControl(),
             });
 
   }
@@ -88,6 +89,7 @@ export class TransportCreateUpdateComponent implements OnInit {
         idRastreador: [this.defaults.idRastreador],
         description: [this.defaults.description],      
         segment: {value:[this.defaults.segment], disabled: true},
+        manager: [this.defaults.manager], 
       });
 
     } else { // <-- don't have data :( = Mode Create
@@ -147,6 +149,7 @@ export class TransportCreateUpdateComponent implements OnInit {
     transport.id = this.defaults.id;
     transport.segment = this.defaults.segment;
     transport.type = this.defaults.type;
+    //transport.manager = this.defaults.manager;
     this.dialogRef.close(transport);
   }
 
@@ -184,6 +187,8 @@ export class TransportCreateUpdateComponent implements OnInit {
     formData.set('thirdCompany', transport.thirdCompany);
     //formData.set('segment', transport.segment);
     formData.set('description', transport.description);
+    formData.set('manager', transport.manager);
+
     
     console.log(formData.getAll);
     console.log(formData.toString());

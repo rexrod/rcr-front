@@ -63,6 +63,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
         { name: 'Coordenadas', property: 'coordinates', visible: false, isModelProperty: true },
         { name: 'Rotas', property: 'routes', visible: false, isModelProperty: true },
         { name: 'Status', property: 'status', visible: true, isModelProperty: true },
+        { name: 'Telefone', property: 'manager', visible: false, isModelProperty: true },
         { name: '', property: 'actions', visible: true }
     ] as ListColumn[];
     dataSource: MatTableDataSource<Transport> | null;
@@ -134,7 +135,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
     create() {
 
         this.dialog.open(TransportCreateUpdateComponent, {
-            width: '31%', height: '57%',
+            width: '31%', height: '77%',
             panelClass: 'dialog-create-update'
         }).afterClosed().subscribe((transport: Transport) => {
 
@@ -164,7 +165,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
         this.dialog.open(TransportCreateUpdateComponent, {
             data: transport,
             //width: '61%', height: '77%',
-            width: '31%', height: '57%',
+            width: '31%', height: '77%',
             panelClass: 'dialog-create-update'
         }).afterClosed().subscribe((_transport) => {
             if (_transport) {

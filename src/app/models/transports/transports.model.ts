@@ -28,5 +28,6 @@ export interface Transport {
     }],
     routes?: {
       employees?: []
-    }
+    },
+    manager?: string;
 }

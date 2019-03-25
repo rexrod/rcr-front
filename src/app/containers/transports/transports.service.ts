@@ -85,13 +85,16 @@ export class TransportControllerService {
         
         const formData = new URLSearchParams();
         // append your data
-
+        console.log('entrou aqui');
+        console.log(transport);
         formData.set('type', transport.type);
         formData.set('vehiclePlate', transport.vehiclePlate);
         formData.set('capacity', transport.capacity);
         formData.set('thirdCompany', transport.thirdCompany);
         formData.set('segment', transport.segment);
         formData.set('description', transport.description);
+        formData.set('manager', transport.manager);
+
 
         // console.log(formData.getAll);
         // console.log(formData.toString());
