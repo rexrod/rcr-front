@@ -12,6 +12,7 @@ import { DialogRastreadorModule } from '../../core/common/dialog-rastreador/dial
 import { TransportsRoutingModule } from './transports-routing.module';
 import { TransportsComponent } from './transports.component';
 import { TransportCreateUpdateModule} from './transport-create-update/transport-create-update.module';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { TransportCreateUpdateModule} from './transport-create-update/transport-
     BreadcrumbsModule,
     DialogDeleteModule,
     DialogRastreadorModule,
+    TextMaskModule,
   ],
   declarations: [TransportsComponent],
   exports: [TransportsComponent]

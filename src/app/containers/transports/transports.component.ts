@@ -48,6 +48,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
     pageSizeOptions: number[] = [5, 10, 25, 100];
     checked = false;
     color = 'primary';
+    mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
     // this component is useful for the filter and show colums in table
     @Input()

@@ -99,7 +99,7 @@ mat-form-field {
     flex: .5 1 auto;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     font-size: 100%;
-    background-color: black;//#FFC937;
+    background-color: #3F4ADE; //#FFC937;
     color: white;
     font-weight: 500;
     width: 95px;
@@ -110,7 +110,7 @@ mat-form-field {
     flex: .5 1 auto;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     font-size: 100%;
-    background-color: #3F4ADE;//rgb(216, 214, 209);
+    background-color: black;//rgb(216, 214, 209);
     color: white;
     font-weight: 500;
     width: 95px;
@@ -130,7 +130,8 @@ mat-form-field {
     flex: .5 1 auto;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     font-size: 100%;
-    background-color: red;
+    //background-color: red;
+    background-color: #BDC3C7;
     color: white;
     font-weight: 500;
     width: 95px;

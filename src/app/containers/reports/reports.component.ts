@@ -100,62 +100,78 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
         .subscribe(trans => {
 
           this.transports = [];
-          let lastTracker = '';
-
-          for(var i=0; i < trans.data.length - 1; i++){
+         
+          let month = new Array();
+          month[0] = "01";
+          month[1] = "02";
+          month[2] = "03";
+          month[3] = "04";
+          month[4] = "05";
+          month[5] = "06";
+          month[6] = "07";
+          month[7] = "08";
+          month[8] = "09";
+          month[9] = "10";
+          month[10] = "11";
+          month[11] = "12";
+    
+          let currentDate = new Date();
+          let newDate = currentDate.getDate() + '/' + month[currentDate.getMonth()] + '/' + currentDate.getFullYear();
+          
+          trans.data.forEach( transporte => {
+            //console.log(transporte);
+            let lastTracker = '';
+            let lastDate = '';
+            //for(var i=0; i < trans.data.length - 1; i++){
             
-            if(!trans.data[i].coordinates){
-              continue;
-            }
-            
-            if(trans.data[i].coordinates.length > 0){  
-
-              for(var b=0; b < trans.data[i].coordinates.length - 1; i++){
+            if(transporte.coordinates.length > 0){  
+              
+              for(var b=0; b < transporte.coordinates.length - 1; b++){
                 //console.log(transport.coordinates[i].coords);
                 //points.push({'lat': transport.coordinates[i].coords.lat, 'lng': transport.coordinates[i].coords.long });
-              
+                //console.log('b = ' + b);
                 //tracker
                 //console.log(trans.data[i].trackerSerial);
                 
-                if(lastTracker != trans.data[i].coordinates[b].tracker){
-                  lastTracker = trans.data[i].coordinates[b].tracker
+                let data = new Date(transporte.coordinates[b].date);
+                let date = data.getDate() + '/' + month[data.getMonth()] + '/' + data.getFullYear();
+
+                console.log(data.getDate());
+
+                /*
+                if((lastTracker != transporte.coordinates[b].tracker) || (lastDate != date )){
+                  lastTracker = transporte.coordinates[b].tracker;
+                  lastDate = date;
                 }else{
                   continue;
                 }
-                console.log(trans.data[i].coordinates[b].tracker);
+                */
+               
+                if(lastTracker != transporte.coordinates[b].tracker){
+                  lastTracker = transporte.coordinates[b].tracker;
+                }else{
+                  continue;
+                }
+
+
+                console.log(transporte.coordinates[b].tracker);
                 console.log(lastTracker);
-                console.log(this.rastreadores);
+                //console.log(this.rastreadores);
                 const rastreador =  this.rastreadores.find(x => x.serialKey == lastTracker );
 
                 this.transport = {}; 
-                this.transport.transportId =  trans.data[i]._id;
+                this.transport.transportId =  transporte._id;
                 this.transport.trackerSerial = rastreador.serialKey;
                 this.transport.trackerModel = rastreador.trackerModel;
-                this.transport.type = trans.data[i].type;
-                this.transport.vehiclePlate = trans.data[i].vehiclePlate;
+                this.transport.type = transporte.type;
+                this.transport.vehiclePlate = transporte.vehiclePlate;
 
-                let data = new Date(trans.data[i].coordinates[b].date);
-
-                let month = new Array();
-                month[0] = "01";
-                month[1] = "02";
-                month[2] = "03";
-                month[3] = "04";
-                month[4] = "05";
-                month[5] = "06";
-                month[6] = "07";
-                month[7] = "08";
-                month[8] = "09";
-                month[9] = "10";
-                month[10] = "11";
-                month[11] = "12";
-          
                 //let hora = data.getHours() + ':' + data.getMinutes();
                 let hora = ("0" + data.getHours()).slice(-2) + ':' + ("0" + data.getMinutes()).slice(-2) ;
                 this.transport.date = data.getDate() + '/' + month[data.getMonth()] + '/' + data.getFullYear() + ' - ' + hora;
-                //this.transport.date = trans.data[i].coordinates[0].date;
+                //this.transport.date = transporte.coordinates[0].date;
               
-                if(trans.data[i].trackerSerial == lastTracker ){
+                if(transporte.trackerSerial == lastTracker ){
                   this.transport.status = 'Ativo';
                 }else{
                   this.transport.status = 'Inativo';  
@@ -166,7 +182,8 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
                 //   console.log(this.transports);
               }
             }
-          }
+          //}
+          })
           this.dataSource.data = this.transports; //transports;
           this.paginator.firstPage();
         },
