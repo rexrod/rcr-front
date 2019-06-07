@@ -568,7 +568,7 @@ export class UserControllerService {
         console.log(formData.getAll);
         console.log(formData.toString());
         
-        return this.httpClient.post<AdministratorCustom>('https://rcr-transire-api.herokuapp.com/v1/oauth2/token',formData.toString(), httpOptions,
+        return this.httpClient.post<AdministratorCustom>('http://52.229.33.51:8080/v1/oauth2/token',formData.toString(), httpOptions,
         );
     }
 
@@ -601,7 +601,7 @@ export class UserControllerService {
         console.log(formData.getAll);
         console.log(formData.toString());
         
-        return this.httpClient.post<AdministratorCustom>('https://rcr-transire-api.herokuapp.com/v1/oauth2/register',formData.toString(), httpOptions,
+        return this.httpClient.post<AdministratorCustom>('http://52.229.33.51:8080/v1/oauth2/register',formData.toString(), httpOptions,
         );
     }
 
@@ -616,7 +616,7 @@ export class UserControllerService {
             }),
         };
         
-        //https://rcr-transire-api.herokuapp.com/auth/v1/admin/allprofiles
+        //http://52.229.33.51:8080/auth/v1/admin/allprofiles
         return this.httpClient.get<any>(environment.origin.transports + '/user/profile', httpOptions,);
     }
 
@@ -639,7 +639,7 @@ export class UserControllerService {
         
         console.log(formData.toString());
 
-        //https://rcr-transire-api.herokuapp.com/auth/v1/admin/allprofiles
+        //http://52.229.33.51:8080/auth/v1/admin/allprofiles
         return this.httpClient.put<any>(environment.origin.users + '/user/profile', formData.toString(), httpOptions,);
     }
 

@@ -42,7 +42,7 @@ export class UserControllerCustomService {
         // console.log(formData.getAll);
         // console.log(formData.toString());
  
-        //https://rcr-transire-api.herokuapp.com/auth/v1/admin/allprofiles
+        //http://52.229.33.51:8080/auth/v1/admin/allprofiles
         return this.httpClient.get<Transport>(environment.origin.transports + '/admin/allprofiles', httpOptions,);
     }
 
@@ -68,7 +68,7 @@ export class UserControllerCustomService {
         // console.log(formData.getAll);
         // console.log(formData.toString());
         
-        return this.httpClient.post<Rastreador>('https://rcr-transire-api.herokuapp.com/v1/oauth2/register', formData.toString(), httpOptions,);
+        return this.httpClient.post<Rastreador>('http://52.229.33.51:8080/v1/oauth2/register', formData.toString(), httpOptions,);
     }
 
     public updateUser(user: User): Observable<any> {
