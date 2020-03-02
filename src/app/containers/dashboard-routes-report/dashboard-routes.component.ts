@@ -280,6 +280,7 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
         }
 
         //console.log('rastreando...');
+        console.log(this.transports);
         const transport =  this.transports.find(x => x.trackerSerial === this.selectedValue );
         this.transport = transport;
     
@@ -402,7 +403,7 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
         // Initialize a polyline with the linestring:
         let polyline = new H.map.Polyline(linestring, { 
             style: { strokeColor: 'black', lineWidth: 4 },
-            //arrows: { fillColor: 'white', frequency: 2, width: 0.8, length: 0.7 }
+            // arrows: { fillColor: 'white', frequency: 2, width: 0.8, length: 0.7 }
         });
         
         this.group.addObject(polyline);

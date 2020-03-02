@@ -13,6 +13,8 @@ import { DashboardLiveCreateUpdateModule} from './dashboard-live-create-update/d
 import { AgmCoreModule } from '@agm/core';
 import { DashboardLiveMapButtonModule } from './dashboard-live-map-button/dashboard-live-map-button.module';
 import { DashboardLiveMapButtonComponent } from './dashboard-live-map-button/dashboard-live-map-button.component';
+import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
+
 
 @NgModule({
   imports: [
@@ -22,13 +24,19 @@ import { DashboardLiveMapButtonComponent } from './dashboard-live-map-button/das
     DashboardLivesRoutingModule,
     DashboardLiveCreateUpdateModule,
     DashboardLiveMapButtonModule,
+ 
+
+    //Calendar
+    // CalendarModule.forRoot(),
+    // SchedulerModule.forRoot({ locale: 'en', headerDateFormat: 'daysRange' }),
 
     // Core
     ListModule,
     PageModule,
     BreadcrumbsModule,
     DialogDeleteModule,
-    AgmCoreModule
+    AgmCoreModule,
+    CalendarModule 
   ],
   declarations: [
     DashboardLivesComponent,

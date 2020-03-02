@@ -32,6 +32,8 @@ import { User } from 'app/models/users/users.model';
 export class UserControllerService {
 
     protected basePath = 'http://172.100.10.22:8081/ws-users/api';
+    // protected basePath = 'http://localhost:3001/ws-users/api';
+
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -568,7 +570,10 @@ export class UserControllerService {
         console.log(formData.getAll);
         console.log(formData.toString());
         
-        return this.httpClient.post<AdministratorCustom>('http://52.229.33.51:8080/v1/oauth2/token',formData.toString(), httpOptions,
+        // return this.httpClient.post<AdministratorCustom>('http://52.229.33.51:8080/v1/oauth2/token',formData.toString(), httpOptions,
+       return this.httpClient.post<AdministratorCustom>('http://localhost:3001/v1/oauth2/token',formData.toString(), httpOptions,
+
+
         );
     }
 
@@ -601,7 +606,9 @@ export class UserControllerService {
         console.log(formData.getAll);
         console.log(formData.toString());
         
-        return this.httpClient.post<AdministratorCustom>('http://52.229.33.51:8080/v1/oauth2/register',formData.toString(), httpOptions,
+        // return this.httpClient.post<AdministratorCustom>('http://52.229.33.51:8080/v1/oauth2/register',formData.toString(), httpOptions,
+        return this.httpClient.post<AdministratorCustom>('http://localhost:3001/v1/oauth2/register',formData.toString(), httpOptions,
+
         );
     }
 

@@ -48,6 +48,12 @@ declare var H: any;
 })
 export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy {
 
+    minDate: Date ;
+    maxDate: Date ;
+    value: Date;
+    JSONData: any = JSON.parse('{ "selectedDate": "2018-12-18T08:56:00+00:00"}');
+    model_result: string = JSON.stringify(this.JSONData);
+    dateCordinate: any;
     subject$: ReplaySubject<DashboardLive[]> = new ReplaySubject<DashboardLive[]>(1);
     data$: Observable<DashboardLive[]> = this.subject$.asObservable();
     dashboardLives: DashboardLive[];
@@ -57,7 +63,10 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
 
     // form: FormGroup;
     selectedValue: string;
+    selectedValueDate: any;
     lived = false;
+
+    date: any;
 
     @Input()
     rastreadores: any[] = [];
@@ -119,12 +128,29 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         // lives: DashboardLivesComponent;
     }
 
-    loadData() {
+    getDate(value){
+        console.log(value);
 
+        this.value = value.value;
+
+        console.log(this.value.getDate());
+
+        this.dateCordinate = this.value.getDate();
+
+
+
+        this.JSONData.selectedDate = value.value;
+        this.model_result = JSON.stringify(this.JSONData);
+        console.log(this.model_result);
+
+    }
+
+    loadData() {
+       
         this.apiTransport.getAll()
           .subscribe(trans => {
             //console.log(trans);
-            //console.log(trans.data);
+            console.log(trans.data);
             // this.transports = trans;
             // this.dataSource.data = trans.data; //transports;
             
@@ -136,9 +162,9 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
             //   if(trans.data[i].trackerSerial){
               if(trans.data[i].coordinates.length > 0){
                 //console.log(trans.data[i]);
-                if((trans.data[i].status === true) && (trans.data[i].trackerSerial)){
+                if((trans.data[i].status === true) && (trans.data[i].vehiclePlate)){
                   this.transports.push(trans.data[i]);
-                  this.rastreadores.push(trans.data[i].trackerSerial);
+                  this.rastreadores.push(trans.data[i].vehiclePlate);
                 }
               }
             }
@@ -154,15 +180,49 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         //console.log('loaddata call here');
     }
 
-    rastrear(evt?: any) {
+ 
 
+    listarDate(valueTransport){
+
+        console.log(valueTransport)
+        const transport =  this.transports.find(x => x.vehiclePlate === this.selectedValue );
+        this.transport = transport;
+        this.date = transport.coordinates;
+        
+        console.log(this.transport)
+
+
+
+    }
+
+    rastrear(evt?: any) {
+     
         if(evt){
             this.selectedValue = evt.target.getData();
+         
         }
 
         //console.log('rastreando...');
-        const transport =  this.transports.find(x => x.trackerSerial === this.selectedValue );
+        // this.transport.coordinates.forEach(element => {
+        //     element.date.find(x =)
+        // });
+        // let x = new Date(this.transport.coordinates[0].date);
+        // console.log(x.getDate());
+
+        
+        // &&  x.coordinates.filter(f => f.date === '2019-03-19T21:15:24.957Z')
+        // tslint:disable-next-line: max-line-length
+        const transport =  this.transports.find(x => x.vehiclePlate === this.selectedValue );
+
         this.transport = transport;
+       
+
+        // const qtdCordinates = transport.coordinates.length;
+        // console.log(qtdCordinates)
+        // for(let i = 0 ; i < qtdCordinates ; i++){
+        // this.date = this.transport.coordinates[i].date;
+        // }
+        console.log(this.transport)
     
         //console.log(transport.coordinates.length);
         
@@ -188,6 +248,9 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         //let icon = new H.map.Icon('assets/rcr/icon-logo.png');
         let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');   
         
+        // let marker = new H.map.Marker({ lat: transport.coordinates[0].coords.lat, lng: transport.coordinates[0].coords.long }, { icon: icon });
+        // let markerFinal = new H.map.Marker({ lat: transport.coordinates[transport.coordinates.length-1].coords.lat, lng: transport.coordinates[transport.coordinates.length-1].coords.long }, { icon: iconFinal });
+
         let marker = new H.map.Marker({ lat: transport.coordinates[0].coords.lat, lng: transport.coordinates[0].coords.long }, { icon: icon });
         let markerFinal = new H.map.Marker({ lat: transport.coordinates[transport.coordinates.length-1].coords.lat, lng: transport.coordinates[transport.coordinates.length-1].coords.long }, { icon: iconFinal });
     

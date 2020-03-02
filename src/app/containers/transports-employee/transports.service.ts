@@ -67,8 +67,9 @@ export class TransportControllerService {
         
         // console.log(formData.getAll);
         // console.log(formData.toString());
-        
-        return this.httpClient.get<Transport>('http://52.229.33.51:8080/auth/v1/transports/alltransports',httpOptions,
+        return this.httpClient.get<Transport>('http://localhost:3001/auth/v1/transports/alltransports',httpOptions,
+
+        // return this.httpClient.get<Transport>('http://52.229.33.51:8080/auth/v1/transports/alltransports',httpOptions,
         );
     }
 
