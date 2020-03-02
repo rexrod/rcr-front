@@ -68,7 +68,8 @@ export class UserControllerCustomService {
         // console.log(formData.getAll);
         // console.log(formData.toString());
         
-        return this.httpClient.post<Rastreador>('http://52.229.33.51:8080/v1/oauth2/register', formData.toString(), httpOptions,);
+        // return this.httpClient.post<Rastreador>('http://52.229.33.51:8080/v1/oauth2/register', formData.toString(), httpOptions,);
+        return this.httpClient.post<Rastreador>('http://localhost:3001/v1/oauth2/register', formData.toString(), httpOptions,);
     }
 
     public updateUser(user: User): Observable<any> {

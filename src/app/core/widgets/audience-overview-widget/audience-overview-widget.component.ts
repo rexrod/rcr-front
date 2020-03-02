@@ -113,7 +113,7 @@ export class AudienceOverviewWidgetComponent implements AfterViewInit {
 
     this._activeOptions.asObservable().subscribe(value => {
       this.chart.data = value.data;
-      this.chart.update(1000);
+      // this.chart.update(1000);
     });
   }
 

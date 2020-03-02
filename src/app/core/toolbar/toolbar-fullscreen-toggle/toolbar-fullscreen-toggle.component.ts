@@ -14,7 +14,7 @@ export class ToolbarFullscreenToggleComponent {
   }
 
   toggleFullscreen() {
-    if (screenfull.enabled) {
+    if (screenfull) {
       screenfull.toggle();
       this.isFullscreen = !this.isFullscreen;
     }

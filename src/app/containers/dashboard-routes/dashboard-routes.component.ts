@@ -190,6 +190,8 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
             "app_id": "f9xS9zNUPJwcnpSM5fkl",
             "app_code": "KFOs5agTKxE3hV8cJIA_7Q"
         });
+
+        
         // lives: DashboardLivesComponent;
 
         // this.filteredOptions = this.myControl.valueChanges
@@ -264,7 +266,7 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
         if(evt){
             this.selectedValue = evt.target.getData();
         }
-
+        console.log(this.transports)
         //console.log('rastreando...');
         const transport =  this.transports.find(x => x.trackerSerial === this.selectedValue );
         this.transport = transport;
