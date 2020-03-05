@@ -74,7 +74,11 @@ export class RastreadoresComponent implements OnInit, AfterViewInit, OnDestroy {
             //console.log(rastreadores.data);
             this.rastreadores = rastreadores;
             this.dataSource.data = rastreadores.data;
-            this.paginator.pageIndex = pageIndex || 0;
+            if (pageIndex == -1) {
+                this.paginator.lastPage();
+            } else {
+                this.paginator.pageIndex = pageIndex || 0;
+            }
           },
            error => {
                if (error.status === 0 || error.status === 404) {
@@ -120,9 +124,8 @@ export class RastreadoresComponent implements OnInit, AfterViewInit, OnDestroy {
                                 duration: 10000
                             });
 
-                            let pageIndex = this.paginator.pageIndex;
                             // Reload the table after the post
-                            this.loadData(pageIndex);
+                            this.loadData(-1);
                         },
                         error => {
                             console.log(error);

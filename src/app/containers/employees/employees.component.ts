@@ -85,7 +85,11 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
             this.employees = employees;
             this.dataSource.data = employees;
 
-            this.paginator.pageIndex = pageIndex || 0;
+            if (pageIndex == -1) {
+                this.paginator.lastPage();
+            } else {
+                this.paginator.pageIndex = pageIndex || 0;
+            }
           },
            error => {
                console.log(error);
@@ -130,10 +134,9 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
                             this.snackBar.open('Item cadastrado com sucesso!', 'OK', {
                                 duration: 10000
                             });
-
-                            let actualIndex = this.paginator.pageIndex;
+                            
                             // Reload the table after the post
-                            this.loadData(actualIndex);
+                            this.loadData(-1);
                         },
                         error => {
                             console.log(error);
