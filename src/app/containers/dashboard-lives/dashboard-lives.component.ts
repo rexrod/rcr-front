@@ -68,6 +68,9 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
 
     date: any;
 
+    filterDateStart: Date = new Date();
+    filterDateEnd: Date = new Date();
+
     @Input()
     rastreadores: any[] = [];
 
@@ -129,11 +132,10 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
     }
 
     getDate(value){
-        console.log(value);
+        this.filterDateStart = new Date(value.value);
+        this.filterDateEnd = new Date(value.value);
 
         this.value = value.value;
-
-        console.log(this.value.getDate());
 
         this.dateCordinate = this.value.getDate();
 
@@ -141,8 +143,6 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
 
         this.JSONData.selectedDate = value.value;
         this.model_result = JSON.stringify(this.JSONData);
-        console.log(this.model_result);
-
     }
 
     loadData() {
@@ -150,7 +150,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         this.apiTransport.getAll()
           .subscribe(trans => {
             //console.log(trans);
-            console.log(trans.data);
+            // console.log(trans.data);
             // this.transports = trans;
             // this.dataSource.data = trans.data; //transports;
             
@@ -189,13 +189,27 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         this.transport = transport;
         this.date = transport.coordinates;
         
-        console.log(this.transport)
+        // console.log(this.transport)
 
 
 
     }
 
     rastrear(evt?: any) {
+
+        //@ts-ignore
+        let start = document.getElementById('start').value.toString().split(':')
+        //@ts-ignore
+        let end = document.getElementById('end').value.toString().split(':')
+        
+        this.filterDateStart.setUTCHours(start[0]);
+        this.filterDateStart.setUTCMinutes(start[1]);
+        this.filterDateEnd.setUTCHours(end[0]);
+        this.filterDateEnd.setUTCMinutes(end[1]);
+
+
+        console.log(this.filterDateStart.toISOString())
+        console.log(this.filterDateEnd.toISOString());
      
         if(evt){
             this.selectedValue = evt.target.getData();
@@ -222,7 +236,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         // for(let i = 0 ; i < qtdCordinates ; i++){
         // this.date = this.transport.coordinates[i].date;
         // }
-        console.log(this.transport)
+        console.log(transport)
     
         //console.log(transport.coordinates.length);
         
