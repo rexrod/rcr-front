@@ -67,14 +67,14 @@ export class RastreadoresComponent implements OnInit, AfterViewInit, OnDestroy {
         private apiRastreador: RastreadoresControllerService,
     ) { }
 
-    loadData() {
+    loadData(pageIndex?) {
         this.apiRastreador.getAll()
           .subscribe(rastreadores => {
             //console.log(rastreadores);
             //console.log(rastreadores.data);
             this.rastreadores = rastreadores;
-            this.dataSource.data = rastreadores.data; 
-            this.paginator.firstPage();
+            this.dataSource.data = rastreadores.data;
+            this.paginator.pageIndex = pageIndex || 0;
           },
            error => {
                if (error.status === 0 || error.status === 404) {
@@ -119,8 +119,10 @@ export class RastreadoresComponent implements OnInit, AfterViewInit, OnDestroy {
                             this.snackBar.open('Item cadastrado com sucesso!', 'OK', {
                                 duration: 10000
                             });
+
+                            let pageIndex = this.paginator.pageIndex;
                             // Reload the table after the post
-                            this.loadData();
+                            this.loadData(pageIndex);
                         },
                         error => {
                             console.log(error);
@@ -156,8 +158,10 @@ export class RastreadoresComponent implements OnInit, AfterViewInit, OnDestroy {
                             this.snackBar.open('Item atualizado com sucesso!', 'OK', {
                                 duration: 10000
                             });
+
+                            let pageIndex = this.paginator.pageIndex;
                             // Reload the table after the post
-                            this.loadData();
+                            this.loadData(pageIndex);
                         },
                         error => {
                             this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
@@ -183,8 +187,10 @@ export class RastreadoresComponent implements OnInit, AfterViewInit, OnDestroy {
                             this.snackBar.open('Item deletado com sucesso!', 'OK', {
                                 duration: 10000
                             });
+
+                            let pageIndex = this.paginator.pageIndex;
                             // Reload the table after the post
-                            this.loadData();
+                            this.loadData(pageIndex);
                         },
                         error => {
                             this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
