@@ -84,7 +84,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
         protected httpClient: HttpClient,
     ) { }
 
-    loadData() {
+    loadData(pageIndex?) {
         this.apiTransport.getAll()
           .subscribe(transports => {
             //console.log(transports);
@@ -101,7 +101,12 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
 
             //this.transports = transports;
             this.dataSource.data = this.transports //transports.data; //transports;
-            this.paginator.firstPage();
+            if (pageIndex == -1) {
+                this.paginator.lastPage();
+            } else {
+                this.paginator.pageIndex = pageIndex || 0;
+            }
+            
           },
            error => {
                console.log(error);
@@ -150,7 +155,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
                                 duration: 10000
                             });
                         //    // Reload the table after the post
-                             this.loadData();
+                            this.loadData(-1);
                         // },
                         // error => {
                         //    this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
@@ -213,9 +218,10 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
                                  });
                             }
 
+                            let pageIndex = this.paginator.pageIndex;
                             // Reload the table after the post
-                            setTimeout(() => this.loadData(), 3000);
-                            this.loadData();
+                            setTimeout(() => this.loadData(pageIndex), 3000);
+                            this.loadData(pageIndex);
                         },
                         error => {
                             this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
@@ -241,8 +247,10 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
                             this.snackBar.open('Item deletado com sucesso!', 'OK', {
                                 duration: 10000
                             });
+
+                            let pageIndex = this.paginator.pageIndex;
                             // Reload the table after the post
-                            this.loadData();
+                            this.loadData(pageIndex);
                         },
                         error => {
                             console.log(error);
@@ -314,8 +322,10 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
                     this.snackBar.open('Rastreador associado com sucesso!', 'OK', {
                         duration: 10000
                     });
+
+                    let pageIndex = this.paginator.pageIndex;
                     // Reload the table after the post
-                    this.loadData();
+                    this.loadData(pageIndex);
                 },
                 error => {
                     console.log(error);
@@ -344,8 +354,10 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
                         this.snackBar.open('Rastreador desvinculado com sucesso!', 'OK', {
                             duration: 10000
                         });
+
+                        let pageIndex = this.paginator.pageIndex;
                         // Reload the table after the post
-                        this.loadData();
+                        this.loadData(pageIndex);
                     },
                     error => {
                         console.log(error);
@@ -367,7 +379,10 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
         data: { id: transport._id },
         width: '85%', height: '93%',
     }).afterClosed().subscribe((transport: any) => {
-        this.loadData();
+
+        let pageIndex = this.paginator.pageIndex;
+        // Reload the table after the post
+        this.loadData(pageIndex);
         // if (transport) {
         //     this.apiTransport.adicionarRastreador(transport).
         //     subscribe(
@@ -417,8 +432,10 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
                         this.snackBar.open('Rota removida com sucesso.', 'OK', {
                             duration: 10000
                         });
+
+                        let pageIndex = this.paginator.pageIndex;
                         // Reload the table after the post
-                        this.loadData();
+                        this.loadData(pageIndex);
                     },
                     error => {
                         console.log(error);
@@ -440,7 +457,10 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
         data: transport,
         width: '85%', height: '93%',
     }).afterClosed().subscribe((transport: any) => {
-        this.loadData();
+        
+        let pageIndex = this.paginator.pageIndex;
+        // Reload the table after the post
+        this.loadData(pageIndex);
         // if (transport) {
         //     this.apiTransport.adicionarRastreador(transport).
         //     subscribe(
@@ -479,8 +499,10 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
             this.snackBar.open(message, 'OK', {
                 duration: 10000
             });
+
+            let pageIndex = this.paginator.pageIndex;
             // Reload the table after the post
-            this.loadData();
+            this.loadData(pageIndex);
         },
         error => {
             console.log(error);
