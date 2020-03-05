@@ -38,7 +38,7 @@ export class RastreadoresControllerService {
         // console.log(formData.getAll);
         // console.log(formData.toString());
         
-        return this.httpClient.get<Rastreador>(environment.origin.tracker + '/trackers/alltrackers',httpOptions,
+        return this.httpClient.get<Rastreador>(environment.origin.tracker + '/tracker/getalltrackeativo',httpOptions,
         );
     }
 
@@ -101,8 +101,9 @@ export class RastreadoresControllerService {
         };
                
         // console.log(ratreadores);  
+        console.log(httpOptions);
 
-        return this.httpClient.delete( environment.origin.tracker + '/trackers/' + ratreadores.id, httpOptions);
+        return this.httpClient.patch( environment.origin.tracker + '/tracker/disabletrackers/' + ratreadores.id, {}, httpOptions);
     }
 
 }
