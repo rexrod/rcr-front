@@ -17,6 +17,22 @@ export class TransportControllerService {
         protected httpClient: HttpClient,
         public snackBar: MatSnackBar
     ) {}
+
+    public getRota(data: any): Observable<any> {
+        let token = localStorage.getItem('token');
+        const httpOptions = {
+            headers: new HttpHeaders({
+            "Content-Type":  "application/x-www-form-urlencoded",
+            "Authorization": "Bearer " + `${token}`
+            }),
+        };
+
+        let formData = new HttpParams().set('placa', data.plate).set('horainicio', data.start).set('horafim', data.end);
+
+        //@ts-ignore
+        return this.httpClient.get<any>(environment.origin.transports + '/transports/getRota/' + data.plate + '/' + data.start + "/" + data.end,  httpOptions);
+        // return this.httpClient.get<any>(environment.origin.transports + '/transports/getRota/' + "JXJ%20-%208090/2019-03-19%2017:15:00/2019-03-19%2017:18:00",  httpOptions);
+    }
     
     public getAll(): Observable<any> {
         
