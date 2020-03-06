@@ -138,6 +138,7 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         this.value = value.value;
 
         this.dateCordinate = this.value.getDate();
+        console.log(this.dateCordinate);
 
         this.JSONData.selectedDate = value.value;
         this.model_result = JSON.stringify(this.JSONData);
