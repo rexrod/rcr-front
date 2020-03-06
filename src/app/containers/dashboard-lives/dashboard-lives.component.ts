@@ -139,8 +139,6 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
 
         this.dateCordinate = this.value.getDate();
 
-
-
         this.JSONData.selectedDate = value.value;
         this.model_result = JSON.stringify(this.JSONData);
     }
@@ -195,21 +193,136 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
 
     }
 
+    rastrear_v2(evt?: any) {
+//@ts-ignore
+        let start = document.getElementById('start').value.toString() + ':00'
+        //@ts-ignore
+        let end = document.getElementById('end').value.toString() + ':00'
+        
+        // this.filterDateStart.setUTCHours(start[0]);
+        // this.filterDateStart.setUTCMinutes(start[1]);
+        // this.filterDateEnd.setUTCHours(end[0]);
+        // this.filterDateEnd.setUTCMinutes(end[1]);
+
+        let year = this.filterDateStart.getFullYear();
+        let month = this.filterDateStart.getMonth() + 1;
+        let date = this.filterDateStart.getDate()
+
+        start = year + '-' + month + '-' + date + ' ' + start;
+        end = year + '-' + month + '-' + date + ' ' + end;
+
+        console.log(start)
+        console.log(end);
+     
+        if(evt){
+            this.selectedValue = evt.target.getData();
+        }
+
+        const data = {
+            plate: this.selectedValue,
+            start: start,
+            end: end
+        }
+
+        let transport = undefined;
+        this.apiTransport.getRota(data).subscribe(result => {
+            console.table(result);
+            // transport = result.data[0];
+            console.log('the cake is a lie');
+            transport = result.data[0];
+
+            if(!transport.coordinates.length){
+                this.snackBar.open('O rastreador ainda não possui coordenadas!', 'OK', {
+                    duration: 10000
+                });
+            }
+    
+            this.group.removeAll();
+            let points = [];
+            let iconFinal = new H.map.Icon('assets/rcr/icon-local.png');
+            let icon = new H.map.Icon('assets/rcr/icon-rastreador-on.png');
+            let marker = new H.map.Marker({ lat: transport.coordinates[0].coords.lat, lng: transport.coordinates[0].coords.long }, { icon: icon });
+            let markerFinal = new H.map.Marker({ lat: transport.coordinates[transport.coordinates.length-1].coords.lat, lng: transport.coordinates[transport.coordinates.length-1].coords.long }, { icon: iconFinal });
+    
+            this.group.addObject(markerFinal);
+    
+            for(var i=0; i < transport.coordinates.length; i++){
+                var latitude = transport.coordinates[i].coords.lat.toString();
+                var longitude = transport.coordinates[i].coords.long.toString();
+    
+                if(latitude.substring(0, 1) == '0'){
+                    continue;
+                }
+    
+                if(longitude.substring(0, 1) == '0'){
+                    continue;
+                }
+                points.push({'lat': transport.coordinates[i].coords.lat, 'lng': transport.coordinates[i].coords.long });
+            }
+        
+            let linestring = new H.geo.LineString();
+            points.forEach(function(point) {
+            linestring.pushPoint(point);
+            });
+            
+            let polyline = new H.map.Polyline(linestring,{
+                style: { strokeColor: 'black', lineWidth: 4 },
+            });
+            
+            this.group.addObject(polyline);
+    
+            // Zoom the map to make sure the whole polyline is visible:
+            this.map.setViewBounds(polyline.getBounds());
+        
+            // Create an info bubble object at a specific geographic location:
+            let bubble = new H.ui.InfoBubble({ lng: transport.coordinates[transport.coordinates.length-1].coords.long, lat: transport.coordinates[transport.coordinates.length-1].coords.lat }, {
+                content: 'Localização atual'
+            });
+        
+            // Add info bubble to the UI:
+            // this.ui.addBubble(bubble);
+        
+            if(transport.coordinates.length > 0){
+                //console.log(this.rastreamento);
+                if(this.lived){
+                    //console.log(this.lived);
+                    if(this.rastreamento === undefined){
+                        this.rastreamento = setInterval(() => { this.rastrear(); }, 1000 * 5);
+                    }
+                    this.textoRastrear = 'Rastreando...';
+                }else{
+                    this.textoRastrear = 'Rastreado';
+                }
+                //this.rastreamento = setInterval( this.rastrear() , 1000 * 5 );      
+            }
+    
+            this.loadData();
+
+            // console.log(transport);
+        })
+    }
+
     rastrear(evt?: any) {
 
         //@ts-ignore
-        let start = document.getElementById('start').value.toString().split(':')
+        let start = document.getElementById('start').value.toString() + ':00'
         //@ts-ignore
-        let end = document.getElementById('end').value.toString().split(':')
+        let end = document.getElementById('end').value.toString() + ':00'
         
-        this.filterDateStart.setUTCHours(start[0]);
-        this.filterDateStart.setUTCMinutes(start[1]);
-        this.filterDateEnd.setUTCHours(end[0]);
-        this.filterDateEnd.setUTCMinutes(end[1]);
+        // this.filterDateStart.setUTCHours(start[0]);
+        // this.filterDateStart.setUTCMinutes(start[1]);
+        // this.filterDateEnd.setUTCHours(end[0]);
+        // this.filterDateEnd.setUTCMinutes(end[1]);
 
+        let year = this.filterDateStart.getFullYear();
+        let month = this.filterDateStart.getMonth() + 1;
+        let date = this.filterDateStart.getDate()
 
-        console.log(this.filterDateStart.toISOString())
-        console.log(this.filterDateEnd.toISOString());
+        start = year + '-' + month + '-' + date + ' ' + start;
+        end = year + '-' + month + '-' + date + ' ' + end;
+
+        console.log(start)
+        console.log(end);
      
         if(evt){
             this.selectedValue = evt.target.getData();
@@ -226,9 +339,27 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         
         // &&  x.coordinates.filter(f => f.date === '2019-03-19T21:15:24.957Z')
         // tslint:disable-next-line: max-line-length
-        const transport =  this.transports.find(x => x.vehiclePlate === this.selectedValue );
+        let transport =  this.transports.find(x => x.vehiclePlate === this.selectedValue );
 
         this.transport = transport;
+
+        const data = {
+            plate: this.selectedValue,
+            start: start,
+            end: end
+        }
+        
+        this.apiTransport.getRota(data).subscribe(result => {
+            transport = result.data[0];
+            console.log('the cake is a lie');
+            console.log(transport);
+        })
+
+        if(!transport.coordinates.length){
+            this.snackBar.open('O rastreador ainda não possui coordenadas!', 'OK', {
+                duration: 10000
+            });
+        }
        
 
         // const qtdCordinates = transport.coordinates.length;
@@ -236,7 +367,6 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         // for(let i = 0 ; i < qtdCordinates ; i++){
         // this.date = this.transport.coordinates[i].date;
         // }
-        console.log(transport)
     
         //console.log(transport.coordinates.length);
         
