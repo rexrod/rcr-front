@@ -76,15 +76,20 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
         private apiEmployee: EmployeesControllerService,
     ) { }
 
-    loadData() {
+    loadData(pageIndex?) {
         //console.log('entrou employee');
         this.apiEmployee.getAll()
           .subscribe(employees => {
             //console.log(employees);
             //console.log(rastreadores.data);
             this.employees = employees;
-            this.dataSource.data = employees; 
-            this.paginator.firstPage();
+            this.dataSource.data = employees;
+
+            if (pageIndex == -1) {
+                this.paginator.lastPage();
+            } else {
+                this.paginator.pageIndex = pageIndex || 0;
+            }
           },
            error => {
                console.log(error);
@@ -129,8 +134,9 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
                             this.snackBar.open('Item cadastrado com sucesso!', 'OK', {
                                 duration: 10000
                             });
+                            
                             // Reload the table after the post
-                            this.loadData();
+                            this.loadData(-1);
                         },
                         error => {
                             console.log(error);
@@ -166,8 +172,10 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
                             this.snackBar.open('Item atualizado com sucesso!', 'OK', {
                                 duration: 10000
                             });
+
+                            let actualIndex = this.paginator.pageIndex;
                             // Reload the table after the post
-                            this.loadData();
+                            this.loadData(actualIndex);
                         },
                         error => {
                             this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
@@ -193,8 +201,10 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
                             this.snackBar.open('Item deletado com sucesso!', 'OK', {
                                 duration: 10000
                             });
+                            
+                            let actualIndex = this.paginator.pageIndex;
                             // Reload the table after the post
-                            this.loadData();
+                            this.loadData(actualIndex);
                         },
                         error => {
                             this.snackBar.open((error.error[0] && error.error[0].title) ? error.error[0].title : 'Erro na requisição.',
@@ -261,8 +271,9 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
                         this.snackBar.open('Funcionário ativado com sucesso!', 'OK', {
                             duration: 10000
                         });
+                        let actualIndex = this.paginator.pageIndex;
                         // Reload the table after the post
-                        this.loadData();
+                        this.loadData(actualIndex);
                     },
                     error => {
                         console.log(error);
@@ -290,8 +301,9 @@ desativarUsuario(employee) {
                         this.snackBar.open('Funcionário desativado com sucesso!', 'OK', {
                             duration: 10000
                         });
+                        let actualIndex = this.paginator.pageIndex;
                         // Reload the table after the post
-                        this.loadData();
+                        this.loadData(actualIndex);
                     },
                     error => {
                         console.log(error);
@@ -321,8 +333,9 @@ desativarUsuario(employee) {
                 this.snackBar.open(message, 'OK', {
                     duration: 10000
                 });
+                let actualIndex = this.paginator.pageIndex;
                 // Reload the table after the post
-                this.loadData();
+                this.loadData(actualIndex);
             },
             error => {
                 console.log(error);

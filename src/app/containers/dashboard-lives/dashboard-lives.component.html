@@ -34,10 +34,10 @@
               
               <ejs-calendar *ngIf="selectedValue != undefined" id=calendar (change)="getDate($event)" [value]='value' [min]='minDate' [max]='maxDate'></ejs-calendar>
               <mat-form-field style="margin-left: 5px ;">
-                <input matInput placeholder="Inicio" value="08:00">
+                <input matInput placeholder="Inicio" value="08:00" id="start" type="time">
               </mat-form-field>
               <mat-form-field>
-                <input matInput placeholder="Fim" value="12:00">
+                <input matInput placeholder="Fim" value="12:00" id="end" type="time">
               </mat-form-field>
             <div id="input-filter" style="margin-left: 20px">   
               <mat-form-field>
@@ -91,10 +91,10 @@
               <mat-checkbox [disabled]="textoRastrear != 'Rastrear'" color='primary' [(ngModel)]="lived">Tempo real</mat-checkbox>
             </div>
             <div style="margin-left: 20px" *ngIf="textoRastrear == 'Rastrear'">
-              <button  mat-raised-button id="rastrear" [disabled]="textoRastrear != 'Rastrear'" (click)="rastrear()">{{textoRastrear}}</button>
+              <button  mat-raised-button id="rastrear" [disabled]="textoRastrear != 'Rastrear'" (click)="rastrear_v2()">{{textoRastrear}}</button>
             </div>
             <div style="margin-left: 20px" *ngIf="textoRastrear == 'Rastreando...'">
-                <button  mat-raised-button id="rastrear" [disabled]="textoRastrear != 'Rastrear'" (click)="rastrear()">{{textoRastrear}}</button>
+                <button  mat-raised-button id="rastrear" [disabled]="textoRastrear != 'Rastrear'" (click)="rastrear_v2()">{{textoRastrear}}</button>
             </div>
             
             <div style="margin-left: 20px" *ngIf="textoRastrear != 'Rastrear'">
