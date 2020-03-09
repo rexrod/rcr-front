@@ -154,5 +154,8 @@
     "@schematics/angular:service": {
       "spec": false
     }
+  },
+  "cli": {
+    "analytics": "aba5a35e-220a-49ec-ab9d-6b4eb4a47528"
   }
 }
