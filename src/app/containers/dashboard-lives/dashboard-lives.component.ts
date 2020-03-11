@@ -12,7 +12,7 @@ import { DashboardLiveCreateUpdateComponent } from './dashboard-live-create-upda
 import { DialogDeleteComponent } from '../../core/common/dialog-delete/dialog-delete.component';
 import { HttpClient, HttpHeaders, HttpParams,
     HttpResponse, HttpEvent }                           from '@angular/common/http';
-import { environment } from 'environments/environment.dev';
+import { environment } from 'environments/environment';
 import { Transport } from 'app/models/transports/transports.model';
 import { Coordinates } from 'app/models/transports/coordinates.model';
 
@@ -212,7 +212,13 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         start = year + '-' + month + '-' + date + ' ' + start;
         end = year + '-' + month + '-' + date + ' ' + end;
 
-        console.log(start)
+        let start_aux = new Date(start).getUTCHours().toString() + ':' + new Date(start).getUTCMinutes() + ':00'
+        let end_aux = new Date(end).getUTCHours().toString() + ':' + new Date(end).getUTCMinutes() + ':00'
+
+        start = year + '-' + month + '-' + date + ' ' + start_aux;
+        end = year + '-' + month + '-' + date + ' ' + end_aux;
+
+        console.log(start);
         console.log(end);
      
         if(evt){

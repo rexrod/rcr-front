@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders, HttpParams,
          HttpResponse, HttpEvent }                           from '@angular/common/http';
 
 import { Observable }                                        from 'rxjs';
-import { environment } from 'environments/environment.dev';
+import { environment } from 'environments/environment';
 import { Transport } from 'app/models/transports/transports.model';
 import { Rastreador } from 'app/models/rastreadores/rastreadores.model';
 import { MatSnackBar } from '@angular/material';
@@ -41,7 +41,7 @@ export class TransportControllerService {
         // console.log(formData.getAll);
         // console.log(formData.toString());
         
-        return this.httpClient.get<Transport>(environment.origin.transports + '/transports/alltransports',httpOptions,
+        return this.httpClient.get<Transport>(environment.origin.api + '/transports/alltransports',httpOptions,
         );
     }
 
@@ -67,7 +67,12 @@ export class TransportControllerService {
         
         // console.log(formData.getAll);
         // console.log(formData.toString());
-        return this.httpClient.get<Transport>('http://rcr-api.herokuapp.com/auth/v1/transports/alltransports',httpOptions,
+        // return this.httpClient.get<Transport>('http://localhost:3001/auth/v1/transports/alltransports',httpOptions,
+
+        // // return this.httpClient.get<Transport>('http://52.229.33.51:8080/auth/v1/transports/alltransports',httpOptions,
+        // );
+
+        return this.httpClient.get<Transport>(environment.origin.api + '/transports/alltransports',httpOptions,
 
         // return this.httpClient.get<Transport>('http://52.229.33.51:8080/auth/v1/transports/alltransports',httpOptions,
         );
@@ -128,7 +133,7 @@ export class TransportControllerService {
         //     console.log(transport.idRastreador);            
         // }
 
-        return this.httpClient.put( environment.origin.transports + '/transports/' + transport._id, formData.toString(), httpOptions);
+        return this.httpClient.put( environment.origin.api + '/transports/' + transport._id, formData.toString(), httpOptions);
     }
 
     public deleteTransport(transport: any): Observable<any> {
@@ -144,7 +149,7 @@ export class TransportControllerService {
                
         // console.log(transport);  
 
-        return this.httpClient.delete( environment.origin.transports + '/transports/' + transport.id, httpOptions);
+        return this.httpClient.delete( environment.origin.api + '/transports/' + transport.id, httpOptions);
     }
 
     public removerRastreador(transport: any): Observable<any> {
@@ -160,7 +165,7 @@ export class TransportControllerService {
 
         const formData = new URLSearchParams();
          
-        return this.httpClient.put( environment.origin.tracker + '/transports/unlinktracker/' + transport.id, formData, httpOptions);
+        return this.httpClient.put( environment.origin.api + '/transports/unlinktracker/' + transport.id, formData, httpOptions);
     }
 
     public adicionarRastreador(transport: any): Observable<any> {
@@ -179,6 +184,6 @@ export class TransportControllerService {
          
         formData.set('trackerSerial', transport.trackerSerial);
 
-        return this.httpClient.put( environment.origin.tracker + '/transports/linktracker/' + transport.id, formData.toString(), httpOptions);
+        return this.httpClient.put( environment.origin.api + '/transports/linktracker/' + transport.id, formData.toString(), httpOptions);
     }
 }

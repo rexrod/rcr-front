@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders, HttpParams,
          HttpResponse, HttpEvent }                           from '@angular/common/http';
 
 import { Observable }                                        from 'rxjs';
-import { environment } from 'environments/environment.dev';
+import { environment } from 'environments/environment';
 import { Transport } from 'app/models/transports/transports.model';
 import { Rastreador } from 'app/models/rastreadores/rastreadores.model';
 
@@ -38,7 +38,7 @@ export class RastreadoresControllerService {
         // console.log(formData.getAll);
         // console.log(formData.toString());
         
-        return this.httpClient.get<Rastreador>(environment.origin.tracker + '/tracker/getalltrackeativo',httpOptions,
+        return this.httpClient.get<Rastreador>(environment.origin.api + '/tracker/getalltrackeativo',httpOptions,
         );
     }
 
@@ -62,7 +62,7 @@ export class RastreadoresControllerService {
         // console.log(formData.getAll);
         // console.log(formData.toString());
         
-        return this.httpClient.post<Rastreador>(environment.origin.tracker + '/trackers/registertracker', formData.toString(), httpOptions,);
+        return this.httpClient.post<Rastreador>(environment.origin.api + '/trackers/registertracker', formData.toString(), httpOptions,);
     }
 
     public updateRastreador(rastreador: Rastreador): Observable<any> {
@@ -86,7 +86,7 @@ export class RastreadoresControllerService {
         // console.log(formData.getAll);
         // console.log(formData.toString());
 
-        return this.httpClient.put( environment.origin.tracker + '/trackers/' + rastreador._id, formData.toString(), httpOptions);
+        return this.httpClient.put( environment.origin.api + '/trackers/' + rastreador._id, formData.toString(), httpOptions);
     }
 
     public deleteRastreador(ratreadores: any): Observable<any> {
@@ -103,7 +103,7 @@ export class RastreadoresControllerService {
         // console.log(ratreadores);  
         console.log(httpOptions);
 
-        return this.httpClient.patch( environment.origin.tracker + '/tracker/disabletrackers/' + ratreadores.id, {}, httpOptions);
+        return this.httpClient.patch( environment.origin.api + '/tracker/disabletrackers/' + ratreadores.id, {}, httpOptions);
     }
 
 }

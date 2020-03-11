@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders, HttpParams,
          HttpResponse, HttpEvent }                           from '@angular/common/http';
 
 import { Observable }                                        from 'rxjs';
-import { environment } from 'environments/environment.dev';
+import { environment } from 'environments/environment';
 import { Transport } from 'app/models/transports/transports.model';
 import { Rastreador } from 'app/models/rastreadores/rastreadores.model';
 import { MatSnackBar } from '@angular/material';
@@ -43,7 +43,7 @@ export class UserControllerCustomService {
         // console.log(formData.toString());
  
         //http://52.229.33.51:8080/auth/v1/admin/allprofiles
-        return this.httpClient.get<Transport>(environment.origin.transports + '/admin/allprofiles', httpOptions,);
+        return this.httpClient.get<Transport>(environment.origin.api + '/admin/allprofiles', httpOptions,);
     }
 
     public registerUser(user: User): Observable<any> {
@@ -69,7 +69,8 @@ export class UserControllerCustomService {
         // console.log(formData.toString());
         
         // return this.httpClient.post<Rastreador>('http://52.229.33.51:8080/v1/oauth2/register', formData.toString(), httpOptions,);
-        return this.httpClient.post<Rastreador>('http://rcr-api.herokuapp.com/v1/oauth2/register', formData.toString(), httpOptions,);
+        // return this.httpClient.post<Rastreador>('http://localhost:3001/v1/oauth2/register', formData.toString(), httpOptions,);
+        return this.httpClient.post<Rastreador>(environment.origin.login + '/oauth2/register', formData.toString(), httpOptions,);
     }
 
     public updateUser(user: User): Observable<any> {
@@ -90,7 +91,7 @@ export class UserControllerCustomService {
         formData.set('email', user.email);
         formData.set('registration', user.registration);
   
-        return this.httpClient.put( environment.origin.tracker + '/admin/profile/' + user.id, formData.toString(), httpOptions);
+        return this.httpClient.put( environment.origin.api + '/admin/profile/' + user.id, formData.toString(), httpOptions);
     }
 
     public deleteUser(user: any): Observable<any> {
@@ -106,7 +107,7 @@ export class UserControllerCustomService {
                
         // console.log(user);  
 
-        return this.httpClient.delete( environment.origin.tracker + '/admin/profile/' + user.id, httpOptions);
+        return this.httpClient.delete( environment.origin.api + '/admin/profile/' + user.id, httpOptions);
     }
 
     public atualizarStatus(user: any): Observable<any> {
@@ -123,6 +124,6 @@ export class UserControllerCustomService {
         console.log(user);
         const formData = new URLSearchParams();
          
-        return this.httpClient.put( environment.origin.tracker + '/admin/status/' + user.id, formData, httpOptions);
+        return this.httpClient.put( environment.origin.api + '/admin/status/' + user.id, formData, httpOptions);
     }
 }

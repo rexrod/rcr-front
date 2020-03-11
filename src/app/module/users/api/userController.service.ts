@@ -24,7 +24,7 @@ import { AdministratorCustom} from '../model/administratorCustom';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
-import { environment } from 'environments/environment.dev';
+import { environment } from 'environments/environment';
 import { User } from 'app/models/users/users.model';
 
 
@@ -571,10 +571,11 @@ export class UserControllerService {
         console.log(formData.toString());
         
         // return this.httpClient.post<AdministratorCustom>('http://52.229.33.51:8080/v1/oauth2/token',formData.toString(), httpOptions,
-       return this.httpClient.post<AdministratorCustom>('http://rcr-api.herokuapp.com/v1/oauth2/token',formData.toString(), httpOptions,
+    //    return this.httpClient.post<AdministratorCustom>('http://localhost:3001/v1/oauth2/token',formData.toString(), httpOptions,
 
 
-        );
+    //     );
+        return this.httpClient.post<AdministratorCustom>(environment.origin.login + '/oauth2/token',formData.toString(), httpOptions);
     }
 
     public createNewUser(login: string, senha: string, name:string, registration:string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
@@ -607,9 +608,11 @@ export class UserControllerService {
         console.log(formData.toString());
         
         // return this.httpClient.post<AdministratorCustom>('http://52.229.33.51:8080/v1/oauth2/register',formData.toString(), httpOptions,
-        return this.httpClient.post<AdministratorCustom>('http://rcr-api.herokuapp.com/v1/oauth2/register',formData.toString(), httpOptions,
+        // return this.httpClient.post<AdministratorCustom>('http://localhost:3001/v1/oauth2/register',formData.toString(), httpOptions,
 
-        );
+        // );
+
+        return this.httpClient.post<AdministratorCustom>(environment.origin.login + '/oauth2/register',formData.toString(), httpOptions);
     }
 
     public getUserProfile(): Observable<any> {
@@ -624,7 +627,7 @@ export class UserControllerService {
         };
         
         //http://52.229.33.51:8080/auth/v1/admin/allprofiles
-        return this.httpClient.get<any>(environment.origin.transports + '/user/profile', httpOptions,);
+        return this.httpClient.get<any>(environment.origin.api + '/user/profile', httpOptions,);
     }
 
     public updateUserProfile(user: any): Observable<any> {
@@ -647,7 +650,7 @@ export class UserControllerService {
         console.log(formData.toString());
 
         //http://52.229.33.51:8080/auth/v1/admin/allprofiles
-        return this.httpClient.put<any>(environment.origin.users + '/user/profile', formData.toString(), httpOptions,);
+        return this.httpClient.put<any>(environment.origin.api + '/user/profile', formData.toString(), httpOptions,);
     }
 
     public changeUserPassword(user: any): Observable<any> {
@@ -666,6 +669,6 @@ export class UserControllerService {
         formData.set('currentPassword', user.currentPassword);
         formData.set('password', user.newPassword);
         
-        return this.httpClient.put<any>(environment.origin.users + '/user/password', formData.toString(), httpOptions,);
+        return this.httpClient.put<any>(environment.origin.api + '/user/password', formData.toString(), httpOptions,);
     }
 }

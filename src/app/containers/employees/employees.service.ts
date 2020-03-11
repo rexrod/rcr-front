@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders, HttpParams,
          HttpResponse, HttpEvent }                           from '@angular/common/http';
 
 import { Observable }                                        from 'rxjs';
-import { environment } from 'environments/environment.dev';
+import { environment } from 'environments/environment';
 import { Employees } from 'app/models/employees/employees.model';
 
 @Injectable()
@@ -37,7 +37,7 @@ export class EmployeesControllerService {
         // console.log(formData.getAll);
         // console.log(formData.toString());
         
-        return this.httpClient.get<Employees>(environment.origin.employees + '/employee/allemployees',httpOptions,
+        return this.httpClient.get<Employees>(environment.origin.api + '/employee/allemployees',httpOptions,
         );
     }
 
@@ -63,7 +63,7 @@ export class EmployeesControllerService {
         // console.log(formData.getAll);
         // console.log(formData.toString());
         
-        return this.httpClient.post<Employees>(environment.origin.employees + '/employee/register', formData.toString(), httpOptions,);
+        return this.httpClient.post<Employees>(environment.origin.api + '/employee/register', formData.toString(), httpOptions,);
     }
 
     public updateEmployees(employee: Employees): Observable<any> {
@@ -96,7 +96,7 @@ export class EmployeesControllerService {
         // console.log(formData.getAll);
         // console.log(formData.toString());
 
-        return this.httpClient.put( environment.origin.employees + '/employee/' + employee.id, formData.toString(), httpOptions);
+        return this.httpClient.put( environment.origin.api + '/employee/' + employee.id, formData.toString(), httpOptions);
         //return this.httpClient.put( environment.origin.employees + '/employee/' + employee.id, employee.toString(), httpOptions);
     }
 
@@ -113,7 +113,7 @@ export class EmployeesControllerService {
                
         // console.log(ratreadores);  
 
-        return this.httpClient.delete( environment.origin.employees + '/employee/' + employee.id, httpOptions);
+        return this.httpClient.delete( environment.origin.api + '/employee/' + employee.id, httpOptions);
     }
 
     public atualizarStatus(employee: any): Observable<any> {
@@ -129,7 +129,7 @@ export class EmployeesControllerService {
 
         const formData = new URLSearchParams();
          
-        return this.httpClient.put( environment.origin.employees + '/employee/status/' + employee.id, formData, httpOptions);
+        return this.httpClient.put( environment.origin.api + '/employee/status/' + employee.id, formData, httpOptions);
     }
 
 }

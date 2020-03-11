@@ -6,7 +6,7 @@ import { UserControllerService } from 'app/module/users/api/userController.servi
 
 @NgModule({
   providers: [
-    { provide: BASE_PATH, useValue: environment.origin.users },
+    { provide: BASE_PATH, useValue: environment.origin.api },
     UserControllerService
   ]
 })
