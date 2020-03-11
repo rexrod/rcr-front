@@ -30,7 +30,7 @@ export class TransportControllerService {
         let formData = new HttpParams().set('placa', data.plate).set('horainicio', data.start).set('horafim', data.end);
 
         //@ts-ignore
-        return this.httpClient.get<any>(environment.origin.transports + '/transports/getRota/' + data.plate + '/' + data.start + "/" + data.end,  httpOptions);
+        return this.httpClient.get<any>(environment.origin.api + '/transports/getRota/' + data.plate + '/' + data.start + "/" + data.end,  httpOptions);
         // return this.httpClient.get<any>(environment.origin.transports + '/transports/getRota/' + "JXJ%20-%208090/2019-03-19%2017:15:00/2019-03-19%2017:18:00",  httpOptions);
     }
     
