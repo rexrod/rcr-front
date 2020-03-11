@@ -18,7 +18,7 @@ import { trigger, state, transition, style, animate } from '@angular/animations'
 import { UserControllerService } from 'app/module/users';
 import { HttpClient, HttpHeaders, HttpParams,
     HttpResponse, HttpEvent }                           from '@angular/common/http';
-import { environment } from 'environments/environment.dev';
+import { environment } from 'environments/environment';
 import { UserControllerCustomService } from 'app/containers/users/user.service';
 import { DialogNoPanelComponent } from 'app/core/common/dialog-no-panel/dialog-no-panel.component';
 import { DialogStatusComponent } from 'app/core/common/dialog-change-status/dialog-status.component';

@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders, HttpParams,
   HttpResponse, HttpEvent }                           from '@angular/common/http';
 
 import { Transport } from 'app/models/transports/transports.model';
-import { environment } from 'environments/environment.dev';
+import { environment } from 'environments/environment';
 import { Rastreador } from 'app/models/rastreadores/rastreadores.model';
 import { RastreadoresControllerService } from 'app/containers/rastreadores/rastreadores.service';
 
@@ -190,7 +190,7 @@ export class TransportCreateUpdateComponent implements OnInit {
     console.log(formData.toString());
     console.log(httpOptions);
 
-    const promise = this.http.post(environment.origin.transports +'/transports/registertransport',formData.toString(),httpOptions).toPromise();
+    const promise = this.http.post(environment.origin.api +'/transports/registertransport',formData.toString(),httpOptions).toPromise();
 
     return promise;
   }
