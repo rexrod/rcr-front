@@ -13,7 +13,7 @@ import { DialogDeleteComponent } from '../../core/common/dialog-delete/dialog-de
 import { TransportControllerService } from 'app/containers/transports/transports.service';
 import { HttpClient, HttpHeaders, HttpParams,
     HttpResponse, HttpEvent }                           from '@angular/common/http';
-import { environment } from 'environments/environment.dev';
+import { environment } from 'environments/environment';
 
 
 // To work with fake data
@@ -195,7 +195,7 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
                                     }),
                                 };
 
-                                this.httpClient.put( environment.origin.transports + '/transports/linktracker/' + _transport._id, formDataRastreador.toString(), httpOptions).
+                                this.httpClient.put( environment.origin.api + '/transports/linktracker/' + _transport._id, formDataRastreador.toString(), httpOptions).
                                     subscribe(
                                         success => {
                                             this.snackBar.open('Transporte atualizado com sucesso!', 'OK', {

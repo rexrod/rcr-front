@@ -12,7 +12,7 @@ import { DashboardRoutesCreateUpdateComponent } from './dashboard-routes-create-
 import { DialogDeleteComponent } from '../../core/common/dialog-delete/dialog-delete.component';
 import { HttpClient, HttpHeaders, HttpParams,
     HttpResponse, HttpEvent }                           from '@angular/common/http';
-import { environment } from 'environments/environment.dev';
+import { environment } from 'environments/environment';
 import { Transport } from 'app/models/transports/transports.model';
 import { Coordinates } from 'app/models/transports/coordinates.model';
 
