@@ -212,7 +212,13 @@ export class DashboardLivesComponent implements OnInit, AfterViewInit, OnDestroy
         start = year + '-' + month + '-' + date + ' ' + start;
         end = year + '-' + month + '-' + date + ' ' + end;
 
-        console.log(start)
+        let start_aux = new Date(start).getUTCHours().toString() + ':' + new Date(start).getUTCMinutes() + ':00'
+        let end_aux = new Date(end).getUTCHours().toString() + ':' + new Date(end).getUTCMinutes() + ':00'
+
+        start = year + '-' + month + '-' + date + ' ' + start_aux;
+        end = year + '-' + month + '-' + date + ' ' + end_aux;
+
+        console.log(start);
         console.log(end);
      
         if(evt){

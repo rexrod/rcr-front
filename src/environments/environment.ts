@@ -22,6 +22,9 @@ export const environment = {
     api: 'https://rcr-api.herokuapp.com/auth/v1',
     login: 'https://rcr-api.herokuapp.com/v1',
 
+    // api: 'http://localhost:3001/auth/v1',
+    // login: 'http://localhost:3001/v1',
+
 // from template    
     notices: '',
     companies: '',
