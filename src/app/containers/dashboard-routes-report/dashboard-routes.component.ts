@@ -470,8 +470,6 @@ export class DashboardRoutesComponent implements OnInit, AfterViewInit, OnDestro
 
         let iconBus = new H.map.Icon('assets/rcr/icon-rota.png');
 
-        //console.log(this.data);
-
         this.apiTransport.getTransportID(this.data).
             subscribe(
                 transport => {
