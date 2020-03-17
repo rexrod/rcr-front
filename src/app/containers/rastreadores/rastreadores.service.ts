@@ -42,6 +42,33 @@ export class RastreadoresControllerService {
         );
     }
 
+    public getAllTrackers(): Observable<any> {
+        
+        // let username = 'aVgjhEBcnN-ytRrewsWJrSpoKnh'
+        // let password = 'q4fYtRGIkmLJKtx9Y5MaUYFPPdasd2QD4hTI4Gds45tgfSAdlkj'  
+        
+        let token = localStorage.getItem('token');
+        const httpOptions = {
+            headers: new HttpHeaders({
+            "Content-Type":  "application/x-www-form-urlencoded",
+            "Authorization": "Bearer " + `${token}`
+            }),
+        };
+
+
+        const formData = new URLSearchParams();
+        // append your data
+        //formData.set('username', <any>login);
+        //formData.set('password', <any>senha);
+        formData.set('grant_type', 'password');
+        
+        // console.log(formData.getAll);
+        // console.log(formData.toString());
+        
+        return this.httpClient.get<Rastreador>(environment.origin.api + '/trackers/alltrackers',httpOptions,
+        );
+    }
+
     public registerRastreador(rastreador: Rastreador): Observable<any> {
             
         let token = localStorage.getItem('token');

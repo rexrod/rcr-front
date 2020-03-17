@@ -311,7 +311,6 @@ export class TransportsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.dialog.open(DialogRastreadorComponent, {
         data: { id: transport._id, displayName: transport.vehiclePlate, displayBody: 'Transporte:', title: 'Deseja associar um rastreador?', type: 'add', trackerSerial: '' },
-        width: '15%', height: '24%',
         panelClass: 'dialog-rastreador'
     }).afterClosed().subscribe((transport: Transport) => {
 

@@ -92,7 +92,7 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
     loadData() {
 
       new Promise((resolve, reject) => {  
-        this.apiRastreador.getAll()
+        this.apiRastreador.getAllTrackers()
         .subscribe(rastreadores => {
           this.rastreadores = rastreadores.data;
         
@@ -136,8 +136,6 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
                 let data = new Date(transporte.coordinates[b].date);
                 let date = data.getDate() + '/' + month[data.getMonth()] + '/' + data.getFullYear();
 
-                console.log(data.getDate());
-
                 /*
                 if((lastTracker != transporte.coordinates[b].tracker) || (lastDate != date )){
                   lastTracker = transporte.coordinates[b].tracker;
@@ -149,15 +147,22 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
                
                 if(lastTracker != transporte.coordinates[b].tracker){
                   lastTracker = transporte.coordinates[b].tracker;
+                  console.log(lastTracker);
                 }else{
                   continue;
                 }
 
+                // console.log(transporte);
 
-                console.log(transporte.coordinates[b].tracker);
-                console.log(lastTracker);
+
+                // console.log(transporte.coordinates[b].tracker);
+                // console.log(lastTracker);
                 //console.log(this.rastreadores);
+                // console.table(this.rastreadores);
+                // const rastreador =  this.rastreadores.find(x => console.log(lastTracker) );
                 const rastreador =  this.rastreadores.find(x => x.serialKey == lastTracker );
+
+                // console.log(rastreador, 'THE CAKE IS A LIE');
 
                 this.transport = {}; 
                 this.transport.transportId =  transporte._id;
