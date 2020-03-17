@@ -110,12 +110,12 @@ subItems: [
     //icon: 'supervised_user_circle',
     position: 1
   },
-  {
-    name: 'Funcionários',
-    routeOrFunction: '/transports-employee',
-    //icon: 'group',
-    position: 2
-  },
+  // {
+  //   name: 'Funcionários',
+  //   routeOrFunction: '/transports-employee',
+  //   //icon: 'group',
+  //   position: 2
+  // },
   //{
   //  name: 'Outros',
     //routeOrFunction: '/transports-employee',
@@ -132,12 +132,12 @@ icon: 'router',
 position: 27 
 });
 
-menu.push({ 
-  name: 'Funcionários', 
-  routeOrFunction: 'employees', 
-  icon: 'supervised_user_circle', 
-  position: 28 
-});
+// menu.push({ 
+//   name: 'Funcionários', 
+//   routeOrFunction: 'employees', 
+//   icon: 'supervised_user_circle', 
+//   position: 28 
+// });
 
 menu.push({ 
 name: 'Relatórios', 
