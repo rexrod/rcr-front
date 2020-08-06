@@ -105,7 +105,7 @@ icon: 'map',
 position: 25,
 subItems: [
   {
-    name: 'Cargas',
+    name: 'Rotas',
     routeOrFunction: '/transports',
     //icon: 'supervised_user_circle',
     position: 1

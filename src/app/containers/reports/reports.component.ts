@@ -182,8 +182,10 @@ export class ReportsComponent implements OnInit, AfterViewInit, OnDestroy {
                   this.transport.status = 'Inativo';  
                 }
                 //this.transport.status = 'Ativo';
-                
-                this.transports.push(this.transport);
+                console.log(data.getFullYear)
+                if(data > new Date('2020-07-31')) {
+                  this.transports.push(this.transport);
+                }
                 //   console.log(this.transports);
               }
             }
