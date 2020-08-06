@@ -1,169 +1,139 @@
-
 <div id="background-dashboard-live">
-    <div id="conteiner">
-      <div id="card">
-        <div id="table-component">
-          <!-- TABLE FILTER -->
-          <div id="tfilter">
-            <!-- <div id="title" fxLayoutAlign="left" fxLayout="row">
-              <span>Live View</span>
-            </div> -->
-            <div id="title">
-                <span>Live View</span>
-              </div>
-
-              
-            <!-- <div id="input-filter">
-              <fury-list [columns]="columns" (filterChange)="onFilterChange($event)" fxLayoutAlign="center center" fxLayout="row"></fury-list>
-            </div>
-            -->
-            <!-- <div style="margin-left: 50px"> 
-              <mat-form-field>
-                <input matInput placeholder="Buscar..." value="">
-              </mat-form-field>
-            </div>
-            <div style="margin-left: 20px">
-              <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Data">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-            </div> -->
-            <!-- <div id="input-filter" style="margin-left: 20px"> -->
-         
-              
-              <ejs-calendar *ngIf="selectedValue != undefined" id=calendar (change)="getDate($event)" [value]='value' [min]='minDate' [max]='maxDate'></ejs-calendar>
-              <mat-form-field style="margin-left: 5px ;">
-                <input matInput placeholder="Inicio" value="08:00" id="start" type="time">
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="Fim" value="12:00" id="end" type="time">
-              </mat-form-field>
-            <div id="input-filter" style="margin-left: 20px">   
-              <mat-form-field>
-                <mat-select placeholder="Placa do Carro" [(ngModel)]="selectedValue" id="idRastreador" (ngModelChange)="listarDate($event)" [disabled]="textoRastrear != 'Rastrear'" > 
-                  <mat-option *ngFor="let rastreador of rastreadores" [value]="rastreador">
-                    {{rastreador}}
-                  </mat-option>
-                </mat-select>
-
-              </mat-form-field>
-
-              
-
-
-                
-                <!-- <mat-select placeholder="Data" [(ngModel)]="selectedValueDate" id="idRastreador" [disabled]="textoRastrear != 'Rastrear'"> 
-                  <mat-option *ngFor="let dates of date" [value]="dates.date">
-                    {{dates.date}}
-                  </mat-option>
-                </mat-select> -->
-             
-           
-            
-              
-            
-              <!--
-              <div style="width: 100%">
-                <mdc-form-field fluid>  
-                  <mdc-select placeholder="Rastreadores" floatLabel="false" [(ngModel)]="selectedValue" [disabled]="textoRastrear != 'Rastrear'" outlined class="custom-select-outline-color">
-                    <mdc-menu style="width: 310px">
-                      <mdc-list>
-                        <mdc-list-item *ngFor="let rastreador of rastreadores" [value]="rastreador">
-                          {{rastreador}}
-                        </mdc-list-item>
-                      </mdc-list>
-                    </mdc-menu>
-                  </mdc-select>
-                </mdc-form-field>
-              </div>
-              -->
-                <!-- <mat-form-field>
-                  <mat-select placeholder="Favorite food" [(ngModel)]="selectedValue" name="food">
-                    <mat-option *ngFor="let food of foods" [value]="food.value">
-                      {{food.viewValue}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field> -->
-            </div>
-            <div id="input-lived" style="margin-left: 20px">
-
-              <mat-checkbox [disabled]="textoRastrear != 'Rastrear'" color='primary' [(ngModel)]="lived">Tempo real</mat-checkbox>
-            </div>
-            <div style="margin-left: 20px" *ngIf="textoRastrear == 'Rastrear'">
-              <button  mat-raised-button id="rastrear" [disabled]="textoRastrear != 'Rastrear'" (click)="rastrear_v2()">{{textoRastrear}}</button>
-            </div>
-            <div style="margin-left: 20px" *ngIf="textoRastrear == 'Rastreando...'">
-                <button  mat-raised-button id="rastrear" [disabled]="textoRastrear != 'Rastrear'" (click)="rastrear_v2()">{{textoRastrear}}</button>
-            </div>
-            
-            <div style="margin-left: 20px" *ngIf="textoRastrear != 'Rastrear'">
-               <button  mat-raised-button id="cancelar" (click)="desativarRastrear()">Cancelar Rastreamento</button>
-            </div>
-            <!-- <div style="margin-left: 20px" *ngIf="textoRastrear != 'Rastrear'">
-                <button  mat-raised-button id="rota" (click)="calcularRota()">Verificar Melhor Rota</button>  
-            </div> -->
-            <!-- <div id="add">
-              <button mat-mini-fab color="primary"  matTooltip="Adicionar Item" [matTooltipPosition]="'above'" (click)="create()" id="create">
-                <mat-icon aria-label="Adicionar">add</mat-icon>
-              </button>
-            </div> -->
+  <div id="conteiner">
+    <div id="card">
+      <div id="table-component">
+        <!-- <div id="tfilter"> -->
+          <div fxLayout="row" fxLayoutAlign="space-around center" >
+          <div id="title" fxFlex="20">
+            <span style="font-weight: bold; font-size: large;">Live View</span>
           </div>
 
-          <!-- TABLE HEADER -->
-          <!-- The header is separate so you do not lose the filters or the sorting and keep the layout-->
-          <!-- <div id="tmaster"> -->
-            <!-- <div id="thead" matSort>
-              <div class="table-header">
-                <div *ngFor="let column of columns" class="{{column.property}}" mat-sort-header="{{column.property}}" 
-                [style.display]="column.visible ? 'flex' : 'none'" fxLayoutAlign="center">
-                  {{column.name | uppercase}}
-                </div>
-              </div>
-            </div> -->
-            <!-- border:1px solid black; -->
-            <div id="teste" style="width: 100%; height: 95%; background: white;" >
-              <!-- <div #map id="map" style="width: 100%; height: 800px"></div> -->
-              <div #map id="map" style="width: 100%; 
-                                        height: 100%;
-                                        padding-left: 1%;
-                                        padding-right: 1%;
-                                        padding-bottom: 1%;
-                                        padding-top: 1%;
-                                        border:1px solid;
-                                        border-color:  rgba(0, 0, 0, 0.05);
-                                        position: relative;">
-                                        <!-- beige  -->
-                <dashboard-live-map-button *ngIf="textoRastrear != 'Rastrear'" class="button-custom" [transport]="transport"></dashboard-live-map-button>
-              </div>
-              
-            <!-- </div> -->
-            <div id="tbody">
-            </div>
-            <!-- TABLE BODY -->
-            <!-- <agm-map id="map" [latitude]="lat" [longitude]="lng">
-                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-            </agm-map> -->
+          <mat-form-field
+            id="calendar"
+            appearance="fill"
+            fxFlex="20"
+          >
+            <mat-label>Dia</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              (dateChange)="getDate($event)"
+              [value]="value"
+              disabled
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker disabled="false"></mat-datepicker>
+          </mat-form-field>
 
-            <!-- <div id="tbody"> -->
+          <mat-form-field style="margin-left: 5px;" fxFlex="10">
+            <input
+              matInput
+              placeholder="Inicio"
+              value="08:00"
+              id="start"
+              type="time"
+            />
+          </mat-form-field>
+          <mat-form-field style="margin-left: 5px;" fxFlex="10">
+            <input
+              matInput
+              placeholder="Fim"
+              value="12:00"
+              id="end"
+              type="time"
+            />
+          </mat-form-field>
 
-              <!-- <agm-map class="fury-map" [latitude]="lat" [longitude]="lng" style="width: 50%;height: 50%;">
-                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-              </agm-map> -->
-
-              <!-- <agm-map id="map" [latitude]="lat" [longitude]="lng">
-                  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-              </agm-map> -->
-      
-            <!-- </div> -->
-          
+          <div id="input-filter" style="margin-left: 20px;" fxFlex="30">
+            <mat-form-field>
+              <mat-select
+                placeholder="Placa do Carro"
+                [(ngModel)]="selectedValue"
+                id="idRastreador"
+                (ngModelChange)="listarDate($event)"
+                [disabled]="textoRastrear != 'Rastrear'"
+              >
+                <mat-option
+                  *ngFor="let rastreador of rastreadores"
+                  [value]="rastreador"
+                >
+                  {{ rastreador }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
-          <!-- TABLE FOOTER -->
-          <!-- <div id="tfooter">
-            <mat-paginator class="paginator" [pageSize]="pageSize" color="primary"></mat-paginator>
-          </div> -->
+          <div id="input-lived" style="margin-left: 20px;" fxFlex="15">
+            <mat-checkbox
+              [disabled]="textoRastrear != 'Rastrear'"
+              color="primary"
+              [(ngModel)]="lived"
+              >Tempo real</mat-checkbox
+            >
+          </div>
+          <div style="margin-left: 20px;" *ngIf="textoRastrear == 'Rastrear'" fxFlex="20">
+            <button
+              mat-raised-button
+              id="rastrear"
+              [disabled]="textoRastrear != 'Rastrear'"
+              (click)="rastrear_v2()"
+            >
+              {{ textoRastrear }}
+            </button>
+          </div>
+          <div
+            style="margin-left: 20px;"
+            *ngIf="textoRastrear == 'Rastreando...'"
+          >
+            <button
+              mat-raised-button
+              id="rastrear"
+              [disabled]="textoRastrear != 'Rastrear'"
+              (click)="rastrear_v2()"
+            >
+              {{ textoRastrear }}
+            </button>
+          </div>
+
+          <div style="margin-left: 20px;" *ngIf="textoRastrear != 'Rastrear'">
+            <button
+              mat-raised-button
+              id="cancelar"
+              (click)="desativarRastrear()"
+            >
+              Cancelar Rastreamento
+            </button>
+          </div>
+        </div>
+      <!-- </div> -->
+        <div id="teste" style="width: 95%; height: 90%; background: white;">
+          <div
+            #map
+            id="map"
+            style="
+              width: 100%;
+              height: 100%;
+              padding-left: 1%;
+              padding-right: 1%;
+              padding-bottom: 1%;
+              padding-top: 1%;
+              border: 1px solid;
+              border-color: rgba(0, 0, 0, 0.05);
+              position: relative;
+            "
+          >
+            <dashboard-live-map-button
+              *ngIf="textoRastrear != 'Rastrear'"
+              class="button-custom"
+              [transport]="transport"
+            ></dashboard-live-map-button>
+          </div>
+
+          <div id="tbody"></div>
         </div>
       </div>
     </div>
   </div>
-
+</div>

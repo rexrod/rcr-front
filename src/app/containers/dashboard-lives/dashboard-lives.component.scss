@@ -367,9 +367,10 @@ mat-form-field {
             display: none !important;
         }
     }
-    
-    // .agm-map-container-inner {
-    //     height: 100%;
-    // }
+}
+
+.mat-button, .mat-icon-button, .mat-stroked-button {
+    color: black;
+    background: transparent;
 }
 
